@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Projects() {
   const projects = [
@@ -64,8 +65,8 @@ export default function Projects() {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project, index) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {projects.slice(0, 4).map((project, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
@@ -120,6 +121,12 @@ export default function Projects() {
             </Card>
           </motion.div>
         ))}
+      </div>
+
+      <div className="flex justify-center mt-8">
+        <Button asChild>
+          <Link href="/projects">See All Projects</Link>
+        </Button>
       </div>
     </section>
   );

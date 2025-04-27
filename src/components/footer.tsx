@@ -96,6 +96,12 @@ export default function Footer() {
                 Services
               </Link>
               <Link
+                href="#blogs"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Blogs
+              </Link>
+              <Link
                 href="#contact"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >

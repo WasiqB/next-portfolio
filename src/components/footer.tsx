@@ -102,6 +102,12 @@ export default function Footer() {
                 Blogs
               </Link>
               <Link
+                href="#videos"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Videos
+              </Link>
+              <Link
                 href="#contact"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >

@@ -15,7 +15,15 @@ import {
   Smartphone,
   Server,
   Lightbulb,
+  ShoppingCart,
+  Zap,
+  FileText,
+  Link2,
+  Accessibility,
+  Search,
 } from "lucide-react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Services() {
   const services = [
@@ -53,6 +61,41 @@ export default function Services() {
       description: "Providing expert advice on web development and design.",
       icon: <Lightbulb className="h-10 w-10" />,
     },
+    {
+      title: "E-commerce Solutions",
+      description:
+        "Building online stores with secure payment processing and inventory management.",
+      icon: <ShoppingCart className="h-10 w-10" />,
+    },
+    {
+      title: "Performance Optimization",
+      description:
+        "Improving website speed and performance for better user experience and SEO.",
+      icon: <Zap className="h-10 w-10" />,
+    },
+    {
+      title: "CMS Development",
+      description:
+        "Creating custom content management systems or integrating existing ones.",
+      icon: <FileText className="h-10 w-10" />,
+    },
+    {
+      title: "API Integration",
+      description:
+        "Connecting your application with third-party services and APIs.",
+      icon: <Link2 className="h-10 w-10" />,
+    },
+    {
+      title: "Web Accessibility",
+      description:
+        "Ensuring your website is accessible to all users, including those with disabilities.",
+      icon: <Accessibility className="h-10 w-10" />,
+    },
+    {
+      title: "SEO Optimization",
+      description: "Improving your website's visibility in search engines.",
+      icon: <Search className="h-10 w-10" />,
+    },
   ];
 
   return (
@@ -74,7 +117,7 @@ export default function Services() {
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services.map((service, index) => (
+        {services.slice(0, 6).map((service, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
@@ -94,6 +137,12 @@ export default function Services() {
             </Card>
           </motion.div>
         ))}
+      </div>
+
+      <div className="flex justify-center mt-8">
+        <Button asChild>
+          <Link href="/services">View All Services</Link>
+        </Button>
       </div>
     </section>
   );

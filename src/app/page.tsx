@@ -4,6 +4,7 @@ import Services from "@/components/services";
 import Contact from "@/components/contact";
 import Blogs from "@/components/blogs";
 import Videos from "@/components/videos";
+import SponsorsSection from "@/components/sponsors-section";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Services />
       <Blogs />
       <Videos />
+      <SponsorsSection />
       <Contact />
     </main>
   );

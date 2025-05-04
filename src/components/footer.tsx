@@ -108,6 +108,12 @@ export default function Footer() {
                 Videos
               </Link>
               <Link
+                href="#sponsors"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                Sponsors
+              </Link>
+              <Link
                 href="#contact"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >

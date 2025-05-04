@@ -56,7 +56,10 @@ const sponsors: Sponsor[] = [
 
 export default function SponsorsSection() {
   return (
-    <section id="sponsors" className="container py-12 md:py-24">
+    <section
+      id="sponsors"
+      className="container max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24"
+    >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

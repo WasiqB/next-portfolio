@@ -90,43 +90,49 @@ export default function Footer() {
                 About
               </Link>
               <Link
-                href="#projects"
+                href="/#projects"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Projects
               </Link>
               <Link
-                href="#services"
+                href="/#services"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Services
               </Link>
               <Link
-                href="#blogs"
+                href="/#blogs"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Blogs
               </Link>
               <Link
-                href="#videos"
+                href="/#videos"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Videos
               </Link>
               <Link
-                href="#testimonials"
+                href="/#growth"
+                className="text-muted-foreground hover:text-primary transition-colors"
+              >
+                My Growth
+              </Link>
+              <Link
+                href="/#testimonials"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Testimonials
               </Link>
               <Link
-                href="#sponsors"
+                href="/#sponsors"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Sponsors
               </Link>
               <Link
-                href="#contact"
+                href="/#contact"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Contact

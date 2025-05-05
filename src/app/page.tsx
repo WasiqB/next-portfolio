@@ -6,6 +6,7 @@ import Blogs from "@/components/blogs";
 import Videos from "@/components/videos";
 import SponsorsSection from "@/components/sponsors-section";
 import Testimonials from "@/components/testimonials";
+import GrowthSection from "@/components/growth-section";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Services />
       <Blogs />
       <Videos />
+      <GrowthSection />
       <Testimonials />
       <SponsorsSection />
       <Contact />

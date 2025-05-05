@@ -24,8 +24,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       framer-motion:
-        specifier: ^12.9.4
-        version: 12.9.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^12.9.6
+        version: 12.9.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       lucide-react:
         specifier: ^0.507.0
         version: 0.507.0(react@19.1.0)
@@ -41,6 +41,9 @@ importers:
       react-dom:
         specifier: ^19.0.0
         version: 19.1.0(react@19.1.0)
+      react-icons:
+        specifier: ^5.5.0
+        version: 5.5.0(react@19.1.0)
       react-type-animation:
         specifier: ^3.2.0
         version: 3.2.0(prop-types@15.8.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1311,8 +1314,8 @@ packages:
     resolution: {integrity: sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow==}
     engines: {node: '>= 0.6'}
 
-  framer-motion@12.9.4:
-    resolution: {integrity: sha512-yaeGDmGQ3eCQEwZ95/pRQMaSh/Q4E2CK6JYOclG/PdjyQad0MULJ+JFVV8911Fl5a6tF6o0wgW8Dpl5Qx4Adjg==}
+  framer-motion@12.9.6:
+    resolution: {integrity: sha512-IIFf8lGl9ZrbzPvm4u5txyUXiS4x8lRxKWIQ4EFU1bC0aaUTNBM8PJIWR7S9DotBDlBqC7FNsxpDmdJNJzU5Iw==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -1717,8 +1720,8 @@ packages:
   minimist@1.2.8:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
 
-  motion-dom@12.9.4:
-    resolution: {integrity: sha512-25TWkQPj5I18m+qVjXGtCsxboY11DaRC5HMjd29tHKExazW4Zf4XtAagBdLpyKsVuAxEQ6cx5/E4AB21PFpLnQ==}
+  motion-dom@12.9.6:
+    resolution: {integrity: sha512-IK9pm5zU8BIp3FCoUGF3T7AHVLVOlXxlwco/bIbcnpBtyYb2gDQhdOzUh2KSDJVjYl1MZ9vdq8tnFTTahX2lfg==}
 
   motion-utils@12.9.4:
     resolution: {integrity: sha512-BW3I65zeM76CMsfh3kHid9ansEJk9Qvl+K5cu4DVHKGsI52n76OJ4z2CUJUV+Mn3uEP9k1JJA3tClG0ggSrRcg==}
@@ -1909,6 +1912,11 @@ packages:
     resolution: {integrity: sha512-Xs1hdnE+DyKgeHJeJznQmYMIBG3TKIHJJT95Q58nHLSrElKlGQqDTR2HQ9fx5CN/Gk6Vh/kupBTDLU11/nDk/g==}
     peerDependencies:
       react: ^19.1.0
+
+  react-icons@5.5.0:
+    resolution: {integrity: sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw==}
+    peerDependencies:
+      react: '*'
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -3633,9 +3641,9 @@ snapshots:
 
   forwarded@0.2.0: {}
 
-  framer-motion@12.9.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
+  framer-motion@12.9.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
     dependencies:
-      motion-dom: 12.9.4
+      motion-dom: 12.9.6
       motion-utils: 12.9.4
       tslib: 2.8.1
     optionalDependencies:
@@ -4016,7 +4024,7 @@ snapshots:
 
   minimist@1.2.8: {}
 
-  motion-dom@12.9.4:
+  motion-dom@12.9.6:
     dependencies:
       motion-utils: 12.9.4
 
@@ -4205,6 +4213,10 @@ snapshots:
     dependencies:
       react: 19.1.0
       scheduler: 0.26.0
+
+  react-icons@5.5.0(react@19.1.0):
+    dependencies:
+      react: 19.1.0
 
   react-is@16.13.1: {}
 

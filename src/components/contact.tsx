@@ -14,17 +14,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    reason: "",
     message: "",
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -35,7 +37,7 @@ export default function Contact() {
     // Handle form submission here
     console.log(formData);
     // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    setFormData({ name: "", email: "", reason: "", message: "" });
     // Show success message
     alert("Message sent successfully!");
   };
@@ -59,10 +61,10 @@ export default function Contact() {
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div className="max-w-md mx-auto">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
@@ -103,6 +105,28 @@ export default function Contact() {
                   />
                 </div>
                 <div className="space-y-2">
+                  <label htmlFor="reason" className="text-sm font-medium">
+                    Reason for Contact
+                  </label>
+                  <select
+                    id="reason"
+                    name="reason"
+                    value={formData.reason || ""}
+                    onChange={handleChange}
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2disabled:cursor-not-allowed disabled:opacity-50"
+                    required
+                  >
+                    <option value="" disabled>
+                      Select a reason
+                    </option>
+                    <option value="project">Project Inquiry</option>
+                    <option value="job">Job Opportunity</option>
+                    <option value="collaboration">Collaboration</option>
+                    <option value="question">General Question</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium">
                     Message
                   </label>
@@ -120,60 +144,6 @@ export default function Contact() {
                   Send Message
                 </Button>
               </form>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col gap-6"
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Contact Information</CardTitle>
-              <CardDescription>
-                Here are the ways you can reach me directly.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-primary" />
-                <span>john.doe@example.com</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-primary" />
-                <span>+1 (555) 123-4567</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <MapPin className="h-5 w-5 text-primary" />
-                <span>San Francisco, CA</span>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle>Office Hours</CardTitle>
-              <CardDescription>
-                When I'm available for meetings and calls.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="flex justify-between">
-                <span>Monday - Friday</span>
-                <span>9:00 AM - 5:00 PM</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Saturday</span>
-                <span>10:00 AM - 2:00 PM</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Sunday</span>
-                <span>Closed</span>
-              </div>
             </CardContent>
           </Card>
         </motion.div>

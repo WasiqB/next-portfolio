@@ -18,13 +18,14 @@ export default function Navbar() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Services", href: "#services" },
-    { name: "Blogs", href: "#blogs" },
-    { name: "Videos", href: "#videos" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "Sponsors", href: "#sponsors" },
-    { name: "Contact", href: "#contact" },
+    { name: "Projects", href: "/#projects" },
+    { name: "Services", href: "/#services" },
+    { name: "Blogs", href: "/#blogs" },
+    { name: "Videos", href: "/#videos" },
+    { name: "Growth", href: "/#growth" },
+    { name: "Testimonials", href: "/#testimonials" },
+    { name: "Sponsors", href: "/#sponsors" },
+    { name: "Contact", href: "/#contact" },
   ];
 
   return (

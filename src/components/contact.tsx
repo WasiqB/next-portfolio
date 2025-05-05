@@ -23,6 +23,8 @@ export default function Contact() {
     message: "",
   });
 
+  const [subscribeEmail, setSubscribeEmail] = useState("");
+
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
@@ -30,6 +32,10 @@ export default function Contact() {
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubscribeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSubscribeEmail(e.target.value);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -40,6 +46,16 @@ export default function Contact() {
     setFormData({ name: "", email: "", reason: "", message: "" });
     // Show success message
     alert("Message sent successfully!");
+  };
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle subscription here
+    console.log("Subscribing email:", subscribeEmail);
+    // Reset form
+    setSubscribeEmail("");
+    // Show success message
+    alert("Subscribed successfully!");
   };
 
   return (
@@ -61,7 +77,7 @@ export default function Contact() {
         </p>
       </motion.div>
 
-      <div className="max-w-md mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -113,7 +129,7 @@ export default function Contact() {
                     name="reason"
                     value={formData.reason || ""}
                     onChange={handleChange}
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     required
                   >
                     <option value="" disabled>
@@ -142,6 +158,62 @@ export default function Contact() {
                 </div>
                 <Button type="submit" className="w-full">
                   Send Message
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Card className="h-full flex flex-col">
+            <CardHeader>
+              <CardTitle>Subscribe to My Newsletter</CardTitle>
+              <CardDescription>
+                Get updates on my latest projects, articles, and tutorials.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex-grow flex flex-col justify-between">
+              <div className="space-y-4 mb-6">
+                <p className="text-muted-foreground">
+                  Stay up to date with my latest work and insights. I send out
+                  newsletters with:
+                </p>
+                <ul className="space-y-2 list-disc pl-5 text-muted-foreground">
+                  <li>New project announcements</li>
+                  <li>Blog posts and tutorials</li>
+                  <li>Tips and best practices</li>
+                  <li>Exclusive content for subscribers</li>
+                </ul>
+                <p className="text-sm text-muted-foreground">
+                  I respect your privacy and will never share your email. You
+                  can unsubscribe at any time.
+                </p>
+              </div>
+
+              <form onSubmit={handleSubscribe} className="space-y-4">
+                <div className="space-y-2">
+                  <label
+                    htmlFor="subscribe-email"
+                    className="text-sm font-medium"
+                  >
+                    Email Address
+                  </label>
+                  <Input
+                    id="subscribe-email"
+                    type="email"
+                    value={subscribeEmail}
+                    onChange={handleSubscribeChange}
+                    placeholder="Enter your email"
+                    required
+                  />
+                </div>
+                <Button type="submit" className="w-full">
+                  Subscribe
                 </Button>
               </form>
             </CardContent>

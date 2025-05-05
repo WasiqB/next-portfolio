@@ -114,6 +114,23 @@ export default function AboutPage() {
         <h1 className="text-3xl font-bold">About Me</h1>
       </div>
 
+      {/* Mobile profile image - visible only on mobile */}
+      <div className="md:hidden mb-8">
+        <Card>
+          <CardContent className="p-0">
+            <div className="relative aspect-square w-full overflow-hidden">
+              <Image
+                src="/placeholder.svg?height=400&width=400"
+                alt="John Doe"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         <div className="md:col-span-2">
           <Card>
@@ -186,7 +203,7 @@ export default function AboutPage() {
           </Card>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-8 hidden md:block">
           <Card>
             <CardContent className="p-0">
               <div className="relative aspect-square w-full overflow-hidden">
@@ -201,6 +218,98 @@ export default function AboutPage() {
             </CardContent>
           </Card>
 
+          <Card>
+            <CardHeader>
+              <CardTitle>Connect With Me</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-3 gap-4">
+                <Link
+                  href="https://github.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted transition-colors"
+                >
+                  <Github className="h-6 w-6" />
+                  <span className="text-xs">GitHub</span>
+                </Link>
+                <Link
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted transition-colors"
+                >
+                  <Linkedin className="h-6 w-6" />
+                  <span className="text-xs">LinkedIn</span>
+                </Link>
+                <Link
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted transition-colors"
+                >
+                  <Twitter className="h-6 w-6" />
+                  <span className="text-xs">Twitter</span>
+                </Link>
+                <Link
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted transition-colors"
+                >
+                  <Youtube className="h-6 w-6" />
+                  <span className="text-xs">YouTube</span>
+                </Link>
+                <Link
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted transition-colors"
+                >
+                  <Instagram className="h-6 w-6" />
+                  <span className="text-xs">Instagram</span>
+                </Link>
+                <Link
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center gap-2 p-3 rounded-lg hover:bg-muted transition-colors"
+                >
+                  <Facebook className="h-6 w-6" />
+                  <span className="text-xs">Facebook</span>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Skills</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-wrap gap-2">
+                <Badge>React</Badge>
+                <Badge>Next.js</Badge>
+                <Badge>TypeScript</Badge>
+                <Badge>JavaScript</Badge>
+                <Badge>HTML5</Badge>
+                <Badge>CSS3</Badge>
+                <Badge>Tailwind CSS</Badge>
+                <Badge>Redux</Badge>
+                <Badge>GraphQL</Badge>
+                <Badge>REST APIs</Badge>
+                <Badge>Node.js</Badge>
+                <Badge>Git</Badge>
+                <Badge>UI/UX Design</Badge>
+                <Badge>Responsive Design</Badge>
+                <Badge>Performance Optimization</Badge>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Mobile social links and skills - visible only on mobile */}
+        <div className="md:hidden space-y-8">
           <Card>
             <CardHeader>
               <CardTitle>Connect With Me</CardTitle>

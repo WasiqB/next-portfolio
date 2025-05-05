@@ -74,14 +74,15 @@ export default function SponsorsSection() {
         </p>
       </motion.div>
 
-      <div className="flex flex-wrap justify-center gap-8 mb-12">
-        {sponsors.slice(0, 5).map((sponsor, index) => (
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-3xl mx-auto mb-12">
+        {sponsors.slice(0, 4).map((sponsor, index) => (
           <motion.div
             key={sponsor.id}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
+            className="flex justify-center"
           >
             <Link
               href={sponsor.url}

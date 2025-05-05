@@ -4,29 +4,71 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu } from "lucide-react";
+import { Moon, Sun, Menu, ChevronDown } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+
+// Define the navigation structure
+const navigationItems = [
+  { name: "Home", href: "/", submenu: false },
+  {
+    name: "About",
+    href: "#",
+    submenu: true,
+    items: [
+      { name: "About Me", href: "/about" },
+      { name: "My Growth", href: "/#growth" },
+      { name: "Testimonials", href: "/#testimonials" },
+    ],
+  },
+  {
+    name: "Work",
+    href: "#",
+    submenu: true,
+    items: [
+      { name: "Projects", href: "/#projects" },
+      { name: "Services", href: "/#services" },
+      { name: "Sponsors", href: "/#sponsors" },
+    ],
+  },
+  {
+    name: "Resources",
+    href: "#",
+    submenu: true,
+    items: [
+      { name: "Blogs", href: "/#blogs" },
+      { name: "Videos", href: "/#videos" },
+    ],
+  },
+  { name: "Contact Me", href: "/#contact", submenu: false },
+];
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
+  const [openCollapsible, setOpenCollapsible] = useState<string | null>(null);
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  const navItems = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Projects", href: "/#projects" },
-    { name: "Services", href: "/#services" },
-    { name: "Blogs", href: "/#blogs" },
-    { name: "Videos", href: "/#videos" },
-    { name: "Growth", href: "/#growth" },
-    { name: "Testimonials", href: "/#testimonials" },
-    { name: "Sponsors", href: "/#sponsors" },
-    { name: "Contact", href: "/#contact" },
-  ];
+  const toggleCollapsible = (name: string) => {
+    setOpenCollapsible(openCollapsible === name ? null : name);
+  };
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -39,26 +81,49 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="text-sm font-medium transition-colors hover:text-primary"
-            >
-              {item.name}
-            </Link>
+          {navigationItems.map((item) => (
+            <div key={item.name} className="relative group">
+              {item.submenu ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <button className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary">
+                      {item.name}
+                      <ChevronDown className="h-4 w-4" />
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="center" className="w-48">
+                    {item.items?.map((subItem) => (
+                      <DropdownMenuItem key={subItem.name} asChild>
+                        <Link
+                          href={subItem.href}
+                          className="w-full cursor-pointer"
+                        >
+                          {subItem.name}
+                        </Link>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Link
+                  href={item.href}
+                  className="text-sm font-medium transition-colors hover:text-primary"
+                >
+                  {item.name}
+                </Link>
+              )}
+            </div>
           ))}
-          {isMounted && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              aria-label="Toggle theme"
-            >
-              <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-            </Button>
-          )}
+
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            aria-label="Toggle theme"
+          >
+            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          </Button>
         </nav>
 
         {/* Mobile Navigation */}
@@ -70,35 +135,64 @@ export default function Navbar() {
           </SheetTrigger>
           <SheetContent side="right" className="w-[250px] sm:w-[300px]">
             <nav className="flex flex-col gap-4 mt-8">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-sm font-medium transition-colors hover:text-primary"
-                >
-                  {item.name}
-                </Link>
-              ))}
-              {isMounted && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="justify-start px-2"
-                >
-                  {theme === "dark" ? (
-                    <>
-                      <Sun className="h-4 w-4 mr-2" />
-                      Light Mode
-                    </>
+              {navigationItems.map((item) => (
+                <div key={item.name}>
+                  {item.submenu ? (
+                    <Collapsible
+                      open={openCollapsible === item.name}
+                      onOpenChange={() => toggleCollapsible(item.name)}
+                    >
+                      <CollapsibleTrigger asChild>
+                        <button className="flex items-center justify-between w-full text-sm font-medium transition-colors hover:text-primary">
+                          {item.name}
+                          <ChevronDown
+                            className={`h-4 w-4 transition-transform ${
+                              openCollapsible === item.name ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent className="pl-4 mt-2 space-y-2 border-l">
+                        {item.items?.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            href={subItem.href}
+                            className="block text-sm text-muted-foreground hover:text-primary"
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </CollapsibleContent>
+                    </Collapsible>
                   ) : (
-                    <>
-                      <Moon className="h-4 w-4 mr-2" />
-                      Dark Mode
-                    </>
+                    <Link
+                      href={item.href}
+                      className="text-sm font-medium transition-colors hover:text-primary"
+                    >
+                      {item.name}
+                    </Link>
                   )}
-                </Button>
-              )}
+                </div>
+              ))}
+
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="justify-start px-2 mt-4"
+              >
+                {theme === "dark" ? (
+                  <>
+                    <Sun className="h-4 w-4 mr-2" />
+                    Light Mode
+                  </>
+                ) : (
+                  <>
+                    <Moon className="h-4 w-4 mr-2" />
+                    Dark Mode
+                  </>
+                )}
+              </Button>
             </nav>
           </SheetContent>
         </Sheet>

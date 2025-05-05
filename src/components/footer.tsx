@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Github,
   Linkedin,
@@ -10,14 +8,48 @@ import {
   Facebook,
 } from "lucide-react";
 
-export default function Footer() {
-  const currentYear = new Date().getFullYear();
+// Define the navigation structure (same as navbar)
+const navigationItems = [
+  { name: "Home", href: "/", submenu: false },
+  {
+    name: "About",
+    href: "#",
+    submenu: true,
+    items: [
+      { name: "About Me", href: "/about" },
+      { name: "My Growth", href: "/growth" },
+      { name: "Testimonials", href: "/testimonials" },
+    ],
+  },
+  {
+    name: "Work",
+    href: "#",
+    submenu: true,
+    items: [
+      { name: "Projects", href: "/projects" },
+      { name: "Services", href: "/services" },
+      { name: "Sponsors", href: "/sponsors" },
+    ],
+  },
+  {
+    name: "Resources",
+    href: "#",
+    submenu: true,
+    items: [
+      { name: "Blogs", href: "/blogs" },
+      { name: "Videos", href: "/videos" },
+    ],
+  },
+  { name: "Contact Me", href: "#contact", submenu: false },
+];
 
+export default function Footer() {
   return (
-    <footer className="border-t">
-      <div className="max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 md:py-12">
+    <footer className="border-t bg-background">
+      <div className="container max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 md:py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-2 space-y-4">
+          {/* About section */}
+          <div className="md:col-span-1 space-y-4">
             <h3 className="text-lg font-bold">John Doe</h3>
             <p className="text-muted-foreground">
               A passionate developer focused on creating beautiful and
@@ -74,85 +106,31 @@ export default function Footer() {
               </Link>
             </div>
           </div>
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold">Quick Links</h3>
-            <nav className="flex flex-col space-y-2">
-              <Link
-                href="/"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                href="/about"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                href="/#projects"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Projects
-              </Link>
-              <Link
-                href="/#services"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Services
-              </Link>
-              <Link
-                href="/#blogs"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Blogs
-              </Link>
-              <Link
-                href="/#videos"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Videos
-              </Link>
-              <Link
-                href="/#growth"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                My Growth
-              </Link>
-              <Link
-                href="/#testimonials"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Testimonials
-              </Link>
-              <Link
-                href="/#sponsors"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Sponsors
-              </Link>
-              <Link
-                href="/#contact"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                Contact
-              </Link>
-            </nav>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold">Subscribe</h3>
-            <p className="text-muted-foreground">
-              Subscribe to my newsletter to receive updates on my latest
-              projects and articles.
-            </p>
-            <div className="flex gap-2">
-              <Input type="email" placeholder="Enter your email" />
-              <Button type="submit">Subscribe</Button>
-            </div>
-          </div>
+
+          {/* Navigation sections */}
+          {navigationItems
+            .filter((item) => item.submenu)
+            .map((category) => (
+              <div key={category.name} className="space-y-4">
+                <h3 className="text-lg font-bold">{category.name}</h3>
+                <nav className="flex flex-col space-y-2">
+                  {category.items?.map((item) => (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+            ))}
         </div>
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>&copy; {currentYear} John Doe. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} John Doe. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

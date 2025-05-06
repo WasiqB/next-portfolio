@@ -21,6 +21,7 @@ import {
   Cog,
   FileText,
   Video,
+  ShoppingCart,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -172,6 +173,13 @@ export default function Navbar() {
             </div>
           ))}
 
+          <Button variant="default" size="sm" className="gap-1" asChild>
+            <Link href="/theme/pricing">
+              <ShoppingCart className="h-4 w-4" />
+              Buy Theme
+            </Link>
+          </Button>
+
           <Button
             variant="ghost"
             size="icon"
@@ -236,6 +244,14 @@ export default function Navbar() {
                   )}
                 </div>
               ))}
+
+              <Link
+                href="/theme/pricing"
+                className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+              >
+                <ShoppingCart className="h-4 w-4" />
+                Buy Theme
+              </Link>
 
               <Button
                 variant="ghost"

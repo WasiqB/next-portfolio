@@ -4,7 +4,24 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, ChevronDown } from "lucide-react";
+import {
+  Moon,
+  Sun,
+  Menu,
+  ChevronDown,
+  Home,
+  User,
+  Briefcase,
+  BookOpen,
+  MessageSquare,
+  LineChart,
+  Award,
+  Heart,
+  Code,
+  Cog,
+  FileText,
+  Video,
+} from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
   DropdownMenu,
@@ -20,37 +37,70 @@ import {
 
 // Define the navigation structure
 const navigationItems = [
-  { name: "Home", href: "/", submenu: false },
+  {
+    name: "Home",
+    href: "/",
+    submenu: false,
+    icon: <Home className="h-4 w-4" />,
+  },
   {
     name: "About",
     href: "#",
     submenu: true,
+    icon: <User className="h-4 w-4" />,
     items: [
-      { name: "About Me", href: "/about" },
-      { name: "My Growth", href: "/#growth" },
-      { name: "Testimonials", href: "/#testimonials" },
+      { name: "About Me", href: "/about", icon: <User className="h-4 w-4" /> },
+      {
+        name: "My Growth",
+        href: "/growth",
+        icon: <LineChart className="h-4 w-4" />,
+      },
+      {
+        name: "Testimonials",
+        href: "/testimonials",
+        icon: <Award className="h-4 w-4" />,
+      },
     ],
   },
   {
     name: "Work",
     href: "#",
     submenu: true,
+    icon: <Briefcase className="h-4 w-4" />,
     items: [
-      { name: "Projects", href: "/#projects" },
-      { name: "Services", href: "/#services" },
-      { name: "Sponsors", href: "/#sponsors" },
+      {
+        name: "Projects",
+        href: "/projects",
+        icon: <Code className="h-4 w-4" />,
+      },
+      {
+        name: "Services",
+        href: "/services",
+        icon: <Cog className="h-4 w-4" />,
+      },
+      {
+        name: "Sponsors",
+        href: "/sponsors",
+        icon: <Heart className="h-4 w-4" />,
+      },
     ],
   },
   {
     name: "Resources",
     href: "#",
     submenu: true,
+    icon: <BookOpen className="h-4 w-4" />,
     items: [
-      { name: "Blogs", href: "/#blogs" },
-      { name: "Videos", href: "/#videos" },
+      { name: "Blogs", href: "/blogs", icon: <FileText className="h-4 w-4" /> },
+      { name: "Videos", href: "/videos", icon: <Video className="h-4 w-4" /> },
     ],
   },
-  { name: "Contact Me", href: "/#contact", submenu: false },
+  {
+    name: "Contact Me",
+    href: "#contact",
+    submenu: false,
+    icon: <MessageSquare className="h-4 w-4" />,
+  },
 ];
 
 export default function Navbar() {
@@ -86,7 +136,8 @@ export default function Navbar() {
               {item.submenu ? (
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <button className="flex items-center gap-1 text-sm font-medium transition-colors hover:text-primary">
+                    <button className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+                      {item.icon}
                       {item.name}
                       <ChevronDown className="h-4 w-4" />
                     </button>
@@ -96,8 +147,9 @@ export default function Navbar() {
                       <DropdownMenuItem key={subItem.name} asChild>
                         <Link
                           href={subItem.href}
-                          className="w-full cursor-pointer"
+                          className="w-full cursor-pointer flex items-center gap-1.5"
                         >
+                          {subItem.icon}
                           {subItem.name}
                         </Link>
                       </DropdownMenuItem>
@@ -107,8 +159,9 @@ export default function Navbar() {
               ) : (
                 <Link
                   href={item.href}
-                  className="text-sm font-medium transition-colors hover:text-primary"
+                  className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
                 >
+                  {item.icon}
                   {item.name}
                 </Link>
               )}
@@ -144,7 +197,10 @@ export default function Navbar() {
                     >
                       <CollapsibleTrigger asChild>
                         <button className="flex items-center justify-between w-full text-sm font-medium transition-colors hover:text-primary">
-                          {item.name}
+                          <span className="flex items-center gap-1.5">
+                            {item.icon}
+                            {item.name}
+                          </span>
                           <ChevronDown
                             className={`h-4 w-4 transition-transform ${
                               openCollapsible === item.name ? "rotate-180" : ""
@@ -157,8 +213,9 @@ export default function Navbar() {
                           <Link
                             key={subItem.name}
                             href={subItem.href}
-                            className="block text-sm text-muted-foreground hover:text-primary"
+                            className="block text-sm text-muted-foreground hover:text-primary items-center gap-1.5"
                           >
+                            {subItem.icon}
                             {subItem.name}
                           </Link>
                         ))}
@@ -167,8 +224,9 @@ export default function Navbar() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="text-sm font-medium transition-colors hover:text-primary"
+                      className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
                     >
+                      {item.icon}
                       {item.name}
                     </Link>
                   )}

@@ -52,12 +52,12 @@ const navigationItems = [
       { name: "About Me", href: "/about", icon: <User className="h-4 w-4" /> },
       {
         name: "My Growth",
-        href: "/growth",
+        href: "/#growth",
         icon: <LineChart className="h-4 w-4" />,
       },
       {
         name: "Testimonials",
-        href: "/testimonials",
+        href: "/#testimonials",
         icon: <Award className="h-4 w-4" />,
       },
     ],
@@ -70,17 +70,17 @@ const navigationItems = [
     items: [
       {
         name: "Projects",
-        href: "/projects",
+        href: "/#projects",
         icon: <Code className="h-4 w-4" />,
       },
       {
         name: "Services",
-        href: "/services",
+        href: "/#services",
         icon: <Cog className="h-4 w-4" />,
       },
       {
         name: "Sponsors",
-        href: "/sponsors",
+        href: "/#sponsors",
         icon: <Heart className="h-4 w-4" />,
       },
     ],
@@ -91,13 +91,17 @@ const navigationItems = [
     submenu: true,
     icon: <BookOpen className="h-4 w-4" />,
     items: [
-      { name: "Blogs", href: "/blogs", icon: <FileText className="h-4 w-4" /> },
-      { name: "Videos", href: "/videos", icon: <Video className="h-4 w-4" /> },
+      {
+        name: "Blogs",
+        href: "/#blogs",
+        icon: <FileText className="h-4 w-4" />,
+      },
+      { name: "Videos", href: "/#videos", icon: <Video className="h-4 w-4" /> },
     ],
   },
   {
     name: "Contact Me",
-    href: "#contact",
+    href: "/#contact",
     submenu: false,
     icon: <MessageSquare className="h-4 w-4" />,
   },

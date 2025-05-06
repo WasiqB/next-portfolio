@@ -17,8 +17,8 @@ const navigationItems = [
     submenu: true,
     items: [
       { name: "About Me", href: "/about" },
-      { name: "My Growth", href: "/growth" },
-      { name: "Testimonials", href: "/testimonials" },
+      { name: "My Growth", href: "/#growth" },
+      { name: "Testimonials", href: "/#testimonials" },
     ],
   },
   {
@@ -26,9 +26,9 @@ const navigationItems = [
     href: "#",
     submenu: true,
     items: [
-      { name: "Projects", href: "/projects" },
-      { name: "Services", href: "/services" },
-      { name: "Sponsors", href: "/sponsors" },
+      { name: "Projects", href: "/#projects" },
+      { name: "Services", href: "/#services" },
+      { name: "Sponsors", href: "/#sponsors" },
     ],
   },
   {
@@ -36,11 +36,11 @@ const navigationItems = [
     href: "#",
     submenu: true,
     items: [
-      { name: "Blogs", href: "/blogs" },
-      { name: "Videos", href: "/videos" },
+      { name: "Blogs", href: "/#blogs" },
+      { name: "Videos", href: "/#videos" },
     ],
   },
-  { name: "Contact Me", href: "#contact", submenu: false },
+  { name: "Contact Me", href: "/#contact", submenu: false },
 ];
 
 export default function Footer() {

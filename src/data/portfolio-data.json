@@ -1,0 +1,127 @@
+{
+  "hero": {
+    "name": "Wasiq Amjad Bhamla",
+    "typingSequences": [
+      "Quality Assurance Specialist",
+      2000,
+      "Open Source Contributor",
+      2000,
+      "YouTuber",
+      2000,
+      "Blogger",
+      2000
+    ],
+    "typingDelay": 2000,
+    "bio": "I'm a passionate and experienced Quality Assurance Engineer with expertise in manual and automated testing of Web, Desktop, API, Android and iOS applications.",
+    "buttons": {
+      "primary": {
+        "text": "My Projects",
+        "href": "#projects"
+      },
+      "secondary": {
+        "text": "My Services",
+        "href": "#services"
+      }
+    },
+    "socialLinks": [
+      {
+        "platform": "github",
+        "url": "https://github.com/WasiqB",
+        "ariaLabel": "GitHub"
+      },
+      {
+        "platform": "linkedin",
+        "url": "https://www.linkedin.com/in/wasiqbhamla",
+        "ariaLabel": "LinkedIn"
+      },
+      {
+        "platform": "twitter",
+        "url": "https://x.com/WasiqBhamla",
+        "ariaLabel": "X"
+      },
+      {
+        "platform": "youtube",
+        "url": "https://www.youtube.com/@WasiqBhamla",
+        "ariaLabel": "YouTube"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://www.instagram.com/WasiqBhamla",
+        "ariaLabel": "Instagram"
+      },
+      {
+        "platform": "facebook",
+        "url": "https://www.facebook.com/wasiqb",
+        "ariaLabel": "Facebook"
+      }
+    ],
+    "profileImage": {
+      "src": "/images/wasiq-1.jpg",
+      "alt": "Profile"
+    }
+  },
+  "projects": {
+    "sectionTitle": "My Projects",
+    "sectionDescription": "Here are some of my recent projects that showcase my skills and expertise.",
+    "allProjectsButton": {
+      "text": "See All Projects",
+      "href": "/projects"
+    },
+    "projects": [
+      {
+        "title": "Boyka Framework",
+        "description": "🎉 Ultimate test automation framework for automating any application on any platform",
+        "image": "https://repository-images.githubusercontent.com/460090369/e1afcbdd-148e-49c6-8f3a-cf0bbe6aa593",
+        "thumbnail": "https://repository-images.githubusercontent.com/460090369/e1afcbdd-148e-49c6-8f3a-cf0bbe6aa593",
+        "tags": ["java", "selenium-webdriver", "okhttp3", "appium"],
+        "demoLink": "https://boykaframework.github.io/boyka-framework",
+        "githubLink": "https://github.com/BoykaFramework/boyka-framework"
+      },
+      {
+        "title": "Multiple Cucumber HTML Reporter",
+        "description": "A collaborative task management application with real-time updates.",
+        "image": "/images/projects/task-management.jpg",
+        "thumbnail": "/images/projects/task-management-thumb.jpg",
+        "tags": ["React", "Firebase", "Tailwind CSS", "TypeScript"],
+        "demoLink": "https://task-management-app-demo.com",
+        "githubLink": "https://github.com/WasiqB/multiple-cucumber-html-reporter"
+      },
+      {
+        "title": "Portfolio Website",
+        "description": "A responsive portfolio website built with Next.js and Tailwind CSS.",
+        "image": "/images/projects/portfolio.jpg",
+        "thumbnail": "/images/projects/portfolio-thumb.jpg",
+        "tags": ["Next.js", "Tailwind CSS", "Framer Motion"],
+        "demoLink": "https://wasiqb.com",
+        "githubLink": "https://github.com/WasiqB/portfolio"
+      },
+      {
+        "title": "Weather Dashboard",
+        "description": "A weather dashboard that displays current and forecasted weather data.",
+        "image": "/images/projects/weather.jpg",
+        "thumbnail": "/images/projects/weather-thumb.jpg",
+        "tags": ["React", "API Integration", "Chart.js"],
+        "demoLink": "https://weather-dashboard-demo.com",
+        "githubLink": "https://github.com/WasiqB/weather-dashboard"
+      },
+      {
+        "title": "Social Media Dashboard",
+        "description": "A dashboard for tracking social media metrics and engagement.",
+        "image": "/images/projects/social-dashboard.jpg",
+        "thumbnail": "/images/projects/social-dashboard-thumb.jpg",
+        "tags": ["Vue.js", "D3.js", "Firebase"],
+        "demoLink": "https://social-media-dashboard-demo.com",
+        "githubLink": "https://github.com/WasiqB/social-media-dashboard"
+      },
+      {
+        "title": "Recipe Finder App",
+        "description": "An application to find and save recipes based on available ingredients.",
+        "image": "/images/projects/recipe-finder.jpg",
+        "thumbnail": "/images/projects/recipe-finder-thumb.jpg",
+        "tags": ["React Native", "Redux", "API Integration"],
+        "demoLink": "https://recipe-finder-app-demo.com",
+        "githubLink": "https://github.com/WasiqB/recipe-finder-app"
+      }
+    ]
+  }
+}

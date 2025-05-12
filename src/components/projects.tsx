@@ -14,37 +14,11 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import portfolioData from "@/data/portfolio-data.json";
+import { ProjectsData } from "@/types/portfolio-types";
 
 export default function Projects() {
-  const projects = [
-    {
-      title: "E-commerce Platform",
-      description:
-        "A full-stack e-commerce platform built with Next.js and Stripe integration.",
-      image: "/placeholder.svg?height=300&width=600",
-      tags: ["Next.js", "Tailwind CSS", "Stripe", "MongoDB"],
-      demoLink: "#",
-      githubLink: "#",
-    },
-    {
-      title: "Task Management App",
-      description:
-        "A collaborative task management application with real-time updates.",
-      image: "/placeholder.svg?height=300&width=600",
-      tags: ["React", "Firebase", "Tailwind CSS", "TypeScript"],
-      demoLink: "#",
-      githubLink: "#",
-    },
-    {
-      title: "Portfolio Website",
-      description:
-        "A responsive portfolio website built with Next.js and Tailwind CSS.",
-      image: "/placeholder.svg?height=300&width=600",
-      tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
-      demoLink: "#",
-      githubLink: "#",
-    },
-  ];
+  const projectsData: ProjectsData = portfolioData.projects;
 
   return (
     <section
@@ -58,15 +32,16 @@ export default function Projects() {
         transition={{ duration: 0.5 }}
         className="space-y-4 text-center mb-12"
       >
-        <h2 className="text-3xl md:text-4xl font-bold">My Projects</h2>
+        <h2 className="text-3xl md:text-4xl font-bold">
+          {projectsData.sectionTitle}
+        </h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Here are some of my recent projects that showcase my skills and
-          expertise.
+          {projectsData.sectionDescription}
         </p>
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projects.slice(0, 4).map((project, index) => (
+        {projectsData.projects.slice(0, 4).map((project, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
@@ -77,7 +52,7 @@ export default function Projects() {
             <Card className="h-full flex flex-col overflow-hidden">
               <div className="relative h-48 w-full">
                 <Image
-                  src={project.image || "/placeholder.svg"}
+                  src={project.thumbnail || "/placeholder.svg"}
                   alt={project.title}
                   fill
                   className="object-cover"
@@ -125,7 +100,9 @@ export default function Projects() {
 
       <div className="flex justify-center mt-8">
         <Button asChild>
-          <Link href="/projects">See All Projects</Link>
+          <Link href={projectsData.allProjectsButton.href}>
+            {projectsData.allProjectsButton.text}
+          </Link>
         </Button>
       </div>
     </section>

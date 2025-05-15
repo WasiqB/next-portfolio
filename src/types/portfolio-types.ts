@@ -26,20 +26,24 @@ export interface HeroData {
   };
 }
 
+export interface ProjectInput {
+  repoUrl: string;
+  tags: string[];
+}
+
 export interface Project {
   title: string;
   description: string;
   image: string;
-  thumbnail: string;
-  tags: string[];
-  demoLink: string;
+  demoLink?: string;
   githubLink: string;
+  tags: string[];
 }
 
 export interface ProjectsData {
   sectionTitle: string;
   sectionDescription: string;
-  projects: Project[];
+  projects: ProjectInput[];
   allProjectsButton: {
     text: string;
     href: string;

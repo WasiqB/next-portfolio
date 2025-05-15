@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       new URL("https://repository-images.githubusercontent.com/**"),
+      new URL("https://opengraph.githubassets.com/**"),
     ],
   },
 };

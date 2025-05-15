@@ -69,58 +69,28 @@
     },
     "projects": [
       {
-        "title": "Boyka Framework",
-        "description": "🎉 Ultimate test automation framework for automating any application on any platform",
-        "image": "https://repository-images.githubusercontent.com/460090369/e1afcbdd-148e-49c6-8f3a-cf0bbe6aa593",
-        "thumbnail": "https://repository-images.githubusercontent.com/460090369/e1afcbdd-148e-49c6-8f3a-cf0bbe6aa593",
-        "tags": ["java", "selenium-webdriver", "okhttp3", "appium"],
-        "demoLink": "https://boykaframework.github.io/boyka-framework",
-        "githubLink": "https://github.com/BoykaFramework/boyka-framework"
+        "repoUrl": "https://github.com/BoykaFramework/boyka-framework",
+        "tags": ["java", "selenium-webdriver", "okhttp3", "appium"]
       },
       {
-        "title": "Multiple Cucumber HTML Reporter",
-        "description": "A collaborative task management application with real-time updates.",
-        "image": "/images/projects/task-management.jpg",
-        "thumbnail": "/images/projects/task-management-thumb.jpg",
-        "tags": ["React", "Firebase", "Tailwind CSS", "TypeScript"],
-        "demoLink": "https://task-management-app-demo.com",
-        "githubLink": "https://github.com/WasiqB/multiple-cucumber-html-reporter"
+        "repoUrl": "https://github.com/WasiqB/multiple-cucumber-html-reporter",
+        "tags": ["javascript", "cucumber", "html", "reporter"]
       },
       {
-        "title": "Portfolio Website",
-        "description": "A responsive portfolio website built with Next.js and Tailwind CSS.",
-        "image": "/images/projects/portfolio.jpg",
-        "thumbnail": "/images/projects/portfolio-thumb.jpg",
-        "tags": ["Next.js", "Tailwind CSS", "Framer Motion"],
-        "demoLink": "https://wasiqb.com",
-        "githubLink": "https://github.com/WasiqB/portfolio"
+        "repoUrl": "https://github.com/WasiqB/coteafs-selenium",
+        "tags": ["java", "selenium", "automation", "framework"]
       },
       {
-        "title": "Weather Dashboard",
-        "description": "A weather dashboard that displays current and forecasted weather data.",
-        "image": "/images/projects/weather.jpg",
-        "thumbnail": "/images/projects/weather-thumb.jpg",
-        "tags": ["React", "API Integration", "Chart.js"],
-        "demoLink": "https://weather-dashboard-demo.com",
-        "githubLink": "https://github.com/WasiqB/weather-dashboard"
+        "repoUrl": "https://github.com/WasiqB/coteafs-appium",
+        "tags": ["java", "appium", "automation", "framework"]
       },
       {
-        "title": "Social Media Dashboard",
-        "description": "A dashboard for tracking social media metrics and engagement.",
-        "image": "/images/projects/social-dashboard.jpg",
-        "thumbnail": "/images/projects/social-dashboard-thumb.jpg",
-        "tags": ["Vue.js", "D3.js", "Firebase"],
-        "demoLink": "https://social-media-dashboard-demo.com",
-        "githubLink": "https://github.com/WasiqB/social-media-dashboard"
+        "repoUrl": "https://github.com/BoykaFramework/boyka-cli",
+        "tags": ["java", "logging", "log4j2"]
       },
       {
-        "title": "Recipe Finder App",
-        "description": "An application to find and save recipes based on available ingredients.",
-        "image": "/images/projects/recipe-finder.jpg",
-        "thumbnail": "/images/projects/recipe-finder-thumb.jpg",
-        "tags": ["React Native", "Redux", "API Integration"],
-        "demoLink": "https://recipe-finder-app-demo.com",
-        "githubLink": "https://github.com/WasiqB/recipe-finder-app"
+        "repoUrl": "https://github.com/WasiqB/maven-publish-action",
+        "tags": ["java", "configuration", "yaml"]
       }
     ]
   }

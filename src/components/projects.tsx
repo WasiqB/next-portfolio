@@ -11,8 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github } from "lucide-react";
-import Image from "next/image";
+import { GitFork, Star } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import portfolioData from "@/data/portfolio-data.json";
@@ -53,7 +52,6 @@ export default function Projects() {
 
             return {
               ...projectData,
-              tags: projectInput.tags,
             };
           });
 
@@ -94,7 +92,7 @@ export default function Projects() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {loading
           ? // Loading skeleton
-            Array.from({ length: 4 }).map((_, index) => (
+            Array.from({ length: 6 }).map((_, index) => (
               <Card
                 key={`skeleton-${index}`}
                 className="h-full flex flex-col overflow-hidden"
@@ -105,66 +103,64 @@ export default function Projects() {
                   <Skeleton className="h-4 w-2/3 mt-1" />
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {Array.from({ length: 3 }).map((_, tagIndex) => (
                       <Skeleton key={`tag-${tagIndex}`} className="h-5 w-16" />
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter className="flex gap-2">
-                  <Skeleton className="h-9 w-20" />
-                  <Skeleton className="h-9 w-20" />
+                <CardFooter className="flex justify-end gap-4 text-sm text-muted-foreground pt-0">
+                  <div className="flex items-center gap-1">
+                    <Star className="h-4 w-4" />
+                    <Skeleton className="h-5 w-5" />
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <GitFork className="h-4 w-4" />
+                    <Skeleton className="h-5 w-5" />
+                  </div>
                 </CardFooter>
               </Card>
             ))
           : // Actual projects
             projects.map((project, index) => (
               <motion.div
-                key={project.githubLink}
+                key={project.link}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Card className="h-full flex flex-col overflow-hidden">
-                  <CardHeader>
-                    <CardTitle>{project.title}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag) => (
-                        <Badge key={tag} variant="secondary">
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                  <CardFooter className="flex gap-2">
-                    {project.demoLink && (
-                      <Button size="sm" variant="outline" asChild>
-                        <a
-                          href={project.demoLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <ExternalLink className="h-4 w-4 mr-2" />
-                          Demo
-                        </a>
-                      </Button>
-                    )}
-                    <Button size="sm" variant="outline" asChild>
-                      <a
-                        href={project.githubLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="h-4 w-4 mr-2" />
-                        Code
-                      </a>
-                    </Button>
-                  </CardFooter>
-                </Card>
+                <Link
+                  key={index}
+                  href={project.link}
+                  className="block h-full transition-transform hover:scale-[1.02]"
+                >
+                  <Card className="h-full flex flex-col overflow-hidden cursor-pointer border-2 hover:border-primary/50">
+                    <CardHeader>
+                      <CardTitle>{project.title}</CardTitle>
+                      <CardDescription>{project.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-grow">
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <Badge key={tag} variant="secondary">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                    <CardFooter className="flex justify-end gap-4 text-sm text-muted-foreground pt-0">
+                      <div className="flex items-center gap-1">
+                        <Star className="h-4 w-4" />
+                        <span>{project.stars}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <GitFork className="h-4 w-4" />
+                        <span>{project.forks}</span>
+                      </div>
+                    </CardFooter>
+                  </Card>
+                </Link>
               </motion.div>
             ))}
       </div>

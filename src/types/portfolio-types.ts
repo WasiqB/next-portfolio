@@ -28,16 +28,15 @@ export interface HeroData {
 
 export interface ProjectInput {
   repoUrl: string;
-  tags: string[];
 }
 
 export interface Project {
   title: string;
   description: string;
-  image: string;
-  demoLink?: string;
-  githubLink: string;
+  link: string;
   tags: string[];
+  stars: number;
+  forks: number;
 }
 
 export interface ProjectsData {

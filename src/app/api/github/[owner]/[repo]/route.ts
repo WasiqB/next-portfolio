@@ -5,9 +5,12 @@ interface GitHubRepo {
   description: string;
   html_url: string;
   homepage: string;
+  topics: string[];
   owner: {
     login: string;
   };
+  stargazers_count: number;
+  forks: number;
 }
 
 export async function GET(
@@ -30,7 +33,7 @@ export async function GET(
             ? { Authorization: `token ${process.env.GITHUB_TOKEN}` }
             : {}),
         },
-        next: { revalidate: 3600 }, // Cache for 1 hour
+        next: { revalidate: 3600 * 24 }, // Cache for 1 day
       }
     );
 
@@ -43,16 +46,14 @@ export async function GET(
 
     const repoData: GitHubRepo = await response.json();
 
-    // Get social card image
-    const socialCardImage = `https://opengraph.githubassets.com/1/${owner}/${repo}`;
-
     // Construct the result
     const result = {
       title: repoData.name,
       description: repoData.description || `A project by ${owner}`,
-      image: socialCardImage,
-      githubLink: repoData.html_url,
-      demoLink: repoData.homepage || null,
+      link: repoData.html_url,
+      stars: repoData.stargazers_count || 0,
+      forks: repoData.forks || 0,
+      tags: repoData.topics || [],
     };
 
     return NextResponse.json(result);

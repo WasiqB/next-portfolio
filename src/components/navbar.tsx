@@ -35,6 +35,8 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import portfolioData from "@/data/portfolio-data.json";
+import { HeroData } from "@/types/portfolio-types";
 
 // Define the navigation structure
 const navigationItems = [
@@ -112,6 +114,7 @@ export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
   const [openCollapsible, setOpenCollapsible] = useState<string | null>(null);
+  const heroData: HeroData = portfolioData.hero;
 
   useEffect(() => {
     setIsMounted(true);
@@ -130,7 +133,7 @@ export default function Navbar() {
       <div className="max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <Link href="/" className="font-bold text-xl">
-            Portfolio
+            {heroData.name}
           </Link>
         </div>
 

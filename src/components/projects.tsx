@@ -15,15 +15,13 @@ import { GitFork, Star } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import portfolioData from "@/data/portfolio-data.json";
-import { ProjectsData, Project, ProjectInput } from "@/types/portfolio-types";
+import { ProjectsData, Project } from "@/types/portfolio-types";
 import { getGitHubApiUrl } from "@/lib/github-utils";
 import { Skeleton } from "./ui/skeleton";
 
 export default function Projects() {
   const projectsData: ProjectsData = portfolioData.projects;
-  const [projects, setProjects] = useState<(Project & { tags: string[] })[]>(
-    []
-  );
+  const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -31,20 +29,18 @@ export default function Projects() {
       try {
         const projectPromises = projectsData.projects
           .slice(0, 4)
-          .map(async (projectInput: ProjectInput) => {
-            const apiUrl = getGitHubApiUrl(projectInput.repoUrl);
+          .map(async (projectUrl: string) => {
+            const apiUrl = getGitHubApiUrl(projectUrl);
 
             if (!apiUrl) {
-              console.error(`Invalid GitHub URL: ${projectInput.repoUrl}`);
+              console.error(`Invalid GitHub URL: ${projectUrl}`);
               return null;
             }
 
             const response = await fetch(apiUrl);
 
             if (!response.ok) {
-              console.error(
-                `Error fetching project data for ${projectInput.repoUrl}`
-              );
+              console.error(`Error fetching project data for ${projectUrl}`);
               return null;
             }
 

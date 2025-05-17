@@ -15,7 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, GitFork, Star } from "lucide-react";
 import portfolioData from "@/data/portfolio-data.json";
-import { Project, ProjectInput } from "@/types/portfolio-types";
+import { Project } from "@/types/portfolio-types";
 import { getGitHubApiUrl } from "@/lib/github-utils";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -27,20 +27,18 @@ export default function ProjectsPage() {
     async function fetchProjects() {
       try {
         const projectPromises = portfolioData.projects.projects.map(
-          async (projectInput: ProjectInput) => {
-            const apiUrl = getGitHubApiUrl(projectInput.repoUrl);
+          async (projectUrl: string) => {
+            const apiUrl = getGitHubApiUrl(projectUrl);
 
             if (!apiUrl) {
-              console.error(`Invalid GitHub URL: ${projectInput.repoUrl}`);
+              console.error(`Invalid GitHub URL: ${projectUrl}`);
               return null;
             }
 
             const response = await fetch(apiUrl);
 
             if (!response.ok) {
-              console.error(
-                `Error fetching project data for ${projectInput.repoUrl}`
-              );
+              console.error(`Error fetching project data for ${projectUrl}`);
               return null;
             }
 

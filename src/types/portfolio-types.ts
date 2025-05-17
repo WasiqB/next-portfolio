@@ -26,10 +26,6 @@ export interface HeroData {
   };
 }
 
-export interface ProjectInput {
-  repoUrl: string;
-}
-
 export interface Project {
   title: string;
   description: string;
@@ -42,7 +38,7 @@ export interface Project {
 export interface ProjectsData {
   sectionTitle: string;
   sectionDescription: string;
-  projects: ProjectInput[];
+  projects: string[];
   allProjectsButton: {
     text: string;
     href: string;

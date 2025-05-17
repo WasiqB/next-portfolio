@@ -68,30 +68,12 @@
       "href": "/projects"
     },
     "projects": [
-      {
-        "repoUrl": "https://github.com/BoykaFramework/boyka-framework",
-        "tags": ["java", "selenium-webdriver", "okhttp3", "appium"]
-      },
-      {
-        "repoUrl": "https://github.com/WasiqB/multiple-cucumber-html-reporter",
-        "tags": ["javascript", "cucumber", "html", "reporter"]
-      },
-      {
-        "repoUrl": "https://github.com/WasiqB/coteafs-selenium",
-        "tags": ["java", "selenium", "automation", "framework"]
-      },
-      {
-        "repoUrl": "https://github.com/WasiqB/coteafs-appium",
-        "tags": ["java", "appium", "automation", "framework"]
-      },
-      {
-        "repoUrl": "https://github.com/BoykaFramework/boyka-cli",
-        "tags": ["java", "logging", "log4j2"]
-      },
-      {
-        "repoUrl": "https://github.com/WasiqB/maven-publish-action",
-        "tags": ["java", "configuration", "yaml"]
-      }
+      "https://github.com/BoykaFramework/boyka-framework",
+      "https://github.com/WasiqB/multiple-cucumber-html-reporter",
+      "https://github.com/WasiqB/coteafs-selenium",
+      "https://github.com/WasiqB/coteafs-appium",
+      "https://github.com/BoykaFramework/boyka-cli",
+      "https://github.com/WasiqB/maven-publish-action"
     ]
   }
 }

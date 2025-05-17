@@ -202,7 +202,7 @@ export default function Navbar() {
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[250px] sm:w-[300px]">
-            <nav className="flex flex-col gap-4 mt-8">
+            <nav className="flex flex-col gap-4 mt-8 px-2">
               {navigationItems.map((item) => (
                 <div key={item.name}>
                   {item.submenu ? (
@@ -228,7 +228,7 @@ export default function Navbar() {
                           <Link
                             key={subItem.name}
                             href={subItem.href}
-                            className="block text-sm text-muted-foreground hover:text-primary items-center gap-1.5"
+                            className="flex text-sm text-muted-foreground hover:text-primary items-center gap-1.5"
                           >
                             {subItem.icon}
                             {subItem.name}
@@ -260,7 +260,7 @@ export default function Navbar() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="justify-start px-2 mt-4"
+                className="justify-start mt-4"
               >
                 {theme === "dark" ? (
                   <>

@@ -1,12 +1,7 @@
 import Link from "next/link";
-import {
-  Github,
-  Linkedin,
-  Twitter,
-  Youtube,
-  Instagram,
-  Facebook,
-} from "lucide-react";
+import portfolioData from "@/data/portfolio-data.json";
+import { HeroData } from "@/types/portfolio-types";
+import { getSocialIcon } from "@/lib/social-utils";
 
 // Define the navigation structure (same as navbar)
 const navigationItems = [
@@ -44,66 +39,27 @@ const navigationItems = [
 ];
 
 export default function Footer() {
+  const heroData: HeroData = portfolioData.hero;
   return (
     <footer className="border-t bg-background">
       <div className="container max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 md:py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About section */}
           <div className="md:col-span-1 space-y-4">
-            <h3 className="text-lg font-bold">John Doe</h3>
-            <p className="text-muted-foreground">
-              A passionate developer focused on creating beautiful and
-              functional web experiences.
-            </p>
+            <h3 className="text-lg font-bold">{heroData.name}</h3>
+            <p className="text-muted-foreground">{heroData.bio}</p>
             <div className="flex items-center gap-4">
-              <Link
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-              >
-                <Github className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-              </Link>
-              <Link
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-              </Link>
-              <Link
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-              </Link>
-              <Link
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-              >
-                <Youtube className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-              </Link>
-              <Link
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-              >
-                <Instagram className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-              </Link>
-              <Link
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-              >
-                <Facebook className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
-              </Link>
+              {heroData.socialLinks.map((social, index) => (
+                <Link
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.ariaLabel}
+                >
+                  {getSocialIcon(social.platform)}
+                </Link>
+              ))}
             </div>
           </div>
 

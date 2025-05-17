@@ -45,7 +45,25 @@ export interface ProjectsData {
   };
 }
 
+export interface Service {
+  title: string;
+  description: string;
+  icon: string;
+  longDescription?: string;
+}
+
+export interface ServicesData {
+  sectionTitle: string;
+  sectionDescription: string;
+  services: Service[];
+  viewAllButton: {
+    text: string;
+    href: string;
+  };
+}
+
 export interface PortfolioData {
   hero: HeroData;
   projects: ProjectsData;
+  services: ServicesData;
 }

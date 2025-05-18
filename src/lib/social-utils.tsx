@@ -3,9 +3,9 @@ import {
   FaGithub,
   FaInstagram,
   FaLinkedin,
-  FaTwitter,
   FaYoutube,
-} from "react-icons/fa";
+  FaXTwitter,
+} from "react-icons/fa6";
 
 // Map platform names to icon components
 export const getSocialIcon = (platform: string) => {
@@ -20,7 +20,7 @@ export const getSocialIcon = (platform: string) => {
       );
     case "twitter":
       return (
-        <FaTwitter className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
+        <FaXTwitter className="h-5 w-5 text-muted-foreground hover:text-primary transition-colors" />
       );
     case "youtube":
       return (

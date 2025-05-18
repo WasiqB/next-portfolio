@@ -14,7 +14,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, GitFork, Star } from "lucide-react";
-import portfolioData from "@/data/portfolio-data.json";
+import { Data as portfolioData } from "@/data/portfolio-data";
 import { Project } from "@/types/portfolio-types";
 import { getGitHubApiUrl } from "@/lib/github-utils";
 import { Skeleton } from "@/components/ui/skeleton";

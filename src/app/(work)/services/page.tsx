@@ -23,7 +23,7 @@ import {
   Accessibility,
   Search,
 } from "lucide-react";
-import portfolioData from "@/data/portfolio-data.json";
+import { Data as portfolioData } from "@/data/portfolio-data";
 import { LucideIcon } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = {

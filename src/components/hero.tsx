@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import portfolioData from "@/data/portfolio-data.json";
+import { Data as portfolioData } from "@/data/portfolio-data";
 import { HeroData } from "@/types/portfolio-types";
 import { getSocialIcon } from "@/lib/social-utils";
 

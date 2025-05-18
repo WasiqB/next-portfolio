@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { GitFork, Star } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import portfolioData from "@/data/portfolio-data.json";
+import { Data as portfolioData } from "@/data/portfolio-data";
 import { ProjectsData, Project } from "@/types/portfolio-types";
 import { getGitHubApiUrl } from "@/lib/github-utils";
 import { Skeleton } from "./ui/skeleton";

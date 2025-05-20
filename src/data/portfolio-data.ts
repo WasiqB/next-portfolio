@@ -89,97 +89,46 @@ export const Data: PortfolioData = {
     },
     services: [
       {
-        title: "Web Development",
-        description:
-          "Building responsive and performant websites using modern technologies.",
-        icon: "Globe",
+        title: "Test Automation Consulting",
+        description: "Transform Your Testing Workflows.",
+        icon: "Settings2",
         longDescription:
-          "I create custom websites that are fast, responsive, and optimized for search engines. Using the latest technologies like Next.js, React, and Tailwind CSS, I build websites that not only look great but also perform exceptionally well. Whether you need a simple landing page or a complex web application, I can deliver a solution that meets your specific requirements.",
+          "Audit and optimize your test automation frameworks, CI/CD pipelines, and tooling strategies.",
       },
       {
-        title: "Frontend Development",
-        description:
-          "Creating interactive user interfaces with React and Next.js.",
-        icon: "Code",
+        title: "Technical Blogging & Content",
+        description: "Engaging Content for Tech Audiences.",
+        icon: "Pen",
         longDescription:
-          "I specialize in building modern, interactive user interfaces using React and Next.js. With a focus on component-based architecture and state management, I create frontend applications that are both powerful and maintainable. My expertise includes implementing complex UI patterns, optimizing performance, and ensuring cross-browser compatibility.",
+          "Craft tutorials, case studies, and thought leadership articles that drive traffic and trust.",
       },
       {
-        title: "UI/UX Design",
-        description:
-          "Designing intuitive and visually appealing user experiences.",
-        icon: "Palette",
+        title: "Freelance Automation Development",
+        description: "Build Scalable Test Solutions.",
+        icon: "Terminal",
         longDescription:
-          "Good design is more than just aesthetics—it's about creating intuitive experiences that users love. I combine visual design principles with user research to create interfaces that are both beautiful and functional. My design process includes wireframing, prototyping, and user testing to ensure the final product meets both user needs and business goals.",
+          "Fix flaky scripts, design E2E frameworks, or integrate AI into your testing pipelines.",
       },
       {
-        title: "Mobile Development",
-        description:
-          "Building cross-platform mobile applications with React Native.",
-        icon: "Smartphone",
+        title: "Technical Support",
+        description: "Resolve Tooling Challenges Fast.",
+        icon: "Headphones",
         longDescription:
-          "I develop mobile applications that work seamlessly across iOS and Android platforms using React Native. This approach allows for faster development times and consistent user experiences across devices. From concept to deployment on app stores, I handle the entire mobile app development process with a focus on performance and user engagement.",
+          "Get expert support for Selenium, Playwright, Cypress, or custom frameworks.",
       },
       {
-        title: "Backend Development",
-        description: "Developing robust server-side applications and APIs.",
-        icon: "Server",
+        title: "Mentorship",
+        description: "Accelerate Your Testing Career.",
+        icon: "LifeBuoy",
         longDescription:
-          "I build secure, scalable backend systems that power your web and mobile applications. Using Node.js, Express, and various database technologies, I create RESTful APIs and GraphQL endpoints that efficiently handle data processing, authentication, and business logic. My backend solutions are designed with security, performance, and maintainability in mind.",
+          "1:1 coaching on automation, freelancing, or transitioning to tech leadership.",
       },
       {
-        title: "Consultation",
-        description: "Providing expert advice on web development and design.",
-        icon: "Lightbulb",
+        title: "Custom Tool Development",
+        description: "Solve Unique Testing Problems.",
+        icon: "Code2",
         longDescription:
-          "I offer technical consultation services to help you make informed decisions about your digital projects. Whether you're starting a new project, facing technical challenges, or looking to improve an existing application, I provide expert guidance based on years of industry experience. My consultation services include technology stack recommendations, architecture planning, and code reviews.",
-      },
-      {
-        title: "E-commerce Solutions",
-        description:
-          "Building online stores with secure payment processing and inventory management.",
-        icon: "ShoppingCart",
-        longDescription:
-          "I create custom e-commerce solutions that help businesses sell products and services online. From product catalogs and shopping carts to secure payment processing and inventory management, I build comprehensive online shopping experiences. My e-commerce solutions integrate with popular payment gateways and can be customized to match your specific business requirements.",
-      },
-      {
-        title: "Performance Optimization",
-        description:
-          "Improving website speed and performance for better user experience and SEO.",
-        icon: "Zap",
-        longDescription:
-          "I optimize web applications for maximum speed and efficiency. Using techniques like code splitting, lazy loading, image optimization, and caching strategies, I significantly improve load times and overall performance. Better performance not only enhances user experience but also positively impacts search engine rankings and conversion rates.",
-      },
-      {
-        title: "CMS Development",
-        description:
-          "Creating custom content management systems or integrating existing ones.",
-        icon: "FileText",
-        longDescription:
-          "I develop content management solutions that make it easy for you to update and maintain your website. Whether it's integrating existing CMS platforms like WordPress or building custom CMS solutions, I create systems that are tailored to your content workflow. My CMS implementations focus on ease of use, flexibility, and security.",
-      },
-      {
-        title: "API Integration",
-        description:
-          "Connecting your application with third-party services and APIs.",
-        icon: "Link2",
-        longDescription:
-          "I integrate third-party APIs and services to extend the functionality of your applications. From payment processors and social media platforms to mapping services and data providers, I seamlessly connect your application with external services. My integration approach ensures reliable data exchange while handling authentication, rate limiting, and error scenarios.",
-      },
-      {
-        title: "Web Accessibility",
-        description:
-          "Ensuring your website is accessible to all users, including those with disabilities.",
-        icon: "Accessibility",
-        longDescription:
-          "I make websites accessible to all users, including those with disabilities. Following WCAG guidelines and best practices, I implement features like keyboard navigation, screen reader compatibility, and proper color contrast. Accessible websites not only reach a wider audience but also often provide better user experiences for everyone.",
-      },
-      {
-        title: "SEO Optimization",
-        description: "Improving your website's visibility in search engines.",
-        icon: "Search",
-        longDescription:
-          "I optimize websites to rank higher in search engine results, driving more organic traffic to your business. My SEO services include technical optimizations like semantic HTML, metadata improvements, and structured data, as well as performance enhancements that search engines reward. I focus on sustainable SEO practices that provide long-term benefits.",
+          "Build proprietary tools for performance testing, reporting dashboards, or workflow automation.",
       },
     ],
   },

@@ -10,35 +10,23 @@ import {
 } from "@/components/ui/card";
 import {
   ArrowLeft,
-  Code,
-  Palette,
-  Globe,
-  Smartphone,
-  Server,
-  Lightbulb,
-  ShoppingCart,
-  Zap,
-  FileText,
-  Link2,
-  Accessibility,
-  Search,
+  Settings2,
+  Terminal,
+  Pen,
+  Headphones,
+  LifeBuoy,
+  Code2,
 } from "lucide-react";
 import { Data as portfolioData } from "@/data/portfolio-data";
 import { LucideIcon } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = {
-  Globe,
-  Code,
-  Palette,
-  Smartphone,
-  Server,
-  Lightbulb,
-  ShoppingCart,
-  Zap,
-  FileText,
-  Link2,
-  Accessibility,
-  Search,
+  Settings2,
+  Terminal,
+  Pen,
+  Headphones,
+  LifeBuoy,
+  Code2,
 };
 
 export default function ServicesPage() {

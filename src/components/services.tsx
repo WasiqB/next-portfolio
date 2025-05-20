@@ -9,18 +9,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  Code,
-  Palette,
-  Globe,
-  Smartphone,
-  Server,
-  Lightbulb,
-  ShoppingCart,
-  Zap,
-  FileText,
-  Link2,
-  Accessibility,
-  Search,
+  Settings2,
+  Terminal,
+  Pen,
+  Headphones,
+  LifeBuoy,
+  Code2,
 } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -28,18 +22,12 @@ import { Data as portfolioData } from "@/data/portfolio-data";
 import { LucideIcon } from "lucide-react";
 
 const iconMap: Record<string, LucideIcon> = {
-  Globe,
-  Code,
-  Palette,
-  Smartphone,
-  Server,
-  Lightbulb,
-  ShoppingCart,
-  Zap,
-  FileText,
-  Link2,
-  Accessibility,
-  Search,
+  Settings2,
+  Terminal,
+  Pen,
+  Headphones,
+  LifeBuoy,
+  Code2,
 };
 
 export default function Services() {

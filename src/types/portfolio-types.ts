@@ -62,8 +62,29 @@ export interface ServicesData {
   };
 }
 
+export interface BlogData {
+  sectionTitle: string;
+  sectionDescription: string;
+  sources: {
+    source: "Medium" | "custom";
+    username?: string;
+    urls?: string[];
+  }[];
+}
+
 export interface PortfolioData {
   hero: HeroData;
   projects: ProjectsData;
   services: ServicesData;
+  blogs: BlogData;
+}
+
+export interface Blog {
+  title: string;
+  description: string;
+  image: string;
+  publishedAt: string;
+  tags: string[];
+  source: string;
+  url: string;
 }

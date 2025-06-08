@@ -71,6 +71,29 @@ function BlogCard({ blog }: { blog: Blog }) {
   );
 }
 
+function BlogSkeletonCard() {
+  return (
+    <div className="animate-pulse h-full flex flex-col overflow-hidden border-2 rounded-lg bg-muted">
+      <div className="relative h-48 w-full bg-gray-200" />
+      <div className="p-4 pb-2">
+        <div className="h-5 bg-gray-300 rounded w-3/4 mb-2" />
+      </div>
+      <div className="p-4 pt-0 flex-grow">
+        <div className="h-4 bg-gray-200 rounded w-full mb-2" />
+        <div className="h-4 bg-gray-200 rounded w-5/6 mb-2" />
+        <div className="flex gap-2 mb-3">
+          <div className="h-5 w-12 bg-gray-300 rounded" />
+          <div className="h-5 w-12 bg-gray-300 rounded" />
+        </div>
+        <div className="flex items-center text-xs text-muted-foreground">
+          <div className="h-4 w-4 bg-gray-300 rounded mr-1" />
+          <div className="h-4 w-20 bg-gray-200 rounded" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function BlogsPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
@@ -81,12 +104,21 @@ export default function BlogsPage() {
         const blogsPromise = portfolioData.blogs.sources.map(async (source) => {
           if (source.source === "Medium") {
             const response = await fetch(
-              `/api/blogs?username=${source.username}`
+              `/api/blogs?username=${source.username}`,
+              {
+                next: {
+                  revalidate: 60 * 60 * 24,
+                },
+              }
             );
             return response.json() as Promise<Blog[]>;
           } else {
             const customBlogsPromise = source.urls?.map(async (url) => {
-              const response = await fetch(`/api/blogs?url=${url}`);
+              const response = await fetch(`/api/blogs?url=${url}`, {
+                next: {
+                  revalidate: 60 * 60 * 24,
+                },
+              });
               return response.json() as Promise<Blog[]>;
             });
             const customBlogs = await Promise.all(customBlogsPromise || []);
@@ -105,6 +137,12 @@ export default function BlogsPage() {
     fetchBlogs();
   }, []);
 
+  // Get unique sources for tabs
+  const sources = Array.from(new Set(blogs.map((b) => b.source)));
+
+  // Filter blogs based on active tab
+  const [activeTab, setActiveTab] = useState("all");
+
   return (
     <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
       <div className="flex items-center gap-4 mb-8">
@@ -116,43 +154,39 @@ export default function BlogsPage() {
         </Button>
         <h1 className="text-3xl font-bold">All Blogs</h1>
       </div>
-
-      <Tabs defaultValue="all" className="mb-8">
+      <Tabs defaultValue="all" className="mb-8" onValueChange={setActiveTab}>
         <div className="flex justify-center">
           <TabsList>
             <TabsTrigger value="all">All Blogs</TabsTrigger>
-            <TabsTrigger value="medium">Medium</TabsTrigger>
-            <TabsTrigger value="lambdatest">LambdaTest</TabsTrigger>
+            {sources.map((source) => (
+              <TabsTrigger key={source} value={source}>
+                {source}
+              </TabsTrigger>
+            ))}
           </TabsList>
         </div>
-
         <TabsContent value="all" className="mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogs.map((blog) => (
-              <BlogCard key={blog.url} blog={blog} />
-            ))}
+            {loading
+              ? Array.from({ length: 6 }).map((_, i) => (
+                  <BlogSkeletonCard key={i} />
+                ))
+              : blogs.map((blog) => <BlogCard key={blog.url} blog={blog} />)}
           </div>
         </TabsContent>
-
-        <TabsContent value="medium" className="mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogs
-              .filter((blog) => blog.source === "Medium")
-              .map((blog) => (
-                <BlogCard key={blog.url} blog={blog} />
-              ))}
-          </div>
-        </TabsContent>
-
-        <TabsContent value="lambdatest" className="mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogs
-              .filter((blog) => blog.source === "LambdaTest")
-              .map((blog) => (
-                <BlogCard key={blog.url} blog={blog} />
-              ))}
-          </div>
-        </TabsContent>
+        {sources.map((source) => (
+          <TabsContent key={source} value={source} className="mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {loading
+                ? Array.from({ length: 6 }).map((_, i) => (
+                    <BlogSkeletonCard key={i} />
+                  ))
+                : blogs
+                    .filter((blog) => blog.source === source)
+                    .map((blog) => <BlogCard key={blog.url} blog={blog} />)}
+            </div>
+          </TabsContent>
+        ))}
       </Tabs>
     </div>
   );

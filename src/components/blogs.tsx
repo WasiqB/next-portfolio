@@ -70,6 +70,29 @@ function BlogCard({ blog }: { blog: Blog }) {
   );
 }
 
+function BlogSkeletonCard() {
+  return (
+    <div className="animate-pulse h-full flex flex-col overflow-hidden border-2 rounded-lg bg-muted">
+      <div className="relative h-48 w-full bg-gray-200" />
+      <div className="p-4 pb-2">
+        <div className="h-5 bg-gray-300 rounded w-3/4 mb-2" />
+      </div>
+      <div className="p-4 pt-0 flex-grow">
+        <div className="h-4 bg-gray-200 rounded w-full mb-2" />
+        <div className="h-4 bg-gray-200 rounded w-5/6 mb-2" />
+        <div className="flex gap-2 mb-3">
+          <div className="h-5 w-12 bg-gray-300 rounded" />
+          <div className="h-5 w-12 bg-gray-300 rounded" />
+        </div>
+        <div className="flex items-center text-xs text-muted-foreground">
+          <div className="h-4 w-4 bg-gray-300 rounded mr-1" />
+          <div className="h-4 w-20 bg-gray-200 rounded" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Blogs() {
   const [activeTab, setActiveTab] = useState("all");
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -105,13 +128,8 @@ export default function Blogs() {
     fetchBlogs();
   }, []);
 
-  // Filter blogs based on active tab
-  const filteredBlogs =
-    activeTab === "all"
-      ? blogs.slice(0, 4)
-      : blogs
-          .filter((blog) => blog.source.toLowerCase() === activeTab)
-          .slice(0, 4);
+  // Get unique sources for tabs
+  const sources = Array.from(new Set(blogs.map((b) => b.source)));
 
   return (
     <section
@@ -136,58 +154,56 @@ export default function Blogs() {
         <div className="flex justify-center">
           <TabsList>
             <TabsTrigger value="all">All Blogs</TabsTrigger>
-            <TabsTrigger value="medium">Medium</TabsTrigger>
-            <TabsTrigger value="lambdatest">LambdaTest</TabsTrigger>
+            {sources.map((source) => (
+              <TabsTrigger key={source} value={source}>
+                {source}
+              </TabsTrigger>
+            ))}
           </TabsList>
         </div>
-
         <TabsContent value="all" className="mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredBlogs.map((blog, index) => (
-              <motion.div
-                key={blog.url}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <BlogCard blog={blog} />
-              </motion.div>
-            ))}
+            {loading
+              ? Array.from({ length: 4 }).map((_, i) => (
+                  <BlogSkeletonCard key={i} />
+                ))
+              : blogs.slice(0, 4).map((blog, index) => (
+                  <motion.div
+                    key={blog.url}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                  >
+                    <BlogCard blog={blog} />
+                  </motion.div>
+                ))}
           </div>
         </TabsContent>
-
-        <TabsContent value="medium" className="mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredBlogs.map((blog, index) => (
-              <motion.div
-                key={blog.url}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <BlogCard blog={blog} />
-              </motion.div>
-            ))}
-          </div>
-        </TabsContent>
-
-        <TabsContent value="lambdatest" className="mt-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {filteredBlogs.map((blog, index) => (
-              <motion.div
-                key={blog.url}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <BlogCard blog={blog} />
-              </motion.div>
-            ))}
-          </div>
-        </TabsContent>
+        {sources.map((source) => (
+          <TabsContent key={source} value={source} className="mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {loading
+                ? Array.from({ length: 4 }).map((_, i) => (
+                    <BlogSkeletonCard key={i} />
+                  ))
+                : blogs
+                    .filter((blog) => blog.source === source)
+                    .slice(0, 4)
+                    .map((blog, index) => (
+                      <motion.div
+                        key={blog.url}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                      >
+                        <BlogCard blog={blog} />
+                      </motion.div>
+                    ))}
+            </div>
+          </TabsContent>
+        ))}
       </Tabs>
 
       <div className="flex justify-center mt-8">

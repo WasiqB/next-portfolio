@@ -32,6 +32,9 @@ export async function GET(
             ? { Authorization: `token ${process.env.GITHUB_TOKEN}` }
             : {}),
         },
+        next: {
+          revalidate: 60 * 60 * 24,
+        },
       }
     );
 

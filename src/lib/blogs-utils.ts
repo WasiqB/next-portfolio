@@ -1,4 +1,3 @@
-import axios from "axios";
 import { stripHtml } from "string-strip-html";
 import * as cheerio from "cheerio";
 import { Blog } from "@/types/portfolio-types";
@@ -29,7 +28,11 @@ const scrapeWebsite = async (url: string): Promise<Blog> => {
 
 const request = async (url: string) => {
   try {
-    return axios.get(url);
+    return await fetch(url, {
+      next: {
+        revalidate: 60 * 60 * 24,
+      },
+    }).then((res) => res.json());
   } catch (error) {
     if (error instanceof Error) {
       throw Error(error.message);
@@ -94,7 +97,7 @@ const getMediumPost = async (user: string) => {
       `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${user}`
     );
 
-    return response.data.items.map((item: any) => formatMediumPost(item));
+    return response.items.map((item: any) => formatMediumPost(item));
   } catch (error) {
     return [];
   }

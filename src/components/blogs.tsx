@@ -131,6 +131,11 @@ export default function Blogs() {
   // Get unique sources for tabs
   const sources = Array.from(new Set(blogs.map((b) => b.source)));
 
+  const sortedBlogs = [...blogs].sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
+
   return (
     <section
       id="blogs"
@@ -167,7 +172,7 @@ export default function Blogs() {
               ? Array.from({ length: 4 }).map((_, i) => (
                   <BlogSkeletonCard key={i} />
                 ))
-              : blogs.slice(0, 4).map((blog, index) => (
+              : sortedBlogs.slice(0, 4).map((blog, index) => (
                   <motion.div
                     key={blog.url}
                     initial={{ opacity: 0, y: 20 }}
@@ -187,7 +192,7 @@ export default function Blogs() {
                 ? Array.from({ length: 4 }).map((_, i) => (
                     <BlogSkeletonCard key={i} />
                   ))
-                : blogs
+                : sortedBlogs
                     .filter((blog) => blog.source === source)
                     .slice(0, 4)
                     .map((blog, index) => (

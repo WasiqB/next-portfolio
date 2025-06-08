@@ -143,6 +143,11 @@ export default function BlogsPage() {
   // Filter blogs based on active tab
   const [activeTab, setActiveTab] = useState("all");
 
+  const sortedBlogs = [...blogs].sort(
+    (a, b) =>
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+  );
+
   return (
     <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
       <div className="flex items-center gap-4 mb-8">
@@ -171,7 +176,9 @@ export default function BlogsPage() {
               ? Array.from({ length: 6 }).map((_, i) => (
                   <BlogSkeletonCard key={i} />
                 ))
-              : blogs.map((blog) => <BlogCard key={blog.url} blog={blog} />)}
+              : sortedBlogs.map((blog) => (
+                  <BlogCard key={blog.url} blog={blog} />
+                ))}
           </div>
         </TabsContent>
         {sources.map((source) => (
@@ -181,7 +188,7 @@ export default function BlogsPage() {
                 ? Array.from({ length: 6 }).map((_, i) => (
                     <BlogSkeletonCard key={i} />
                   ))
-                : blogs
+                : sortedBlogs
                     .filter((blog) => blog.source === source)
                     .map((blog) => <BlogCard key={blog.url} blog={blog} />)}
             </div>

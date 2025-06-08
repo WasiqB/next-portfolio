@@ -10,6 +10,7 @@ import { ArrowLeft, CalendarIcon } from "lucide-react";
 import { Blog } from "@/types/portfolio-types";
 import { useEffect, useState } from "react";
 import { Data as portfolioData } from "@/data/portfolio-data";
+import { CACHE_DURATION } from "@/lib/constants";
 
 function formatDate(dateString: string): string {
   const options: Intl.DateTimeFormatOptions = {
@@ -107,7 +108,7 @@ export default function BlogsPage() {
               `/api/blogs?username=${source.username}`,
               {
                 next: {
-                  revalidate: 60 * 60 * 24,
+                  revalidate: CACHE_DURATION,
                 },
               }
             );
@@ -116,7 +117,7 @@ export default function BlogsPage() {
             const customBlogsPromise = source.urls?.map(async (url) => {
               const response = await fetch(`/api/blogs?url=${url}`, {
                 next: {
-                  revalidate: 60 * 60 * 24,
+                  revalidate: CACHE_DURATION,
                 },
               });
               return response.json() as Promise<Blog[]>;

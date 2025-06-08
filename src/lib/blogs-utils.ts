@@ -1,6 +1,7 @@
 import { stripHtml } from "string-strip-html";
 import * as cheerio from "cheerio";
 import { Blog } from "@/types/portfolio-types";
+import { CACHE_DURATION } from "./constants";
 
 const scrapeWebsite = async (url: string): Promise<Blog> => {
   const response = await fetch(url);
@@ -30,7 +31,7 @@ const request = async (url: string) => {
   try {
     return await fetch(url, {
       next: {
-        revalidate: 60 * 60 * 24,
+        revalidate: CACHE_DURATION,
       },
     }).then((res) => res.json());
   } catch (error) {

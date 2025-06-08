@@ -150,4 +150,9 @@ export const Data: PortfolioData = {
       },
     ],
   },
+  videos: {
+    sectionTitle: "My Videos",
+    sectionDescription: "Check out my latest video tutorials and tech talks.",
+    youtubeChannelId: "UC5dVxwIGl4xfY4gjkWuMspA",
+  },
 };

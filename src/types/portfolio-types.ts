@@ -72,11 +72,31 @@ export interface BlogData {
   }[];
 }
 
+export interface Video {
+  id: string;
+  title: string;
+  thumbnail: string;
+  videoUrl: string;
+  views: number;
+  likes: number;
+  comments: number;
+  publishDate: string;
+  category: "video" | "short";
+  platform: string;
+}
+
+export interface VideosData {
+  sectionTitle: string;
+  sectionDescription: string;
+  youtubeChannelId: string;
+}
+
 export interface PortfolioData {
   hero: HeroData;
   projects: ProjectsData;
   services: ServicesData;
   blogs: BlogData;
+  videos: VideosData;
 }
 
 export interface Blog {

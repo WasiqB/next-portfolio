@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
       new URL("https://opengraph.githubassets.com/**"),
       new URL("https://cdn-images-1.medium.com/**"),
       new URL("https://www.lambdatest.com/**"),
+      new URL("https://i.ytimg.com/**"),
     ],
   },
 };

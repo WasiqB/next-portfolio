@@ -1,3 +1,4 @@
+import { CACHE_DURATION } from "@/lib/constants";
 import { NextRequest, NextResponse } from "next/server";
 
 interface GitHubRepo {
@@ -13,7 +14,7 @@ interface GitHubRepo {
   forks: number;
 }
 
-export const revalidate = 24 * 60 * 60;
+export const revalidate = CACHE_DURATION;
 
 export async function GET(
   request: NextRequest,
@@ -33,7 +34,7 @@ export async function GET(
             : {}),
         },
         next: {
-          revalidate: 60 * 60 * 24,
+          revalidate: CACHE_DURATION,
         },
       }
     );

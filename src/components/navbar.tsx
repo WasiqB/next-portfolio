@@ -37,84 +37,113 @@ import {
 } from "@/components/ui/collapsible";
 import { Data as portfolioData } from "@/data/portfolio-data";
 import { HeroData } from "@/types/portfolio-types";
-
-// Define the navigation structure
-const navigationItems = [
-  {
-    name: "Home",
-    href: "/",
-    submenu: false,
-    icon: <Home className="h-4 w-4" />,
-  },
-  {
-    name: "About",
-    href: "#",
-    submenu: true,
-    icon: <User className="h-4 w-4" />,
-    items: [
-      { name: "About Me", href: "/about", icon: <User className="h-4 w-4" /> },
-      {
-        name: "My Growth",
-        href: "/#growth",
-        icon: <LineChart className="h-4 w-4" />,
-      },
-      {
-        name: "Testimonials",
-        href: "/#testimonials",
-        icon: <Award className="h-4 w-4" />,
-      },
-    ],
-  },
-  {
-    name: "Work",
-    href: "#",
-    submenu: true,
-    icon: <Briefcase className="h-4 w-4" />,
-    items: [
-      {
-        name: "Projects",
-        href: "/#projects",
-        icon: <Code className="h-4 w-4" />,
-      },
-      {
-        name: "Services",
-        href: "/#services",
-        icon: <Cog className="h-4 w-4" />,
-      },
-      {
-        name: "Sponsors",
-        href: "/#sponsors",
-        icon: <Heart className="h-4 w-4" />,
-      },
-    ],
-  },
-  {
-    name: "Resources",
-    href: "#",
-    submenu: true,
-    icon: <BookOpen className="h-4 w-4" />,
-    items: [
-      {
-        name: "Blogs",
-        href: "/#blogs",
-        icon: <FileText className="h-4 w-4" />,
-      },
-      { name: "Videos", href: "/#videos", icon: <Video className="h-4 w-4" /> },
-    ],
-  },
-  {
-    name: "Contact Me",
-    href: "/#contact",
-    submenu: false,
-    icon: <MessageSquare className="h-4 w-4" />,
-  },
-];
+import { getFlag } from "@/lib/feature-toggle/provider";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
   const [openCollapsible, setOpenCollapsible] = useState<string | null>(null);
   const heroData: HeroData = portfolioData.hero;
+
+  const showProducts = getFlag("show_products")?.enabled;
+
+  // Define the navigation structure
+  const navigationItems = [
+    {
+      name: "Home",
+      href: "/",
+      submenu: false,
+      icon: <Home className="h-4 w-4" />,
+      visible: true,
+    },
+    {
+      name: "About",
+      href: "#",
+      submenu: true,
+      icon: <User className="h-4 w-4" />,
+      visible: true,
+      items: [
+        {
+          name: "About Me",
+          href: "/about",
+          icon: <User className="h-4 w-4" />,
+        },
+        {
+          name: "My Growth",
+          href: "/#growth",
+          icon: <LineChart className="h-4 w-4" />,
+          visible: true,
+        },
+        {
+          name: "Testimonials",
+          href: "/#testimonials",
+          icon: <Award className="h-4 w-4" />,
+          visible: true,
+        },
+      ],
+    },
+    {
+      name: "Work",
+      href: "#",
+      submenu: true,
+      icon: <Briefcase className="h-4 w-4" />,
+      visible: true,
+      items: [
+        {
+          name: "Projects",
+          href: "/#projects",
+          icon: <Code className="h-4 w-4" />,
+          visible: true,
+        },
+        {
+          name: "Products",
+          href: "/#products",
+          icon: <ShoppingCart className="h-4 w-4" />,
+          visible: !!showProducts,
+        },
+        {
+          name: "Services",
+          href: "/#services",
+          icon: <Cog className="h-4 w-4" />,
+          visible: true,
+        },
+        {
+          name: "Sponsors",
+          href: "/#sponsors",
+          icon: <Heart className="h-4 w-4" />,
+          visible: true,
+        },
+      ],
+    },
+    {
+      name: "Resources",
+      href: "#",
+      submenu: true,
+      icon: <BookOpen className="h-4 w-4" />,
+      visible: true,
+      items: [
+        {
+          name: "Blogs",
+          href: "/#blogs",
+          icon: <FileText className="h-4 w-4" />,
+          visible: true,
+        },
+        {
+          name: "Videos",
+          href: "/#videos",
+          icon: <Video className="h-4 w-4" />,
+          visible: true,
+        },
+      ],
+    },
+    {
+      name: "Contact Me",
+      href: "/#contact",
+      submenu: false,
+      icon: <MessageSquare className="h-4 w-4" />,
+      visible: true,
+    },
+  ];
 
   useEffect(() => {
     setIsMounted(true);
@@ -139,42 +168,46 @@ export default function Navbar() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          {navigationItems.map((item) => (
-            <div key={item.name} className="relative group">
-              {item.submenu ? (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <button className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-                      {item.icon}
-                      {item.name}
-                      <ChevronDown className="h-4 w-4" />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="center" className="w-48">
-                    {item.items?.map((subItem) => (
-                      <DropdownMenuItem key={subItem.name} asChild>
-                        <Link
-                          href={subItem.href}
-                          className="w-full cursor-pointer flex items-center gap-1.5"
-                        >
-                          {subItem.icon}
-                          {subItem.name}
-                        </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              ) : (
-                <Link
-                  href={item.href}
-                  className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
-                >
-                  {item.icon}
-                  {item.name}
-                </Link>
-              )}
-            </div>
-          ))}
+          {navigationItems
+            .filter((item) => item.visible)
+            .map((item) => (
+              <div key={item.name} className="relative group">
+                {item.submenu ? (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <button className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
+                        {item.icon}
+                        {item.name}
+                        <ChevronDown className="h-4 w-4" />
+                      </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="center" className="w-48">
+                      {item.items
+                        ?.filter((subItem) => subItem.visible)
+                        .map((subItem) => (
+                          <DropdownMenuItem key={subItem.name} asChild>
+                            <Link
+                              href={subItem.href}
+                              className="w-full cursor-pointer flex items-center gap-1.5"
+                            >
+                              {subItem.icon}
+                              {subItem.name}
+                            </Link>
+                          </DropdownMenuItem>
+                        ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
+                  >
+                    {item.icon}
+                    {item.name}
+                  </Link>
+                )}
+              </div>
+            ))}
 
           <Button variant="default" size="sm" className="gap-1" asChild>
             <Link href="/theme/pricing">

@@ -38,6 +38,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      flagsmith:
+        specifier: ^9.2.2
+        version: 9.2.2
       framer-motion:
         specifier: ^12.16.0
         version: 12.16.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -1462,6 +1465,9 @@ packages:
   find-up@5.0.0:
     resolution: {integrity: sha512-78/PXT1wlLLDgTzDs7sjq9hzz0vXD+zn+7wypEe4fXQxCmdmqfGsEPQxmiCSQI3ajFV91bVSsvNtrJRiW6nGng==}
     engines: {node: '>=10'}
+
+  flagsmith@9.2.2:
+    resolution: {integrity: sha512-9UNI5Rdtv4r3rEruT3sLinZDKH1o7co8kSopmGDB5q9fCWHXLa1HLbjAwe9xPoMtWMpdS8gqLdY2UZBdfxuVdg==}
 
   flat-cache@4.0.1:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
@@ -3894,6 +3900,8 @@ snapshots:
     dependencies:
       locate-path: 6.0.0
       path-exists: 4.0.0
+
+  flagsmith@9.2.2: {}
 
   flat-cache@4.0.1:
     dependencies:

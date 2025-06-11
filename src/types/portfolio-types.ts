@@ -91,12 +91,34 @@ export interface VideosData {
   youtubeChannelId: string;
 }
 
+export interface Testimonial {
+  id: string;
+  name: string;
+  title: string;
+  company: string;
+  image: string;
+  testimonial: string;
+  category?: "client" | "colleague" | "student" | "general";
+  featured?: boolean;
+}
+
+export interface TestimonialsData {
+  sectionTitle: string;
+  sectionDescription: string;
+  testimonials: Testimonial[];
+  viewAllButton?: {
+    text: string;
+    href: string;
+  };
+}
+
 export interface PortfolioData {
   hero: HeroData;
   projects: ProjectsData;
   services: ServicesData;
   blogs: BlogData;
   videos: VideosData;
+  testimonials: TestimonialsData;
 }
 
 export interface Blog {

@@ -2,85 +2,60 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { Data } from "@/data/portfolio-data";
+import type { TestimonialsData } from "@/types/portfolio-types";
+import { useEffect, useRef, useState } from "react";
 
-// Define the testimonial type
-interface Testimonial {
-  id: string;
-  name: string;
-  title: string;
-  company: string;
-  image: string;
-  testimonial: string;
-  featured?: boolean;
-}
-
-// Sample testimonials data
-const testimonials: Testimonial[] = [
-  {
-    id: "1",
-    name: "Sarah Johnson",
-    title: "CTO",
-    company: "TechCorp",
-    image: "/placeholder.svg?height=100&width=100",
-    testimonial:
-      "John's expertise in React and Next.js is exceptional. He helped us rebuild our entire frontend, resulting in a 40% improvement in performance and a much better user experience. His attention to detail and commitment to quality is impressive.",
-    featured: true,
-  },
-  {
-    id: "2",
-    name: "Michael Chen",
-    title: "Product Manager",
-    company: "InnovateLabs",
-    image: "/placeholder.svg?height=100&width=100",
-    testimonial:
-      "Working with John was a game-changer for our startup. He not only delivered a beautiful, responsive website but also provided valuable insights that helped shape our product strategy. His technical knowledge combined with business acumen is rare to find.",
-    featured: true,
-  },
-  {
-    id: "3",
-    name: "Emily Rodriguez",
-    title: "Frontend Lead",
-    company: "DesignStudio",
-    image: "/placeholder.svg?height=100&width=100",
-    testimonial:
-      "John's workshops on modern React patterns transformed how our team approaches frontend development. His teaching style makes complex concepts accessible, and the custom tools he built for us have significantly improved our development workflow.",
-    featured: true,
-  },
-  {
-    id: "4",
-    name: "David Kim",
-    title: "CEO",
-    company: "StartupX",
-    image: "/placeholder.svg?height=100&width=100",
-    testimonial:
-      "We hired John for a critical project with a tight deadline. Not only did he deliver on time, but the quality of his work exceeded our expectations. His communication throughout the project was excellent, making the entire process smooth and stress-free.",
-  },
-  {
-    id: "5",
-    name: "Lisa Patel",
-    title: "Engineering Director",
-    company: "Enterprise Solutions",
-    image: "/placeholder.svg?height=100&width=100",
-    testimonial:
-      "John's contributions to our open-source projects have been invaluable. His code is clean, well-documented, and thoughtfully designed. He's also been a great mentor to junior developers in our community.",
-  },
-];
+const testimonials: TestimonialsData = Data.testimonials;
 
 export default function Testimonials() {
   // Only show featured testimonials on the home page
-  const featuredTestimonials = testimonials.filter(
+  const featuredTestimonials = testimonials.testimonials.filter(
     (testimonial) => testimonial.featured
   );
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [autoplay, setAutoplay] = useState(true);
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
+
+  const nextTestimonial = () => {
+    setCurrentIndex(
+      (prevIndex: number) => (prevIndex + 1) % featuredTestimonials.length
+    );
+  };
+
+  const prevTestimonial = () => {
+    setCurrentIndex(
+      (prevIndex: number) =>
+        (prevIndex - 1 + featuredTestimonials.length) %
+        featuredTestimonials.length
+    );
+  };
+
+  // Setup autoplay
+  useEffect(() => {
+    if (autoplay) {
+      autoplayRef.current = setInterval(() => {
+        nextTestimonial();
+      }, 5000); // Change testimonial every 5 seconds
+    }
+
+    return () => {
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current);
+      }
+    };
+  }, [autoplay]);
+
+  // Pause autoplay on hover
+  const handleMouseEnter = () => setAutoplay(false);
+  const handleMouseLeave = () => setAutoplay(true);
 
   return (
-    <section
-      id="testimonials"
-      className="container max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24"
-    >
+    <section id="testimonials" className="container py-12 md:py-24">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -88,54 +63,101 @@ export default function Testimonials() {
         transition={{ duration: 0.5 }}
         className="space-y-4 text-center mb-12"
       >
-        <h2 className="text-3xl md:text-4xl font-bold">My Testimonials</h2>
+        <h2 className="text-3xl md:text-4xl font-bold">
+          {testimonials.sectionTitle}
+        </h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Here's what people have to say about working with me.
+          {testimonials.sectionDescription}
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {featuredTestimonials.map((testimonial, index) => (
-          <motion.div
-            key={testimonial.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-          >
-            <Card className="h-full flex flex-col">
-              <CardContent className="p-6 flex-grow flex flex-col">
-                <div className="mb-4 text-primary">
-                  <Quote className="h-8 w-8 opacity-50" />
-                </div>
-                <blockquote className="flex-grow mb-6 italic text-muted-foreground">
-                  "{testimonial.testimonial}"
-                </blockquote>
-                <div className="flex items-center mt-auto">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
-                    <Image
-                      src={testimonial.image || "/placeholder.svg"}
-                      alt={testimonial.name}
-                      fill
-                      className="object-cover"
-                    />
+      <div
+        className="relative max-w-4xl mx-auto px-4"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        <div className="overflow-hidden">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.5 }}
+              className="flex justify-center"
+            >
+              <Card className="max-w-2xl my-5">
+                <CardContent className="p-6 flex flex-col">
+                  <div className="mb-4 text-primary">
+                    <Quote className="h-8 w-8 opacity-50" />
                   </div>
-                  <div>
-                    <div className="font-medium">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">
-                      {testimonial.title}, {testimonial.company}
+                  <blockquote className="flex-grow mb-6 italic text-muted-foreground">
+                    "{featuredTestimonials[currentIndex].testimonial}"
+                  </blockquote>
+                  <div className="flex items-center mt-auto">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
+                      <Image
+                        src={
+                          featuredTestimonials[currentIndex].image ||
+                          "/placeholder.svg"
+                        }
+                        alt={featuredTestimonials[currentIndex].name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <div className="font-medium">
+                        {featuredTestimonials[currentIndex].name}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {featuredTestimonials[currentIndex].title},{" "}
+                        {featuredTestimonials[currentIndex].company}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        ))}
+                </CardContent>
+              </Card>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Navigation buttons */}
+        <button
+          onClick={prevTestimonial}
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-2 shadow-md hover:bg-muted transition-colors"
+          aria-label="Previous testimonial"
+        >
+          <ChevronLeft className="h-5 w-5" />
+        </button>
+        <button
+          onClick={nextTestimonial}
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-2 shadow-md hover:bg-muted transition-colors"
+          aria-label="Next testimonial"
+        >
+          <ChevronRight className="h-5 w-5" />
+        </button>
+
+        {/* Indicators */}
+        <div className="flex justify-center gap-2 mt-6">
+          {featuredTestimonials.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-2 h-2 rounded-full transition-all ${
+                index === currentIndex ? "bg-primary w-4" : "bg-muted"
+              }`}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="flex justify-center mt-8">
         <Button asChild>
-          <Link href="/testimonials">View All Testimonials</Link>
+          <Link href={testimonials.viewAllButton?.href || "/#testimonials"}>
+            {testimonials.viewAllButton?.text}
+          </Link>
         </Button>
       </div>
     </section>

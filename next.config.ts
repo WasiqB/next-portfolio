@@ -1,14 +1,26 @@
 import type { NextConfig } from "next";
-import { URL } from "url";
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
-      new URL("https://repository-images.githubusercontent.com/**"),
-      new URL("https://opengraph.githubassets.com/**"),
-      new URL("https://cdn-images-1.medium.com/**"),
-      new URL("https://www.lambdatest.com/**"),
-      new URL("https://i.ytimg.com/**"),
+      {
+        hostname: "repository-images.githubusercontent.com",
+      },
+      {
+        hostname: "opengraph.githubassets.com",
+      },
+      {
+        hostname: "cdn-images-1.medium.com",
+      },
+      {
+        hostname: "www.lambdatest.com",
+      },
+      {
+        hostname: "i.ytimg.com",
+      },
+      {
+        hostname: "media.licdn.com",
+      },
     ],
   },
 };

@@ -6,7 +6,7 @@ export const getFeatureState = async (): Promise<IState<string>> => {
   await flagsmith.init({
     evaluationContext: {
       environment: {
-        apiKey: process.env.NEXT_PUBLIC_FLAGSMITH_ENVIRONMENT_ID,
+        apiKey: process.env.FLAGSMITH_ENVIRONMENT_ID,
       },
     },
   });

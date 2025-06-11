@@ -6,7 +6,7 @@ export const config = { revalidate: 86400 };
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const channelId = searchParams.get("channelId");
-  const apiKey = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+  const apiKey = process.env.YOUTUBE_API_KEY;
 
   if (!channelId) {
     return NextResponse.json(
@@ -16,7 +16,7 @@ export const GET = async (request: NextRequest) => {
   }
   if (!apiKey) {
     return NextResponse.json(
-      { error: "NEXT_PUBLIC_YOUTUBE_API_KEY is not set in environment" },
+      { error: "YOUTUBE_API_KEY is not set in environment" },
       { status: 500 }
     );
   }

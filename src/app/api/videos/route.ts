@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { fetchYouTubeVideos } from "@/lib/videos-utils";
-import { CACHE_DURATION } from "@/lib/constants";
 
-export const revalidate = CACHE_DURATION;
+export const config = { revalidate: 86400 };
 
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;

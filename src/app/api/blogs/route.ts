@@ -1,8 +1,7 @@
 import { getMediumPost, scrapeWebsite } from "@/lib/blogs-utils";
-import { CACHE_DURATION } from "@/lib/constants";
 import { NextRequest, NextResponse } from "next/server";
 
-export const revalidate = CACHE_DURATION;
+export const config = { revalidate: 86400 };
 
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;

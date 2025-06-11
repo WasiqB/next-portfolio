@@ -67,6 +67,7 @@ export default function Navbar() {
           name: "About Me",
           href: "/about",
           icon: <User className="h-4 w-4" />,
+          visible: true,
         },
         {
           name: "My Growth",

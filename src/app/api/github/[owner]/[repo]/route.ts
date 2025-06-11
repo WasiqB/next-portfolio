@@ -14,11 +14,11 @@ interface GitHubRepo {
   forks: number;
 }
 
-export const revalidate = CACHE_DURATION;
+export const config = { revalidate: 86400 };
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { owner: string; repo: string } }
+  { params }: { params: Promise<{ owner: string; repo: string }> }
 ) {
   try {
     const { owner, repo } = await params;
@@ -34,7 +34,7 @@ export async function GET(
             : {}),
         },
         next: {
-          revalidate: CACHE_DURATION,
+          revalidate: 60 * 60 * 24,
         },
       }
     );

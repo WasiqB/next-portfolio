@@ -112,6 +112,46 @@ export interface TestimonialsData {
   };
 }
 
+export interface Experience {
+  title: string;
+  company: string;
+  location: string;
+  period: string;
+  description: string[];
+  skills: string[];
+}
+
+export interface Education {
+  degree: string;
+  institution: string;
+  location: string;
+  period: string;
+  description?: string;
+}
+
+export interface Certificate {
+  title: string;
+  issuer: string;
+  issued: string;
+  verifyUrl?: string;
+}
+
+export interface AboutData {
+  name: string;
+  title: string;
+  description: string[];
+  coreValues: { label: string; value: string }[];
+  experiences: Experience[];
+  education: Education[];
+  certifications?: Certificate[];
+  skills: string[];
+  socialLinks: SocialLink[];
+  profileImage: {
+    src: string;
+    alt: string;
+  };
+}
+
 export interface PortfolioData {
   hero: HeroData;
   projects: ProjectsData;
@@ -119,6 +159,7 @@ export interface PortfolioData {
   blogs: BlogData;
   videos: VideosData;
   testimonials: TestimonialsData;
+  about: AboutData;
 }
 
 export interface Blog {

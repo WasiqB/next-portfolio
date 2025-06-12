@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -9,67 +11,25 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ArrowLeft, Heart } from "lucide-react";
+import { Data as portfolioData } from "@/data/portfolio-data";
+import type {
+  Sponsor,
+  SponsorsData,
+  SponsorTier,
+} from "@/types/portfolio-types";
+import React from "react";
 
-// Define the sponsor type
-interface Sponsor {
-  id: string;
-  name: string;
-  image: string;
-  url: string;
-  tier: "bronze" | "silver" | "gold" | "platinum";
-}
-
-// Sample sponsors data
-const sponsors: Sponsor[] = [
-  {
-    id: "1",
-    name: "Acme Inc",
-    image: "/placeholder.svg?height=200&width=200",
-    url: "https://example.com",
-    tier: "platinum",
-  },
-  {
-    id: "2",
-    name: "TechCorp",
-    image: "/placeholder.svg?height=200&width=200",
-    url: "https://example.com",
-    tier: "gold",
-  },
-  {
-    id: "3",
-    name: "DevStudio",
-    image: "/placeholder.svg?height=200&width=200",
-    url: "https://example.com",
-    tier: "silver",
-  },
-  {
-    id: "4",
-    name: "CodeLabs",
-    image: "/placeholder.svg?height=200&width=200",
-    url: "https://example.com",
-    tier: "silver",
-  },
-  {
-    id: "5",
-    name: "WebWorks",
-    image: "/placeholder.svg?height=200&width=200",
-    url: "https://example.com",
-    tier: "bronze",
-  },
-];
-
-// Sponsor card component
 function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
   return (
     <Link
-      href={sponsor.url}
+      href={sponsor.profileUrl}
       target="_blank"
       rel="noopener noreferrer"
       className="group"
     >
       <div className="relative aspect-square overflow-hidden rounded-full border-2 border-muted transition-all hover:border-primary">
         <Image
-          src={sponsor.image || "/placeholder.svg"}
+          src={sponsor.avatarUrl || "/placeholder.svg"}
           alt={sponsor.name}
           fill
           className="object-cover transition-transform group-hover:scale-105"
@@ -78,14 +38,45 @@ function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
       <div className="mt-3 text-center">
         <h3 className="font-medium">{sponsor.name}</h3>
         <p className="text-xs text-muted-foreground capitalize">
-          {sponsor.tier} Sponsor
+          {sponsor.tier.charAt(0).toUpperCase() + sponsor.tier.slice(1)} Sponsor
         </p>
+        {sponsor.message && (
+          <p className="text-xs text-muted-foreground mt-1 italic">
+            "{sponsor.message}"
+          </p>
+        )}
       </div>
     </Link>
   );
 }
 
+function getTierClass(tier: string) {
+  switch (tier) {
+    case "platinum":
+      return "bg-gradient-to-r from-slate-300 to-slate-400";
+    case "gold":
+      return "bg-gradient-to-r from-yellow-300 to-yellow-400";
+    case "silver":
+      return "bg-gradient-to-r from-gray-300 to-gray-400";
+    case "bronze":
+      return "bg-gradient-to-r from-amber-600 to-amber-700";
+    default:
+      return "bg-muted";
+  }
+}
+
 export default function SponsorsPage() {
+  const sponsors: SponsorsData = portfolioData.sponsors;
+  const sponsorTiers: SponsorTier[] = sponsors.tiers;
+
+  const getSponsorsByTier = (tier: string) =>
+    sponsors.sponsors.filter(
+      (s) => s.tier === tier && tier !== "one_time" && tier !== "donation"
+    );
+  const otherSponsors = sponsors.sponsors.filter(
+    (s) => s.tier === "one_time" || s.tier === "donation"
+  );
+
   return (
     <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
       <div className="flex items-center gap-4 mb-8">
@@ -150,7 +141,7 @@ export default function SponsorsPage() {
               </p>
               <Button className="w-full" asChild>
                 <Link
-                  href="https://github.com/sponsors/johndoe"
+                  href="https://github.com/sponsors/WasiqB"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -163,296 +154,89 @@ export default function SponsorsPage() {
         </div>
       </div>
 
-      <div className="mb-16">
+      <div className="space-y-16">
         <h2 className="text-2xl font-bold mb-8">Current Sponsors</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-          {sponsors.map((sponsor) => (
-            <SponsorCard key={sponsor.id} sponsor={sponsor} />
-          ))}
-        </div>
+        {sponsorTiers.map((tier) => {
+          const tierSponsors = getSponsorsByTier(tier.slug);
+          if (!tierSponsors.length) return null;
+          return (
+            <div className="mb-12" key={tier.slug}>
+              <h3 className="text-xl font-semibold mb-4 inline-flex items-center">
+                <span
+                  className={
+                    getTierClass(tier.slug) + " w-6 h-6 rounded-full mr-2"
+                  }
+                ></span>
+                {tier.name} Sponsors
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                {tierSponsors.map((sponsor) => (
+                  <SponsorCard key={sponsor.id} sponsor={sponsor} />
+                ))}
+              </div>
+            </div>
+          );
+        })}
+        {/* Other Sponsors */}
+        {otherSponsors.length > 0 && (
+          <div className="mb-12">
+            <h3 className="text-xl font-semibold mb-4 inline-flex items-center">
+              <span className="bg-muted w-6 h-6 rounded-full mr-2"></span>
+              Other Sponsors
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+              {otherSponsors.map((sponsor) => (
+                <SponsorCard key={sponsor.id} sponsor={sponsor} />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
-      <div className="space-y-16">
-        {/* Current Sponsors Section */}
-        <div>
-          <h2 className="text-2xl font-bold mb-8">Current Sponsors</h2>
-
-          {/* Platinum Tier */}
-          <div className="mb-12">
-            <h3 className="text-xl font-semibold mb-4 inline-flex items-center">
-              <span className="bg-gradient-to-r from-slate-300 to-slate-400 w-6 h-6 rounded-full mr-2"></span>
-              Platinum Sponsors
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-              {sponsors
-                .filter((s) => s.tier === "platinum")
-                .map((sponsor) => (
-                  <SponsorCard key={sponsor.id} sponsor={sponsor} />
-                ))}
-            </div>
-          </div>
-
-          {/* Gold Tier */}
-          <div className="mb-12">
-            <h3 className="text-xl font-semibold mb-4 inline-flex items-center">
-              <span className="bg-gradient-to-r from-yellow-300 to-yellow-400 w-6 h-6 rounded-full mr-2"></span>
-              Gold Sponsors
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-              {sponsors
-                .filter((s) => s.tier === "gold")
-                .map((sponsor) => (
-                  <SponsorCard key={sponsor.id} sponsor={sponsor} />
-                ))}
-            </div>
-          </div>
-
-          {/* Silver Tier */}
-          <div className="mb-12">
-            <h3 className="text-xl font-semibold mb-4 inline-flex items-center">
-              <span className="bg-gradient-to-r from-gray-300 to-gray-400 w-6 h-6 rounded-full mr-2"></span>
-              Silver Sponsors
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-              {sponsors
-                .filter((s) => s.tier === "silver")
-                .map((sponsor) => (
-                  <SponsorCard key={sponsor.id} sponsor={sponsor} />
-                ))}
-            </div>
-          </div>
-
-          {/* Bronze Tier */}
-          <div className="mb-12">
-            <h3 className="text-xl font-semibold mb-4 inline-flex items-center">
-              <span className="bg-gradient-to-r from-amber-600 to-amber-700 w-6 h-6 rounded-full mr-2"></span>
-              Bronze Sponsors
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-              {sponsors
-                .filter((s) => s.tier === "bronze")
-                .map((sponsor) => (
-                  <SponsorCard key={sponsor.id} sponsor={sponsor} />
-                ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Past Sponsors Section */}
-        <div>
-          <h2 className="text-2xl font-bold mb-8">Past Sponsors</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {/* Example past sponsors - you would need to add actual past sponsors data */}
-            <div className="text-center opacity-60 hover:opacity-100 transition-opacity">
-              <div className="relative w-16 h-16 mx-auto overflow-hidden rounded-full border border-muted">
-                <Image
-                  src="/placeholder.svg?height=100&width=100"
-                  alt="Past Sponsor"
-                  fill
-                  className="object-cover grayscale"
-                />
-              </div>
-              <p className="mt-2 text-xs">Past Co.</p>
-            </div>
-            <div className="text-center opacity-60 hover:opacity-100 transition-opacity">
-              <div className="relative w-16 h-16 mx-auto overflow-hidden rounded-full border border-muted">
-                <Image
-                  src="/placeholder.svg?height=100&width=100"
-                  alt="Past Sponsor"
-                  fill
-                  className="object-cover grayscale"
-                />
-              </div>
-              <p className="mt-2 text-xs">Former Inc.</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Why Sponsor Section */}
-        <div className="bg-muted/50 rounded-lg p-8">
-          <h2 className="text-2xl font-bold mb-4 text-center">
-            Why Sponsor My Work?
-          </h2>
-
-          <div className="grid md:grid-cols-2 gap-8 mt-8">
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Benefits for Sponsors</h3>
-              <ul className="space-y-2">
-                <li className="flex items-start">
-                  <span className="bg-primary/10 p-1 rounded mr-2 text-primary">
-                    ✓
+      <div className="mb-16">
+        <h2 className="text-2xl font-bold mb-8">Sponsorship Tiers</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {sponsorTiers.map((tier) => (
+            <Card key={tier.slug} className="flex flex-col border-border">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <span
+                    className={
+                      getTierClass(tier.slug) + " w-4 h-4 rounded-full"
+                    }
+                  ></span>
+                  {tier.name}
+                </CardTitle>
+                <CardDescription>{tier.description}</CardDescription>
+                <div className="mt-4">
+                  <span className="text-2xl font-bold">
+                    {tier.price ? "$" + tier.price + "/mo" : "Any amount"}
                   </span>
-                  <span>
-                    <strong>Priority Support</strong> - Get direct access and
-                    priority responses to your questions
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="bg-primary/10 p-1 rounded mr-2 text-primary">
-                    ✓
-                  </span>
-                  <span>
-                    <strong>Logo Placement</strong> - Your logo displayed on my
-                    website and GitHub repositories
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="bg-primary/10 p-1 rounded mr-2 text-primary">
-                    ✓
-                  </span>
-                  <span>
-                    <strong>Early Access</strong> - Preview new content, tools,
-                    and projects before public release
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="bg-primary/10 p-1 rounded mr-2 text-primary">
-                    ✓
-                  </span>
-                  <span>
-                    <strong>Consulting Time</strong> - Monthly consulting
-                    sessions (tier-dependent)
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="bg-primary/10 p-1 rounded mr-2 text-primary">
-                    ✓
-                  </span>
-                  <span>
-                    <strong>Custom Development</strong> - Influence on project
-                    roadmaps and feature prioritization
-                  </span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold">Your Impact</h3>
-              <p>Your sponsorship directly enables:</p>
-              <ul className="space-y-2">
-                <li className="flex items-start">
-                  <span className="bg-primary/10 p-1 rounded mr-2 text-primary">
-                    ✓
-                  </span>
-                  <span>
-                    Continued maintenance of open source projects used by
-                    thousands of developers
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="bg-primary/10 p-1 rounded mr-2 text-primary">
-                    ✓
-                  </span>
-                  <span>
-                    Creation of high-quality educational content, tutorials, and
-                    documentation
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="bg-primary/10 p-1 rounded mr-2 text-primary">
-                    ✓
-                  </span>
-                  <span>
-                    Development of new tools and libraries that benefit the
-                    entire community
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="bg-primary/10 p-1 rounded mr-2 text-primary">
-                    ✓
-                  </span>
-                  <span>
-                    More time dedicated to answering questions and helping the
-                    community
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="bg-primary/10 p-1 rounded mr-2 text-primary">
-                    ✓
-                  </span>
-                  <span>
-                    Sustainable development of free resources that help
-                    developers worldwide
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-8 text-center">
-            <h3 className="text-xl font-semibold mb-4">Sponsorship Tiers</h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              <div className="border rounded-lg p-4 hover:border-primary transition-colors">
-                <h4 className="inline-flex items-center">
-                  <span className="bg-gradient-to-r from-amber-600 to-amber-700 w-4 h-4 rounded-full mr-2"></span>
-                  Bronze
-                </h4>
-                <p className="text-2xl font-bold my-2">$5 /month</p>
-                <ul className="text-sm text-muted-foreground space-y-1 mb-4">
-                  <li>Name in sponsors list</li>
-                  <li>Early access to content</li>
+                </div>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <ul className="space-y-2">
+                  {tier.benefits.map((benefit) => (
+                    <li key={benefit} className="flex items-start">
+                      <span className="h-2 w-2 rounded-full bg-primary mt-2 mr-2" />
+                      <span>{benefit}</span>
+                    </li>
+                  ))}
                 </ul>
+              </CardContent>
+              <div className="p-4 pt-0">
+                <Button asChild className="w-full">
+                  <Link
+                    href={tier.githubTierUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Sponsor {tier.name}
+                  </Link>
+                </Button>
               </div>
-
-              <div className="border rounded-lg p-4 hover:border-primary transition-colors">
-                <h4 className="inline-flex items-center">
-                  <span className="bg-gradient-to-r from-gray-300 to-gray-400 w-4 h-4 rounded-full mr-2"></span>
-                  Silver
-                </h4>
-                <p className="text-2xl font-bold my-2">$25 /month</p>
-                <ul className="text-sm text-muted-foreground space-y-1 mb-4">
-                  <li>Small logo in sponsors list</li>
-                  <li>Priority support</li>
-                  <li>All Bronze benefits</li>
-                </ul>
-              </div>
-
-              <div className="border rounded-lg p-4 hover:border-primary transition-colors">
-                <h4 className="inline-flex items-center">
-                  <span className="bg-gradient-to-r from-yellow-300 to-yellow-400 w-4 h-4 rounded-full mr-2"></span>
-                  Gold
-                </h4>
-                <p className="text-2xl font-bold my-2">$100 /month</p>
-                <ul className="text-sm text-muted-foreground space-y-1 mb-4">
-                  <li>Medium logo with link</li>
-                  <li>1 hour consulting monthly</li>
-                  <li>All Silver benefits</li>
-                </ul>
-              </div>
-
-              <div className="border rounded-lg p-4 hover:border-primary transition-colors">
-                <h4 className="inline-flex items-center">
-                  <span className="bg-gradient-to-r from-slate-300 to-slate-400 w-4 h-4 rounded-full mr-2"></span>
-                  Platinum
-                </h4>
-                <p className="text-2xl font-bold my-2">$500 /month</p>
-                <ul className="text-sm text-muted-foreground space-y-1 mb-4">
-                  <li>Large logo with prime placement</li>
-                  <li>4 hours consulting monthly</li>
-                  <li>Custom development priority</li>
-                  <li>All Gold benefits</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-4 mt-8">
-            <Button asChild>
-              <Link
-                href="https://github.com/sponsors/johndoe"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Heart className="h-4 w-4 mr-2" />
-                Sponsor on GitHub
-              </Link>
-            </Button>
-            <Button variant="outline" asChild>
-              <Link href="mailto:sponsor@example.com">
-                Contact for Custom Sponsorship
-              </Link>
-            </Button>
-          </div>
+            </Card>
+          ))}
         </div>
       </div>
     </div>

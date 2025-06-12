@@ -343,7 +343,7 @@ export default function AboutPage() {
             opportunities to be part of your vision.
           </p>
           <Button asChild>
-            <Link href="#contact">Get In Touch</Link>
+            <Link href="/#contact">Get In Touch</Link>
           </Button>
         </div>
       </div>

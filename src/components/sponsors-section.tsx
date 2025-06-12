@@ -5,56 +5,29 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
-
-// Define the sponsor type
-interface Sponsor {
-  id: string;
-  name: string;
-  image: string;
-  url: string;
-  tier: "bronze" | "silver" | "gold" | "platinum";
-}
-
-// Sample sponsors data
-const sponsors: Sponsor[] = [
-  {
-    id: "1",
-    name: "Acme Inc",
-    image: "/placeholder.svg?height=200&width=200",
-    url: "https://example.com",
-    tier: "platinum",
-  },
-  {
-    id: "2",
-    name: "TechCorp",
-    image: "/placeholder.svg?height=200&width=200",
-    url: "https://example.com",
-    tier: "gold",
-  },
-  {
-    id: "3",
-    name: "DevStudio",
-    image: "/placeholder.svg?height=200&width=200",
-    url: "https://example.com",
-    tier: "silver",
-  },
-  {
-    id: "4",
-    name: "CodeLabs",
-    image: "/placeholder.svg?height=200&width=200",
-    url: "https://example.com",
-    tier: "silver",
-  },
-  {
-    id: "5",
-    name: "WebWorks",
-    image: "/placeholder.svg?height=200&width=200",
-    url: "https://example.com",
-    tier: "bronze",
-  },
-];
+import { Data as portfolioData } from "@/data/portfolio-data";
+import type {
+  Sponsor,
+  SponsorsData,
+  SponsorTier,
+} from "@/types/portfolio-types";
 
 export default function SponsorsSection() {
+  const sponsors: SponsorsData = portfolioData.sponsors;
+  const sponsorTiers: SponsorTier[] = sponsors.tiers;
+  const tierOrder = sponsorTiers.map((tier) => tier.slug);
+
+  // Sort sponsors by tier priority
+  const sortedSponsors = sponsors.sponsors.slice().sort((a, b) => {
+    const aIdx = tierOrder.indexOf(a.tier);
+    const bIdx = tierOrder.indexOf(b.tier);
+    if (aIdx === -1 && bIdx === -1) return 0;
+    if (aIdx === -1) return 1;
+    if (bIdx === -1) return -1;
+    return aIdx - bIdx;
+  });
+  const topSponsors = sortedSponsors.slice(0, 4);
+
   return (
     <section
       id="sponsors"
@@ -67,15 +40,18 @@ export default function SponsorsSection() {
         transition={{ duration: 0.5 }}
         className="space-y-4 text-center mb-12"
       >
-        <h2 className="text-3xl md:text-4xl font-bold">My Sponsors</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          These amazing sponsors support my work and help me create more
-          content.
-        </p>
+        <h2 className="text-3xl md:text-4xl font-bold">
+          {portfolioData.sponsors.sectionTitle}
+        </h2>
+        {portfolioData.sponsors.sectionDescription && (
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            {portfolioData.sponsors.sectionDescription}
+          </p>
+        )}
       </motion.div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-3xl mx-auto mb-12">
-        {sponsors.slice(0, 4).map((sponsor, index) => (
+        {topSponsors.map((sponsor, index) => (
           <motion.div
             key={sponsor.id}
             initial={{ opacity: 0, y: 20 }}
@@ -85,14 +61,14 @@ export default function SponsorsSection() {
             className="flex justify-center"
           >
             <Link
-              href={sponsor.url}
+              href={sponsor.profileUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="group"
             >
               <div className="relative w-24 h-24 md:w-32 md:h-32 overflow-hidden rounded-full border-2 border-muted transition-all hover:border-primary">
                 <Image
-                  src={sponsor.image || "/placeholder.svg"}
+                  src={sponsor.avatarUrl || "/placeholder.svg"}
                   alt={sponsor.name}
                   fill
                   className="object-cover transition-transform group-hover:scale-105"

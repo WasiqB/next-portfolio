@@ -520,4 +520,122 @@ He is fluent in setting up automation frameworks and well versed with programmin
       alt: "Wasiq Amjad Bhamla",
     },
   },
+  github: {
+    username: "WasiqB",
+  },
+  sponsors: {
+    sectionTitle: "My Sponsors",
+    sectionDescription:
+      "These amazing sponsors support my work and help me create more content.",
+    viewAllButton: {
+      text: "See All Sponsors",
+      href: "/sponsors",
+    },
+    sponsors: [
+      {
+        id: "1",
+        name: "LambdaTest",
+        avatarUrl:
+          "https://media.licdn.com/dms/image/v2/D560BAQGdHpefVrdoOw/company-logo_100_100/B56Zc16NJjGQAU-/0/1748956140728/lambdatest_logo?e=1755129600&v=beta&t=K1kSokc3ks5BGdvo97A9lOeqvmGGAFLybwCZZU5lp0w",
+        profileUrl: "https://www.lambdatest.com/",
+        tier: "bronze",
+      },
+    ],
+    tiers: [
+      {
+        name: "💪🏻 Platinum",
+        slug: "platinum",
+        description: "Premium support and visibility for your brand.",
+        price: 1000,
+        benefits: [
+          "Including previous tier benefits",
+          "Get 12 hour / month call with me anytime during the month for any consulting or mentorship",
+        ],
+        githubTierUrl:
+          "https://github.com/sponsors/WasiqB/sponsorships?tier_id=206958",
+      },
+      {
+        name: "💎 Diamond",
+        slug: "diamond",
+        description: "Top-tier support with maximum visibility.",
+        price: 500,
+        benefits: [
+          "Including previous tier benefits",
+          "Get 4 hour / month of call with me anytime during the month for any consulting or mentorship",
+        ],
+        githubTierUrl:
+          "https://github.com/sponsors/WasiqB/sponsorships?tier_id=235804",
+      },
+      {
+        name: "🥇 Gold",
+        slug: "gold",
+        description: "Enhanced support and visibility for your brand.",
+        price: 350,
+        benefits: [
+          "Including previous tier benefits",
+          "Get 1 hour / month of call with me anytime during the month for any consulting or mentorship",
+        ],
+        githubTierUrl:
+          "https://github.com/sponsors/WasiqB/sponsorships?tier_id=206957",
+      },
+      {
+        name: "🥈 Silver",
+        slug: "silver",
+        description: "Support my work with monthly contributions.",
+        price: 100,
+        benefits: [
+          "Including previous tier benefits",
+          "Get 30 minutes / month of call with me anytime during the month for any consulting or mentorship",
+        ],
+        githubTierUrl:
+          "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157967",
+      },
+      {
+        name: "🥉 Bronze",
+        slug: "bronze",
+        description: "Support my work with monthly contributions.",
+        price: 50,
+        benefits: [
+          "Including previous tier benefits",
+          "Get special sponsor role on my Discord server with access to private sponsor channel where you will get priority over other discussion",
+        ],
+        githubTierUrl:
+          "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157964",
+      },
+      {
+        name: "🤝 Backer",
+        slug: "backer",
+        description: "Support my work with monthly contributions.",
+        price: 25,
+        benefits: [
+          "Including previous tier benefits",
+          "Get your name listed on README of all my repositories",
+        ],
+        githubTierUrl:
+          "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157963",
+      },
+      {
+        name: "🚶🏻 Starter",
+        slug: "starter",
+        description: "Support my work with monthly contributions.",
+        price: 5,
+        benefits: [
+          "You get a shout-out on my Socials",
+          "Get your name listed on my personal website",
+        ],
+        githubTierUrl:
+          "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157962",
+      },
+      {
+        name: "Donation",
+        slug: "donation",
+        description: "Support my work with a one-time contribution.",
+        benefits: [
+          "You get a shout-out on my Socials",
+          "Get your name listed on my personal website",
+        ],
+        githubTierUrl: "https://github.com/sponsors/WasiqB",
+      },
+    ],
+  },
 };

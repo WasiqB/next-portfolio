@@ -152,6 +152,46 @@ export interface AboutData {
   };
 }
 
+type TierType =
+  | "starter"
+  | "backer"
+  | "bronze"
+  | "silver"
+  | "gold"
+  | "diamond"
+  | "platinum"
+  | "donation"
+  | "one_time";
+
+export interface SponsorTier {
+  name: string;
+  slug: TierType;
+  description: string;
+  price?: number;
+  benefits: string[];
+  githubTierUrl: string;
+}
+
+export interface Sponsor {
+  id: string;
+  name: string;
+  avatarUrl: string;
+  profileUrl: string;
+  tier: TierType;
+  message?: string;
+}
+
+export interface SponsorsData {
+  sectionTitle: string;
+  sectionDescription: string;
+  tiers: SponsorTier[];
+  sponsors: Sponsor[];
+  viewAllButton?: {
+    text: string;
+    href: string;
+  };
+}
+
 export interface PortfolioData {
   hero: HeroData;
   projects: ProjectsData;
@@ -160,6 +200,10 @@ export interface PortfolioData {
   videos: VideosData;
   testimonials: TestimonialsData;
   about: AboutData;
+  github: {
+    username: string;
+  };
+  sponsors: SponsorsData;
 }
 
 export interface Blog {

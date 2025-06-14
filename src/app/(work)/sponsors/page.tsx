@@ -102,21 +102,18 @@ export default function SponsorsPage() {
               <p>
                 By becoming a sponsor, you're not just supporting my work,
                 you're investing in the future of open source software and
-                educational content that benefits the entire developer
-                community.
+                educational content that benefits the entire QA community.
               </p>
               <p>Your sponsorship helps me dedicate more time to:</p>
               <ul className="list-disc pl-6 space-y-2">
                 <li>Creating high-quality tutorials and educational content</li>
                 <li>Maintaining and improving open source projects</li>
                 <li>Developing new tools and libraries for the community</li>
-                <li>
-                  Mentoring new developers and contributing to the ecosystem
-                </li>
+                <li>Mentoring new QA and contributing to the ecosystem</li>
               </ul>
               <p>
                 In return, sponsors receive benefits like priority support,
-                early access to content, personalized consulting, and
+                shout out on my Socials, personalized consulting, and
                 recognition on my website and GitHub repositories.
               </p>
             </CardContent>

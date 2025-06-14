@@ -118,8 +118,8 @@ export default function Videos() {
         if (!channelId) return;
         const res = await fetch(`/api/videos?channelId=${channelId}`);
         if (!res.ok) return;
-        const vids = await res.json();
-        setVideos(vids);
+        const data = await res.json();
+        setVideos(data.videos);
       } finally {
         setIsLoading(false);
       }
@@ -155,7 +155,7 @@ export default function Videos() {
         <div className="flex justify-center">
           <TabsList>
             <TabsTrigger value="all">All Videos</TabsTrigger>
-            <TabsTrigger value="video">Long Videos</TabsTrigger>
+            <TabsTrigger value="video">Videos</TabsTrigger>
             <TabsTrigger value="short">Shorts</TabsTrigger>
           </TabsList>
         </div>

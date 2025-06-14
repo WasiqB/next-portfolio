@@ -4,13 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Eye, Play, ArrowLeft, Heart, MessageSquare } from "lucide-react";
+import { Eye, Play, ArrowLeft, Heart, MessageSquare, Bell } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useEffect, useState } from "react";
 import { Data as portfolioData } from "@/data/portfolio-data";
 import { Video } from "@/types/portfolio-types";
 import { CACHE_DURATION } from "@/lib/constants";
 import { useTheme } from "next-themes";
+import { FaYoutube } from "react-icons/fa6";
 
 // Format view count
 function formatViewCount(count: number): string {
@@ -30,6 +31,16 @@ function formatDate(dateString: string): string {
     month: "short",
     day: "numeric",
   });
+}
+
+// Format large numbers
+function formatNumber(num: number): string {
+  if (num >= 1000000) {
+    return `${(num / 1000000).toFixed(1)}M`;
+  } else if (num >= 1000) {
+    return `${(num / 1000).toFixed(1)}K`;
+  }
+  return num.toString();
 }
 
 // Video card component
@@ -109,6 +120,11 @@ export default function VideosPage() {
   const [activeTab, setActiveTab] = useState("all");
   const [isLoading, setIsLoading] = useState(true);
   const [videos, setVideos] = useState<Video[]>([]);
+  const [channelStats, setChannelStats] = useState({
+    subscriberCount: 0,
+    viewCount: 0,
+    videoCount: 0,
+  });
 
   useEffect(() => {
     async function loadVideos() {
@@ -122,8 +138,9 @@ export default function VideosPage() {
           },
         });
         if (!res.ok) return;
-        const vids = await res.json();
-        setVideos(vids);
+        const data = await res.json();
+        setVideos(data.videos);
+        setChannelStats(data.channelStats);
       } finally {
         setIsLoading(false);
       }
@@ -153,7 +170,7 @@ export default function VideosPage() {
         <div className="flex justify-center">
           <TabsList>
             <TabsTrigger value="all">All Videos</TabsTrigger>
-            <TabsTrigger value="video">Long Videos</TabsTrigger>
+            <TabsTrigger value="video">Videos</TabsTrigger>
             <TabsTrigger value="short">Shorts</TabsTrigger>
           </TabsList>
         </div>
@@ -188,6 +205,56 @@ export default function VideosPage() {
           </div>
         </TabsContent>
       </Tabs>
+
+      <div className="mt-16 bg-muted/50 rounded-lg p-8 text-center">
+        <h2 className="text-2xl font-bold mb-4">Subscribe for More Content!</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
+          Join my YouTube channel for Testing tutorials, automation tips, and
+          in-depth tech discussions. Don't miss out on the latest content!
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Button asChild size="lg">
+            <Link
+              href={portfolioData.videos.channelUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaYoutube className="h-5 w-5 mr-2" />
+              Visit My Channel
+            </Link>
+          </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link
+              href={`${portfolioData.videos.channelUrl}?sub_confirmation=1`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Bell className="h-5 w-5 mr-2" />
+              Subscribe Now
+            </Link>
+          </Button>
+        </div>
+        <div className="mt-6 flex justify-center gap-8 text-sm text-muted-foreground">
+          <div className="text-center">
+            <div className="font-semibold text-foreground">
+              {formatNumber(channelStats.subscriberCount)}
+            </div>
+            <div>Subscribers</div>
+          </div>
+          <div className="text-center">
+            <div className="font-semibold text-foreground">
+              {formatNumber(channelStats.videoCount)}
+            </div>
+            <div>Videos</div>
+          </div>
+          <div className="text-center">
+            <div className="font-semibold text-foreground">
+              {formatNumber(channelStats.viewCount)}
+            </div>
+            <div>Total Views</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -154,6 +154,7 @@ export const Data: PortfolioData = {
     sectionTitle: "My Videos",
     sectionDescription: "Check out my latest video tutorials and tech talks.",
     youtubeChannelId: "UC5dVxwIGl4xfY4gjkWuMspA",
+    channelUrl: "https://www.youtube.com/@WasiqBhamla",
   },
   testimonials: {
     sectionTitle: "My Testimonials",

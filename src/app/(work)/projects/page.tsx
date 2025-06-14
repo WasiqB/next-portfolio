@@ -18,6 +18,7 @@ import { Data as portfolioData } from "@/data/portfolio-data";
 import { Project } from "@/types/portfolio-types";
 import { getGitHubApiUrl } from "@/lib/github-utils";
 import { Skeleton } from "@/components/ui/skeleton";
+import { FaGithub } from "react-icons/fa6";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -141,6 +142,24 @@ export default function ProjectsPage() {
                 </Card>
               </Link>
             ))}
+      </div>
+
+      <div className="mt-16 bg-muted/50 rounded-lg p-8 text-center">
+        <h2 className="text-2xl font-bold mb-4">Want to See More?</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
+          Check out my GitHub profile for more projects, open-source
+          contributions, and code repositories.
+        </p>
+        <Button asChild>
+          <Link
+            href={`https://github.com/${portfolioData.github.username}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaGithub className="h-4 w-4 mr-2" />
+            Visit My GitHub
+          </Link>
+        </Button>
       </div>
     </div>
   );

@@ -89,6 +89,7 @@ export interface VideosData {
   sectionTitle: string;
   sectionDescription: string;
   youtubeChannelId: string;
+  channelUrl: string;
 }
 
 export interface Testimonial {

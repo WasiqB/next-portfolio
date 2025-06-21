@@ -14,6 +14,8 @@ import { getFlag } from "@/lib/feature-toggle/provider";
 
 export default function Home() {
   const showProducts = getFlag("show_products")?.enabled;
+  const showContact = getFlag("show_contact")?.enabled;
+  const showGrowth = getFlag("show_growth")?.enabled;
 
   return (
     <main className="min-h-screen">
@@ -23,10 +25,10 @@ export default function Home() {
       {showProducts && <Products />}
       <Blogs />
       <Videos />
-      <GrowthSection />
+      {showGrowth && <GrowthSection />}
       <Testimonials />
       <SponsorsSection />
-      <Contact />
+      {showContact && <Contact />}
     </main>
   );
 }

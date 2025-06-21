@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
@@ -8,28 +8,22 @@ import {
   Moon,
   Sun,
   Menu,
-  ChevronDown,
   Home,
   User,
   Briefcase,
   BookOpen,
   MessageSquare,
-  LineChart,
-  Award,
   Heart,
   Code,
-  Cog,
   FileText,
   Video,
   ShoppingCart,
+  Mail,
+  Wrench,
+  Package,
+  TrendingUp,
 } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import {
   Collapsible,
   CollapsibleContent,
@@ -38,6 +32,60 @@ import {
 import { Data as portfolioData } from "@/data/portfolio-data";
 import { HeroData } from "@/types/portfolio-types";
 import { getFlag } from "@/lib/feature-toggle/provider";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "./ui/navigation-menu";
+import { cn } from "@/lib/utils";
+
+const ListItem = function ListItem(
+  {
+    className,
+    title,
+    children,
+    icon,
+    description,
+    ...props
+  }: React.ComponentPropsWithoutRef<"a"> & {
+    icon?: React.ReactNode;
+    title: string;
+    description?: string;
+  },
+  ref: React.ForwardedRef<HTMLAnchorElement>
+) {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            className
+          )}
+          {...props}
+        >
+          <div className="flex items-center gap-2 text-sm font-medium leading-none">
+            {icon}
+            {title}
+          </div>
+          {description && (
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+              {description}
+            </p>
+          )}
+          {children}
+        </a>
+      </NavigationMenuLink>
+    </li>
+  );
+};
+// Use the new React v19 forwardRef API
+const ListItemWithRef = React.forwardRef(ListItem);
+ListItem.displayName = "ListItem";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -46,21 +94,17 @@ export default function Navbar() {
   const heroData: HeroData = portfolioData.hero;
 
   const showProducts = getFlag("show_products")?.enabled;
+  const showBuyButton = getFlag("show_buy_button")?.enabled;
+  const showContact = getFlag("show_contact")?.enabled;
+  const showGrowth = getFlag("show_growth")?.enabled;
 
   // Define the navigation structure
   const navigationItems = [
     {
-      name: "Home",
-      href: "/",
-      submenu: false,
-      icon: <Home className="h-4 w-4" />,
-      visible: true,
-    },
-    {
       name: "About",
       href: "#",
-      submenu: true,
       icon: <User className="h-4 w-4" />,
+      submenu: true,
       visible: true,
       items: [
         {
@@ -68,26 +112,29 @@ export default function Navbar() {
           href: "/about",
           icon: <User className="h-4 w-4" />,
           visible: true,
+          description: "Learn about my background, experience, and journey",
         },
         {
           name: "My Growth",
           href: "/#growth",
-          icon: <LineChart className="h-4 w-4" />,
-          visible: true,
+          icon: <TrendingUp className="h-4 w-4" />,
+          visible: !!showGrowth,
+          description: "Track my progress across various platforms",
         },
         {
           name: "Testimonials",
           href: "/#testimonials",
-          icon: <Award className="h-4 w-4" />,
+          icon: <MessageSquare className="h-4 w-4" />,
           visible: true,
+          description: "What clients and colleagues say about my work",
         },
       ],
     },
     {
       name: "Work",
       href: "#",
-      submenu: true,
       icon: <Briefcase className="h-4 w-4" />,
+      submenu: true,
       visible: true,
       items: [
         {
@@ -95,54 +142,60 @@ export default function Navbar() {
           href: "/#projects",
           icon: <Code className="h-4 w-4" />,
           visible: true,
+          description: "Explore my latest development projects",
         },
         {
           name: "Products",
           href: "/#products",
-          icon: <ShoppingCart className="h-4 w-4" />,
+          icon: <Package className="h-4 w-4" />,
           visible: !!showProducts,
+          description: "Software as a Service products I've built",
         },
         {
           name: "Services",
           href: "/#services",
-          icon: <Cog className="h-4 w-4" />,
+          icon: <Wrench className="h-4 w-4" />,
           visible: true,
+          description: "Professional services I offer to clients",
         },
         {
           name: "Sponsors",
           href: "/#sponsors",
           icon: <Heart className="h-4 w-4" />,
           visible: true,
+          description: "Support my work and open source projects",
         },
       ],
     },
     {
       name: "Resources",
       href: "#",
-      submenu: true,
       icon: <BookOpen className="h-4 w-4" />,
       visible: true,
+      submenu: true,
       items: [
         {
           name: "Blogs",
           href: "/#blogs",
           icon: <FileText className="h-4 w-4" />,
           visible: true,
+          description: "Articles and insights on web development",
         },
         {
           name: "Videos",
           href: "/#videos",
           icon: <Video className="h-4 w-4" />,
           visible: true,
+          description: "Tutorials and tech talks on YouTube",
         },
       ],
     },
     {
       name: "Contact Me",
       href: "/#contact",
+      icon: <Mail className="h-4 w-4" />,
       submenu: false,
-      icon: <MessageSquare className="h-4 w-4" />,
-      visible: true,
+      visible: !!showContact,
     },
   ];
 
@@ -162,60 +215,65 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
-          <Link href="/" className="font-bold text-xl">
+          <Link href="/" className="font-bold text-xl flex items-center gap-2">
             {heroData.name}
           </Link>
         </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          {navigationItems
-            .filter((item) => item.visible)
-            .map((item) => (
-              <div key={item.name} className="relative group">
-                {item.submenu ? (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <button className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary">
-                        {item.icon}
-                        {item.name}
-                        <ChevronDown className="h-4 w-4" />
-                      </button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="center" className="w-48">
-                      {item.items
-                        ?.filter((subItem) => subItem.visible)
-                        .map((subItem) => (
-                          <DropdownMenuItem key={subItem.name} asChild>
-                            <Link
-                              href={subItem.href}
-                              className="w-full cursor-pointer flex items-center gap-1.5"
-                            >
-                              {subItem.icon}
-                              {subItem.name}
-                            </Link>
-                          </DropdownMenuItem>
-                        ))}
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
-                  >
-                    {item.icon}
-                    {item.name}
-                  </Link>
-                )}
-              </div>
-            ))}
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navigationItems
+                .filter((item) => item.visible)
+                .map((item) => (
+                  <NavigationMenuItem key={item.name}>
+                    {item.submenu ? (
+                      <>
+                        <NavigationMenuTrigger className="flex items-center gap-2">
+                          {item.icon}
+                          {item.name}
+                        </NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                          <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                            {item.items
+                              ?.filter((item) => item.visible)
+                              .map((subItem) => (
+                                <ListItemWithRef
+                                  key={subItem.name}
+                                  title={subItem.name}
+                                  href={subItem.href}
+                                  icon={subItem.icon}
+                                  description={subItem.description}
+                                />
+                              ))}
+                          </ul>
+                        </NavigationMenuContent>
+                      </>
+                    ) : (
+                      <NavigationMenuLink
+                        href={item.href}
+                        className="group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                      >
+                        <span className="flex items-center gap-2">
+                          {item.icon}
+                          {item.name}
+                        </span>
+                      </NavigationMenuLink>
+                    )}
+                  </NavigationMenuItem>
+                ))}
+            </NavigationMenuList>
+          </NavigationMenu>
 
-          <Button variant="default" size="sm" className="gap-1" asChild>
-            <Link href="/theme/pricing">
-              <ShoppingCart className="h-4 w-4" />
-              Buy Theme
-            </Link>
-          </Button>
+          {showBuyButton && (
+            <Button variant="default" size="sm" className="gap-1" asChild>
+              <Link href="/theme/pricing">
+                <ShoppingCart className="h-4 w-4" />
+                Buy Theme
+              </Link>
+            </Button>
+          )}
 
           <Button
             variant="ghost"
@@ -245,27 +303,46 @@ export default function Navbar() {
                       onOpenChange={() => toggleCollapsible(item.name)}
                     >
                       <CollapsibleTrigger asChild>
-                        <button className="flex items-center justify-between w-full text-sm font-medium transition-colors hover:text-primary">
-                          <span className="flex items-center gap-1.5">
+                        <button className="flex items-center justify-between w-full text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent">
+                          <span className="flex items-center gap-2">
                             {item.icon}
                             {item.name}
                           </span>
-                          <ChevronDown
+                          <svg
                             className={`h-4 w-4 transition-transform ${
                               openCollapsible === item.name ? "rotate-180" : ""
                             }`}
-                          />
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
                         </button>
                       </CollapsibleTrigger>
-                      <CollapsibleContent className="pl-4 mt-2 space-y-2 border-l">
+                      <CollapsibleContent className="pl-6 mt-2 space-y-2 border-l border-border">
                         {item.items?.map((subItem) => (
                           <Link
                             key={subItem.name}
                             href={subItem.href}
-                            className="flex text-sm text-muted-foreground hover:text-primary items-center gap-1.5"
+                            className="flex items-start gap-3 p-2 rounded-md text-sm hover:bg-accent transition-colors"
                           >
-                            {subItem.icon}
-                            {subItem.name}
+                            <div className="text-muted-foreground mt-0.5">
+                              {subItem.icon}
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-medium text-foreground">
+                                {subItem.name}
+                              </div>
+                              <div className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                                {subItem.description}
+                              </div>
+                            </div>
                           </Link>
                         ))}
                       </CollapsibleContent>
@@ -273,7 +350,7 @@ export default function Navbar() {
                   ) : (
                     <Link
                       href={item.href}
-                      className="flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-primary"
+                      className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent"
                     >
                       {item.icon}
                       {item.name}
@@ -284,7 +361,7 @@ export default function Navbar() {
 
               <Link
                 href="/theme/pricing"
-                className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary"
+                className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent mt-4 border border-border"
               >
                 <ShoppingCart className="h-4 w-4" />
                 Buy Theme
@@ -294,7 +371,7 @@ export default function Navbar() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="justify-start mt-4"
+                className="justify-start px-2 mt-4"
               >
                 {theme === "dark" ? (
                   <>

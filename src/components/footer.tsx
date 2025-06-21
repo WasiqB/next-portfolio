@@ -53,7 +53,7 @@ export default function Footer() {
           {/* About section */}
           <div className="md:col-span-1 space-y-4">
             <h3 className="text-lg font-bold">{heroData.name}</h3>
-            <p className="text-muted-foreground">{heroData.bio}</p>
+            <p className="text-muted-foreground">Follow me on my Socials</p>
             <div className="flex items-center gap-4">
               {heroData.socialLinks.map((social, index) => (
                 <Link

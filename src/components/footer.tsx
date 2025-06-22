@@ -9,6 +9,8 @@ import { getFlag } from "@/lib/feature-toggle/provider";
 export default function Footer() {
   const heroData: HeroData = portfolioData.hero;
   const showProducts = getFlag("show_products")?.enabled;
+  const showContact = getFlag("show_contact")?.enabled;
+  const showGrowth = getFlag("show_growth")?.enabled;
 
   // Define the navigation structure (same as navbar)
   const navigationItems = [
@@ -19,7 +21,7 @@ export default function Footer() {
       submenu: true,
       items: [
         { name: "About Me", href: "/about", visible: true },
-        { name: "My Growth", href: "/#growth", visible: true },
+        { name: "My Growth", href: "/#growth", visible: !!showGrowth },
         { name: "Testimonials", href: "/#testimonials", visible: true },
       ],
     },
@@ -43,7 +45,12 @@ export default function Footer() {
         { name: "Videos", href: "/#videos", visible: true },
       ],
     },
-    { name: "Contact Me", href: "/#contact", submenu: false, visible: true },
+    {
+      name: "Contact Me",
+      href: "/#contact",
+      submenu: false,
+      visible: !!showContact,
+    },
   ];
 
   return (

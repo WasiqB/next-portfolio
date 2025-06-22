@@ -1,3 +1,5 @@
+"use client";
+
 import type React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -19,6 +21,7 @@ import {
 } from "lucide-react";
 import { Data as portfolioData } from "@/data/portfolio-data";
 import { LucideIcon } from "lucide-react";
+import { getFlag } from "@/lib/feature-toggle/provider";
 
 const iconMap: Record<string, LucideIcon> = {
   Settings2,
@@ -31,6 +34,7 @@ const iconMap: Record<string, LucideIcon> = {
 
 export default function ServicesPage() {
   const { sectionTitle, sectionDescription, services } = portfolioData.services;
+  const showContact = getFlag("show_contact")?.enabled;
 
   return (
     <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
@@ -77,7 +81,11 @@ export default function ServicesPage() {
           tailored to your specific needs.
         </p>
         <Button asChild>
-          <Link href="/#contact">Contact Me</Link>
+          <Link
+            href={showContact ? "/#contact" : "mailto:wasbhamla2005@gmail.com"}
+          >
+            Contact Me
+          </Link>
         </Button>
       </div>
     </div>

@@ -213,7 +213,7 @@ export default function VideosPage() {
           in-depth tech discussions. Don't miss out on the latest content!
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg">
+          <Button asChild variant="outline" size="lg">
             <Link
               href={portfolioData.videos.channelUrl}
               target="_blank"
@@ -223,7 +223,7 @@ export default function VideosPage() {
               Visit My Channel
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg">
+          <Button asChild size="lg">
             <Link
               href={`${portfolioData.videos.channelUrl}?sub_confirmation=1`}
               target="_blank"

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -20,10 +22,13 @@ import {
   FaXTwitter,
   FaYoutube,
 } from "react-icons/fa6";
+import { getFlag } from "@/lib/feature-toggle/provider";
 
 const about: AboutData = Data.about;
 
 export default function AboutPage() {
+  const showContact = getFlag("show_contact")?.enabled;
+
   return (
     <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
       <div className="flex items-center gap-4 mb-8">
@@ -343,7 +348,13 @@ export default function AboutPage() {
             opportunities to be part of your vision.
           </p>
           <Button asChild>
-            <Link href="/#contact">Get In Touch</Link>
+            <Link
+              href={
+                showContact ? "/#contact" : "mailto:wasbhamla2005@gmail.com"
+              }
+            >
+              Get In Touch
+            </Link>
           </Button>
         </div>
       </div>

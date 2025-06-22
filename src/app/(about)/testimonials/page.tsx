@@ -139,7 +139,7 @@ export default function TestimonialsPage() {
           honored to hear from you.
         </p>
         <Button asChild>
-          <Link href="mailto:testimonial@example.com">
+          <Link href="https://www.linkedin.com/in/wasiqbhamla/edit/forms/recommendation/write/?profileFormEntryPoint=PROFILE_SECTION&profileUrn=urn:li:fsd_profile:ACoAAAM86f0BWA_fsJW-LYrGysLiENkIMc85KVQ">
             Submit a Testimonial
           </Link>
         </Button>

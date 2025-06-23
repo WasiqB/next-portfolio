@@ -56,7 +56,7 @@ export default function Footer() {
   return (
     <footer className="border-t bg-background">
       <div className="container max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 md:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About section */}
           <div className="md:col-span-1 space-y-4">
             <h3 className="text-lg font-bold">{heroData.name}</h3>

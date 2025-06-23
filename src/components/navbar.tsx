@@ -23,7 +23,13 @@ import {
   Package,
   TrendingUp,
 } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import {
   Collapsible,
   CollapsibleContent,
@@ -221,7 +227,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-6">
           <NavigationMenu>
             <NavigationMenuList>
               {navigationItems
@@ -288,84 +294,97 @@ export default function Navbar() {
 
         {/* Mobile Navigation */}
         <Sheet>
-          <SheetTrigger asChild className="md:hidden">
+          <SheetTrigger asChild className="lg:hidden">
             <Button variant="ghost" size="icon" aria-label="Menu">
               <Menu className="h-5 w-5" />
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="w-[250px] sm:w-[300px]">
+            <SheetHeader>
+              <SheetTitle className="text-lg font-semibold">
+                Menu Options
+              </SheetTitle>
+            </SheetHeader>
             <nav className="flex flex-col gap-4 mt-8 px-2">
-              {navigationItems.map((item) => (
-                <div key={item.name}>
-                  {item.submenu ? (
-                    <Collapsible
-                      open={openCollapsible === item.name}
-                      onOpenChange={() => toggleCollapsible(item.name)}
-                    >
-                      <CollapsibleTrigger asChild>
-                        <button className="flex items-center justify-between w-full text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent">
-                          <span className="flex items-center gap-2">
-                            {item.icon}
-                            {item.name}
-                          </span>
-                          <svg
-                            className={`h-4 w-4 transition-transform ${
-                              openCollapsible === item.name ? "rotate-180" : ""
-                            }`}
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M19 9l-7 7-7-7"
-                            />
-                          </svg>
-                        </button>
-                      </CollapsibleTrigger>
-                      <CollapsibleContent className="pl-6 mt-2 space-y-2 border-l border-border">
-                        {item.items?.map((subItem) => (
-                          <Link
-                            key={subItem.name}
-                            href={subItem.href}
-                            className="flex items-start gap-3 p-2 rounded-md text-sm hover:bg-accent transition-colors"
-                          >
-                            <div className="text-muted-foreground mt-0.5">
-                              {subItem.icon}
-                            </div>
-                            <div className="flex-1">
-                              <div className="font-medium text-foreground">
-                                {subItem.name}
-                              </div>
-                              <div className="text-xs text-muted-foreground mt-1 leading-relaxed">
-                                {subItem.description}
-                              </div>
-                            </div>
-                          </Link>
-                        ))}
-                      </CollapsibleContent>
-                    </Collapsible>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent"
-                    >
-                      {item.icon}
-                      {item.name}
-                    </Link>
-                  )}
-                </div>
-              ))}
+              {navigationItems
+                .filter((item) => item.visible)
+                .map((item) => (
+                  <div key={item.name}>
+                    {item.submenu ? (
+                      <Collapsible
+                        open={openCollapsible === item.name}
+                        onOpenChange={() => toggleCollapsible(item.name)}
+                      >
+                        <CollapsibleTrigger asChild>
+                          <button className="flex items-center justify-between w-full text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent">
+                            <span className="flex items-center gap-2">
+                              {item.icon}
+                              {item.name}
+                            </span>
+                            <svg
+                              className={`h-4 w-4 transition-transform ${
+                                openCollapsible === item.name
+                                  ? "rotate-180"
+                                  : ""
+                              }`}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </svg>
+                          </button>
+                        </CollapsibleTrigger>
+                        <CollapsibleContent className="pl-6 mt-2 space-y-2 border-l border-border">
+                          {item.items
+                            ?.filter((item) => item.visible)
+                            .map((subItem) => (
+                              <Link
+                                key={subItem.name}
+                                href={subItem.href}
+                                className="flex items-start gap-3 p-2 rounded-md text-sm hover:bg-accent transition-colors"
+                              >
+                                <div className="text-muted-foreground mt-0.5">
+                                  {subItem.icon}
+                                </div>
+                                <div className="flex-1">
+                                  <div className="font-medium text-foreground">
+                                    {subItem.name}
+                                  </div>
+                                  <div className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                                    {subItem.description}
+                                  </div>
+                                </div>
+                              </Link>
+                            ))}
+                        </CollapsibleContent>
+                      </Collapsible>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent"
+                      >
+                        {item.icon}
+                        {item.name}
+                      </Link>
+                    )}
+                  </div>
+                ))}
 
-              <Link
-                href="/theme/pricing"
-                className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent mt-4 border border-border"
-              >
-                <ShoppingCart className="h-4 w-4" />
-                Buy Theme
-              </Link>
+              {showBuyButton && (
+                <Link
+                  href="/theme/pricing"
+                  className="flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent mt-4 border border-border"
+                >
+                  <ShoppingCart className="h-4 w-4" />
+                  Buy Theme
+                </Link>
+              )}
 
               <Button
                 variant="ghost"

@@ -89,7 +89,7 @@ export default function SponsorsPage() {
         <h1 className="text-3xl font-bold">My Sponsors</h1>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
         <div className="md:col-span-2">
           <Card>
             <CardHeader>
@@ -192,7 +192,7 @@ export default function SponsorsPage() {
 
       <div className="mb-16">
         <h2 className="text-2xl font-bold mb-8">Sponsorship Tiers</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {sponsorTiers.map((tier) => (
             <Card key={tier.slug} className="flex flex-col border-border">
               <CardHeader>

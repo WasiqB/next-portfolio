@@ -47,6 +47,7 @@ import {
   NavigationMenuTrigger,
 } from "./ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const ListItem = function ListItem(
   {
@@ -221,8 +222,26 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
-          <Link href="/" className="font-bold text-xl flex items-center gap-2">
-            {heroData.name}
+          <Link href="/" className="flex items-center gap-2" aria-label="Home">
+            {theme === "dark" ? (
+              <Image
+                src="/images/logo/dark-logo.png"
+                alt="Logo"
+                width={40}
+                height={40}
+                priority
+                className="h-10 w-10 object-contain"
+              />
+            ) : (
+              <Image
+                src="/images/logo/light-logo.png"
+                alt="Logo"
+                width={40}
+                height={40}
+                priority
+                className="h-10 w-10 object-contain"
+              />
+            )}
           </Link>
         </div>
 

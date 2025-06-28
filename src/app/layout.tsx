@@ -42,7 +42,8 @@ export const metadata = {
     canonical: Data.url,
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/icons/favicon.ico",
+    appleIcon: "/icons/apple-touch-icon.png",
   },
   themeColor: "#0f172a",
   robots: {
@@ -108,7 +109,13 @@ export default async function RootLayout({
         <meta name="twitter:creator" content={metadata.twitter.creator} />
         <meta name="twitter:image" content={metadata.twitter.images[0]} />
         <link rel="canonical" href={metadata.alternates.canonical} />
-        <link rel="icon" href={metadata.icons.icon} />
+        <link rel="icon" href={metadata.icons.icon} sizes="any" />
+        <link
+          rel="apple-touch-icon"
+          href={metadata.icons.appleIcon}
+          type="image/<generated>"
+          sizes="<generated>"
+        />
       </head>
       <body className={inter.className}>
         <script

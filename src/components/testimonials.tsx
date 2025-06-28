@@ -97,8 +97,8 @@ export default function Testimonials() {
                   <blockquote className="flex-grow mb-6 italic text-muted-foreground">
                     "{featuredTestimonials[currentIndex].testimonial}"
                   </blockquote>
-                  <div className="flex items-center mt-auto">
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden mr-4">
+                  <div className="flex flex-col md:flex-row items-center mt-auto gap-4 md:gap-0">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden mb-2 md:mb-0 md:mr-4">
                       <Image
                         src={
                           featuredTestimonials[currentIndex].image ||
@@ -109,11 +109,11 @@ export default function Testimonials() {
                         className="object-cover"
                       />
                     </div>
-                    <div>
+                    <div className="text-center md:text-left text-balance">
                       <div className="font-medium">
                         {featuredTestimonials[currentIndex].name}
                       </div>
-                      <div className="text-sm text-muted-foreground">
+                      <div className="text-sm text-muted-foreground text-wrap">
                         {featuredTestimonials[currentIndex].title},{" "}
                         {featuredTestimonials[currentIndex].company}
                       </div>

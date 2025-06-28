@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
+import { useTheme } from "next-themes";
 import { Data as portfolioData } from "@/data/portfolio-data";
 import { HeroData } from "@/types/portfolio-types";
 import { getSocialIcon } from "@/lib/social-utils";
@@ -8,6 +10,7 @@ import { getFlag } from "@/lib/feature-toggle/provider";
 
 export default function Footer() {
   const heroData: HeroData = portfolioData.hero;
+  const { theme } = useTheme();
   const showProducts = getFlag("show_products")?.enabled;
   const showContact = getFlag("show_contact")?.enabled;
   const showGrowth = getFlag("show_growth")?.enabled;
@@ -59,7 +62,27 @@ export default function Footer() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About section */}
           <div className="md:col-span-1 space-y-4">
-            <h3 className="text-lg font-bold">{heroData.name}</h3>
+            <div className="flex items-center gap-2">
+              {theme === "dark" ? (
+                <Image
+                  src="/images/logo/dark-logo.png"
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                  priority
+                  className="h-10 w-10 object-contain"
+                />
+              ) : (
+                <Image
+                  src="/images/logo/light-logo.png"
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                  priority
+                  className="h-10 w-10 object-contain"
+                />
+              )}
+            </div>
             <p className="text-muted-foreground">Follow me on my Socials</p>
             <div className="flex items-center gap-4">
               {heroData.socialLinks.map((social, index) => (

@@ -57,6 +57,11 @@ export const Data: PortfolioData = {
         url: "https://www.facebook.com/wasiqb",
         ariaLabel: "Facebook",
       },
+      {
+        platform: "truth",
+        url: "https://www.truthsocial.com/@WasiqBhamla",
+        ariaLabel: "Truth Social",
+      },
     ],
     profileImage: {
       src: "/images/wasiq-1.jpg",
@@ -196,9 +201,9 @@ export const Data: PortfolioData = {
         title: "Sr. QA Lead",
         company: "Kinship",
         image:
-          "https://media.licdn.com/dms/image/v2/D5635AQHc5Db9OfxBLw/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1694605884037?e=1750194000&v=beta&t=RQk8ju5QXhOwkizAK4My3pWMgq4hh6ik-X4QPslHzmg",
+          "https://media.licdn.com/dms/image/v2/D5635AQHc5Db9OfxBLw/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1694605884037?e=1751731200&v=beta&t=Tyjqi6KsfF1ZUiPL5yWAa8TgRsTicM1OSseuZjFFqt8",
         testimonial:
-          "I worked with Wasiq and he is very knowledgable of Automation. He have grate skill on any Automation topic you ask.",
+          "I worked with Wasiq and he is very knowledgeable of Automation. He have grate skill on any Automation topic you ask.",
         category: "client",
         featured: true,
       },
@@ -254,7 +259,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
         image:
           "https://media.licdn.com/dms/image/v2/C4E03AQE9YnUNs557gg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1605787823163?e=1755129600&v=beta&t=4qc4Cx6mBw5_uFwPY9QDsmq2wyaXfrIKUYiFU4mMJVs",
         testimonial:
-          "Wasiq is hard working and intelligent person with the initiative and willingness to grow.He was the key member of my Testing team in FTIL.I would recommend Wasiq as a competent and skilled Testing professional and very good team player.",
+          "Wasiq is hard working and intelligent person with the initiative and willingness to grow.He was the key member of my Testing team in FTIL. I would recommend Wasiq as a competent and skilled Testing professional and very good team player.",
         category: "colleague",
       },
       {
@@ -277,7 +282,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
         image:
           "https://media.licdn.com/dms/image/v2/D4D03AQHxF5VezZVkXw/profile-displayphoto-shrink_100_100/B4DZZmo1QBG4AU-/0/1745478703223?e=1755129600&v=beta&t=bTuWbUozMAkU5V1rgyPIHmpCINVCL3m39Q2HOo4WGB0",
         testimonial:
-          "Wasiq is a technology buff and would be inclined to learn anything and everything under the sun in any technology. Wouldn't be scared to explore anything new. I wish him all the very best for all his future endeavours.",
+          "Wasiq is a technology buff and would be inclined to learn anything and everything under the sun in any technology. Wouldn't be scared to explore anything new. I wish him all the very best for all his future endeavors.",
         category: "colleague",
       },
     ],

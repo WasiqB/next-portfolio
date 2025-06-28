@@ -19,9 +19,8 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         <blockquote className="flex-grow mb-6 italic text-muted-foreground">
           "{testimonial.testimonial}"
         </blockquote>
-        <div className="flex items-center mt-auto">
-          {/* Increased the avatar size and made it more consistent */}
-          <div className="relative w-16 h-16 flex-shrink-0 rounded-full overflow-hidden mr-4">
+        <div className="flex flex-col md:flex-row items-center mt-auto gap-4 md:gap-0">
+          <div className="relative w-16 h-16 flex-shrink-0 rounded-full overflow-hidden mb-2 md:mb-0 md:mr-4">
             <Image
               src={testimonial.image || "/placeholder.svg"}
               alt={testimonial.name}
@@ -29,9 +28,9 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
               className="object-cover"
             />
           </div>
-          <div className="min-w-0">
+          <div className="text-center md:text-left min-w-0 text-balance">
             <div className="font-medium truncate">{testimonial.name}</div>
-            <div className="text-sm text-muted-foreground truncate">
+            <div className="text-sm text-muted-foreground text-wrap">
               {testimonial.title}, {testimonial.company}
             </div>
           </div>

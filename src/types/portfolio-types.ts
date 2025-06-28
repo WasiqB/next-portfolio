@@ -194,6 +194,7 @@ export interface SponsorsData {
 }
 
 export interface PortfolioData {
+  url: string;
   hero: HeroData;
   projects: ProjectsData;
   services: ServicesData;

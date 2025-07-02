@@ -1,7 +1,7 @@
 import { PortfolioData } from "@/types/portfolio-types";
 
 export const Data: PortfolioData = {
-  url: "https://wasiqbhamla.vercel.app",
+  url: "https://wasiqbhamla.com",
   hero: {
     name: "Wasiq Amjad Bhamla",
     typingSequences: [

@@ -15,14 +15,12 @@ const staticRoutes = [
 export default function sitemap(): MetadataRoute.Sitemap {
   let sitemap: MetadataRoute.Sitemap = [];
   staticRoutes.forEach((route) => {
-    sitemap = [
-      {
-        url: `${Data.url}${route}`,
-        lastModified: new Date(),
-        changeFrequency: "daily",
-        priority: 1,
-      },
-    ];
+    sitemap.push({
+      url: `${Data.url}${route}`,
+      lastModified: new Date(),
+      changeFrequency: "daily",
+      priority: 1,
+    });
   });
   return sitemap;
 }

@@ -137,6 +137,10 @@ export interface Certificate {
   verifyUrl?: string;
 }
 
+export interface Analytics {
+  gaId: string;
+}
+
 export interface AboutData {
   name: string;
   title: string;
@@ -206,6 +210,7 @@ export interface PortfolioData {
     username: string;
   };
   sponsors: SponsorsData;
+  analytics: Analytics;
 }
 
 export interface Blog {

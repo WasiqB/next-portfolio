@@ -99,42 +99,42 @@ export const Data: PortfolioData = {
         description: "Transform Your Testing Workflows.",
         icon: "Settings2",
         longDescription:
-          "Audit and optimize your test automation frameworks, CI/CD pipelines, and tooling strategies.",
+          "Audit and optimize your test automation frameworks and test suites, CI/CD pipelines, and tooling strategies.",
       },
       {
         title: "Technical Blogging & Content",
         description: "Engaging Content for Tech Audiences.",
         icon: "Pen",
         longDescription:
-          "Craft tutorials, case studies, and thought leadership articles that drive traffic and trust.",
+          "Craft tutorials, use cases and tips and tricks for Test Automation that drive traffic and trust.",
       },
       {
         title: "Freelance Automation Development",
         description: "Build Scalable Test Solutions.",
         icon: "Terminal",
         longDescription:
-          "Fix flaky scripts, design E2E frameworks, or integrate AI into your testing pipelines.",
+          "Fix flaky scripts, design E2E test frameworks, Technical support, or help in automating your products along with CI/CD pipelines.",
       },
       {
         title: "Technical Support",
         description: "Resolve Tooling Challenges Fast.",
         icon: "Headphones",
         longDescription:
-          "Get expert support for Selenium, Playwright, Cypress, or custom frameworks.",
+          "Get expert support for Selenium WebDriver, Appium, Rest-Assured, WebDriverIO, CI/CD pipelines, or custom frameworks.",
       },
       {
         title: "Mentorship",
         description: "Accelerate Your Testing Career.",
         icon: "LifeBuoy",
         longDescription:
-          "1:1 coaching on automation, freelancing, or transitioning to tech leadership.",
+          "1:1 coaching on your Test automation journey, or open source contributions.",
       },
       {
         title: "Custom Tool Development",
         description: "Solve Unique Testing Problems.",
         icon: "Code2",
         longDescription:
-          "Build proprietary tools for performance testing, reporting dashboards, or workflow automation.",
+          "Build proprietary tools for testing and Test Automation, reporting dashboards for your testing needs.",
       },
     ],
   },
@@ -289,7 +289,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
   },
   about: {
     name: "Wasiq Amjad Bhamla",
-    title: "Quality Assurance Specialist & Automation Expert",
+    title: "Quality Assurance Specialist",
     description: [
       "I'm a passionate Quality Assurance Engineer with expertise in manual and automated testing of Web, Desktop, API, Android and iOS applications.",
       "I thrive at the intersection of technology and process, always seeking to optimize, automate, and share knowledge with others.",
@@ -302,14 +302,9 @@ He is fluent in setting up automation frameworks and well versed with programmin
           "Technology evolves rapidly, and I'm committed to staying at the forefront by constantly learning and experimenting with new tools and techniques.",
       },
       {
-        label: "User-Centered Design",
-        value:
-          "I believe that understanding user needs is essential to creating successful digital products.",
-      },
-      {
         label: "Code Quality",
         value:
-          "I'm passionate about writing clean, maintainable, and well-documented code that stands the test of time.",
+          "Whenever I am writing any code for Test Automation, I'm passionate about writing clean, maintainable, and well-documented code that stands the test of time.",
       },
       {
         label: "Collaboration",
@@ -329,8 +324,8 @@ He is fluent in setting up automation frameworks and well versed with programmin
         location: "Riyadh, Saudi Arabia",
         period: "Aug 2024 - Present",
         description: [
-          "Automated 100+ test cases for a critical government application related to law enforcement for the whole city using the BoykaFramework.",
-          "Planned and helped setup Katalon Studio implementation for theManual team for Web and Mobile applications.",
+          "Automated 100+ test cases for a critical government application related to law enforcement for the whole city using the Boyka Framework.",
+          "Planned and helped setup Katalon Studio implementation for the Manual team for Web and Mobile applications.",
           "Mentored the functional team for using the Test Automation tools.",
         ],
         skills: [
@@ -351,9 +346,9 @@ He is fluent in setting up automation frameworks and well versed with programmin
         location: "Mumbai, India",
         period: "Aug 2023 - Jun 2024",
         description: [
-          "Supervised a team comprising 4 QA Engineers responsible for testing a web application in the Telecom domain.",
-          "Contributed to elevating the quality of the project's TestAutomation process through the implementation of industry best practices.",
-          "Served as a mentor for the team, facilitating their learning of TestAutomation best practices and providing guidance when they encountered challenging automation issues.",
+          "Supervised a team comprising 4 QA Engineers responsible for testing a Web application in the Telecom domain.",
+          "Contributed to elevating the quality of the project's Test Automation process through the implementation of industry best practices.",
+          "Served as a mentor for the team, facilitating their learning of Test Automation best practices and providing guidance when they encountered challenging automation issues.",
         ],
         skills: [
           "Selenium WebDriver",
@@ -370,9 +365,9 @@ He is fluent in setting up automation frameworks and well versed with programmin
         location: "Mumbai, India",
         period: "Mar 2019 - Sep 2022",
         description: [
-          "Developed an API Automation framework from the ground up,utilizing the Facade and Builder design patterns to improve test coverage at the API level of the test pyramid for an application with a user base exceeding 100,000.",
-          "Acted as Test Architect for a major banking client in India,contributing to the enhancement of their test automation framework architecture and implementing visual regression testing for both Web and Mobile applications",
-          "As a key team member, I assisted in the execution of bothAutomation and Manual testing for Web, API, and Mobile applications",
+          "Developed an API Automation framework from the ground up, utilizing the Facade and Builder design patterns to improve test coverage at the API level of the test pyramid for an application with a user base exceeding 100,000.",
+          "Acted as Test Architect for a major banking client in India, contributing to the enhancement of their test automation framework architecture and implementing visual regression testing for both Web and Mobile applications",
+          "As a key team member, I assisted in the execution of both Automation and Manual testing for Web, API, and Mobile applications",
         ],
         skills: [
           "WebDriverIO",
@@ -394,7 +389,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
         location: "Mumbai, India",
         period: "Apr 2018 - Mar 2019",
         description: [
-          "Demonstrated effective leadership as I guided a team of 3 QAengineers in the Healthcare industry, devising and implementing a comprehensive QA strategy and solution for their web-based product.",
+          "Demonstrated effective leadership as I guided a team of 3 QA Engineers in the Healthcare industry, devising and implementing a comprehensive QA strategy and solution for their web-based product.",
           "Developed a sturdy and user-friendly test automation framework for Web and API automation.",
           "Acted as a mentor to team members, sharing my expertise in test automation with them to enable their contributions towards the success of the team.",
         ],
@@ -414,7 +409,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
         location: "Mumbai, India",
         period: "Jan 2015 - Mar 2018",
         description: [
-          "Developed and upheld test automation for both Android and iOSplatforms using Appium, automating user journeys for an application with multi-device payment capability.",
+          "Developed and upheld test automation for both Android and iOS platforms using Appium, automating user journeys for an application with multi-device payment capability.",
           "Devised a comprehensive end-to-end test automation strategy and solution for a supply chain and warehouse management application using Selenium WebDriver's C# binding and SpecFlow's Cucumber.",
           "As a key team member, I participated in testing, automating, and maintaining more than 1000 test cases for MasterCard andDialog, a client in Sri Lanka, for their payment domain APIs.",
         ],
@@ -438,8 +433,8 @@ He is fluent in setting up automation frameworks and well versed with programmin
         period: "Mar 2007 - Jan 2015",
         description: [
           "Effectively guided a team of QA engineers in migrating more than 1000 IBM Rational Robot scripts to IBM RFT (Java).",
-          "Developed a lightweight wrapper framework for IBM RFT,simplifying scripting and implementing the page object model",
-          "As a key team member, I contributed to the development of middleware for brokerage houses, aiding them in their desktop application testing e??orts through both Manual and Automation testing.",
+          "Developed a lightweight wrapper framework for IBM RFT, simplifying scripting and implementing the page object model",
+          "As a key team member, I contributed to the development of middleware for brokerage houses, aiding them in their desktop application testing efforts through both Manual and Automation testing.",
         ],
         skills: [
           "IBM Rational Robot",
@@ -486,6 +481,10 @@ He is fluent in setting up automation frameworks and well versed with programmin
       "Git",
       "CI / CD",
       "Maven",
+      "Next.js",
+      "Tailwind CSS",
+      "Shadcn UI",
+      "Vercel",
       "Burp Suite",
       "Jira",
       "BitBucket",
@@ -644,5 +643,8 @@ He is fluent in setting up automation frameworks and well versed with programmin
         githubTierUrl: "https://github.com/sponsors/WasiqB",
       },
     ],
+  },
+  analytics: {
+    gaId: "G-1R5917Q9SG",
   },
 };

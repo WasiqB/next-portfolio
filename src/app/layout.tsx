@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type React from "react";
 import "@/app/globals.css";
 import { Inter } from "next/font/google";
@@ -7,15 +8,19 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { getFeatureState } from "@/lib/feature-toggle/client";
 import { FeatureProvider } from "@/lib/feature-toggle/provider";
 import { Data } from "@/data/portfolio-data";
+import { isProd } from "@/lib/constants";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: Data.hero.name + " | " + Data.about.title,
+  title: {
+    default: Data.hero.name,
+    template: "%s | " + Data.about.name,
+  },
   description: Data.hero.bio,
   metadataBase: new URL(Data.url),
   openGraph: {
-    title: Data.hero.name + " | " + Data.about.title,
+    title: `${Data.hero.name} | ${Data.about.title}`,
     description: Data.hero.bio,
     url: Data.url,
     siteName: Data.hero.name,
@@ -145,6 +150,7 @@ export default async function RootLayout({
               <div className="flex-1">{children}</div>
               <Footer />
             </div>
+            {isProd && <GoogleAnalytics gaId={Data.analytics.gaId} />}
           </ThemeProvider>
         </FeatureProvider>
       </body>

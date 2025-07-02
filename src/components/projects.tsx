@@ -129,6 +129,7 @@ export default function Projects() {
                 <Link
                   key={index}
                   href={project.link}
+                  target="_blank"
                   className="block h-full transition-transform hover:scale-[1.02]"
                 >
                   <Card className="h-full flex flex-col overflow-hidden cursor-pointer border-2 hover:border-primary/50">

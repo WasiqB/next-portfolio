@@ -5,10 +5,10 @@ import { Inter } from "next/font/google";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
-import { getFeatureState } from "@/lib/feature-toggle/client";
-import { FeatureProvider } from "@/lib/feature-toggle/provider";
 import { Data } from "@/data/portfolio-data";
 import { isProd } from "@/lib/constants";
+import { DevCycleClientsideProvider } from "@devcycle/nextjs-sdk";
+import { getClientContext } from "@/lib/feature-toggle/devcycle";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -68,7 +68,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const featureState = await getFeatureState();
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -138,7 +137,7 @@ export default async function RootLayout({
             }),
           }}
         />
-        <FeatureProvider serverState={featureState}>
+        <DevCycleClientsideProvider context={getClientContext()}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -152,7 +151,7 @@ export default async function RootLayout({
             </div>
             {isProd && <GoogleAnalytics gaId={Data.analytics.gaId} />}
           </ThemeProvider>
-        </FeatureProvider>
+        </DevCycleClientsideProvider>
       </body>
     </html>
   );

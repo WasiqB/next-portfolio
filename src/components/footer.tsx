@@ -6,14 +6,14 @@ import { useTheme } from "next-themes";
 import { Data as portfolioData } from "@/data/portfolio-data";
 import { HeroData } from "@/types/portfolio-types";
 import { getSocialIcon } from "@/lib/social-utils";
-import { getFlag } from "@/lib/feature-toggle/provider";
+import { useVariableValue } from "@devcycle/nextjs-sdk";
 
 export default function Footer() {
   const heroData: HeroData = portfolioData.hero;
   const { theme } = useTheme();
-  const showProducts = getFlag("show_products")?.enabled;
-  const showContact = getFlag("show_contact")?.enabled;
-  const showGrowth = getFlag("show_growth")?.enabled;
+  const showProducts = useVariableValue("show-products", false);
+  const showContact = useVariableValue("show-contact", false);
+  const showGrowth = useVariableValue("show-growth", false);
 
   // Define the navigation structure (same as navbar)
   const navigationItems = [

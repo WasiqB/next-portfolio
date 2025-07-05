@@ -35,9 +35,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { Data as portfolioData } from "@/data/portfolio-data";
-import { HeroData } from "@/types/portfolio-types";
-import { getFlag } from "@/lib/feature-toggle/provider";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -48,6 +45,7 @@ import {
 } from "./ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useVariableValue } from "@devcycle/nextjs-sdk";
 
 const ListItem = function ListItem(
   {
@@ -98,12 +96,11 @@ export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
   const [openCollapsible, setOpenCollapsible] = useState<string | null>(null);
-  const heroData: HeroData = portfolioData.hero;
 
-  const showProducts = getFlag("show_products")?.enabled;
-  const showBuyButton = getFlag("show_buy_button")?.enabled;
-  const showContact = getFlag("show_contact")?.enabled;
-  const showGrowth = getFlag("show_growth")?.enabled;
+  const showProducts = useVariableValue("show-products", false);
+  const showBuyButton = useVariableValue("show-buy-button", false);
+  const showContact = useVariableValue("show-contact", false);
+  const showGrowth = useVariableValue("show-growth", false);
 
   // Define the navigation structure
   const navigationItems = [

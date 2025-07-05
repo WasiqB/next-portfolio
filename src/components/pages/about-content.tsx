@@ -2,7 +2,6 @@
 
 import { Data } from "@/data/portfolio-data";
 import { AboutData } from "@/types/portfolio-types";
-import { getFlag } from "@/lib/feature-toggle/provider";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
@@ -23,11 +22,12 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import { Badge } from "../ui/badge";
+import { useVariableValue } from "@devcycle/nextjs-sdk";
 
 const about: AboutData = Data.about;
 
 export default function AboutContent() {
-  const showContact = getFlag("show_contact")?.enabled;
+  const showContact = useVariableValue("show-contact", false);
 
   return (
     <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">

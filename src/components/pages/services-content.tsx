@@ -11,7 +11,6 @@ import {
   Settings2,
   Terminal,
 } from "lucide-react";
-import { getFlag } from "@/lib/feature-toggle/provider";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import {
@@ -21,6 +20,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+import { useVariableValue } from "@devcycle/nextjs-sdk";
 
 const iconMap: Record<string, LucideIcon> = {
   Settings2,
@@ -33,7 +33,7 @@ const iconMap: Record<string, LucideIcon> = {
 
 export default function ServiceContent() {
   const { sectionTitle, sectionDescription, services } = portfolioData.services;
-  const showContact = getFlag("show_contact")?.enabled;
+  const showContact = useVariableValue("show-contact", false);
 
   return (
     <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">

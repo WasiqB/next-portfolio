@@ -10,12 +10,12 @@ import SponsorsSection from "@/components/sponsors-section";
 import Testimonials from "@/components/testimonials";
 import GrowthSection from "@/components/growth-section";
 import Products from "@/components/products";
-import { getFlag } from "@/lib/feature-toggle/provider";
+import { useVariableValue } from "@devcycle/nextjs-sdk";
 
 export default function Home() {
-  const showProducts = getFlag("show_products")?.enabled;
-  const showContact = getFlag("show_contact")?.enabled;
-  const showGrowth = getFlag("show_growth")?.enabled;
+  const showProducts = useVariableValue("show-products", false);
+  const showContact = useVariableValue("show-contact", false);
+  const showGrowth = useVariableValue("show-growth", false);
 
   return (
     <main className="min-h-screen">

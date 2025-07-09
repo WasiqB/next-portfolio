@@ -93,48 +93,144 @@ export const Data: PortfolioData = {
       text: "View All Services",
       href: "/services",
     },
+    bookCallButton: {
+      text: "Book Free Discovery Call",
+      href: "https://cal.com/wasiqbhamla/discussion-with-wasiq",
+    },
     services: [
       {
         title: "Test Automation Consulting",
         description: "Transform Your Testing Workflows.",
         icon: "Settings2",
-        longDescription:
-          "Audit and optimize your test automation frameworks and test suites, CI/CD pipelines, and tooling strategies.",
+        features: [
+          "Audit and optimize your test automation frameworks",
+          "Test suites, CI/CD pipelines, and tooling strategies.",
+        ],
       },
       {
         title: "Technical Blogging & Content",
         description: "Engaging Content for Tech Audiences.",
         icon: "Pen",
-        longDescription:
-          "Craft tutorials, use cases and tips and tricks for Test Automation that drive traffic and trust.",
+        features: [
+          "Craft tutorials",
+          "Use cases and tips and tricks for Test Automation",
+          "Drive traffic and trust.",
+        ],
       },
       {
         title: "Freelance Automation Development",
         description: "Build Scalable Test Solutions.",
         icon: "Terminal",
-        longDescription:
-          "Fix flaky scripts, design E2E test frameworks, Technical support, or help in automating your products along with CI/CD pipelines.",
+        features: [
+          "Fix flaky scripts",
+          "Design E2E test frameworks",
+          "Technical support",
+          "Help in automating your products along with CI/CD pipelines.",
+        ],
       },
       {
         title: "Technical Support",
         description: "Resolve Tooling Challenges Fast.",
         icon: "Headphones",
-        longDescription:
-          "Get expert support for Selenium WebDriver, Appium, Rest-Assured, WebDriverIO, CI/CD pipelines, or custom frameworks.",
+        features: [
+          "Get expert support for Selenium WebDriver",
+          "Appium, Rest-Assured, WebDriverIO, CI/CD pipelines, or custom frameworks.",
+        ],
       },
       {
         title: "Mentorship",
         description: "Accelerate Your Testing Career.",
         icon: "LifeBuoy",
-        longDescription:
-          "1:1 coaching on your Test automation journey, or open source contributions.",
+        features: [
+          "1:1 coaching on your Test automation journey",
+          "Open source contributions.",
+        ],
       },
       {
         title: "Custom Tool Development",
         description: "Solve Unique Testing Problems.",
         icon: "Code2",
-        longDescription:
-          "Build proprietary tools for testing and Test Automation, reporting dashboards for your testing needs.",
+        features: [
+          "Build proprietary tools for testing and Test Automation",
+          "Reporting dashboards for your testing needs.",
+        ],
+      },
+    ],
+    deliverables: [
+      {
+        step: "01",
+        title: "Free Discovery Call",
+        description:
+          "We'll discuss your project goals, requirements, and vision in a 30-minute consultation call.",
+        details: [
+          "Understand your business needs",
+          "Discuss technical requirements",
+          "Explore design preferences",
+          "No commitment required",
+        ],
+        icon: "💬",
+        duration: "30 minutes",
+        cost: "Free",
+      },
+      {
+        step: "02",
+        title: "Custom Proposal & Quote",
+        description:
+          "Receive a detailed proposal with timeline, deliverables, and transparent pricing within 24 hours.",
+        details: [
+          "Detailed project breakdown",
+          "Clear timeline and milestones",
+          "Transparent pricing",
+          "Revision rounds included",
+        ],
+        icon: "📋",
+        duration: "Within 24 hours",
+        cost: "Free",
+      },
+      {
+        step: "03",
+        title: "Project Kickoff",
+        description:
+          "Once approved, we'll start with project setup, planning, and initial design concepts.",
+        details: [
+          "Project setup and planning",
+          "Initial wireframes/mockups",
+          "Development environment setup",
+          "Regular communication established",
+        ],
+        icon: "🚀",
+        duration: "1-2 days",
+        cost: "25% deposit",
+      },
+      {
+        step: "04",
+        title: "Development & Updates",
+        description:
+          "I'll build your project with regular updates, feedback sessions, and milestone reviews.",
+        details: [
+          "Weekly progress updates",
+          "Live preview access",
+          "Feedback incorporation",
+          "Quality assurance testing",
+        ],
+        icon: "⚡",
+        duration: "Project timeline",
+        cost: "Progress payments",
+      },
+      {
+        step: "05",
+        title: "Launch & Support",
+        description:
+          "Final testing, deployment, and 30 days of free support to ensure everything runs smoothly.",
+        details: [
+          "Final testing and optimization",
+          "Live deployment assistance",
+          "30 days free support",
+          "Documentation and training",
+        ],
+        icon: "🎉",
+        duration: "1-2 days",
+        cost: "Final payment",
       },
     ],
   },
@@ -289,6 +385,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
   },
   about: {
     name: "Wasiq Amjad Bhamla",
+    email: "wasbhamla2005@gmail.com",
     title: "Quality Assurance Specialist",
     description: [
       "I'm a passionate Quality Assurance Engineer with expertise in manual and automated testing of Web, Desktop, API, Android and iOS applications.",

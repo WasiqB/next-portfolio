@@ -46,10 +46,12 @@ export interface ProjectsData {
 }
 
 export interface Service {
+  id: string;
   title: string;
   description: string;
   icon: string;
   features: string[];
+  deliverables: Deliverable[];
 }
 
 export interface Deliverable {
@@ -70,7 +72,6 @@ export interface ServicesData {
     text: string;
     href: string;
   };
-  deliverables: Deliverable[];
   bookCallButton: {
     text: string;
     href: string;

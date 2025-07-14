@@ -11,7 +11,6 @@ export default function ServicesPage() {
     <ServiceContent
       sectionTitle={portfolioData.services.sectionTitle}
       sectionDescription={portfolioData.services.sectionDescription}
-      services={portfolioData.services.services}
       bookCallButton={portfolioData.services.bookCallButton}
       email={portfolioData.about.email}
     />

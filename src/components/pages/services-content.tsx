@@ -38,7 +38,6 @@ const iconMap: Record<string, LucideIcon> = {
 interface ServicesPageProps {
   sectionTitle: string;
   sectionDescription: string;
-  services: Service[];
   bookCallButton: {
     text: string;
     href: string;
@@ -49,18 +48,20 @@ interface ServicesPageProps {
 export default function ServiceContent({
   sectionTitle,
   sectionDescription,
-  services,
   bookCallButton,
   email,
 }: ServicesPageProps) {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const searchParams = useSearchParams();
   const showContact = useVariableValue("show-contact", false);
+  const services = useVariableValue("services", {
+    status: "off",
+  }).services?.valueOf() as Service[] | undefined;
 
   useEffect(() => {
     const serviceId = searchParams.get("service");
     if (serviceId) {
-      const service = services.find((s) => s.id === serviceId);
+      const service = services?.find((s) => s.id === serviceId);
       if (service) {
         setSelectedService(service);
         // Scroll to timeline section after a short delay
@@ -113,7 +114,7 @@ export default function ServiceContent({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {services.map((service, index) => {
+        {services?.map((service, index) => {
           const Icon = iconMap[service.icon];
           return (
             <motion.div

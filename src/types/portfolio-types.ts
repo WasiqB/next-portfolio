@@ -67,7 +67,6 @@ export interface Deliverable {
 export interface ServicesData {
   sectionTitle: string;
   sectionDescription: string;
-  services: Service[];
   viewAllButton: {
     text: string;
     href: string;

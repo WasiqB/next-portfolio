@@ -46,17 +46,32 @@ export interface ProjectsData {
 }
 
 export interface Service {
+  id: string;
   title: string;
   description: string;
   icon: string;
-  longDescription?: string;
+  features: string[];
+  deliverables: Deliverable[];
+}
+
+export interface Deliverable {
+  step: string;
+  title: string;
+  description: string;
+  details: string[];
+  icon: string;
+  duration: string;
+  cost: string;
 }
 
 export interface ServicesData {
   sectionTitle: string;
   sectionDescription: string;
-  services: Service[];
   viewAllButton: {
+    text: string;
+    href: string;
+  };
+  bookCallButton: {
     text: string;
     href: string;
   };
@@ -144,6 +159,7 @@ export interface Analytics {
 export interface AboutData {
   name: string;
   title: string;
+  email: string;
   description: string[];
   coreValues: { label: string; value: string }[];
   experiences: Experience[];

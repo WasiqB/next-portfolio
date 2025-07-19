@@ -88,55 +88,15 @@ export const Data: PortfolioData = {
   services: {
     sectionTitle: "My Services",
     sectionDescription:
-      "Here are the services I offer to help you achieve your digital goals.",
+      "Here are the freelance services I offer to help you achieve the quality of your products. Click on any service to see the detailed process.",
     viewAllButton: {
       text: "View All Services",
       href: "/services",
     },
-    services: [
-      {
-        title: "Test Automation Consulting",
-        description: "Transform Your Testing Workflows.",
-        icon: "Settings2",
-        longDescription:
-          "Audit and optimize your test automation frameworks and test suites, CI/CD pipelines, and tooling strategies.",
-      },
-      {
-        title: "Technical Blogging & Content",
-        description: "Engaging Content for Tech Audiences.",
-        icon: "Pen",
-        longDescription:
-          "Craft tutorials, use cases and tips and tricks for Test Automation that drive traffic and trust.",
-      },
-      {
-        title: "Freelance Automation Development",
-        description: "Build Scalable Test Solutions.",
-        icon: "Terminal",
-        longDescription:
-          "Fix flaky scripts, design E2E test frameworks, Technical support, or help in automating your products along with CI/CD pipelines.",
-      },
-      {
-        title: "Technical Support",
-        description: "Resolve Tooling Challenges Fast.",
-        icon: "Headphones",
-        longDescription:
-          "Get expert support for Selenium WebDriver, Appium, Rest-Assured, WebDriverIO, CI/CD pipelines, or custom frameworks.",
-      },
-      {
-        title: "Mentorship",
-        description: "Accelerate Your Testing Career.",
-        icon: "LifeBuoy",
-        longDescription:
-          "1:1 coaching on your Test automation journey, or open source contributions.",
-      },
-      {
-        title: "Custom Tool Development",
-        description: "Solve Unique Testing Problems.",
-        icon: "Code2",
-        longDescription:
-          "Build proprietary tools for testing and Test Automation, reporting dashboards for your testing needs.",
-      },
-    ],
+    bookCallButton: {
+      text: "Book Free Discovery Call",
+      href: "https://cal.com/wasiqbhamla/discussion-with-wasiq",
+    },
   },
   blogs: {
     sectionTitle: "My Blogs",
@@ -201,11 +161,10 @@ export const Data: PortfolioData = {
         title: "Sr. QA Lead",
         company: "Kinship",
         image:
-          "https://media.licdn.com/dms/image/v2/D5635AQHc5Db9OfxBLw/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1694605884037?e=1751731200&v=beta&t=Tyjqi6KsfF1ZUiPL5yWAa8TgRsTicM1OSseuZjFFqt8",
+          "https://media.licdn.com/dms/image/v2/D5635AQHc5Db9OfxBLw/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1694605884037?e=1753524000&v=beta&t=CEoIq3X4ypcRPMQn0dGzEkeNmB_tVOz56wwSIF4_YeM",
         testimonial:
           "I worked with Wasiq and he is very knowledgeable of Automation. He have grate skill on any Automation topic you ask.",
         category: "client",
-        featured: true,
       },
       {
         id: "4",
@@ -285,10 +244,23 @@ He is fluent in setting up automation frameworks and well versed with programmin
           "Wasiq is a technology buff and would be inclined to learn anything and everything under the sun in any technology. Wouldn't be scared to explore anything new. I wish him all the very best for all his future endeavors.",
         category: "colleague",
       },
+      {
+        id: "11",
+        name: "Nick Vidal",
+        title: "Founder",
+        company: "maintaine.rs",
+        category: "general",
+        featured: true,
+        image:
+          "https://media.licdn.com/dms/image/v2/D4D03AQHJX7x_9sTEpw/profile-displayphoto-shrink_100_100/B4DZX.RC0AHwAY-/0/1743727636469?e=1755734400&v=beta&t=_YiDCw0i57m0rtHS1wp8vfgoDKo6AXPdd_wVScIeMpI",
+        testimonial:
+          "Wasiq Bhamla is a dedicated QA engineer and open source maintainer whose decade-long contributions have empowered the testing community. Through projects like Boyka Framework, Boyka CLI, Multiple Cucumber HTML Reporter, and Maven Publish Action, Wasiq has consistently built tools that make quality assurance more powerful and accessible. His passion for open source and testing excellence is truly inspiring. Thank you, Wasiq!",
+      },
     ],
   },
   about: {
     name: "Wasiq Amjad Bhamla",
+    email: "wasbhamla2005@gmail.com",
     title: "Quality Assurance Specialist",
     description: [
       "I'm a passionate Quality Assurance Engineer with expertise in manual and automated testing of Web, Desktop, API, Android and iOS applications.",

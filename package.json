@@ -11,8 +11,8 @@
     "ui": "pnpm dlx shadcn@latest"
   },
   "dependencies": {
-    "@devcycle/nextjs-sdk": "^2.20.0",
-    "@next/third-parties": "^15.3.5",
+    "@devcycle/nextjs-sdk": "^2.21.2",
+    "@next/third-parties": "^15.4.2",
     "@radix-ui/react-collapsible": "^1.1.11",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-dropdown-menu": "^2.1.15",
@@ -25,10 +25,10 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "flagsmith": "^9.3.0",
-    "framer-motion": "^12.23.5",
+    "framer-motion": "^12.23.6",
     "graphql-request": "^7.2.0",
     "lucide-react": "^0.525.0",
-    "next": "15.3.5",
+    "next": "15.4.2",
     "next-themes": "^0.4.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -42,11 +42,11 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.1.11",
-    "@types/node": "^24.0.13",
+    "@types/node": "^24.0.15",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
     "eslint": "^9.31.0",
-    "eslint-config-next": "15.4.0-canary.51",
+    "eslint-config-next": "15.4.2",
     "tailwindcss": "^4.1.11",
     "typescript": "^5"
   },

@@ -161,11 +161,10 @@ export const Data: PortfolioData = {
         title: "Sr. QA Lead",
         company: "Kinship",
         image:
-          "https://media.licdn.com/dms/image/v2/D5635AQHc5Db9OfxBLw/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1694605884037?e=1751731200&v=beta&t=Tyjqi6KsfF1ZUiPL5yWAa8TgRsTicM1OSseuZjFFqt8",
+          "https://media.licdn.com/dms/image/v2/D5635AQHc5Db9OfxBLw/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1694605884037?e=1753524000&v=beta&t=CEoIq3X4ypcRPMQn0dGzEkeNmB_tVOz56wwSIF4_YeM",
         testimonial:
           "I worked with Wasiq and he is very knowledgeable of Automation. He have grate skill on any Automation topic you ask.",
         category: "client",
-        featured: true,
       },
       {
         id: "4",
@@ -244,6 +243,18 @@ He is fluent in setting up automation frameworks and well versed with programmin
         testimonial:
           "Wasiq is a technology buff and would be inclined to learn anything and everything under the sun in any technology. Wouldn't be scared to explore anything new. I wish him all the very best for all his future endeavors.",
         category: "colleague",
+      },
+      {
+        id: "11",
+        name: "Nick Vidal",
+        title: "Founder",
+        company: "maintaine.rs",
+        category: "general",
+        featured: true,
+        image:
+          "https://media.licdn.com/dms/image/v2/D4D03AQHJX7x_9sTEpw/profile-displayphoto-shrink_100_100/B4DZX.RC0AHwAY-/0/1743727636469?e=1755734400&v=beta&t=_YiDCw0i57m0rtHS1wp8vfgoDKo6AXPdd_wVScIeMpI",
+        testimonial:
+          "Wasiq Bhamla is a dedicated QA engineer and open source maintainer whose decade-long contributions have empowered the testing community. Through projects like Boyka Framework, Boyka CLI, Multiple Cucumber HTML Reporter, and Maven Publish Action, Wasiq has consistently built tools that make quality assurance more powerful and accessible. His passion for open source and testing excellence is truly inspiring. Thank you, Wasiq!",
       },
     ],
   },

@@ -213,6 +213,16 @@ export interface SponsorsData {
   };
 }
 
+export interface ContactData {
+  sectionTitle: string;
+  sectionDescription: string;
+  email: string;
+  reasons: {
+    name: string;
+    value: string;
+  }[];
+}
+
 export interface PortfolioData {
   url: string;
   hero: HeroData;
@@ -225,6 +235,7 @@ export interface PortfolioData {
   github: {
     username: string;
   };
+  contact: ContactData;
   sponsors: SponsorsData;
   analytics: Analytics;
 }

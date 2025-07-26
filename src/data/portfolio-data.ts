@@ -2,6 +2,18 @@ import { PortfolioData } from "@/types/portfolio-types";
 
 export const Data: PortfolioData = {
   url: "https://wasiqbhamla.com",
+  contact: {
+    sectionTitle: "Get in Touch",
+    sectionDescription:
+      "I'd love to hear from you! Whether you have a question, want to collaborate, or just want to say hi, feel free to reach out.",
+    email: "wasbhamla2005@gmail.com",
+    reasons: [
+      { name: "Project opportunities", value: "project" },
+      { name: "Job opportunities", value: "job" },
+      { name: "Support required", value: "support" },
+      { name: "Other", value: "other" },
+    ],
+  },
   hero: {
     name: "Wasiq Amjad Bhamla",
     typingSequences: [

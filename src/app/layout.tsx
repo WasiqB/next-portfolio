@@ -9,6 +9,7 @@ import { Data } from "@/data/portfolio-data";
 import { isProd } from "@/lib/constants";
 import { DevCycleClientsideProvider } from "@devcycle/nextjs-sdk";
 import { getClientContext } from "@/lib/feature-toggle/devcycle";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -150,6 +151,7 @@ export default async function RootLayout({
               <Footer />
             </div>
             {isProd && <GoogleAnalytics gaId={Data.analytics.gaId} />}
+            <Toaster richColors expand position="top-center" />
           </ThemeProvider>
         </DevCycleClientsideProvider>
       </body>

@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,48 +14,125 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Mail,
+  MessageCircleQuestion,
+  MessageSquare,
+  Send,
+  User,
+} from "lucide-react";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./ui/form";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
+import { Data as portfolioData } from "@/data/portfolio-data";
+
+const formSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.email("Please enter a valid email address"),
+  reason: z.string().min(1, "Please select a reason for contact"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    reason: "",
-    message: "",
+  const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      reason: "",
+      message: "",
+    },
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [formSuccess, setFormSuccess] = useState(false);
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const { sectionTitle, sectionDescription, reasons } = portfolioData.contact;
 
-  const [subscribeEmail, setSubscribeEmail] = useState("");
+  useEffect(() => {
+    if (formError) {
+      toast.error(formError, {
+        duration: 5000,
+        description: "Please check your input and try again.",
+      });
+    }
+  }, [formError]);
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+  useEffect(() => {
+    if (formSuccess) {
+      toast.success("Message sent successfully!", {
+        duration: 5000,
+        description: "I will get back to you as soon as possible.",
+      });
+    }
+  }, [formSuccess]);
 
-  const handleSubscribeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSubscribeEmail(e.target.value);
-  };
+  const handleSubmit = async (values: FormData) => {
+    setFormError(null);
+    setFormSuccess(false);
+    setFieldErrors({});
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
-    // Reset form
-    setFormData({ name: "", email: "", reason: "", message: "" });
-    // Show success message
-    alert("Message sent successfully!");
-  };
+    // Client-side validation
+    const parsed = formSchema.safeParse(values);
+    if (!parsed.success) {
+      const errors: Record<string, string> = {};
+      const fieldErrors = z.flattenError(parsed.error).fieldErrors;
+      Object.keys(fieldErrors).forEach((key) => {
+        const errArr = fieldErrors[key as keyof typeof fieldErrors];
+        if (errArr && errArr.length > 0) errors[key] = errArr[0] ?? "";
+      });
+      setFieldErrors(errors);
+      return;
+    }
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle subscription here
-    console.log("Subscribing email:", subscribeEmail);
-    // Reset form
-    setSubscribeEmail("");
-    // Show success message
-    alert("Subscribed successfully!");
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        if (data?.error?.fieldErrors) {
+          const errors: Record<string, string> = {};
+          const fieldErrors = data.error.fieldErrors;
+          Object.keys(fieldErrors).forEach((key) => {
+            const errArr = fieldErrors[key as keyof typeof fieldErrors];
+            if (errArr && errArr.length > 0) errors[key] = errArr[0] ?? "";
+          });
+          setFieldErrors(errors);
+        } else {
+          setFormError(data?.error || "Failed to send message.");
+        }
+        setIsSubmitting(false);
+        return;
+      }
+      setFormSuccess(true);
+      form.reset();
+    } catch (err) {
+      setFormError("Something went wrong. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -70,155 +147,167 @@ export default function Contact() {
         transition={{ duration: 0.5 }}
         className="space-y-4 text-center mb-12"
       >
-        <h2 className="text-3xl md:text-4xl font-bold">Contact Me</h2>
+        <h2 className="text-3xl md:text-4xl font-bold">{sectionTitle}</h2>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          Feel free to reach out to me for any inquiries or collaboration
-          opportunities.
+          {sectionDescription}
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div className="max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 gap-8">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="lg:col-span-2"
+          >
+            <Card className="border-2 border-muted hover:border-primary/20 transition-colors duration-300 shadow-lg">
+              <CardContent className="space-y-6">
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(handleSubmit)}
+                    className="space-y-6"
+                  >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="flex items-center gap-2">
+                              <User className="h-4 w-4 text-primary" />
+                              Full Name
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Enter your full name"
+                                className="h-12 border-2 focus:border-primary transition-colors"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="flex items-center gap-2">
+                              <Mail className="h-4 w-4 text-primary" />
+                              Email Address
+                            </FormLabel>
+                            <FormControl>
+                              <Input
+                                type="email"
+                                placeholder="Enter your email address"
+                                className="h-12 border-2 focus:border-primary transition-colors"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name="reason"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex items-center gap-2">
+                            <MessageCircleQuestion className="h-4 w-4 text-primary" />
+                            What can I help you with?
+                          </FormLabel>
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value}
+                          >
+                            <FormControl>
+                              <SelectTrigger className="h-12 w-auto border-2 focus:border-primary transition-colors">
+                                <SelectValue placeholder="Select a reason for contact" />
+                              </SelectTrigger>
+                            </FormControl>
+                            <SelectContent>
+                              {reasons.map((reason) => (
+                                <SelectItem
+                                  key={reason.value}
+                                  value={reason.value}
+                                >
+                                  {reason.name}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex items-center gap-2">
+                            <MessageSquare className="h-4 w-4 text-primary" />
+                            Your Message
+                          </FormLabel>
+                          <FormControl>
+                            <Textarea
+                              placeholder="Tell me about your project, timeline, budget, or any specific requirements..."
+                              rows={6}
+                              className="border-2 focus:border-primary transition-colors resize-none"
+                              {...field}
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Button
+                        type="submit"
+                        className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-lg hover:shadow-xl"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></div>
+                            Sending Message...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="h-4 w-4 mr-2" />
+                            Send Message
+                          </>
+                        )}
+                      </Button>
+                    </motion.div>
+                  </form>
+                </Form>
+
+                <div className="text-center pt-4 border-t border-muted"></div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+
+        {/* Additional Information Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <Card>
-            <CardHeader>
-              <CardTitle>Get in Touch</CardTitle>
-              <CardDescription>
-                Fill out the form and I'll get back to you as soon as possible.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium">
-                    Name
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your name"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Your email"
-                    required
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="reason" className="text-sm font-medium">
-                    Reason for Contact
-                  </label>
-                  <select
-                    id="reason"
-                    name="reason"
-                    value={formData.reason || ""}
-                    onChange={handleChange}
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                    required
-                  >
-                    <option value="" disabled>
-                      Select a reason
-                    </option>
-                    <option value="project">Project Inquiry</option>
-                    <option value="job">Job Opportunity</option>
-                    <option value="collaboration">Collaboration</option>
-                    <option value="question">General Question</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium">
-                    Message
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Your message"
-                    rows={5}
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full">
-                  Send Message
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <Card className="h-full flex flex-col">
-            <CardHeader>
-              <CardTitle>Subscribe to My Newsletter</CardTitle>
-              <CardDescription>
-                Get updates on my latest projects, articles, and tutorials.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow flex flex-col justify-between">
-              <div className="space-y-4 mb-6">
-                <p className="text-muted-foreground">
-                  Stay up to date with my latest work and insights. I send out
-                  newsletters with:
-                </p>
-                <ul className="space-y-2 list-disc pl-5 text-muted-foreground">
-                  <li>New project announcements</li>
-                  <li>Blog posts and tutorials</li>
-                  <li>Tips and best practices</li>
-                  <li>Exclusive content for subscribers</li>
-                </ul>
-                <p className="text-sm text-muted-foreground">
-                  I respect your privacy and will never share your email. You
-                  can unsubscribe at any time.
-                </p>
-              </div>
-
-              <form onSubmit={handleSubscribe} className="space-y-4">
-                <div className="space-y-2">
-                  <label
-                    htmlFor="subscribe-email"
-                    className="text-sm font-medium"
-                  >
-                    Email Address
-                  </label>
-                  <Input
-                    id="subscribe-email"
-                    type="email"
-                    value={subscribeEmail}
-                    onChange={handleSubscribeChange}
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-                <Button type="submit" className="w-full">
-                  Subscribe
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        </motion.div>
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-12 text-center"
+        ></motion.div>
       </div>
     </section>
   );

@@ -138,7 +138,11 @@ export default function TestimonialContent() {
           honored to hear from you.
         </p>
         <Button asChild>
-          <Link href="https://www.linkedin.com/in/wasiqbhamla/edit/forms/recommendation/write/?profileFormEntryPoint=PROFILE_SECTION&profileUrn=urn:li:fsd_profile:ACoAAAM86f0BWA_fsJW-LYrGysLiENkIMc85KVQ">
+          <Link
+            href="https://www.linkedin.com/in/wasiqbhamla/edit/forms/recommendation/write/?profileFormEntryPoint=PROFILE_SECTION&profileUrn=urn:li:fsd_profile:ACoAAAM86f0BWA_fsJW-LYrGysLiENkIMc85KVQ"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Submit a Testimonial
           </Link>
         </Button>

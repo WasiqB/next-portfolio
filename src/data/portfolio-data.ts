@@ -69,11 +69,6 @@ export const Data: PortfolioData = {
         url: "https://www.facebook.com/wasiqb",
         ariaLabel: "Facebook",
       },
-      {
-        platform: "truth",
-        url: "https://www.truthsocial.com/@WasiqBhamla",
-        ariaLabel: "Truth Social",
-      },
     ],
     profileImage: {
       src: "/images/wasiq-1.jpg",
@@ -148,8 +143,7 @@ export const Data: PortfolioData = {
         title:
           "Lead [Developer Evangelism] & Senior Manager [Technical Content Marketing]",
         company: "LambdaTest",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5603AQFBkGbPNVSNzQ/profile-displayphoto-shrink_100_100/B56Zb2ZWYkH4AU-/0/1747890563408?e=1755129600&v=beta&t=Ls9XTb0ewtPLfLs4fS2wVrZnfr5QfRMbJ76G7SJsltA",
+        image: "/images/testimonials/himanshu-sheth.png",
         testimonial:
           "Wasiq has worked on 3-4 blogs on Automation with Appium and Selenium. He is a proven expert in the area since he is a seasoned engineer and open-sourcer. He is proactive in communication, resolving comments. Definitely recommend him for blog writing!",
         category: "client",
@@ -160,8 +154,7 @@ export const Data: PortfolioData = {
         name: "Mohammad Faisal Khatri",
         title: "Senior Test Specialist",
         company: "Kafaat Business Solutions شركة كفاءات حلول الأعمال",
-        image:
-          "https://media.licdn.com/dms/image/v2/D4D03AQE_ofNeGhyqgg/profile-displayphoto-shrink_100_100/B4DZaHunGeGcAc-/0/1746033866334?e=1755129600&v=beta&t=V_7lT1fpQP1_YoJ2Y1pUzDnDFLw0pMYpw9QAoQX8BSo",
+        image: "/images/testimonials/faisal-khatri.png",
         testimonial:
           "it was awesome experience getting trained by Wasiq on java, selenium, rest assured and Appium! He has very sound knowledge on test automation tools and frameworks.",
         category: "client",
@@ -172,8 +165,7 @@ export const Data: PortfolioData = {
         name: "Hasmukh Patel",
         title: "Sr. QA Lead",
         company: "Kinship",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5635AQHc5Db9OfxBLw/profile-framedphoto-shrink_100_100/profile-framedphoto-shrink_100_100/0/1694605884037?e=1753524000&v=beta&t=CEoIq3X4ypcRPMQn0dGzEkeNmB_tVOz56wwSIF4_YeM",
+        image: "/images/testimonials/hasmukh-patel.png",
         testimonial:
           "I worked with Wasiq and he is very knowledgeable of Automation. He have grate skill on any Automation topic you ask.",
         category: "client",
@@ -183,8 +175,7 @@ export const Data: PortfolioData = {
         name: "Hosna Aunjun",
         title: "Software Development Engineer In Test",
         company: "Walmart Global Tech",
-        image:
-          "https://media.licdn.com/dms/image/v2/D5603AQFmw1b_ePlI8w/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1696973702503?e=1755129600&v=beta&t=DNwUs15w7CXSgVF9Gyvq6fxnZEgM8xw0RdS71FC8R8s",
+        image: "/images/testimonials/hosna-aunjun.png",
         testimonial:
           "Simply an amazing personality with profound knowledge of Automation in the IT industry. One of the best mentors so far, I have seen and meet. I definitely recommend him for his great leading and mentorship skills.",
         category: "general",
@@ -194,8 +185,7 @@ export const Data: PortfolioData = {
         name: "Mrunmayee Bhagwat",
         company: "Vertex Inc.",
         title: "Software Developer II",
-        image:
-          "https://media.licdn.com/dms/image/v2/D4D03AQGxLC6lk4w74A/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1712153121756?e=1755129600&v=beta&t=8VLmNjwSvV1Cy7zBPpF4Bcf4YZbQeYpiWn7pg9q8pLk",
+        image: "/images/testimonials/mrunmayee-bhagwat.png",
         testimonial: `I have worked with Wasiq in the same team and I admire him for his consistent commitment and dedication towards the project.
 He is fluent in setting up automation frameworks and well versed with programming languages. He is always thinking one step ahead and one can easily make out the passion he has for Automation. His willingness to learn and keen attention towards detail has been a value addition to our team. I strongly believe Wasiq would be a great asset to any team he joins.`,
         category: "colleague",
@@ -205,8 +195,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
         name: "Mohammad Faisal Khatri",
         title: "Senior Test Specialist",
         company: "Kafaat Business Solutions شركة كفاءات حلول الأعمال",
-        image:
-          "https://media.licdn.com/dms/image/v2/D4D03AQE_ofNeGhyqgg/profile-displayphoto-shrink_100_100/B4DZaHunGeGcAc-/0/1746033866334?e=1755129600&v=beta&t=V_7lT1fpQP1_YoJ2Y1pUzDnDFLw0pMYpw9QAoQX8BSo",
+        image: "/images/testimonials/faisal-khatri.png",
         testimonial:
           "A fully focused guy who never lets you down. Has an awesome technical knowledge. It is a pleasure working wih him, a person who never lets you down. A good mentor, learner, programmer and obviously the best in automation testing.",
         category: "colleague",
@@ -216,8 +205,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
         name: "Basant Kumar Varshney",
         title: "Associate Vice President",
         company: "360 ONE Wealth",
-        image:
-          "https://media.licdn.com/dms/image/v2/D4D03AQEzw2gnT1MnkA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1710081133249?e=1755129600&v=beta&t=ZM1Q_muX3UGqFh9HYVvtKGEVKmNkmFCAK05DsJqK-_Y",
+        image: "/images/testimonials/basant-varshney.png",
         testimonial:
           "Working with Wasiq Bhamla was a pleasure. He has always spoken with his work and not with the words. A good self learner and enthusiastic personality. Being non technical Graduate, his technical grasping and implementation has left the technical graduates behind. Wishing him success in his all endeavors.",
         category: "colleague",
@@ -227,8 +215,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
         name: "Vijaykumar Utadia",
         title: "General Manager",
         company: "Paytm Money",
-        image:
-          "https://media.licdn.com/dms/image/v2/C4E03AQE9YnUNs557gg/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1605787823163?e=1755129600&v=beta&t=4qc4Cx6mBw5_uFwPY9QDsmq2wyaXfrIKUYiFU4mMJVs",
+        image: "/images/testimonials/vijaykumar-utadia.png",
         testimonial:
           "Wasiq is hard working and intelligent person with the initiative and willingness to grow.He was the key member of my Testing team in FTIL. I would recommend Wasiq as a competent and skilled Testing professional and very good team player.",
         category: "colleague",
@@ -238,8 +225,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
         name: "Mahendra Mayekar",
         title: "Delivery Head - Vice President",
         company: "Synapsewave Innovations Private Limited",
-        image:
-          "https://media.licdn.com/dms/image/v2/C4E03AQEzmhAIOcBMLA/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1560604263902?e=1755129600&v=beta&t=tePaUE4JLS5aKRq0siIoXuCCDnIRSgGgEFgwXhq2Hh4",
+        image: "/images/testimonials/mahendra-mayekar.png",
         testimonial:
           "It was my pleasure to work with Wasiq. A silent and workaholic team member. He was always rigorous in his queries, insightful in his analysis and a very good QA Engineer. He is through professional and knows what exactly is expected from him. Wasiq is the person I would like to reach out to if I had an urgent quality delivery to be done.",
         category: "colleague",
@@ -250,8 +236,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
         name: "Karna Patel",
         title: "Senior Specialist",
         company: "Dubai Electricity & Water Authority - DEWA",
-        image:
-          "https://media.licdn.com/dms/image/v2/D4D03AQHxF5VezZVkXw/profile-displayphoto-shrink_100_100/B4DZZmo1QBG4AU-/0/1745478703223?e=1755129600&v=beta&t=bTuWbUozMAkU5V1rgyPIHmpCINVCL3m39Q2HOo4WGB0",
+        image: "/images/testimonials/karna-patel.png",
         testimonial:
           "Wasiq is a technology buff and would be inclined to learn anything and everything under the sun in any technology. Wouldn't be scared to explore anything new. I wish him all the very best for all his future endeavors.",
         category: "colleague",
@@ -263,8 +248,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
         company: "maintaine.rs",
         category: "general",
         featured: true,
-        image:
-          "https://media.licdn.com/dms/image/v2/D4D03AQHJX7x_9sTEpw/profile-displayphoto-shrink_100_100/B4DZX.RC0AHwAY-/0/1743727636469?e=1755734400&v=beta&t=_YiDCw0i57m0rtHS1wp8vfgoDKo6AXPdd_wVScIeMpI",
+        image: "/images/testimonials/nick-vidal.png",
         testimonial:
           "Wasiq Bhamla is a dedicated QA engineer and open source maintainer whose decade-long contributions have empowered the testing community. Through projects like Boyka Framework, Boyka CLI, Multiple Cucumber HTML Reporter, and Maven Publish Action, Wasiq has consistently built tools that make quality assurance more powerful and accessible. His passion for open source and testing excellence is truly inspiring. Thank you, Wasiq!",
       },
@@ -525,8 +509,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
       {
         id: "1",
         name: "LambdaTest",
-        avatarUrl:
-          "https://media.licdn.com/dms/image/v2/D560BAQGdHpefVrdoOw/company-logo_100_100/B56Zc16NJjGQAU-/0/1748956140728/lambdatest_logo?e=1755129600&v=beta&t=K1kSokc3ks5BGdvo97A9lOeqvmGGAFLybwCZZU5lp0w",
+        avatarUrl: "/images/sponsors/lambdatest.png",
         profileUrl: "https://www.lambdatest.com/",
         tier: "bronze",
       },

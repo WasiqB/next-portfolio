@@ -42,18 +42,15 @@ interface ServicesPageProps {
     text: string;
     href: string;
   };
-  email: string;
 }
 
 export default function ServiceContent({
   sectionTitle,
   sectionDescription,
   bookCallButton,
-  email,
 }: ServicesPageProps) {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const searchParams = useSearchParams();
-  const showContact = useVariableValue("show-contact", false);
   const services = useVariableValue("services", {
     status: "off",
   }).services?.valueOf() as Service[] | undefined;
@@ -101,7 +98,7 @@ export default function ServiceContent({
     <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
       <div className="flex items-center gap-4 mb-8">
         <Button variant="outline" size="sm" asChild>
-          <Link href="/">
+          <Link href="/#services">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Home
           </Link>
@@ -314,9 +311,7 @@ export default function ServiceContent({
             </Link>
           </Button>
           <Button size="lg" variant="outline" asChild>
-            <Link href={showContact ? "/#contact" : `mailto:${email}`}>
-              Send Quick Message
-            </Link>
+            <Link href="/#contact">Send Quick Message</Link>
           </Button>
         </div>
         <p className="text-xs text-muted-foreground mt-4">

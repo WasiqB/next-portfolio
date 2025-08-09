@@ -23,9 +23,6 @@ const nextConfig: NextConfig = {
         hostname: "i.ytimg.com",
       },
       {
-        hostname: "media.licdn.com",
-      },
-      {
         hostname: "avatars.githubusercontent.com",
       },
     ],

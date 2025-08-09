@@ -68,7 +68,7 @@ export default function ProjectPageContent() {
     <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
       <div className="flex items-center gap-4 mb-8">
         <Button variant="outline" size="sm" asChild>
-          <Link href="/">
+          <Link href="/#projects">
             <ArrowLeft className="h-4 w-4 mr-2" />
             Back to Home
           </Link>
@@ -79,7 +79,7 @@ export default function ProjectPageContent() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {loading
           ? // Loading skeleton
-            Array.from({ length: 6 }).map((_, index) => (
+            Array.from({ length: 4 }).map((_, index) => (
               <Card
                 key={`skeleton-${index}`}
                 className="h-full flex flex-col overflow-hidden"

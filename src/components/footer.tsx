@@ -12,7 +12,6 @@ export default function Footer() {
   const heroData: HeroData = portfolioData.hero;
   const { theme } = useTheme();
   const showProducts = useVariableValue("show-products", false);
-  const showContact = useVariableValue("show-contact", false);
   const showGrowth = useVariableValue("show-growth", false);
 
   // Define the navigation structure (same as navbar)
@@ -52,7 +51,7 @@ export default function Footer() {
       name: "Contact Me",
       href: "/#contact",
       submenu: false,
-      visible: !!showContact,
+      visible: true,
     },
   ];
 

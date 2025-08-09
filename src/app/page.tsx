@@ -14,7 +14,6 @@ import { useVariableValue } from "@devcycle/nextjs-sdk";
 
 export default function Home() {
   const showProducts = useVariableValue("show-products", false);
-  const showContact = useVariableValue("show-contact", false);
   const showGrowth = useVariableValue("show-growth", false);
 
   return (
@@ -28,7 +27,7 @@ export default function Home() {
       {showGrowth && <GrowthSection />}
       <Testimonials />
       <SponsorsSection />
-      {showContact && <Contact />}
+      <Contact />
     </main>
   );
 }

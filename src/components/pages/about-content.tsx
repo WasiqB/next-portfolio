@@ -22,13 +22,10 @@ import {
   FaYoutube,
 } from "react-icons/fa6";
 import { Badge } from "../ui/badge";
-import { useVariableValue } from "@devcycle/nextjs-sdk";
 
 const about: AboutData = Data.about;
 
 export default function AboutContent() {
-  const showContact = useVariableValue("show-contact", false);
-
   return (
     <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
       <div className="flex items-center gap-4 mb-8">
@@ -348,13 +345,7 @@ export default function AboutContent() {
             opportunities to be part of your vision.
           </p>
           <Button asChild>
-            <Link
-              href={
-                showContact ? "/#contact" : "mailto:wasbhamla2005@gmail.com"
-              }
-            >
-              Get In Touch
-            </Link>
+            <Link href="/#contact">Get In Touch</Link>
           </Button>
         </div>
       </div>

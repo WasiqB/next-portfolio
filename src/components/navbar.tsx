@@ -99,7 +99,6 @@ export default function Navbar() {
 
   const showProducts = useVariableValue("show-products", false);
   const showBuyButton = useVariableValue("show-buy-button", false);
-  const showContact = useVariableValue("show-contact", false);
   const showGrowth = useVariableValue("show-growth", false);
 
   // Define the navigation structure
@@ -199,7 +198,7 @@ export default function Navbar() {
       href: "/#contact",
       icon: <Mail className="h-4 w-4" />,
       submenu: false,
-      visible: !!showContact,
+      visible: true,
     },
   ];
 

@@ -1,0 +1,6 @@
+*.md
+*-lock.yaml
+node_modules
+.next
+.turbo
+dist

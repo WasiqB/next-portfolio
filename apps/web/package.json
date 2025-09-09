@@ -1,0 +1,37 @@
+{
+  "name": "@wb/web",
+  "version": "1.0.0",
+  "private": true,
+  "license": "AGPL-3.0-or-later",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.2.1",
+    "@next/third-parties": "^15.5.2",
+    "@wb/email": "workspace:*",
+    "@wb/feature-toggle": "workspace:*",
+    "@wb/ui": "workspace:*",
+    "cheerio": "^1.1.2",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.543.0",
+    "next": "15.5.2",
+    "next-themes": "^0.4.6",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-hook-form": "^7.62.0",
+    "react-icons": "^5.5.0",
+    "react-type-animation": "^3.2.0",
+    "string-strip-html": "^13.4.13",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.11",
+    "@types/react-dom": "^19.1.8",
+    "@wb/typescript-config": "workspace:*",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.12"
+  }
+}

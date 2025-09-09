@@ -1,0 +1,22 @@
+{
+  "name": "@wb/feature-toggle",
+  "version": "1.0.0",
+  "private": true,
+  "license": "AGPL-3.0-or-later",
+  "scripts": {
+    "lint": "eslint . --max-warnings 0"
+  },
+  "exports": {
+    "./devcycle": "./src/devcycle.ts",
+    "./provider": "./src/provider.tsx",
+    "./client": "./src/client.ts"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "@wb/typescript-config": "workspace:*"
+  },
+  "dependencies": {
+    "@devcycle/nextjs-sdk": "^2.23.1"
+  }
+}

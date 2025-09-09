@@ -1,0 +1,15 @@
+{
+  "name": "@wb/logger",
+  "version": "1.0.0",
+  "private": true,
+  "license": "AGPL-3.0-or-later",
+  "scripts": {
+    "lint": "eslint . --max-warnings 0"
+  },
+  "dependencies": {
+    "pino": "^9.9.1"
+  },
+  "devDependencies": {
+    "@wb/typescript-config": "workspace:*"
+  }
+}

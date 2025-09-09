@@ -9,8 +9,9 @@
       "cache": false
     },
     "build": {
+      "env": ["YOUTUBE_API_KEY", "RESEND_API_KEY"],
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "inputs": ["$TURBO_DEFAULT$", ".env.local"],
       "outputs": [".next/**", "!.next/cache/**"]
     },
     "lint": {

@@ -290,11 +290,11 @@ He is fluent in setting up automation frameworks and well versed with programmin
         title: "Senior Testing Specialist",
         company: "Kafaat Business Solutions",
         location: "Riyadh, Saudi Arabia",
-        period: "Aug 2024 - Present",
+        period: "Aug 2024 - Aug 2025",
         description: [
-          "Automated 100+ test cases for a critical government application related to law enforcement for the whole city using the Boyka Framework.",
-          "Planned and helped setup Katalon Studio implementation for the Manual team for Web and Mobile applications.",
-          "Mentored the functional team for using the Test Automation tools.",
+          "Engineered 100+ automated test scripts for a mission-critical law enforcement application using Boyka Framework, reducing regression testing time for the manual team.",
+          "Pioneered test automation adoption by developing Web and Android scripts in Katalon Studio, enabling manual QA teams to accelerate release cycles.",
+          "Led peer code reviews for automation scripts, enforcing Page Object Model (POM) and DRY principles, improving framework maintainability.",
         ],
         skills: [
           "Selenium WebDriver",
@@ -314,9 +314,10 @@ He is fluent in setting up automation frameworks and well versed with programmin
         location: "Mumbai, India",
         period: "Aug 2023 - Jun 2024",
         description: [
-          "Supervised a team comprising 4 QA Engineers responsible for testing a Web application in the Telecom domain.",
-          "Contributed to elevating the quality of the project's Test Automation process through the implementation of industry best practices.",
-          "Served as a mentor for the team, facilitating their learning of Test Automation best practices and providing guidance when they encountered challenging automation issues.",
+          "Led a 4-person QA team in testing a high-traffic telecom Web application, reducing production defects.",
+          "Overhauled test automation processes by POM design, boosting framework stability.",
+          "Diagnosed critical gaps in legacy automation framework, proposed optimisation roadmap that reduced script maintenance costs within 6 months.",
+          "Mentored 4 junior automation engineers code reviews, accelerating team proficiency.",
         ],
         skills: [
           "Selenium WebDriver",
@@ -328,14 +329,38 @@ He is fluent in setting up automation frameworks and well versed with programmin
         ],
       },
       {
+        title: "Independent Consultant",
+        company: "Freelance QA",
+        location: "Mumbai, India",
+        period: "Jan 2023 - Aug 2023",
+        description: [
+          "Tested and implemented the Test automation for an API application for the payments middleware application for a US-based Startup.",
+          "Provided the personal SDET training and helped the QA professional to grow in their careers.",
+          "Provided Test automation support to a couple of No-Code Test automation organizations.",
+          "Mentored few QA professional guiding them in their career.",
+          "Wrote Test automation related Blogs for LambdaTest.",
+          "Created tutorial videos for Test Automation on YouTube.",
+        ],
+        skills: [
+          "Selenium WebDriver",
+          "Appium",
+          "Java",
+          "Rest-Assured",
+          "Postman",
+          "GitLab",
+        ],
+      },
+      {
         title: "Senior QA Consultant",
         company: "Thoughtworks",
         location: "Mumbai, India",
         period: "Mar 2019 - Sep 2022",
         description: [
-          "Developed an API Automation framework from the ground up, utilizing the Facade and Builder design patterns to improve test coverage at the API level of the test pyramid for an application with a user base exceeding 100,000.",
-          "Acted as Test Architect for a major banking client in India, contributing to the enhancement of their test automation framework architecture and implementing visual regression testing for both Web and Mobile applications",
-          "As a key team member, I assisted in the execution of both Automation and Manual testing for Web, API, and Mobile applications",
+          "Built ground-up API testing solution using Facade / Builder patterns, increased test coverage for core banking application serving 100,000+ users while reducing API defects.",
+          "Revitalized automation architecture for India's IDFC bank, implementing BrowserStack cloud execution and visual regression testing that cut cross-browser testing time and reduced UI defects by more than 50%.",
+          "Executed exploratory test cases and maintained test scripts with WebDriverIO for Web, Mobile apps, ensuring release stability across major versions for the applications.",
+          "Directed code reviews for test scripts created by team members, enforcing Page Object Model and SOLID principles - improving code maintainability and reducing flaky tests.",
+          "Mentored junior engineers in Test Automation best practices, screened 30+ candidates and made successful hires that improved team velocity.",
         ],
         skills: [
           "WebDriverIO",
@@ -357,9 +382,11 @@ He is fluent in setting up automation frameworks and well versed with programmin
         location: "Mumbai, India",
         period: "Apr 2018 - Mar 2019",
         description: [
-          "Demonstrated effective leadership as I guided a team of 3 QA Engineers in the Healthcare industry, devising and implementing a comprehensive QA strategy and solution for their web-based product.",
-          "Developed a sturdy and user-friendly test automation framework for Web and API automation.",
-          "Acted as a mentor to team members, sharing my expertise in test automation with them to enable their contributions towards the success of the team.",
+          "Automated end-to-end test scenarios and reducing regression testing time through efficient scripting and execution.",
+          "Engineered scalable test automation framework using Java, Selenium WebDriver & Rest-Assured, cutting script maintenance costs via reusable component design.",
+          "Led 4 QA automation engineers in agile delivery cycles, optimizing task allocation to achieve sprint automation goals.",
+          "Screened candidates and made key hires for automation roles through technical interviews and coding assessments.",
+          "Trained engineers in Selenium WebDriver and Appium, enabling the QA and Dev teams and reducing onboarding time.",
         ],
         skills: [
           "Selenium WebDriver",
@@ -377,9 +404,12 @@ He is fluent in setting up automation frameworks and well versed with programmin
         location: "Mumbai, India",
         period: "Jan 2015 - Mar 2018",
         description: [
-          "Developed and upheld test automation for both Android and iOS platforms using Appium, automating user journeys for an application with multi-device payment capability.",
-          "Devised a comprehensive end-to-end test automation strategy and solution for a supply chain and warehouse management application using Selenium WebDriver's C# binding and SpecFlow's Cucumber.",
-          "As a key team member, I participated in testing, automating, and maintaining more than 1000 test cases for MasterCard andDialog, a client in Sri Lanka, for their payment domain APIs.",
+          "Engineered web service test automation for REST and SOAP APIs using Rest-Assured, DBUnit & TestNG, reducing manual effort while managing tasks for 3 engineers.",
+          "Architected mobile automation framework (Android / iOS) enabling end-to-end payment testing for university merchant apps.",
+          "Designed C#-based web framework with Selenium WebDriver & Cucumber SpecFlow, implementing 200+ manual test scenarios that help reducing manual testing efforts.",
+          "Managed 3 QA automation engineers, boosting team productivity through mentoring.",
+          "Executed CI-integrated smoke and regression testing, ensuring release stability across deployments.",
+          "Conducted script reviews enforcing POM / SOLID principles to reduce flaky tests.",
         ],
         skills: [
           "Selenium WebDriver",
@@ -400,8 +430,8 @@ He is fluent in setting up automation frameworks and well versed with programmin
         location: "Mumbai, India",
         period: "Mar 2007 - Jan 2015",
         description: [
-          "Effectively guided a team of QA engineers in migrating more than 1000 IBM Rational Robot scripts to IBM RFT (Java).",
-          "Developed a lightweight wrapper framework for IBM RFT, simplifying scripting and implementing the page object model",
+          "Engineered dual-platform testing environments for Protector.Net (Desktop) and Match-Web, enabling parallel execution that reduced test cycles duration.",
+          "Architected Windows automation framework using IBM RFT & TestNG (page object pattern), adopted as enterprise standard after management validation.",
           "As a key team member, I contributed to the development of middleware for brokerage houses, aiding them in their desktop application testing efforts through both Manual and Automation testing.",
         ],
         skills: [

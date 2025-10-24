@@ -1,9 +1,9 @@
-import TestimonialContent from "@/components/pages/testimonial-content";
-import { Metadata } from "next";
+import TestimonialContent from '@/components/pages/testimonial-content';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Testimonials",
-  description: "What my clients, colleagues and friends say about me?",
+  title: 'Testimonials',
+  description: 'What my clients, colleagues and friends say about me?',
 };
 
 export default function TestimonialsPage() {

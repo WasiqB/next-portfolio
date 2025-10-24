@@ -81,7 +81,7 @@ export interface BlogData {
   sectionTitle: string;
   sectionDescription: string;
   sources: {
-    source: "Medium" | "custom";
+    source: 'Medium' | 'custom';
     username?: string;
     urls?: string[];
   }[];
@@ -96,7 +96,7 @@ export interface Video {
   likes: number;
   comments: number;
   publishDate: string;
-  category: "video" | "short";
+  category: 'video' | 'short';
   platform: string;
 }
 
@@ -114,7 +114,7 @@ export interface Testimonial {
   company: string;
   image: string;
   testimonial: string;
-  category?: "client" | "colleague" | "student" | "general";
+  category?: 'client' | 'colleague' | 'student' | 'general';
   featured?: boolean;
 }
 
@@ -174,15 +174,15 @@ export interface AboutData {
 }
 
 type TierType =
-  | "starter"
-  | "backer"
-  | "bronze"
-  | "silver"
-  | "gold"
-  | "diamond"
-  | "platinum"
-  | "donation"
-  | "one_time";
+  | 'starter'
+  | 'backer'
+  | 'bronze'
+  | 'silver'
+  | 'gold'
+  | 'diamond'
+  | 'platinum'
+  | 'donation'
+  | 'one_time';
 
 export interface SponsorTier {
   name: string;

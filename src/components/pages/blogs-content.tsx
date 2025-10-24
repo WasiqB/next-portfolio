@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
-import { Blog } from "@/types/portfolio-types";
-import Link from "next/link";
-import { Card, CardContent, CardHeader } from "../ui/card";
-import Image from "next/image";
-import { Badge } from "../ui/badge";
-import { ArrowLeft, CalendarIcon } from "lucide-react";
-import { useEffect, useState } from "react";
-import { Data as portfolioData } from "@/data/portfolio-data";
-import { CACHE_DURATION } from "@/lib/constants";
-import { Button } from "../ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { ArrowLeft, CalendarIcon } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { Data as portfolioData } from '@/data/portfolio-data';
+import { CACHE_DURATION } from '@/lib/constants';
+import type { Blog } from '@/types/portfolio-types';
+import { Badge } from '../ui/badge';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardHeader } from '../ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 function formatDate(dateString: string): string {
   const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   };
-  return new Date(dateString).toLocaleDateString("en-US", options);
+  return new Date(dateString).toLocaleDateString('en-US', options);
 }
 
 function BlogCard({ blog }: { blog: Blog }) {
@@ -32,7 +32,7 @@ function BlogCard({ blog }: { blog: Blog }) {
       <Card className="h-full flex flex-col overflow-hidden cursor-pointer border-2 hover:border-primary/50">
         <div className="relative h-48 w-full">
           <Image
-            src={blog.image || "/placeholder.svg"}
+            src={blog.image || '/placeholder.svg'}
             alt={blog.title}
             fill
             className="object-cover"
@@ -103,14 +103,14 @@ export default function BlogsContent() {
     async function fetchBlogs() {
       try {
         const blogsPromise = portfolioData.blogs.sources.map(async (source) => {
-          if (source.source === "Medium") {
+          if (source.source === 'Medium') {
             const response = await fetch(
               `/api/blogs?username=${source.username}`,
               {
                 next: {
                   revalidate: CACHE_DURATION,
                 },
-              }
+              },
             );
             return response.json() as Promise<Blog[]>;
           } else {
@@ -129,7 +129,7 @@ export default function BlogsContent() {
         const blogs = await Promise.all(blogsPromise);
         setBlogs(blogs.flat());
       } catch (error) {
-        console.error("Error fetching blogs:", error);
+        console.error('Error fetching blogs:', error);
       } finally {
         setLoading(false);
       }
@@ -142,11 +142,11 @@ export default function BlogsContent() {
   const sources = Array.from(new Set(blogs.map((b) => b.source)));
 
   // Filter blogs based on active tab
-  const [activeTab, setActiveTab] = useState("all");
+  const [_activeTab, setActiveTab] = useState('all');
 
   const sortedBlogs = [...blogs].sort(
     (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
 
   return (

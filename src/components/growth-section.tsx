@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import type React from "react";
+import type React from 'react';
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Github, Linkedin, Twitter, Youtube, TrendingUp } from "lucide-react";
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Github, Linkedin, Twitter, Youtube, TrendingUp } from 'lucide-react';
 
 // Define the platform type
 interface PlatformStat {
@@ -20,32 +20,32 @@ interface PlatformStat {
 // Sample platform stats data
 const platformStats: PlatformStat[] = [
   {
-    name: "YouTube",
+    name: 'YouTube',
     icon: <Youtube className="h-5 w-5" />,
-    value: "25.4K",
-    label: "Subscribers",
-    color: "bg-red-500",
+    value: '25.4K',
+    label: 'Subscribers',
+    color: 'bg-red-500',
   },
   {
-    name: "GitHub",
+    name: 'GitHub',
     icon: <Github className="h-5 w-5" />,
-    value: "12.5K",
-    label: "Stars",
-    color: "bg-gray-800",
+    value: '12.5K',
+    label: 'Stars',
+    color: 'bg-gray-800',
   },
   {
-    name: "Twitter",
+    name: 'Twitter',
     icon: <Twitter className="h-5 w-5" />,
-    value: "18.7K",
-    label: "Followers",
-    color: "bg-sky-500",
+    value: '18.7K',
+    label: 'Followers',
+    color: 'bg-sky-500',
   },
   {
-    name: "LinkedIn",
+    name: 'LinkedIn',
     icon: <Linkedin className="h-5 w-5" />,
-    value: "7.2K",
-    label: "Followers",
-    color: "bg-blue-600",
+    value: '7.2K',
+    label: 'Followers',
+    color: 'bg-blue-600',
   },
 ];
 

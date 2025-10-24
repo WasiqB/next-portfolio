@@ -1,18 +1,18 @@
-"use client";
+'use client';
 
-import { Data } from "@/data/portfolio-data";
-import { AboutData } from "@/types/portfolio-types";
-import { Button } from "../ui/button";
-import Link from "next/link";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { Data } from '@/data/portfolio-data';
+import type { AboutData } from '@/types/portfolio-types';
+import { Button } from '../ui/button';
+import Link from 'next/link';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
-import Image from "next/image";
+} from '../ui/card';
+import Image from 'next/image';
 import {
   FaFacebook,
   FaGithub,
@@ -20,8 +20,8 @@ import {
   FaLinkedin,
   FaXTwitter,
   FaYoutube,
-} from "react-icons/fa6";
-import { Badge } from "../ui/badge";
+} from 'react-icons/fa6';
+import { Badge } from '../ui/badge';
 
 const about: AboutData = Data.about;
 
@@ -104,23 +104,23 @@ export default function AboutContent() {
                 {about.socialLinks.map((link) => {
                   let Icon = null;
                   switch (link.platform) {
-                    case "github":
+                    case 'github':
                       Icon = FaGithub;
                       break;
-                    case "linkedin":
+                    case 'linkedin':
                       Icon = FaLinkedin;
                       break;
-                    case "twitter":
-                    case "x":
+                    case 'twitter':
+                    case 'x':
                       Icon = FaXTwitter;
                       break;
-                    case "youtube":
+                    case 'youtube':
                       Icon = FaYoutube;
                       break;
-                    case "instagram":
+                    case 'instagram':
                       Icon = FaInstagram;
                       break;
-                    case "facebook":
+                    case 'facebook':
                       Icon = FaFacebook;
                       break;
                     default:
@@ -171,23 +171,23 @@ export default function AboutContent() {
                 {about.socialLinks.map((link) => {
                   let Icon = null;
                   switch (link.platform) {
-                    case "github":
+                    case 'github':
                       Icon = FaGithub;
                       break;
-                    case "linkedin":
+                    case 'linkedin':
                       Icon = FaLinkedin;
                       break;
-                    case "twitter":
-                    case "x":
+                    case 'twitter':
+                    case 'x':
                       Icon = FaXTwitter;
                       break;
-                    case "youtube":
+                    case 'youtube':
                       Icon = FaYoutube;
                       break;
-                    case "instagram":
+                    case 'instagram':
                       Icon = FaInstagram;
                       break;
-                    case "facebook":
+                    case 'facebook':
                       Icon = FaFacebook;
                       break;
                     default:

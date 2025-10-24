@@ -5,10 +5,10 @@
  * @returns An object with owner and repo properties, or null if the URL is invalid
  */
 export function parseGitHubUrl(
-  url: string
+  url: string,
 ): { owner: string; repo: string } | null {
   try {
-    const githubRegex = /github\.com\/([^\/]+)\/([^\/]+)/;
+    const githubRegex = /github\.com\/([^/]+)\/([^/]+)/;
     const match = url.match(githubRegex);
 
     if (!match || match.length < 3) {
@@ -20,7 +20,7 @@ export function parseGitHubUrl(
       repo: match[2],
     };
   } catch (error) {
-    console.error("Error parsing GitHub URL:", error);
+    console.error('Error parsing GitHub URL:', error);
     return null;
   }
 }

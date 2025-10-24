@@ -1,18 +1,18 @@
 import {
-  Html,
   Body,
-  Container,
-  Text,
-  Heading,
-  Tailwind,
-  Head,
-  Preview,
-  Section,
-  Img,
-  Row,
   Column,
+  Container,
+  Head,
+  Heading,
   Hr,
-} from "@react-email/components";
+  Html,
+  Img,
+  Preview,
+  Row,
+  Section,
+  Tailwind,
+  Text,
+} from '@react-email/components';
 
 export type ContactEmailProps = {
   name: string;
@@ -32,36 +32,36 @@ export function ContactEmail({
       <Tailwind>
         <Head />
         <Preview>New contact form submission from {name}</Preview>
-        <Body className="bg-gray-100 font-sans py-[40px]">
-          <Container className="bg-primary rounded-[8px] shadow-lg max-w-[600px] mx-auto">
+        <Body className="bg-gray-100 font-sans py-10">
+          <Container className="bg-primary rounded-xl shadow-lg max-w-[600px] mx-auto">
             {/* Header with Logo and Site Title */}
-            <Section className="bg-secondary rounded-t-[8px] px-[40px] py-[32px] text-center">
+            <Section className="bg-secondary rounded-t-xl px-10 py-8 text-center">
               <Img
                 src="https://new.email/static/app/placeholder.png"
                 alt="Site Logo"
-                className="w-[80px] h-auto object-cover mx-auto mb-[16px]"
+                className="w-20 h-auto object-cover mx-auto mb-4"
               />
               <Heading className="text-white text-[28px] font-bold m-0">
                 Your Website
               </Heading>
-              <Text className="text-blue-100 text-[16px] m-0 mt-[8px]">
+              <Text className="text-blue-100 text-[16px] m-0 mt-2">
                 Contact Form Submission
               </Text>
             </Section>
 
             {/* Main Content */}
-            <Section className="px-[40px] py-[32px]">
-              <Heading className="text-gray-800 text-[24px] font-bold mb-[24px]">
+            <Section className="px-10 py-8">
+              <Heading className="text-gray-800 text-[24px] font-bold mb-6">
                 New Contact Form Submission
               </Heading>
 
-              <Text className="text-gray-600 text-[16px] mb-[24px]">
+              <Text className="text-gray-600 text-[16px] mb-6">
                 You have received a new message through your contact form. Here
                 are the details:
               </Text>
 
               {/* Contact Details */}
-              <Section className="bg-gray-50 rounded-[8px] p-[24px] mb-[24px]">
+              <Section className="bg-gray-50 rounded-xl p-[24px] mb-6">
                 <Row>
                   <Column>
                     <Text className="text-gray-700 text-[14px] font-semibold mb-[8px] uppercase tracking-wide">

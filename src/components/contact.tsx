@@ -1,30 +1,23 @@
-"use client";
+'use client';
 
-import type React from "react";
-
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { motion } from 'framer-motion';
 import {
   Mail,
   MessageCircleQuestion,
   MessageSquare,
   Send,
   User,
-} from "lucide-react";
-import z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
-import { useForm } from "react-hook-form";
+} from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import z from 'zod';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Data as portfolioData } from '@/data/portfolio-data';
 import {
   Form,
   FormControl,
@@ -32,21 +25,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
+} from './ui/form';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
-import { Data as portfolioData } from "@/data/portfolio-data";
+} from './ui/select';
 
 const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.email("Please enter a valid email address"),
-  reason: z.string().min(1, "Please select a reason for contact"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
+  name: z.string().min(2, 'Name must be at least 2 characters'),
+  email: z.email('Please enter a valid email address'),
+  reason: z.string().min(1, 'Please select a reason for contact'),
+  message: z.string().min(10, 'Message must be at least 10 characters'),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -55,32 +47,32 @@ export default function Contact() {
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      reason: "",
-      message: "",
+      name: '',
+      email: '',
+      reason: '',
+      message: '',
     },
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
   const [formSuccess, setFormSuccess] = useState(false);
-  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
+  const [_fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const { sectionTitle, sectionDescription, reasons } = portfolioData.contact;
 
   useEffect(() => {
     if (formError) {
       toast.error(formError, {
         duration: 5000,
-        description: "Please check your input and try again.",
+        description: 'Please check your input and try again.',
       });
     }
   }, [formError]);
 
   useEffect(() => {
     if (formSuccess) {
-      toast.success("Message sent successfully!", {
+      toast.success('Message sent successfully!', {
         duration: 5000,
-        description: "I will get back to you as soon as possible.",
+        description: 'I will get back to you as soon as possible.',
       });
     }
   }, [formSuccess]);
@@ -97,7 +89,7 @@ export default function Contact() {
       const fieldErrors = z.flattenError(parsed.error).fieldErrors;
       Object.keys(fieldErrors).forEach((key) => {
         const errArr = fieldErrors[key as keyof typeof fieldErrors];
-        if (errArr && errArr.length > 0) errors[key] = errArr[0] ?? "";
+        if (errArr && errArr.length > 0) errors[key] = errArr[0] ?? '';
       });
       setFieldErrors(errors);
       return;
@@ -105,9 +97,9 @@ export default function Contact() {
 
     setIsSubmitting(true);
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values),
       });
       if (!res.ok) {
@@ -117,19 +109,19 @@ export default function Contact() {
           const fieldErrors = data.error.fieldErrors;
           Object.keys(fieldErrors).forEach((key) => {
             const errArr = fieldErrors[key as keyof typeof fieldErrors];
-            if (errArr && errArr.length > 0) errors[key] = errArr[0] ?? "";
+            if (errArr && errArr.length > 0) errors[key] = errArr[0] ?? '';
           });
           setFieldErrors(errors);
         } else {
-          setFormError(data?.error || "Failed to send message.");
+          setFormError(data?.error || 'Failed to send message.');
         }
         setIsSubmitting(false);
         return;
       }
       setFormSuccess(true);
       form.reset();
-    } catch (err) {
-      setFormError("Something went wrong. Please try again later.");
+    } catch (_err) {
+      setFormError('Something went wrong. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }

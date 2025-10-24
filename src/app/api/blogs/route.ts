@@ -1,17 +1,17 @@
-import { getMediumPost, scrapeWebsite } from "@/lib/blogs-utils";
-import { NextRequest, NextResponse } from "next/server";
+import { getMediumPost, scrapeWebsite } from '@/lib/blogs-utils';
+import { type NextRequest, NextResponse } from 'next/server';
 
 export const config = { revalidate: 86400 };
 
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
-  const username = searchParams.get("username");
-  const url = searchParams.get("url");
+  const username = searchParams.get('username');
+  const url = searchParams.get('url');
 
   if (!username && !url) {
     return NextResponse.json(
-      { error: "Username or url is required" },
-      { status: 400 }
+      { error: 'Username or url is required' },
+      { status: 400 },
     );
   }
 

@@ -1,24 +1,24 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
-import { CalendarIcon } from "lucide-react";
-import { Blog } from "@/types/portfolio-types";
-import { Data as portfolioData } from "@/data/portfolio-data";
+import { motion } from 'framer-motion';
+import { CalendarIcon } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Data as portfolioData } from '@/data/portfolio-data';
+import type { Blog } from '@/types/portfolio-types';
 
 function formatDate(dateString: string): string {
   const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
   };
-  return new Date(dateString).toLocaleDateString("en-US", options);
+  return new Date(dateString).toLocaleDateString('en-US', options);
 }
 
 function BlogCard({ blog }: { blog: Blog }) {
@@ -32,7 +32,7 @@ function BlogCard({ blog }: { blog: Blog }) {
       <Card className="h-full flex flex-col overflow-hidden cursor-pointer border-2 hover:border-primary/50">
         <div className="relative h-48 w-full">
           <Image
-            src={blog.image || "/placeholder.svg"}
+            src={blog.image || '/placeholder.svg'}
             alt={blog.title}
             fill
             className="object-cover"
@@ -94,7 +94,7 @@ function BlogSkeletonCard() {
 }
 
 export default function Blogs() {
-  const [activeTab, setActiveTab] = useState("all");
+  const [_activeTab, setActiveTab] = useState('all');
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -102,9 +102,9 @@ export default function Blogs() {
     async function fetchBlogs() {
       try {
         const blogsPromise = portfolioData.blogs.sources.map(async (source) => {
-          if (source.source === "Medium") {
+          if (source.source === 'Medium') {
             const response = await fetch(
-              `/api/blogs?username=${source.username}`
+              `/api/blogs?username=${source.username}`,
             );
             return response.json() as Promise<Blog[]>;
           } else {
@@ -119,7 +119,7 @@ export default function Blogs() {
         const blogs = await Promise.all(blogsPromise);
         setBlogs(blogs.flat());
       } catch (error) {
-        console.error("Error fetching blogs:", error);
+        console.error('Error fetching blogs:', error);
       } finally {
         setLoading(false);
       }
@@ -133,7 +133,7 @@ export default function Blogs() {
 
   const sortedBlogs = [...blogs].sort(
     (a, b) =>
-      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+      new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
 
   return (

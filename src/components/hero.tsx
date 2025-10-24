@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import { TypeAnimation } from "react-type-animation";
-import { Data as portfolioData } from "@/data/portfolio-data";
-import { HeroData } from "@/types/portfolio-types";
-import { getSocialIcon } from "@/lib/social-utils";
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import { TypeAnimation } from 'react-type-animation';
+import { Data as portfolioData } from '@/data/portfolio-data';
+import type { HeroData } from '@/types/portfolio-types';
+import { getSocialIcon } from '@/lib/social-utils';
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);

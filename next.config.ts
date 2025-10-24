@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   eslint: {
@@ -8,22 +8,22 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "repository-images.githubusercontent.com",
+        hostname: 'repository-images.githubusercontent.com',
       },
       {
-        hostname: "opengraph.githubassets.com",
+        hostname: 'opengraph.githubassets.com',
       },
       {
-        hostname: "cdn-images-1.medium.com",
+        hostname: 'cdn-images-1.medium.com',
       },
       {
-        hostname: "www.lambdatest.com",
+        hostname: 'www.lambdatest.com',
       },
       {
-        hostname: "i.ytimg.com",
+        hostname: 'i.ytimg.com',
       },
       {
-        hostname: "avatars.githubusercontent.com",
+        hostname: 'avatars.githubusercontent.com',
       },
     ],
   },

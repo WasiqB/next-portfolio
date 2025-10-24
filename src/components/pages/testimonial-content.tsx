@@ -1,10 +1,10 @@
-import { Data } from "@/data/portfolio-data";
-import type { Testimonial } from "@/types/portfolio-types";
-import { Card, CardContent } from "../ui/card";
-import { ArrowLeft, Quote } from "lucide-react";
-import Image from "next/image";
-import { Button } from "../ui/button";
-import Link from "next/link";
+import { Data } from '@/data/portfolio-data';
+import type { Testimonial } from '@/types/portfolio-types';
+import { Card, CardContent } from '../ui/card';
+import { ArrowLeft, Quote } from 'lucide-react';
+import Image from 'next/image';
+import { Button } from '../ui/button';
+import Link from 'next/link';
 
 const testimonials: Testimonial[] = Data.testimonials.testimonials;
 
@@ -22,7 +22,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         <div className="flex flex-col md:flex-row items-center mt-auto gap-4 md:gap-0">
           <div className="relative w-16 h-16 flex-shrink-0 rounded-full overflow-hidden mb-2 md:mb-0 md:mr-4">
             <Image
-              src={testimonial.image || "/placeholder.svg"}
+              src={testimonial.image || '/placeholder.svg'}
               alt={testimonial.name}
               fill
               className="object-cover"
@@ -43,16 +43,16 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 export default function TestimonialContent() {
   // Group testimonials by category
   const clientTestimonials = testimonials.filter(
-    (t) => t.category === "client"
+    (t) => t.category === 'client',
   );
   const colleagueTestimonials = testimonials.filter(
-    (t) => t.category === "colleague"
+    (t) => t.category === 'colleague',
   );
   const studentTestimonials = testimonials.filter(
-    (t) => t.category === "student"
+    (t) => t.category === 'student',
   );
   const generalTestimonials = testimonials.filter(
-    (t) => t.category === "general" || !t.category
+    (t) => t.category === 'general' || !t.category,
   );
 
   return (

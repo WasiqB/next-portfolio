@@ -1,16 +1,12 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Heart } from "lucide-react";
-import { Data as portfolioData } from "@/data/portfolio-data";
-import type {
-  Sponsor,
-  SponsorsData,
-  SponsorTier,
-} from "@/types/portfolio-types";
+import { motion } from 'framer-motion';
+import { Heart } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Data as portfolioData } from '@/data/portfolio-data';
+import type { SponsorsData, SponsorTier } from '@/types/portfolio-types';
 
 export default function SponsorsSection() {
   const sponsors: SponsorsData = portfolioData.sponsors;
@@ -68,7 +64,7 @@ export default function SponsorsSection() {
             >
               <div className="relative w-24 h-24 md:w-32 md:h-32 overflow-hidden rounded-full border-2 border-muted transition-all hover:border-primary">
                 <Image
-                  src={sponsor.avatarUrl || "/placeholder.svg"}
+                  src={sponsor.avatarUrl || '/placeholder.svg'}
                   alt={sponsor.name}
                   fill
                   className="object-cover transition-transform group-hover:scale-105"

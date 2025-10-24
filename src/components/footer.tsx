@@ -1,55 +1,55 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { useTheme } from "next-themes";
-import { Data as portfolioData } from "@/data/portfolio-data";
-import { HeroData } from "@/types/portfolio-types";
-import { getSocialIcon } from "@/lib/social-utils";
-import { useVariableValue } from "@devcycle/nextjs-sdk";
+import Link from 'next/link';
+import Image from 'next/image';
+import { useTheme } from 'next-themes';
+import { Data as portfolioData } from '@/data/portfolio-data';
+import type { HeroData } from '@/types/portfolio-types';
+import { getSocialIcon } from '@/lib/social-utils';
+import { useVariableValue } from '@devcycle/nextjs-sdk';
 
 export default function Footer() {
   const heroData: HeroData = portfolioData.hero;
   const { theme } = useTheme();
-  const showProducts = useVariableValue("show-products", false);
-  const showGrowth = useVariableValue("show-growth", false);
+  const showProducts = useVariableValue('show-products', false);
+  const showGrowth = useVariableValue('show-growth', false);
 
   // Define the navigation structure (same as navbar)
   const navigationItems = [
-    { name: "Home", href: "/", submenu: false },
+    { name: 'Home', href: '/', submenu: false },
     {
-      name: "About",
-      href: "#",
+      name: 'About',
+      href: '#',
       submenu: true,
       items: [
-        { name: "About Me", href: "/about", visible: true },
-        { name: "My Growth", href: "/#growth", visible: !!showGrowth },
-        { name: "Testimonials", href: "/#testimonials", visible: true },
+        { name: 'About Me', href: '/about', visible: true },
+        { name: 'My Growth', href: '/#growth', visible: !!showGrowth },
+        { name: 'Testimonials', href: '/#testimonials', visible: true },
       ],
     },
     {
-      name: "Work",
-      href: "#",
+      name: 'Work',
+      href: '#',
       submenu: true,
       items: [
-        { name: "Projects", href: "/#projects", visible: true },
-        { name: "Services", href: "/#services", visible: true },
-        { name: "Products", href: "/#products", visible: !!showProducts },
-        { name: "Sponsors", href: "/#sponsors", visible: true },
+        { name: 'Projects', href: '/#projects', visible: true },
+        { name: 'Services', href: '/#services', visible: true },
+        { name: 'Products', href: '/#products', visible: !!showProducts },
+        { name: 'Sponsors', href: '/#sponsors', visible: true },
       ],
     },
     {
-      name: "Resources",
-      href: "#",
+      name: 'Resources',
+      href: '#',
       submenu: true,
       items: [
-        { name: "Blogs", href: "/#blogs", visible: true },
-        { name: "Videos", href: "/#videos", visible: true },
+        { name: 'Blogs', href: '/#blogs', visible: true },
+        { name: 'Videos', href: '/#videos', visible: true },
       ],
     },
     {
-      name: "Contact Me",
-      href: "/#contact",
+      name: 'Contact Me',
+      href: '/#contact',
       submenu: false,
       visible: true,
     },
@@ -63,7 +63,7 @@ export default function Footer() {
           {/* Logo and socials */}
           <div className="space-y-4 mb-8 flex flex-col items-center">
             <div className="flex items-center gap-2">
-              {theme === "dark" ? (
+              {theme === 'dark' ? (
                 <Image
                   src="/images/logo/dark-logo.png"
                   alt="Logo"
@@ -129,7 +129,7 @@ export default function Footer() {
           {/* About section */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              {theme === "dark" ? (
+              {theme === 'dark' ? (
                 <Image
                   src="/images/logo/dark-logo.png"
                   alt="Logo"
@@ -188,8 +188,8 @@ export default function Footer() {
         </div>
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
           <p>
-            &copy; {new Date().getFullYear()} {heroData.name}. Build with ❤️
-            from 🇮🇳.
+            &copy; {new Date().getFullYear()} {heroData.name}. Build with ❤️ from
+            🇮🇳.
             <br /> All rights reserved.
           </p>
         </div>

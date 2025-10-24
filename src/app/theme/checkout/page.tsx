@@ -1,12 +1,18 @@
-"use client";
+'use client';
 
-import type React from "react";
-
-import { useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import {
+  ArrowLeft,
+  CheckCircle2,
+  CreditCard,
+  Github,
+  Lock,
+} from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import type React from 'react';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -14,62 +20,54 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
-import {
-  ArrowLeft,
-  Github,
-  CreditCard,
-  Lock,
-  CheckCircle2,
-} from "lucide-react";
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Separator } from '@/components/ui/separator';
 
 // Define the plan types and prices
 const plans = {
-  basic: { name: "Basic", price: 49 },
-  professional: { name: "Professional", price: 99 },
-  enterprise: { name: "Enterprise", price: 249 },
+  basic: { name: 'Basic', price: 49 },
+  professional: { name: 'Professional', price: 99 },
+  enterprise: { name: 'Enterprise', price: 249 },
 };
 
-type AuthState = "unauthenticated" | "authenticating" | "authenticated";
-type CheckoutStep = "login" | "payment" | "confirmation";
+type AuthState = 'unauthenticated' | 'authenticating' | 'authenticated';
+type CheckoutStep = 'login' | 'payment' | 'confirmation';
 
 export default function CheckoutPage() {
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const planId = searchParams.get("plan") || "basic";
+  const planId = searchParams.get('plan') || 'basic';
   const plan = plans[planId as keyof typeof plans] || plans.basic;
 
-  const [authState, setAuthState] = useState<AuthState>("unauthenticated");
+  const [authState, setAuthState] = useState<AuthState>('unauthenticated');
   const [user, setUser] = useState<{
     name: string;
     email: string;
     avatar: string;
   } | null>(null);
-  const [step, setStep] = useState<CheckoutStep>("login");
+  const [step, setStep] = useState<CheckoutStep>('login');
   const [isProcessing, setIsProcessing] = useState(false);
   const [paymentDetails, setPaymentDetails] = useState({
-    cardNumber: "",
-    cardName: "",
-    expiry: "",
-    cvc: "",
+    cardNumber: '',
+    cardName: '',
+    expiry: '',
+    cvc: '',
   });
 
   // Simulate GitHub OAuth login
   const handleGitHubLogin = () => {
-    setAuthState("authenticating");
+    setAuthState('authenticating');
 
     // Simulate API call delay
     setTimeout(() => {
-      setAuthState("authenticated");
+      setAuthState('authenticated');
       setUser({
-        name: "John Doe",
-        email: "john.doe@example.com",
-        avatar: "/placeholder.svg?height=50&width=50",
+        name: 'John Doe',
+        email: 'john.doe@example.com',
+        avatar: '/placeholder.svg?height=50&width=50',
       });
-      setStep("payment");
+      setStep('payment');
     }, 1500);
   };
 
@@ -81,7 +79,7 @@ export default function CheckoutPage() {
     // Simulate payment processing
     setTimeout(() => {
       setIsProcessing(false);
-      setStep("confirmation");
+      setStep('confirmation');
     }, 2000);
   };
 
@@ -108,14 +106,14 @@ export default function CheckoutPage() {
         <div className="absolute top-4 left-0 w-full h-0.5 bg-muted -z-10"></div>
         <div
           className={`flex flex-col items-center gap-2 ${
-            step === "login" ? "text-primary" : "text-muted-foreground"
+            step === 'login' ? 'text-primary' : 'text-muted-foreground'
           }`}
         >
           <div
             className={`w-8 h-8 rounded-full flex items-center justify-center ${
-              step === "login"
-                ? "bg-primary text-primary-foreground"
-                : "bg-muted"
+              step === 'login'
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-muted'
             }`}
           >
             1
@@ -124,14 +122,14 @@ export default function CheckoutPage() {
         </div>
         <div
           className={`flex flex-col items-center gap-2 ${
-            step === "payment" ? "text-primary" : "text-muted-foreground"
+            step === 'payment' ? 'text-primary' : 'text-muted-foreground'
           }`}
         >
           <div
             className={`w-8 h-8 rounded-full flex items-center justify-center ${
-              step === "payment"
-                ? "bg-primary text-primary-foreground"
-                : "bg-muted"
+              step === 'payment'
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-muted'
             }`}
           >
             2
@@ -140,14 +138,14 @@ export default function CheckoutPage() {
         </div>
         <div
           className={`flex flex-col items-center gap-2 ${
-            step === "confirmation" ? "text-primary" : "text-muted-foreground"
+            step === 'confirmation' ? 'text-primary' : 'text-muted-foreground'
           }`}
         >
           <div
             className={`w-8 h-8 rounded-full flex items-center justify-center ${
-              step === "confirmation"
-                ? "bg-primary text-primary-foreground"
-                : "bg-muted"
+              step === 'confirmation'
+                ? 'bg-primary text-primary-foreground'
+                : 'bg-muted'
             }`}
           >
             3
@@ -157,7 +155,7 @@ export default function CheckoutPage() {
       </div>
 
       {/* Login Step */}
-      {step === "login" && (
+      {step === 'login' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
@@ -170,12 +168,12 @@ export default function CheckoutPage() {
               <Button
                 className="w-full flex items-center gap-2"
                 onClick={handleGitHubLogin}
-                disabled={authState === "authenticating"}
+                disabled={authState === 'authenticating'}
               >
                 <Github className="h-4 w-4" />
-                {authState === "authenticating"
-                  ? "Signing in..."
-                  : "Sign in with GitHub"}
+                {authState === 'authenticating'
+                  ? 'Signing in...'
+                  : 'Sign in with GitHub'}
               </Button>
             </CardContent>
           </Card>
@@ -203,7 +201,7 @@ export default function CheckoutPage() {
       )}
 
       {/* Payment Step */}
-      {step === "payment" && (
+      {step === 'payment' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <Card>
             <CardHeader>
@@ -211,7 +209,7 @@ export default function CheckoutPage() {
                 {user?.avatar && (
                   <div className="relative w-10 h-10 rounded-full overflow-hidden">
                     <Image
-                      src={user.avatar || "/placeholder.svg"}
+                      src={user.avatar || '/placeholder.svg'}
                       alt={user.name}
                       fill
                       className="object-cover"
@@ -321,7 +319,7 @@ export default function CheckoutPage() {
       )}
 
       {/* Confirmation Step */}
-      {step === "confirmation" && (
+      {step === 'confirmation' && (
         <Card className="max-w-xl mx-auto">
           <CardHeader className="text-center">
             <div className="flex justify-center mb-4">

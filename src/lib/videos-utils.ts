@@ -1,15 +1,15 @@
-import { Video } from "@/types/portfolio-types";
-import { CACHE_DURATION } from "./constants";
+import type { Video } from '@/types/portfolio-types';
+import { CACHE_DURATION } from './constants';
 
 // Helper to determine if a video is a short
 function isShort(description: string, title: string): boolean {
   // YouTube Shorts are < 60s and have a specific URL pattern
   // We'll use duration and/or URL for best guess
   if (description) {
-    return description.includes("#shorts");
+    return description.includes('#shorts');
   }
   if (title) {
-    return title.includes("#shorts");
+    return title.includes('#shorts');
   }
   return false;
 }
@@ -28,7 +28,7 @@ export async function fetchYouTubeVideos({
       next: {
         revalidate: CACHE_DURATION,
       },
-    }
+    },
   );
   if (!channelRes.ok) return [];
   const channelData = await channelRes.json();
@@ -37,24 +37,24 @@ export async function fetchYouTubeVideos({
   if (!uploadsPlaylistId) return [];
 
   // 2. Get all video IDs from uploads playlist (may need to paginate)
-  let videos: Video[] = [];
-  let nextPageToken = "";
+  const videos: Video[] = [];
+  let nextPageToken = '';
   do {
     const playlistRes = await fetch(
       `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=50&playlistId=${uploadsPlaylistId}&key=${apiKey}${
-        nextPageToken ? `&pageToken=${nextPageToken}` : ""
+        nextPageToken ? `&pageToken=${nextPageToken}` : ''
       }`,
       {
         next: {
           revalidate: CACHE_DURATION,
         },
-      }
+      },
     );
     if (!playlistRes.ok) break;
     const playlistData = await playlistRes.json();
     const videoIds = playlistData.items
       .map((item: any) => item.contentDetails.videoId)
-      .join(",");
+      .join(',');
     if (!videoIds) break;
 
     // 3. Get video details (snippet, statistics, contentDetails)
@@ -64,7 +64,7 @@ export async function fetchYouTubeVideos({
         next: {
           revalidate: CACHE_DURATION,
         },
-      }
+      },
     );
     if (!videosRes.ok) break;
     const videosData = await videosRes.json();
@@ -72,7 +72,7 @@ export async function fetchYouTubeVideos({
       ...videosData.items.map((video: any) => {
         const isShortVideo = isShort(
           video.snippet.description,
-          video.snippet.title
+          video.snippet.title,
         );
         return {
           id: video.id,
@@ -80,16 +80,16 @@ export async function fetchYouTubeVideos({
           thumbnail:
             video.snippet.thumbnails?.high?.url ||
             video.snippet.thumbnails?.default?.url ||
-            "",
+            '',
           videoUrl: `https://www.youtube.com/watch?v=${video.id}`,
-          views: parseInt(video.statistics?.viewCount || "0", 10),
-          likes: parseInt(video.statistics?.likeCount || "0", 10),
-          comments: parseInt(video.statistics?.commentCount || "0", 10),
+          views: parseInt(video.statistics?.viewCount || '0', 10),
+          likes: parseInt(video.statistics?.likeCount || '0', 10),
+          comments: parseInt(video.statistics?.commentCount || '0', 10),
           publishDate: video.snippet.publishedAt,
-          category: isShortVideo ? "short" : "video",
-          platform: "YouTube",
+          category: isShortVideo ? 'short' : 'video',
+          platform: 'YouTube',
         };
-      })
+      }),
     );
     nextPageToken = playlistData.nextPageToken;
   } while (nextPageToken);
@@ -97,6 +97,6 @@ export async function fetchYouTubeVideos({
   // 4. Sort videos from newest to oldest
   return videos.sort(
     (a, b) =>
-      new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
+      new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime(),
   );
 }

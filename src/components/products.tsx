@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import type React from "react";
+import type React from 'react';
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -12,9 +12,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Users, Zap, TrendingUp, Rocket } from "lucide-react";
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { ExternalLink, Users, Zap, TrendingUp, Rocket } from 'lucide-react';
 
 // Define the SaaS product type
 interface SaasProduct {
@@ -23,7 +23,7 @@ interface SaasProduct {
   description: string;
   shortDescription: string;
   features: string[];
-  status: "live" | "beta" | "coming-soon";
+  status: 'live' | 'beta' | 'coming-soon';
   pricing: string;
   users: string;
   techStack: string[];
@@ -38,136 +38,136 @@ interface SaasProduct {
 // Sample SaaS products data
 const saasProducts: SaasProduct[] = [
   {
-    id: "1",
-    name: "TaskFlow Pro",
+    id: '1',
+    name: 'TaskFlow Pro',
     description:
-      "A comprehensive project management and team collaboration platform designed for modern teams.",
+      'A comprehensive project management and team collaboration platform designed for modern teams.',
     shortDescription:
-      "Project management and team collaboration platform for modern teams.",
+      'Project management and team collaboration platform for modern teams.',
     features: [
-      "Real-time collaboration",
-      "Advanced analytics",
-      "Custom workflows",
-      "API integrations",
+      'Real-time collaboration',
+      'Advanced analytics',
+      'Custom workflows',
+      'API integrations',
     ],
-    status: "live",
-    pricing: "Starting at $9/month",
-    users: "10K+",
-    techStack: ["Next.js", "PostgreSQL", "Redis", "Stripe"],
-    website: "https://taskflow-pro.example.com",
+    status: 'live',
+    pricing: 'Starting at $9/month',
+    users: '10K+',
+    techStack: ['Next.js', 'PostgreSQL', 'Redis', 'Stripe'],
+    website: 'https://taskflow-pro.example.com',
     metrics: [
       {
-        label: "Active Users",
-        value: "10K+",
+        label: 'Active Users',
+        value: '10K+',
         icon: <Users className="h-4 w-4" />,
       },
       {
-        label: "Tasks Completed",
-        value: "500K+",
+        label: 'Tasks Completed',
+        value: '500K+',
         icon: <Zap className="h-4 w-4" />,
       },
       {
-        label: "Growth Rate",
-        value: "25%",
+        label: 'Growth Rate',
+        value: '25%',
         icon: <TrendingUp className="h-4 w-4" />,
       },
     ],
   },
   {
-    id: "2",
-    name: "AnalyticsDash",
+    id: '2',
+    name: 'AnalyticsDash',
     description:
-      "Powerful analytics dashboard that helps businesses make data-driven decisions with beautiful visualizations.",
-    shortDescription: "Analytics dashboard for data-driven business decisions.",
+      'Powerful analytics dashboard that helps businesses make data-driven decisions with beautiful visualizations.',
+    shortDescription: 'Analytics dashboard for data-driven business decisions.',
     features: [
-      "Real-time data",
-      "Custom dashboards",
-      "Export reports",
-      "Team sharing",
+      'Real-time data',
+      'Custom dashboards',
+      'Export reports',
+      'Team sharing',
     ],
-    status: "live",
-    pricing: "Starting at $19/month",
-    users: "5K+",
-    techStack: ["React", "D3.js", "Node.js", "MongoDB"],
-    website: "https://analytics-dash.example.com",
+    status: 'live',
+    pricing: 'Starting at $19/month',
+    users: '5K+',
+    techStack: ['React', 'D3.js', 'Node.js', 'MongoDB'],
+    website: 'https://analytics-dash.example.com',
     metrics: [
       {
-        label: "Active Users",
-        value: "5K+",
+        label: 'Active Users',
+        value: '5K+',
         icon: <Users className="h-4 w-4" />,
       },
       {
-        label: "Data Points",
-        value: "10M+",
+        label: 'Data Points',
+        value: '10M+',
         icon: <Zap className="h-4 w-4" />,
       },
       {
-        label: "Uptime",
-        value: "99.9%",
+        label: 'Uptime',
+        value: '99.9%',
         icon: <TrendingUp className="h-4 w-4" />,
       },
     ],
   },
   {
-    id: "3",
-    name: "CodeReview AI",
+    id: '3',
+    name: 'CodeReview AI',
     description:
-      "AI-powered code review tool that helps developers write better code and catch bugs before deployment.",
-    shortDescription: "AI-powered code review tool for better code quality.",
+      'AI-powered code review tool that helps developers write better code and catch bugs before deployment.',
+    shortDescription: 'AI-powered code review tool for better code quality.',
     features: [
-      "AI code analysis",
-      "Security scanning",
-      "Performance insights",
-      "Team integration",
+      'AI code analysis',
+      'Security scanning',
+      'Performance insights',
+      'Team integration',
     ],
-    status: "beta",
-    pricing: "Free during beta",
-    users: "2K+",
-    techStack: ["Python", "TensorFlow", "FastAPI", "Docker"],
-    website: "https://codereview-ai.example.com",
+    status: 'beta',
+    pricing: 'Free during beta',
+    users: '2K+',
+    techStack: ['Python', 'TensorFlow', 'FastAPI', 'Docker'],
+    website: 'https://codereview-ai.example.com',
     metrics: [
       {
-        label: "Beta Users",
-        value: "2K+",
+        label: 'Beta Users',
+        value: '2K+',
         icon: <Users className="h-4 w-4" />,
       },
       {
-        label: "Code Reviews",
-        value: "50K+",
+        label: 'Code Reviews',
+        value: '50K+',
         icon: <Zap className="h-4 w-4" />,
       },
       {
-        label: "Bugs Caught",
-        value: "15K+",
+        label: 'Bugs Caught',
+        value: '15K+',
         icon: <TrendingUp className="h-4 w-4" />,
       },
     ],
   },
   {
-    id: "4",
-    name: "SocialSync",
+    id: '4',
+    name: 'SocialSync',
     description:
-      "Social media management platform that helps businesses manage multiple social accounts from one dashboard.",
-    shortDescription: "Social media management platform for businesses.",
+      'Social media management platform that helps businesses manage multiple social accounts from one dashboard.',
+    shortDescription: 'Social media management platform for businesses.',
     features: [
-      "Multi-platform posting",
-      "Analytics",
-      "Content scheduling",
-      "Team collaboration",
+      'Multi-platform posting',
+      'Analytics',
+      'Content scheduling',
+      'Team collaboration',
     ],
-    status: "coming-soon",
-    pricing: "Coming Q1 2024",
-    users: "Waitlist: 1K+",
-    techStack: ["Vue.js", "Laravel", "MySQL", "Redis"],
-    website: "https://social-sync.example.com",
+    status: 'coming-soon',
+    pricing: 'Coming Q1 2024',
+    users: 'Waitlist: 1K+',
+    techStack: ['Vue.js', 'Laravel', 'MySQL', 'Redis'],
+    website: 'https://social-sync.example.com',
     metrics: [
-      { label: "Waitlist", value: "1K+", icon: <Users className="h-4 w-4" /> },
+      { label: 'Waitlist', value: '1K+', icon: <Users className="h-4 w-4" /> },
       {
-        label: "Launch",
-        value: "Q1 2024",
+        label: 'Launch',
+        value: 'Q1 2024',
         icon: <Rocket className="h-4 w-4" />,
       },
-      { label: "Features", value: "50+", icon: <Zap className="h-4 w-4" /> },
+      { label: 'Features', value: '50+', icon: <Zap className="h-4 w-4" /> },
     ],
   },
 ];
@@ -176,27 +176,27 @@ const saasProducts: SaasProduct[] = [
 function ProductCard({ product }: { product: SaasProduct }) {
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "live":
-        return "bg-green-500";
-      case "beta":
-        return "bg-yellow-500";
-      case "coming-soon":
-        return "bg-blue-500";
+      case 'live':
+        return 'bg-green-500';
+      case 'beta':
+        return 'bg-yellow-500';
+      case 'coming-soon':
+        return 'bg-blue-500';
       default:
-        return "bg-gray-500";
+        return 'bg-gray-500';
     }
   };
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case "live":
-        return "Live";
-      case "beta":
-        return "Beta";
-      case "coming-soon":
-        return "Coming Soon";
+      case 'live':
+        return 'Live';
+      case 'beta':
+        return 'Beta';
+      case 'coming-soon':
+        return 'Coming Soon';
       default:
-        return "Unknown";
+        return 'Unknown';
     }
   };
 
@@ -213,7 +213,7 @@ function ProductCard({ product }: { product: SaasProduct }) {
             <div className="flex items-center gap-2">
               <div
                 className={`w-3 h-3 rounded-full ${getStatusColor(
-                  product.status
+                  product.status,
                 )}`}
               ></div>
               <Badge variant="outline" className="text-xs">

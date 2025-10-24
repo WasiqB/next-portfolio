@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -11,9 +11,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
+} from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
 import {
   ArrowLeft,
   Download,
@@ -22,43 +22,43 @@ import {
   Github,
   HelpCircle,
   MessageSquare,
-} from "lucide-react";
+} from 'lucide-react';
 
 // Mock user data
 const mockUser = {
-  name: "John Doe",
-  email: "john.doe@example.com",
-  avatar: "/placeholder.svg?height=100&width=100",
+  name: 'John Doe',
+  email: 'john.doe@example.com',
+  avatar: '/placeholder.svg?height=100&width=100',
 };
 
 // Mock purchase data
 const mockPurchases = [
   {
-    id: "ORD-123456",
-    date: "2023-05-15",
-    product: "Portfolio Theme - Professional",
+    id: 'ORD-123456',
+    date: '2023-05-15',
+    product: 'Portfolio Theme - Professional',
     price: 99,
-    status: "active",
-    licenseKey: "PRO-XXXX-XXXX-XXXX",
+    status: 'active',
+    licenseKey: 'PRO-XXXX-XXXX-XXXX',
   },
 ];
 
 // Mock download items
 const mockDownloads = [
   {
-    id: "1",
-    name: "Portfolio Theme v1.0.0",
-    type: "Source Code",
-    size: "4.2 MB",
-    date: "2023-05-15",
+    id: '1',
+    name: 'Portfolio Theme v1.0.0',
+    type: 'Source Code',
+    size: '4.2 MB',
+    date: '2023-05-15',
     icon: <FileCode className="h-6 w-6" />,
   },
   {
-    id: "2",
-    name: "Documentation",
-    type: "PDF",
-    size: "1.8 MB",
-    date: "2023-05-15",
+    id: '2',
+    name: 'Documentation',
+    type: 'PDF',
+    size: '1.8 MB',
+    date: '2023-05-15',
     icon: <FileText className="h-6 w-6" />,
   },
 ];
@@ -109,8 +109,8 @@ export default function DashboardPage() {
               <div className="flex flex-col items-center text-center">
                 <div className="relative w-24 h-24 rounded-full overflow-hidden mb-4 border-2 border-muted">
                   <Image
-                    src={user?.avatar || ""}
-                    alt={user?.name || ""}
+                    src={user?.avatar || ''}
+                    alt={user?.name || ''}
                     fill
                     className="object-cover"
                   />
@@ -160,7 +160,7 @@ export default function DashboardPage() {
                                 {purchase.product}
                               </h3>
                               <p className="text-sm text-muted-foreground">
-                                Order #{purchase.id} •{" "}
+                                Order #{purchase.id} •{' '}
                                 {new Date(purchase.date).toLocaleDateString()}
                               </p>
                             </div>
@@ -168,9 +168,9 @@ export default function DashboardPage() {
                               variant="outline"
                               className="mt-2 md:mt-0 w-fit"
                             >
-                              {purchase.status === "active"
-                                ? "Active"
-                                : "Expired"}
+                              {purchase.status === 'active'
+                                ? 'Active'
+                                : 'Expired'}
                             </Badge>
                           </div>
                           <div className="bg-muted/50 p-3 rounded-md mb-4">

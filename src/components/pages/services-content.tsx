@@ -1,30 +1,30 @@
-"use client";
+'use client';
 
+import { useVariableValue } from '@devcycle/nextjs-sdk';
+import { motion } from 'framer-motion';
 import {
   ArrowLeft,
   CheckCircle,
   Code2,
   Headphones,
   LifeBuoy,
-  LucideIcon,
+  type LucideIcon,
   Pen,
   Settings2,
   ShieldCheck,
-} from "lucide-react";
-import { Button } from "../ui/button";
-import Link from "next/link";
+} from 'lucide-react';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import type { Service } from '@/types/portfolio-types';
+import { Button } from '../ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
-import { motion } from "framer-motion";
-import { Service } from "@/types/portfolio-types";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { useVariableValue } from "@devcycle/nextjs-sdk";
+} from '../ui/card';
 
 const iconMap: Record<string, LucideIcon> = {
   Settings2,
@@ -51,44 +51,44 @@ export default function ServiceContent({
 }: ServicesPageProps) {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const searchParams = useSearchParams();
-  const services = useVariableValue("services", {
-    status: "off",
+  const services = useVariableValue('services', {
+    status: 'off',
   }).services?.valueOf() as Service[] | undefined;
 
   useEffect(() => {
-    const serviceId = searchParams.get("service");
+    const serviceId = searchParams.get('service');
     if (serviceId) {
       const service = services?.find((s) => s.id === serviceId);
       if (service) {
         setSelectedService(service);
         // Scroll to timeline section after a short delay
         setTimeout(() => {
-          const timelineElement = document.getElementById("service-timeline");
+          const timelineElement = document.getElementById('service-timeline');
           if (timelineElement) {
             timelineElement.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
+              behavior: 'smooth',
+              block: 'start',
             });
           }
         }, 100);
       }
     }
-  }, [searchParams]);
+  }, [searchParams, services?.find]);
 
   const handleServiceClick = (service: Service) => {
     setSelectedService(service);
     // Update URL without page reload
     const url = new URL(window.location.href);
-    url.searchParams.set("service", service.id);
-    window.history.pushState({}, "", url.toString());
+    url.searchParams.set('service', service.id);
+    window.history.pushState({}, '', url.toString());
 
     // Scroll to timeline section
     setTimeout(() => {
-      const timelineElement = document.getElementById("service-timeline");
+      const timelineElement = document.getElementById('service-timeline');
       if (timelineElement) {
         timelineElement.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
+          behavior: 'smooth',
+          block: 'start',
         });
       }
     }, 100);
@@ -125,8 +125,8 @@ export default function ServiceContent({
               <Card
                 className={`h-full flex flex-col group hover:shadow-lg transition-all duration-300 border-2 cursor-pointer bg-gradient-to-br from-background to-muted/20 ${
                   selectedService?.id === service.id
-                    ? "border-primary shadow-lg ring-2 ring-primary/20"
-                    : "hover:border-primary/20"
+                    ? 'border-primary shadow-lg ring-2 ring-primary/20'
+                    : 'hover:border-primary/20'
                 }`}
                 onClick={() => handleServiceClick(service)}
               >
@@ -183,7 +183,7 @@ export default function ServiceContent({
               {selectedService.title} Process
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Here's my proven process for delivering exceptional{" "}
+              Here's my proven process for delivering exceptional{' '}
               {selectedService.title.toLowerCase()} results.
             </p>
           </div>
@@ -203,7 +203,7 @@ export default function ServiceContent({
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: index * 0.2 }}
                     className={`relative flex items-center ${
-                      index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+                      index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                     }`}
                   >
                     {/* Timeline dot */}
@@ -212,7 +212,7 @@ export default function ServiceContent({
                     {/* Content card */}
                     <div
                       className={`w-full md:w-5/12 ${
-                        index % 2 === 0 ? "md:pr-8" : "md:pl-8"
+                        index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'
                       }`}
                     >
                       <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 bg-gradient-to-br from-background to-muted/10">
@@ -248,7 +248,7 @@ export default function ServiceContent({
                           <div className="flex justify-between items-center pt-3 border-t border-muted">
                             <div className="text-sm">
                               <span className="text-muted-foreground">
-                                Duration:{" "}
+                                Duration:{' '}
                               </span>
                               <span className="font-medium">
                                 {item.duration}
@@ -256,7 +256,7 @@ export default function ServiceContent({
                             </div>
                             <div className="text-sm">
                               <span className="text-muted-foreground">
-                                Cost:{" "}
+                                Cost:{' '}
                               </span>
                               <span className="font-medium text-primary">
                                 {item.cost}
@@ -291,7 +291,7 @@ export default function ServiceContent({
         <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
           {selectedService
             ? `Let's discuss your ${selectedService.title.toLowerCase()} project and see how I can help bring your vision to life.`
-            : "Let's discuss your project and see how I can help bring your vision to life."}{" "}
+            : "Let's discuss your project and see how I can help bring your vision to life."}{' '}
           Book your free discovery call today - no strings attached!
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

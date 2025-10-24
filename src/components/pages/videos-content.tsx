@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { Data as portfolioData } from "@/data/portfolio-data";
-import { Video } from "@/types/portfolio-types";
-import { useTheme } from "next-themes";
-import Link from "next/link";
-import { Card, CardContent, CardFooter } from "../ui/card";
-import Image from "next/image";
-import { ArrowLeft, Bell, Eye, Heart, MessageSquare, Play } from "lucide-react";
-import { useEffect, useState } from "react";
-import { CACHE_DURATION } from "@/lib/constants";
-import { Button } from "../ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import { FaYoutube } from "react-icons/fa6";
+import { ArrowLeft, Bell, Eye, Heart, MessageSquare, Play } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { FaYoutube } from 'react-icons/fa6';
+import { Data as portfolioData } from '@/data/portfolio-data';
+import { CACHE_DURATION } from '@/lib/constants';
+import type { Video } from '@/types/portfolio-types';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardFooter } from '../ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 // Format view count
 function formatViewCount(count: number): string {
@@ -26,10 +26,10 @@ function formatViewCount(count: number): string {
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
   });
 }
 
@@ -57,7 +57,7 @@ function VideoCard({ video }: { video: Video }) {
       <Card className="h-full flex flex-col overflow-hidden hover:border-primary/50">
         <div className="relative aspect-video w-full group cursor-pointer">
           <Image
-            src={video.thumbnail || "/placeholder.svg"}
+            src={video.thumbnail || '/placeholder.svg'}
             alt={video.title}
             fill
             className="object-cover"
@@ -66,13 +66,13 @@ function VideoCard({ video }: { video: Video }) {
             <div className="rounded-full bg-primary/90 p-3">
               <Play
                 className="h-6 w-6"
-                fill={theme !== "dark" ? "white" : "black"}
+                fill={theme !== 'dark' ? 'white' : 'black'}
               />
             </div>
           </div>
           <span className="sr-only">Watch {video.title}</span>
         </div>
-        <CardContent className="p-4 flex-grow">
+        <CardContent className="p-4 grow">
           <h3 className="font-medium line-clamp-2 mb-2">{video.title}</h3>
           <p className="text-xs text-muted-foreground mb-1">
             {formatDate(video.publishDate)}
@@ -103,7 +103,7 @@ function VideoSkeleton() {
   return (
     <Card className="h-full flex flex-col overflow-hidden">
       <div className="aspect-video w-full bg-muted animate-pulse" />
-      <CardContent className="p-4 flex-grow">
+      <CardContent className="p-4 grow">
         <div className="h-4 bg-muted rounded animate-pulse mb-2" />
         <div className="h-4 bg-muted rounded animate-pulse w-3/4 mb-2" />
         <div className="h-3 bg-muted rounded animate-pulse w-1/2" />
@@ -117,7 +117,7 @@ function VideoSkeleton() {
 }
 
 export default function VideoContent() {
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState('all');
   const [isLoading, setIsLoading] = useState(true);
   const [videos, setVideos] = useState<Video[]>([]);
   const [channelStats, setChannelStats] = useState({
@@ -150,12 +150,12 @@ export default function VideoContent() {
 
   // Filter videos based on active tab
   const getFilteredVideos = () => {
-    if (activeTab === "all") return videos;
+    if (activeTab === 'all') return videos;
     return videos.filter((video) => video.category === activeTab);
   };
 
   return (
-    <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
+    <div className="container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
       <div className="flex items-center gap-4 mb-8">
         <Button variant="outline" size="sm" asChild>
           <Link href="/#videos">
@@ -181,7 +181,7 @@ export default function VideoContent() {
               ? Array.from({ length: 4 }).map((_, index) => (
                   <VideoSkeleton key={index} />
                 ))
-              : getFilteredVideos().map((video, index) => (
+              : getFilteredVideos().map((video) => (
                   <div key={video.id}>
                     <VideoCard video={video} />
                   </div>

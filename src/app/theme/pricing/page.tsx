@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -7,8 +7,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Check, ArrowRight, ArrowLeft } from "lucide-react";
+} from '@/components/ui/card';
+import { Check, ArrowRight, ArrowLeft } from 'lucide-react';
 
 export default function PricingPage() {
   return (
@@ -44,12 +44,12 @@ export default function PricingPage() {
           <CardContent className="flex-grow">
             <ul className="space-y-2">
               {[
-                "Complete portfolio template",
-                "Responsive design",
-                "Dark/light mode",
-                "Basic components",
-                "6 months of updates",
-                "Community support",
+                'Complete portfolio template',
+                'Responsive design',
+                'Dark/light mode',
+                'Basic components',
+                '6 months of updates',
+                'Community support',
               ].map((feature) => (
                 <li key={feature} className="flex items-start">
                   <Check className="h-5 w-5 text-primary shrink-0 mr-2" />
@@ -86,13 +86,13 @@ export default function PricingPage() {
           <CardContent className="flex-grow">
             <ul className="space-y-2">
               {[
-                "Everything in Basic",
-                "Advanced components",
-                "Multiple page templates",
-                "Custom sections",
-                "1 year of updates",
-                "Priority support",
-                "Use on up to 5 projects",
+                'Everything in Basic',
+                'Advanced components',
+                'Multiple page templates',
+                'Custom sections',
+                '1 year of updates',
+                'Priority support',
+                'Use on up to 5 projects',
               ].map((feature) => (
                 <li key={feature} className="flex items-start">
                   <Check className="h-5 w-5 text-primary shrink-0 mr-2" />
@@ -124,13 +124,13 @@ export default function PricingPage() {
           <CardContent className="flex-grow">
             <ul className="space-y-2">
               {[
-                "Everything in Professional",
-                "Unlimited projects",
-                "Custom branding",
-                "Advanced integrations",
-                "Lifetime updates",
-                "Dedicated support",
-                "1-hour consultation call",
+                'Everything in Professional',
+                'Unlimited projects',
+                'Custom branding',
+                'Advanced integrations',
+                'Lifetime updates',
+                'Dedicated support',
+                '1-hour consultation call',
               ].map((feature) => (
                 <li key={feature} className="flex items-start">
                   <Check className="h-5 w-5 text-primary shrink-0 mr-2" />

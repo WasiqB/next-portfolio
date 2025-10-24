@@ -1,21 +1,21 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { Data } from "@/data/portfolio-data";
-import type { TestimonialsData } from "@/types/portfolio-types";
-import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Data } from '@/data/portfolio-data';
+import type { TestimonialsData } from '@/types/portfolio-types';
 
 const testimonials: TestimonialsData = Data.testimonials;
 
 export default function Testimonials() {
   // Only show featured testimonials on the home page
   const featuredTestimonials = testimonials.testimonials.filter(
-    (testimonial) => testimonial.featured
+    (testimonial) => testimonial.featured,
   );
   const [currentIndex, setCurrentIndex] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
@@ -23,7 +23,7 @@ export default function Testimonials() {
 
   const nextTestimonial = () => {
     setCurrentIndex(
-      (prevIndex: number) => (prevIndex + 1) % featuredTestimonials.length
+      (prevIndex: number) => (prevIndex + 1) % featuredTestimonials.length,
     );
   };
 
@@ -31,7 +31,7 @@ export default function Testimonials() {
     setCurrentIndex(
       (prevIndex: number) =>
         (prevIndex - 1 + featuredTestimonials.length) %
-        featuredTestimonials.length
+        featuredTestimonials.length,
     );
   };
 
@@ -102,7 +102,7 @@ export default function Testimonials() {
                       <Image
                         src={
                           featuredTestimonials[currentIndex].image ||
-                          "/placeholder.svg"
+                          '/placeholder.svg'
                         }
                         alt={featuredTestimonials[currentIndex].name}
                         fill
@@ -114,7 +114,7 @@ export default function Testimonials() {
                         {featuredTestimonials[currentIndex].name}
                       </div>
                       <div className="text-sm text-muted-foreground text-wrap">
-                        {featuredTestimonials[currentIndex].title},{" "}
+                        {featuredTestimonials[currentIndex].title},{' '}
                         {featuredTestimonials[currentIndex].company}
                       </div>
                     </div>
@@ -126,29 +126,29 @@ export default function Testimonials() {
         </div>
 
         {/* Navigation buttons */}
-        <button
+        <Button
           onClick={prevTestimonial}
           className="absolute left-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-2 shadow-md hover:bg-muted transition-colors"
           aria-label="Previous testimonial"
         >
           <ChevronLeft className="h-5 w-5" />
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={nextTestimonial}
           className="absolute right-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-2 shadow-md hover:bg-muted transition-colors"
           aria-label="Next testimonial"
         >
           <ChevronRight className="h-5 w-5" />
-        </button>
+        </Button>
 
         {/* Indicators */}
         <div className="flex justify-center gap-2 mt-6">
           {featuredTestimonials.map((_, index) => (
-            <button
+            <Button
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-2 h-2 rounded-full transition-all ${
-                index === currentIndex ? "bg-primary w-4" : "bg-muted"
+                index === currentIndex ? 'bg-primary w-4' : 'bg-muted'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />
@@ -158,7 +158,7 @@ export default function Testimonials() {
 
       <div className="flex justify-center mt-8">
         <Button asChild>
-          <Link href={testimonials.viewAllButton?.href || "/#testimonials"}>
+          <Link href={testimonials.viewAllButton?.href || '/#testimonials'}>
             {testimonials.viewAllButton?.text}
           </Link>
         </Button>

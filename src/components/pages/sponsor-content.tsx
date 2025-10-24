@@ -1,18 +1,22 @@
-"use client";
+'use client';
 
-import { Data as portfolioData } from "@/data/portfolio-data";
-import { Sponsor, SponsorsData, SponsorTier } from "@/types/portfolio-types";
-import Image from "next/image";
-import Link from "next/link";
-import { Button } from "../ui/button";
-import { ArrowLeft, Heart } from "lucide-react";
+import { ArrowLeft, Heart } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Data as portfolioData } from '@/data/portfolio-data';
+import type {
+  Sponsor,
+  SponsorsData,
+  SponsorTier,
+} from '@/types/portfolio-types';
+import { Button } from '../ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from '../ui/card';
 
 function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
   return (
@@ -24,7 +28,7 @@ function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
     >
       <div className="relative aspect-square overflow-hidden rounded-full border-2 border-muted transition-all hover:border-primary">
         <Image
-          src={sponsor.avatarUrl || "/placeholder.svg"}
+          src={sponsor.avatarUrl || '/placeholder.svg'}
           alt={sponsor.name}
           fill
           className="object-cover transition-transform group-hover:scale-105"
@@ -47,16 +51,16 @@ function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
 
 function getTierClass(tier: string) {
   switch (tier) {
-    case "platinum":
-      return "bg-gradient-to-r from-slate-300 to-slate-400";
-    case "gold":
-      return "bg-gradient-to-r from-yellow-300 to-yellow-400";
-    case "silver":
-      return "bg-gradient-to-r from-gray-300 to-gray-400";
-    case "bronze":
-      return "bg-gradient-to-r from-amber-600 to-amber-700";
+    case 'platinum':
+      return 'bg-gradient-to-r from-slate-300 to-slate-400';
+    case 'gold':
+      return 'bg-gradient-to-r from-yellow-300 to-yellow-400';
+    case 'silver':
+      return 'bg-gradient-to-r from-gray-300 to-gray-400';
+    case 'bronze':
+      return 'bg-gradient-to-r from-amber-600 to-amber-700';
     default:
-      return "bg-muted";
+      return 'bg-muted';
   }
 }
 
@@ -66,14 +70,14 @@ export default function SponsorContent() {
 
   const getSponsorsByTier = (tier: string) =>
     sponsors.sponsors.filter(
-      (s) => s.tier === tier && tier !== "one_time" && tier !== "donation"
+      (s) => s.tier === tier && tier !== 'one_time' && tier !== 'donation',
     );
   const otherSponsors = sponsors.sponsors.filter(
-    (s) => s.tier === "one_time" || s.tier === "donation"
+    (s) => s.tier === 'one_time' || s.tier === 'donation',
   );
 
   return (
-    <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
+    <div className="container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
       <div className="flex items-center gap-4 mb-8">
         <Button variant="outline" size="sm" asChild>
           <Link href="/#sponsors">
@@ -155,9 +159,7 @@ export default function SponsorContent() {
             <div className="mb-12" key={tier.slug}>
               <h3 className="text-xl font-semibold mb-4 inline-flex items-center">
                 <span
-                  className={
-                    getTierClass(tier.slug) + " w-6 h-6 rounded-full mr-2"
-                  }
+                  className={`${getTierClass(tier.slug)} w-6 h-6 rounded-full mr-2`}
                 ></span>
                 {tier.name} Sponsors
               </h3>
@@ -193,20 +195,18 @@ export default function SponsorContent() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <span
-                    className={
-                      getTierClass(tier.slug) + " w-4 h-4 rounded-full"
-                    }
+                    className={`${getTierClass(tier.slug)} w-4 h-4 rounded-full`}
                   ></span>
                   {tier.name}
                 </CardTitle>
                 <CardDescription>{tier.description}</CardDescription>
                 <div className="mt-4">
                   <span className="text-2xl font-bold">
-                    {tier.price ? "$" + tier.price + "/mo" : "Any amount"}
+                    {tier.price ? `$${tier.price}/mo` : 'Any amount'}
                   </span>
                 </div>
               </CardHeader>
-              <CardContent className="flex-grow">
+              <CardContent className="grow">
                 <ul className="space-y-2">
                   {tier.benefits.map((benefit) => (
                     <li key={benefit} className="flex items-start">

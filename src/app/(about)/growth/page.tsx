@@ -1,6 +1,6 @@
-import type React from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import type React from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   ArrowLeft,
   ArrowUpRight,
@@ -16,8 +16,8 @@ import {
   Linkedin,
   Twitter,
   Youtube,
-} from "lucide-react";
-import { FaHashtag, FaMedium, FaNpm, FaJava } from "react-icons/fa";
+} from 'lucide-react';
+import { FaHashtag, FaMedium, FaNpm, FaJava } from 'react-icons/fa';
 
 // Define the platform type
 interface Platform {
@@ -34,92 +34,92 @@ interface Platform {
 // Sample platform data
 const platforms: Platform[] = [
   {
-    name: "YouTube",
+    name: 'YouTube',
     icon: <Youtube className="h-6 w-6" />,
-    url: "https://youtube.com/@johndoe",
+    url: 'https://youtube.com/@johndoe',
     stats: [
-      { label: "Subscribers", value: "25.4K" },
-      { label: "Total Views", value: "1.2M" },
-      { label: "Videos", value: 87 },
+      { label: 'Subscribers', value: '25.4K' },
+      { label: 'Total Views', value: '1.2M' },
+      { label: 'Videos', value: 87 },
     ],
-    color: "bg-red-500",
+    color: 'bg-red-500',
   },
   {
-    name: "GitHub",
+    name: 'GitHub',
     icon: <Github className="h-6 w-6" />,
-    url: "https://github.com/johndoe",
+    url: 'https://github.com/johndoe',
     stats: [
-      { label: "Followers", value: "3.2K" },
-      { label: "Repositories", value: 142 },
-      { label: "Stars", value: "12.5K" },
+      { label: 'Followers', value: '3.2K' },
+      { label: 'Repositories', value: 142 },
+      { label: 'Stars', value: '12.5K' },
     ],
-    color: "bg-gray-800",
+    color: 'bg-gray-800',
   },
   {
-    name: "LinkedIn",
+    name: 'LinkedIn',
     icon: <Linkedin className="h-6 w-6" />,
-    url: "https://linkedin.com/in/johndoe",
+    url: 'https://linkedin.com/in/johndoe',
     stats: [
-      { label: "Connections", value: "5.8K" },
-      { label: "Followers", value: "7.2K" },
-      { label: "Posts", value: 124 },
+      { label: 'Connections', value: '5.8K' },
+      { label: 'Followers', value: '7.2K' },
+      { label: 'Posts', value: 124 },
     ],
-    color: "bg-blue-600",
+    color: 'bg-blue-600',
   },
   {
-    name: "Twitter",
+    name: 'Twitter',
     icon: <Twitter className="h-6 w-6" />,
-    url: "https://twitter.com/johndoe",
+    url: 'https://twitter.com/johndoe',
     stats: [
-      { label: "Followers", value: "18.7K" },
-      { label: "Following", value: 843 },
-      { label: "Tweets", value: "3.4K" },
+      { label: 'Followers', value: '18.7K' },
+      { label: 'Following', value: 843 },
+      { label: 'Tweets', value: '3.4K' },
     ],
-    color: "bg-sky-500",
+    color: 'bg-sky-500',
   },
   {
-    name: "Hashnode",
+    name: 'Hashnode',
     icon: <FaHashtag className="h-6 w-6" />,
-    url: "https://hashnode.com/@johndoe",
+    url: 'https://hashnode.com/@johndoe',
     stats: [
-      { label: "Followers", value: "4.3K" },
-      { label: "Articles", value: 56 },
-      { label: "Reactions", value: "9.7K" },
+      { label: 'Followers', value: '4.3K' },
+      { label: 'Articles', value: 56 },
+      { label: 'Reactions', value: '9.7K' },
     ],
-    color: "bg-blue-700",
+    color: 'bg-blue-700',
   },
   {
-    name: "Medium",
+    name: 'Medium',
     icon: <FaMedium className="h-6 w-6" />,
-    url: "https://medium.com/@johndoe",
+    url: 'https://medium.com/@johndoe',
     stats: [
-      { label: "Followers", value: "6.1K" },
-      { label: "Articles", value: 78 },
-      { label: "Claps", value: "32.5K" },
+      { label: 'Followers', value: '6.1K' },
+      { label: 'Articles', value: 78 },
+      { label: 'Claps', value: '32.5K' },
     ],
-    color: "bg-black",
+    color: 'bg-black',
   },
   {
-    name: "Maven Projects",
+    name: 'Maven Projects',
     icon: <FaJava className="h-6 w-6" />,
-    url: "https://mvnrepository.com/search?q=johndoe",
+    url: 'https://mvnrepository.com/search?q=johndoe',
     stats: [
-      { label: "Projects", value: 12 },
-      { label: "Downloads", value: "1.8M" },
-      { label: "Stars", value: "3.2K" },
+      { label: 'Projects', value: 12 },
+      { label: 'Downloads', value: '1.8M' },
+      { label: 'Stars', value: '3.2K' },
     ],
-    color: "bg-orange-600",
+    color: 'bg-orange-600',
   },
   {
-    name: "NPM Packages",
+    name: 'NPM Packages',
     icon: <FaNpm className="h-6 w-6" />,
-    url: "https://www.npmjs.com/~johndoe",
+    url: 'https://www.npmjs.com/~johndoe',
     stats: [
-      { label: "Packages", value: 23 },
-      { label: "Downloads", value: "4.5M" },
-      { label: "GitHub Stars", value: "7.8K" },
+      { label: 'Packages', value: 23 },
+      { label: 'Downloads', value: '4.5M' },
+      { label: 'GitHub Stars', value: '7.8K' },
     ],
-    color: "bg-red-600",
+    color: 'bg-red-600',
   },
 ];
 
@@ -184,7 +184,7 @@ export default function GrowthPage() {
                 <div className="w-full h-1 bg-muted overflow-hidden rounded-full">
                   <div
                     className={`h-full ${platform.color} transition-all duration-500 group-hover:w-full`}
-                    style={{ width: "60%" }}
+                    style={{ width: '60%' }}
                   ></div>
                 </div>
               </CardFooter>

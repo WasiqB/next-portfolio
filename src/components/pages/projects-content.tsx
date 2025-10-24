@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { Project } from "@/types/portfolio-types";
-import { useEffect, useState } from "react";
-import { Data as portfolioData } from "@/data/portfolio-data";
-import { getGitHubApiUrl } from "@/lib/github-utils";
-import { Button } from "../ui/button";
-import Link from "next/link";
-import { ArrowLeft, GitFork, Star } from "lucide-react";
+import type { Project } from '@/types/portfolio-types';
+import { useEffect, useState } from 'react';
+import { Data as portfolioData } from '@/data/portfolio-data';
+import { getGitHubApiUrl } from '@/lib/github-utils';
+import { Button } from '../ui/button';
+import Link from 'next/link';
+import { ArrowLeft, GitFork, Star } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -14,10 +14,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../ui/card";
-import { Skeleton } from "../ui/skeleton";
-import { Badge } from "../ui/badge";
-import { FaGithub } from "react-icons/fa6";
+} from '../ui/card';
+import { Skeleton } from '../ui/skeleton';
+import { Badge } from '../ui/badge';
+import { FaGithub } from 'react-icons/fa6';
 
 export default function ProjectPageContent() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -47,15 +47,15 @@ export default function ProjectPageContent() {
             return {
               ...projectData,
             };
-          }
+          },
         );
 
         const fetchedProjects = (await Promise.all(projectPromises)).filter(
-          Boolean
+          Boolean,
         ) as Project[];
         setProjects(fetchedProjects);
       } catch (error) {
-        console.error("Error fetching projects:", error);
+        console.error('Error fetching projects:', error);
       } finally {
         setLoading(false);
       }

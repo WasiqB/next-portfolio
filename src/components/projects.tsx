@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 import {
   Card,
   CardContent,
@@ -8,16 +8,16 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { GitFork, Star } from "lucide-react";
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import { Data as portfolioData } from "@/data/portfolio-data";
-import { ProjectsData, Project } from "@/types/portfolio-types";
-import { getGitHubApiUrl } from "@/lib/github-utils";
-import { Skeleton } from "./ui/skeleton";
+} from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { GitFork, Star } from 'lucide-react';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { Data as portfolioData } from '@/data/portfolio-data';
+import type { ProjectsData, Project } from '@/types/portfolio-types';
+import { getGitHubApiUrl } from '@/lib/github-utils';
+import { Skeleton } from './ui/skeleton';
 
 export default function Projects() {
   const projectsData: ProjectsData = portfolioData.projects;
@@ -52,11 +52,11 @@ export default function Projects() {
           });
 
         const fetchedProjects = (await Promise.all(projectPromises)).filter(
-          Boolean
+          Boolean,
         ) as (Project & { tags: string[] })[];
         setProjects(fetchedProjects);
       } catch (error) {
-        console.error("Error fetching projects:", error);
+        console.error('Error fetching projects:', error);
       } finally {
         setLoading(false);
       }

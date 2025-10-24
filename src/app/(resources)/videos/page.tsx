@@ -1,9 +1,9 @@
-import VideoContent from "@/components/pages/videos-content";
-import { Metadata } from "next";
+import VideoContent from '@/components/pages/videos-content';
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "My Videos",
-  description: "My videos on various testing related topics",
+  title: 'My Videos',
+  description: 'My videos on various testing related topics',
 };
 
 export default function VideosPage() {

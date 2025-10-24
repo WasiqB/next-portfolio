@@ -1,7 +1,7 @@
-import { stripHtml } from "string-strip-html";
-import * as cheerio from "cheerio";
-import { Blog } from "@/types/portfolio-types";
-import { CACHE_DURATION } from "./constants";
+import * as cheerio from 'cheerio';
+import { stripHtml } from 'string-strip-html';
+import type { Blog } from '@/types/portfolio-types';
+import { CACHE_DURATION } from './constants';
 
 const scrapeWebsite = async (url: string): Promise<Blog> => {
   const response = await fetch(url);
@@ -9,19 +9,19 @@ const scrapeWebsite = async (url: string): Promise<Blog> => {
   const $ = cheerio.load(html);
 
   const getMeta = (name: string) =>
-    $(`meta[name="${name}"]`).attr("content") ||
-    $(`meta[property="${name}"]`).attr("content") ||
-    $(`meta[property="og:${name}"]`).attr("content") ||
-    $(`meta[property="twitter:${name}"]`).attr("content");
+    $(`meta[name="${name}"]`).attr('content') ||
+    $(`meta[property="${name}"]`).attr('content') ||
+    $(`meta[property="og:${name}"]`).attr('content') ||
+    $(`meta[property="twitter:${name}"]`).attr('content');
 
   return {
-    source: getMeta("site_name") || "",
-    title: getMeta("title") || $("title").text() || "",
-    description: getMeta("description") || "",
-    image: getMeta("image") || "",
+    source: getMeta('site_name') || '',
+    title: getMeta('title') || $('title').text() || '',
+    description: getMeta('description') || '',
+    image: getMeta('image') || '',
     url,
     publishedAt: new Date(
-      getMeta("article:published_time") || ""
+      getMeta('article:published_time') || '',
     ).toISOString(),
     tags: [],
   } satisfies Blog;
@@ -51,11 +51,11 @@ const extractThumbnailFromMedium = (html: string) => {
   if (match && match.length >= 3) {
     return match[2];
   } else {
-    return "";
+    return '';
   }
 };
 
-const textEllipsis = (str: string, length = 100, ending = "...") => {
+const textEllipsis = (str: string, length = 100, ending = '...') => {
   if (str.length > length) {
     return str.substring(0, length - ending.length) + ending;
   } else {
@@ -68,25 +68,25 @@ const formatMediumPost = (post: any) => {
     title: post.title.trim(),
     description: textEllipsis(
       stripHtml(post.content, {
-        stripTogetherWithTheirContents: ["script", "style", "xml", "figure"],
+        stripTogetherWithTheirContents: ['script', 'style', 'xml', 'figure'],
       })
-        .result.replace("\n", "")
-        .trim()
+        .result.replace('\n', '')
+        .trim(),
     ),
     image:
       post.thumbnail ||
       extractThumbnailFromMedium(
         stripHtml(post.content, {
-          ignoreTagsWithTheirContents: ["figure"],
-          stripTogetherWithTheirContents: ["script", "style", "xml", "p"],
+          ignoreTagsWithTheirContents: ['figure'],
+          stripTogetherWithTheirContents: ['script', 'style', 'xml', 'p'],
         })
-          .result.replace("\n", "")
-          .trim()
+          .result.replace('\n', '')
+          .trim(),
       ),
     url: post.guid,
     tags: post.categories,
     publishedAt: new Date(post.pubDate).toISOString(),
-    source: "Medium",
+    source: 'Medium',
   } satisfies Blog;
 };
 
@@ -94,12 +94,12 @@ const getMediumPost = async (user: string) => {
   try {
     if (!user) return [];
 
-    let response = await request(
-      `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${user}`
+    const response = await request(
+      `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${user}`,
     );
 
     return response.items.map((item: any) => formatMediumPost(item));
-  } catch (error) {
+  } catch (_error) {
     return [];
   }
 };

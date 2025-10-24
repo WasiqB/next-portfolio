@@ -1,5 +1,4 @@
-import { CACHE_DURATION } from "@/lib/constants";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from 'next/server';
 
 interface GitHubRepo {
   name: string;
@@ -17,8 +16,12 @@ interface GitHubRepo {
 export const config = { revalidate: 86400 };
 
 export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ owner: string; repo: string }> }
+  _request: NextRequest,
+  {
+    params,
+  }: {
+    params: Promise<{ owner: string; repo: string }>;
+  },
 ) {
   try {
     const { owner, repo } = await params;
@@ -27,8 +30,8 @@ export async function GET(
       `https://api.github.com/repos/${owner}/${repo}`,
       {
         headers: {
-          Accept: "application/vnd.github.v3+json",
-          "User-Agent": "NextJS-Portfolio-App",
+          Accept: 'application/vnd.github.v3+json',
+          'User-Agent': 'NextJS-Portfolio-App',
           ...(process.env.GITHUB_TOKEN
             ? { Authorization: `token ${process.env.GITHUB_TOKEN}` }
             : {}),
@@ -36,13 +39,13 @@ export async function GET(
         next: {
           revalidate: 60 * 60 * 24,
         },
-      }
+      },
     );
 
     if (!response.ok) {
       return NextResponse.json(
         { error: `Failed to fetch repository: ${response.statusText}` },
-        { status: response.status }
+        { status: response.status },
       );
     }
 
@@ -59,10 +62,10 @@ export async function GET(
 
     return NextResponse.json(result);
   } catch (error) {
-    console.error("Error fetching GitHub repository data:", error);
+    console.error('Error fetching GitHub repository data:', error);
     return NextResponse.json(
-      { error: "Failed to fetch repository data" },
-      { status: 500 }
+      { error: 'Failed to fetch repository data' },
+      { status: 500 },
     );
   }
 }

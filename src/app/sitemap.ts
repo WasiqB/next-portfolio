@@ -1,24 +1,24 @@
-import { Data } from "@/data/portfolio-data";
-import { MetadataRoute } from "next";
+import { Data } from '@/data/portfolio-data';
+import type { MetadataRoute } from 'next';
 
 const staticRoutes = [
-  "",
-  "/about",
-  "/testimonials",
-  "/projects",
-  "/services",
-  "/sponsors",
-  "/blogs",
-  "/videos",
+  '',
+  '/about',
+  '/testimonials',
+  '/projects',
+  '/services',
+  '/sponsors',
+  '/blogs',
+  '/videos',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  let sitemap: MetadataRoute.Sitemap = [];
+  const sitemap: MetadataRoute.Sitemap = [];
   staticRoutes.forEach((route) => {
     sitemap.push({
       url: `${Data.url}${route}`,
       lastModified: new Date(),
-      changeFrequency: "daily",
+      changeFrequency: 'daily',
       priority: 1,
     });
   });

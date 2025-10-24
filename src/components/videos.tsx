@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, Eye, Heart, MessageSquare, Play } from "lucide-react";
-import { useState, useEffect } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
-import { Data as portfolioData } from "@/data/portfolio-data";
-import { Video } from "@/types/portfolio-types";
-import { useTheme } from "next-themes";
+import { motion } from 'framer-motion';
+import { Eye, Heart, MessageSquare, Play } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Data as portfolioData } from '@/data/portfolio-data';
+import type { Video } from '@/types/portfolio-types';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 
 // Format view count
 function formatViewCount(count: number): string {
@@ -25,10 +25,10 @@ function formatViewCount(count: number): string {
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
   });
 }
 
@@ -46,7 +46,7 @@ function VideoCard({ video }: { video: Video }) {
       <Card className="h-full flex flex-col overflow-hidden hover:border-primary/50">
         <div className="relative aspect-video w-full group cursor-pointer">
           <Image
-            src={video.thumbnail || "/placeholder.svg"}
+            src={video.thumbnail || '/placeholder.svg'}
             alt={video.title}
             fill
             className="object-cover"
@@ -55,7 +55,7 @@ function VideoCard({ video }: { video: Video }) {
             <div className="rounded-full bg-primary/90 p-3">
               <Play
                 className="h-6 w-6"
-                fill={theme !== "dark" ? "white" : "black"}
+                fill={theme !== 'dark' ? 'white' : 'black'}
               />
             </div>
           </div>
@@ -107,7 +107,7 @@ function VideoSkeleton() {
 
 export default function Videos() {
   const [isLoading, setIsLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState('all');
   const [videos, setVideos] = useState<Video[]>([]);
 
   useEffect(() => {
@@ -129,7 +129,7 @@ export default function Videos() {
 
   // Filter videos based on active tab
   const getFilteredVideos = () => {
-    if (activeTab === "all") return videos.slice(0, 4);
+    if (activeTab === 'all') return videos.slice(0, 4);
     return videos.filter((video) => video.category === activeTab).slice(0, 4);
   };
 

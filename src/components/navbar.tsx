@@ -1,40 +1,42 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
+import { useVariableValue } from '@devcycle/nextjs-sdk';
 import {
-  Moon,
-  Sun,
-  Menu,
-  Home,
-  User,
-  Briefcase,
   BookOpen,
-  MessageSquare,
-  Heart,
+  Briefcase,
   Code,
   FileText,
-  Video,
-  ShoppingCart,
+  Heart,
   Mail,
-  Wrench,
+  Menu,
+  MessageSquare,
+  Moon,
   Package,
+  ShoppingCart,
+  Sun,
   TrendingUp,
-} from "lucide-react";
+  User,
+  Video,
+  Wrench,
+} from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
+import React, { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible';
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+} from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -42,10 +44,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "./ui/navigation-menu";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
-import { useVariableValue } from "@devcycle/nextjs-sdk";
+} from './ui/navigation-menu';
 
 const ListItem = function ListItem(
   {
@@ -55,12 +54,12 @@ const ListItem = function ListItem(
     icon,
     description,
     ...props
-  }: React.ComponentPropsWithoutRef<"a"> & {
+  }: React.ComponentPropsWithoutRef<'a'> & {
     icon?: React.ReactNode;
     title: string;
     description?: string;
   },
-  ref: React.ForwardedRef<HTMLAnchorElement>
+  ref: React.ForwardedRef<HTMLAnchorElement>,
 ) {
   return (
     <li>
@@ -68,8 +67,8 @@ const ListItem = function ListItem(
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            className,
           )}
           {...props}
         >
@@ -90,112 +89,112 @@ const ListItem = function ListItem(
 };
 // Use the new React v19 forwardRef API
 const ListItemWithRef = React.forwardRef(ListItem);
-ListItem.displayName = "ListItem";
+ListItem.displayName = 'ListItem';
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
   const [openCollapsible, setOpenCollapsible] = useState<string | null>(null);
 
-  const showProducts = useVariableValue("show-products", false);
-  const showBuyButton = useVariableValue("show-buy-button", false);
-  const showGrowth = useVariableValue("show-growth", false);
+  const showProducts = useVariableValue('show-products', false);
+  const showBuyButton = useVariableValue('show-buy-button', false);
+  const showGrowth = useVariableValue('show-growth', false);
 
   // Define the navigation structure
   const navigationItems = [
     {
-      name: "About",
-      href: "#",
+      name: 'About',
+      href: '#',
       icon: <User className="h-4 w-4" />,
       submenu: true,
       visible: true,
       items: [
         {
-          name: "About Me",
-          href: "/about",
+          name: 'About Me',
+          href: '/about',
           icon: <User className="h-4 w-4" />,
           visible: true,
-          description: "Learn about my background, experience, and journey",
+          description: 'Learn about my background, experience, and journey',
         },
         {
-          name: "My Growth",
-          href: "/#growth",
+          name: 'My Growth',
+          href: '/#growth',
           icon: <TrendingUp className="h-4 w-4" />,
           visible: !!showGrowth,
-          description: "Track my progress across various platforms",
+          description: 'Track my progress across various platforms',
         },
         {
-          name: "Testimonials",
-          href: "/#testimonials",
+          name: 'Testimonials',
+          href: '/#testimonials',
           icon: <MessageSquare className="h-4 w-4" />,
           visible: true,
-          description: "What clients and colleagues say about my work",
+          description: 'What clients and colleagues say about my work',
         },
       ],
     },
     {
-      name: "Work",
-      href: "#",
+      name: 'Work',
+      href: '#',
       icon: <Briefcase className="h-4 w-4" />,
       submenu: true,
       visible: true,
       items: [
         {
-          name: "Projects",
-          href: "/#projects",
+          name: 'Projects',
+          href: '/#projects',
           icon: <Code className="h-4 w-4" />,
           visible: true,
-          description: "Explore my latest development projects",
+          description: 'Explore my latest development projects',
         },
         {
-          name: "Products",
-          href: "/#products",
+          name: 'Products',
+          href: '/#products',
           icon: <Package className="h-4 w-4" />,
           visible: !!showProducts,
           description: "Software as a Service products I've built",
         },
         {
-          name: "Services",
-          href: "/#services",
+          name: 'Services',
+          href: '/#services',
           icon: <Wrench className="h-4 w-4" />,
           visible: true,
-          description: "Professional services I offer to clients",
+          description: 'Professional services I offer to clients',
         },
         {
-          name: "Sponsors",
-          href: "/#sponsors",
+          name: 'Sponsors',
+          href: '/#sponsors',
           icon: <Heart className="h-4 w-4" />,
           visible: true,
-          description: "Support my work and open source projects",
+          description: 'Support my work and open source projects',
         },
       ],
     },
     {
-      name: "Resources",
-      href: "#",
+      name: 'Resources',
+      href: '#',
       icon: <BookOpen className="h-4 w-4" />,
       visible: true,
       submenu: true,
       items: [
         {
-          name: "Blogs",
-          href: "/#blogs",
+          name: 'Blogs',
+          href: '/#blogs',
           icon: <FileText className="h-4 w-4" />,
           visible: true,
-          description: "Articles and insights on web development",
+          description: 'Articles and insights on web development',
         },
         {
-          name: "Videos",
-          href: "/#videos",
+          name: 'Videos',
+          href: '/#videos',
           icon: <Video className="h-4 w-4" />,
           visible: true,
-          description: "Tutorials and tech talks on YouTube",
+          description: 'Tutorials and tech talks on YouTube',
         },
       ],
     },
     {
-      name: "Contact Me",
-      href: "/#contact",
+      name: 'Contact Me',
+      href: '/#contact',
       icon: <Mail className="h-4 w-4" />,
       submenu: false,
       visible: true,
@@ -219,7 +218,7 @@ export default function Navbar() {
       <div className="max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex h-16 items-center justify-between">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex items-center gap-2" aria-label="Home">
-            {theme === "dark" ? (
+            {theme === 'dark' ? (
               <Image
                 src="/images/logo/dark-logo.png"
                 alt="Logo"
@@ -299,7 +298,7 @@ export default function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
             aria-label="Toggle theme"
           >
             <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -331,7 +330,7 @@ export default function Navbar() {
                         onOpenChange={() => toggleCollapsible(item.name)}
                       >
                         <CollapsibleTrigger asChild>
-                          <button className="flex items-center justify-between w-full text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent">
+                          <Button className="flex items-center justify-between w-full text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent">
                             <span className="flex items-center gap-2">
                               {item.icon}
                               {item.name}
@@ -339,8 +338,8 @@ export default function Navbar() {
                             <svg
                               className={`h-4 w-4 transition-transform ${
                                 openCollapsible === item.name
-                                  ? "rotate-180"
-                                  : ""
+                                  ? 'rotate-180'
+                                  : ''
                               }`}
                               fill="none"
                               stroke="currentColor"
@@ -353,7 +352,7 @@ export default function Navbar() {
                                 d="M19 9l-7 7-7-7"
                               />
                             </svg>
-                          </button>
+                          </Button>
                         </CollapsibleTrigger>
                         <CollapsibleContent className="pl-6 mt-2 space-y-2 border-l border-border">
                           {item.items
@@ -404,10 +403,10 @@ export default function Navbar() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 className="justify-start px-2 mt-4"
               >
-                {theme === "dark" ? (
+                {theme === 'dark' ? (
                   <>
                     <Sun className="h-4 w-4 mr-2" />
                     Light Mode

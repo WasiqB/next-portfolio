@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
-import { Resend } from "resend";
-import { ContactEmail } from "../../../emails/ContactEmail";
-import { Data as portfolioData } from "@/data/portfolio-data";
+import { type NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
+import { z } from 'zod';
+import { Data as portfolioData } from '@/data/portfolio-data';
+import { ContactEmail } from '../../../emails/ContactEmail';
 
 const contactSchema = z.object({
   name: z.string().min(2).max(100),
@@ -21,20 +21,20 @@ export async function POST(req: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json(
         { error: z.treeifyError(parsed.error) },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     const { name, email, reason, message } = parsed.data;
     let reasonName =
       portfolioData.contact.reasons.find((r) => r.value === reason)?.name ||
-      "Other";
-    reasonName = reasonName === "Other" ? "General Inquiry" : reasonName;
+      'Other';
+    reasonName = reasonName === 'Other' ? 'General Inquiry' : reasonName;
 
     await resend.emails.send({
-      from: "User Inquiry <noreply@wasiqbhamla.com>",
+      from: 'User Inquiry <noreply@wasiqbhamla.com>',
       to: portfolioData.contact.email,
-      subject: `User Inquiry: ${reasonName || "General Inquiry"}`,
+      subject: `User Inquiry: ${reasonName || 'General Inquiry'}`,
       replyTo: email,
       react: ContactEmail({
         name,
@@ -45,10 +45,10 @@ export async function POST(req: NextRequest) {
     });
 
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
+      { error: 'Internal Server Error' },
+      { status: 500 },
     );
   }
 }

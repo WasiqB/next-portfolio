@@ -1,28 +1,27 @@
-"use client";
+'use client';
 
-import { motion } from "framer-motion";
+import { useVariableValue } from '@devcycle/nextjs-sdk';
+import { motion } from 'framer-motion';
+import type { LucideIcon } from 'lucide-react';
+import {
+  Code2,
+  Headphones,
+  LifeBuoy,
+  Pen,
+  Settings2,
+  ShieldCheck,
+} from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import {
-  Settings2,
-  Terminal,
-  Pen,
-  Headphones,
-  LifeBuoy,
-  Code2,
-  ShieldCheck,
-} from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Data as portfolioData } from "@/data/portfolio-data";
-import { LucideIcon } from "lucide-react";
-import { useVariableValue } from "@devcycle/nextjs-sdk";
-import { Service } from "@/types/portfolio-types";
+} from '@/components/ui/card';
+import { Data as portfolioData } from '@/data/portfolio-data';
+import type { Service } from '@/types/portfolio-types';
 
 const iconMap: Record<string, LucideIcon> = {
   Settings2,
@@ -36,8 +35,8 @@ const iconMap: Record<string, LucideIcon> = {
 export default function Services() {
   const { sectionTitle, sectionDescription, viewAllButton } =
     portfolioData.services;
-  const services = useVariableValue("services", {
-    status: "off",
+  const services = useVariableValue('services', {
+    status: 'off',
   }).services?.valueOf() as Service[] | undefined;
 
   const handleServiceClick = (serviceId: string) => {

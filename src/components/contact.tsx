@@ -130,7 +130,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24"
+      className="max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -267,7 +267,7 @@ export default function Contact() {
                     >
                       <Button
                         type="submit"
-                        className="w-full h-12 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-lg hover:shadow-xl"
+                        className="w-full h-12 text-base font-semibold bg-linear-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-lg hover:shadow-xl"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? (

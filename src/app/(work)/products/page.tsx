@@ -1,25 +1,9 @@
 import type React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import {
-  ArrowLeft,
-  ExternalLink,
-  Users,
-  Zap,
-  TrendingUp,
-  Rocket,
-  Github,
-  Globe,
-} from 'lucide-react';
+import { ArrowLeft, ExternalLink, Users, Zap, TrendingUp, Rocket, Github, Globe } from 'lucide-react';
 
 // Define the SaaS product type
 interface Product {
@@ -48,8 +32,7 @@ const saasProducts: Product[] = [
     name: 'TaskFlow Pro',
     description:
       "A comprehensive project management and team collaboration platform designed for modern teams. TaskFlow Pro combines powerful project tracking, real-time collaboration, and advanced analytics to help teams stay organized and productive. With custom workflows, integrations, and detailed reporting, it's the perfect solution for teams of all sizes.",
-    shortDescription:
-      'Project management and team collaboration platform for modern teams.',
+    shortDescription: 'Project management and team collaboration platform for modern teams.',
     features: [
       'Real-time collaboration',
       'Advanced analytics',
@@ -63,31 +46,24 @@ const saasProducts: Product[] = [
     status: 'live',
     pricing: 'Starting at $9/month',
     users: '10K+',
-    techStack: [
-      'Next.js',
-      'PostgreSQL',
-      'Redis',
-      'Stripe',
-      'WebSocket',
-      'Docker',
-    ],
+    techStack: ['Next.js', 'PostgreSQL', 'Redis', 'Stripe', 'WebSocket', 'Docker'],
     website: 'https://taskflow-pro.example.com',
     github: 'https://github.com/johndoe/taskflow-pro',
     metrics: [
       {
         label: 'Active Users',
         value: '10K+',
-        icon: <Users className="h-4 w-4" />,
+        icon: <Users className='h-4 w-4' />,
       },
       {
         label: 'Tasks Completed',
         value: '500K+',
-        icon: <Zap className="h-4 w-4" />,
+        icon: <Zap className='h-4 w-4' />,
       },
       {
         label: 'Growth Rate',
         value: '25%',
-        icon: <TrendingUp className="h-4 w-4" />,
+        icon: <TrendingUp className='h-4 w-4' />,
       },
     ],
   },
@@ -116,17 +92,17 @@ const saasProducts: Product[] = [
       {
         label: 'Active Users',
         value: '5K+',
-        icon: <Users className="h-4 w-4" />,
+        icon: <Users className='h-4 w-4' />,
       },
       {
         label: 'Data Points',
         value: '10M+',
-        icon: <Zap className="h-4 w-4" />,
+        icon: <Zap className='h-4 w-4' />,
       },
       {
         label: 'Uptime',
         value: '99.9%',
-        icon: <TrendingUp className="h-4 w-4" />,
+        icon: <TrendingUp className='h-4 w-4' />,
       },
     ],
   },
@@ -149,31 +125,24 @@ const saasProducts: Product[] = [
     status: 'beta',
     pricing: 'Free during beta',
     users: '2K+',
-    techStack: [
-      'Python',
-      'TensorFlow',
-      'FastAPI',
-      'Docker',
-      'Kubernetes',
-      'PostgreSQL',
-    ],
+    techStack: ['Python', 'TensorFlow', 'FastAPI', 'Docker', 'Kubernetes', 'PostgreSQL'],
     website: 'https://codereview-ai.example.com',
     github: 'https://github.com/johndoe/codereview-ai',
     metrics: [
       {
         label: 'Beta Users',
         value: '2K+',
-        icon: <Users className="h-4 w-4" />,
+        icon: <Users className='h-4 w-4' />,
       },
       {
         label: 'Code Reviews',
         value: '50K+',
-        icon: <Zap className="h-4 w-4" />,
+        icon: <Zap className='h-4 w-4' />,
       },
       {
         label: 'Bugs Caught',
         value: '15K+',
-        icon: <TrendingUp className="h-4 w-4" />,
+        icon: <TrendingUp className='h-4 w-4' />,
       },
     ],
   },
@@ -199,13 +168,13 @@ const saasProducts: Product[] = [
     techStack: ['Vue.js', 'Laravel', 'MySQL', 'Redis', 'AWS', 'Elasticsearch'],
     website: 'https://social-sync.example.com',
     metrics: [
-      { label: 'Waitlist', value: '1K+', icon: <Users className="h-4 w-4" /> },
+      { label: 'Waitlist', value: '1K+', icon: <Users className='h-4 w-4' /> },
       {
         label: 'Launch',
         value: 'Q1 2024',
-        icon: <Rocket className="h-4 w-4" />,
+        icon: <Rocket className='h-4 w-4' />,
       },
-      { label: 'Features', value: '50+', icon: <Zap className="h-4 w-4" /> },
+      { label: 'Features', value: '50+', icon: <Zap className='h-4 w-4' /> },
     ],
   },
   {
@@ -233,17 +202,17 @@ const saasProducts: Product[] = [
       {
         label: 'Active Users',
         value: '8K+',
-        icon: <Users className="h-4 w-4" />,
+        icon: <Users className='h-4 w-4' />,
       },
       {
         label: 'Emails Sent',
         value: '50M+',
-        icon: <Zap className="h-4 w-4" />,
+        icon: <Zap className='h-4 w-4' />,
       },
       {
         label: 'Open Rate',
         value: '28%',
-        icon: <TrendingUp className="h-4 w-4" />,
+        icon: <TrendingUp className='h-4 w-4' />,
       },
     ],
   },
@@ -252,8 +221,7 @@ const saasProducts: Product[] = [
     name: 'InvoiceFlow',
     description:
       'Simple yet powerful invoicing and billing software for freelancers and small businesses. Create professional invoices, track payments, manage clients, and generate financial reports. With automated reminders and multiple payment options, getting paid has never been easier.',
-    shortDescription:
-      'Invoicing and billing software for freelancers and small businesses.',
+    shortDescription: 'Invoicing and billing software for freelancers and small businesses.',
     features: [
       'Invoice creation',
       'Payment tracking',
@@ -273,17 +241,17 @@ const saasProducts: Product[] = [
       {
         label: 'Active Users',
         value: '6K+',
-        icon: <Users className="h-4 w-4" />,
+        icon: <Users className='h-4 w-4' />,
       },
       {
         label: 'Invoices Created',
         value: '200K+',
-        icon: <Zap className="h-4 w-4" />,
+        icon: <Zap className='h-4 w-4' />,
       },
       {
         label: 'Revenue Processed',
         value: '$10M+',
-        icon: <TrendingUp className="h-4 w-4" />,
+        icon: <TrendingUp className='h-4 w-4' />,
       },
     ],
   },
@@ -318,88 +286,68 @@ function ProductCard({ product }: { product: Product }) {
   };
 
   return (
-    <Card className="h-full flex flex-col overflow-hidden">
-      <CardHeader className="pb-3">
-        <div className="flex items-start justify-between mb-2">
-          <div className="flex items-center gap-2">
-            <div
-              className={`w-3 h-3 rounded-full ${getStatusColor(
-                product.status,
-              )}`}
-            ></div>
-            <Badge variant="outline" className="text-xs">
+    <Card className='h-full flex flex-col overflow-hidden'>
+      <CardHeader className='pb-3'>
+        <div className='flex items-start justify-between mb-2'>
+          <div className='flex items-center gap-2'>
+            <div className={`w-3 h-3 rounded-full ${getStatusColor(product.status)}`}></div>
+            <Badge variant='outline' className='text-xs'>
               {getStatusText(product.status)}
             </Badge>
           </div>
-          <div className="flex gap-2">
+          <div className='flex gap-2'>
             {product.github && (
-              <Link
-                href={product.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
+              <Link href={product.github} target='_blank' rel='noopener noreferrer'>
+                <Github className='h-4 w-4 text-muted-foreground hover:text-primary transition-colors' />
               </Link>
             )}
-            <Link
-              href={product.website}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Globe className="h-4 w-4 text-muted-foreground hover:text-primary transition-colors" />
+            <Link href={product.website} target='_blank' rel='noopener noreferrer'>
+              <Globe className='h-4 w-4 text-muted-foreground hover:text-primary transition-colors' />
             </Link>
           </div>
         </div>
-        <CardTitle className="text-xl">{product.name}</CardTitle>
+        <CardTitle className='text-xl'>{product.name}</CardTitle>
         <CardDescription>{product.description}</CardDescription>
       </CardHeader>
-      <CardContent className="flex-grow space-y-4">
-        <div className="grid grid-cols-3 gap-2">
+      <CardContent className='flex-grow space-y-4'>
+        <div className='grid grid-cols-3 gap-2'>
           {product.metrics.map((metric, index) => (
-            <div key={index} className="text-center p-2 bg-muted/50 rounded-lg">
-              <div className="flex justify-center mb-1 text-primary">
-                {metric.icon}
-              </div>
-              <div className="text-sm font-semibold">{metric.value}</div>
-              <div className="text-xs text-muted-foreground">
-                {metric.label}
-              </div>
+            <div key={index} className='text-center p-2 bg-muted/50 rounded-lg'>
+              <div className='flex justify-center mb-1 text-primary'>{metric.icon}</div>
+              <div className='text-sm font-semibold'>{metric.value}</div>
+              <div className='text-xs text-muted-foreground'>{metric.label}</div>
             </div>
           ))}
         </div>
-        <div className="space-y-2">
-          <p className="text-sm font-medium">Features:</p>
-          <div className="flex flex-wrap gap-1">
+        <div className='space-y-2'>
+          <p className='text-sm font-medium'>Features:</p>
+          <div className='flex flex-wrap gap-1'>
             {product.features.map((feature) => (
-              <Badge key={feature} variant="secondary" className="text-xs">
+              <Badge key={feature} variant='secondary' className='text-xs'>
                 {feature}
               </Badge>
             ))}
           </div>
         </div>
-        <div className="space-y-2">
-          <p className="text-sm font-medium">Tech Stack:</p>
-          <div className="flex flex-wrap gap-1">
+        <div className='space-y-2'>
+          <p className='text-sm font-medium'>Tech Stack:</p>
+          <div className='flex flex-wrap gap-1'>
             {product.techStack.map((tech) => (
-              <Badge key={tech} variant="outline" className="text-xs">
+              <Badge key={tech} variant='outline' className='text-xs'>
                 {tech}
               </Badge>
             ))}
           </div>
         </div>
       </CardContent>
-      <CardFooter className="pt-0 flex flex-col gap-2">
-        <div className="w-full text-center">
-          <p className="text-sm font-medium text-primary">{product.pricing}</p>
-          <p className="text-xs text-muted-foreground">{product.users}</p>
+      <CardFooter className='pt-0 flex flex-col gap-2'>
+        <div className='w-full text-center'>
+          <p className='text-sm font-medium text-primary'>{product.pricing}</p>
+          <p className='text-xs text-muted-foreground'>{product.users}</p>
         </div>
-        <Button asChild className="w-full">
-          <Link
-            href={product.website}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <ExternalLink className="h-4 w-4 mr-2" />
+        <Button asChild className='w-full'>
+          <Link href={product.website} target='_blank' rel='noopener noreferrer'>
+            <ExternalLink className='h-4 w-4 mr-2' />
             Visit Website
           </Link>
         </Button>
@@ -410,43 +358,38 @@ function ProductCard({ product }: { product: Product }) {
 
 export default function ProductsPage() {
   return (
-    <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
-      <div className="flex items-center gap-4 mb-8">
-        <Button variant="outline" size="sm" asChild>
-          <Link href="/">
-            <ArrowLeft className="h-4 w-4 mr-2" />
+    <div className='container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'>
+      <div className='flex items-center gap-4 mb-8'>
+        <Button variant='outline' size='sm' asChild>
+          <Link href='/'>
+            <ArrowLeft className='h-4 w-4 mr-2' />
             Back to Home
           </Link>
         </Button>
-        <h1 className="text-3xl font-bold">My Products</h1>
+        <h1 className='text-3xl font-bold'>My Products</h1>
       </div>
 
-      <div className="max-w-3xl mx-auto mb-12">
-        <p className="text-lg text-muted-foreground">
-          I've built several SaaS products that solve real-world problems for
-          businesses and developers. Each product is designed with user
-          experience in mind and built using modern technologies for scalability
-          and performance.
+      <div className='max-w-3xl mx-auto mb-12'>
+        <p className='text-lg text-muted-foreground'>
+          I've built several SaaS products that solve real-world problems for businesses and developers. Each product is
+          designed with user experience in mind and built using modern technologies for scalability and performance.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
         {saasProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
 
-      <div className="mt-16 bg-muted/50 rounded-lg p-8 text-center">
-        <h2 className="text-2xl font-bold mb-4">
-          Have an Idea for a SaaS Product?
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto mb-6">
-          I'm always interested in building new SaaS products that solve real
-          problems. If you have an idea or want to collaborate on a project,
-          let's discuss it!
+      <div className='mt-16 bg-muted/50 rounded-lg p-8 text-center'>
+        <h2 className='text-2xl font-bold mb-4'>Have an Idea for a SaaS Product?</h2>
+        <p className='text-muted-foreground max-w-2xl mx-auto mb-6'>
+          I'm always interested in building new SaaS products that solve real problems. If you have an idea or want to
+          collaborate on a project, let's discuss it!
         </p>
         <Button asChild>
-          <Link href="#contact">Let's Talk</Link>
+          <Link href='#contact'>Let's Talk</Link>
         </Button>
       </div>
     </div>

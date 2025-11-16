@@ -68,7 +68,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24"
+      className="max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -137,7 +137,7 @@ export default function Projects() {
                       <CardTitle>{project.title}</CardTitle>
                       <CardDescription>{project.description}</CardDescription>
                     </CardHeader>
-                    <CardContent className="flex-grow">
+                    <CardContent className="grow">
                       <div className="flex flex-wrap gap-2">
                         {project.tags.map((tag) => (
                           <Badge key={tag} variant="secondary">

@@ -173,16 +173,7 @@ export interface AboutData {
   };
 }
 
-type TierType =
-  | 'starter'
-  | 'backer'
-  | 'bronze'
-  | 'silver'
-  | 'gold'
-  | 'diamond'
-  | 'platinum'
-  | 'donation'
-  | 'one_time';
+type TierType = 'starter' | 'backer' | 'bronze' | 'silver' | 'gold' | 'diamond' | 'platinum' | 'donation' | 'one_time';
 
 export interface SponsorTier {
   name: string;

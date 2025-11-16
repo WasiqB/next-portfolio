@@ -20,9 +20,7 @@ const scrapeWebsite = async (url: string): Promise<Blog> => {
     description: getMeta('description') || '',
     image: getMeta('image') || '',
     url,
-    publishedAt: new Date(
-      getMeta('article:published_time') || '',
-    ).toISOString(),
+    publishedAt: new Date(getMeta('article:published_time') || '').toISOString(),
     tags: [],
   } satisfies Blog;
 };
@@ -43,8 +41,7 @@ const request = async (url: string) => {
 };
 
 const extractThumbnailFromMedium = (html: string) => {
-  const figureRegex =
-    /<figure[^>]*>(.*?)<img[^>]*src="([^"]*)"[^>]*>.*?<\/figure>/i;
+  const figureRegex = /<figure[^>]*>(.*?)<img[^>]*src="([^"]*)"[^>]*>.*?<\/figure>/i;
 
   const match = figureRegex.exec(html);
 
@@ -94,9 +91,7 @@ const getMediumPost = async (user: string) => {
   try {
     if (!user) return [];
 
-    const response = await request(
-      `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${user}`,
-    );
+    const response = await request(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${user}`);
 
     return response.items.map((item: any) => formatMediumPost(item));
   } catch (_error) {

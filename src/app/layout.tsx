@@ -94,67 +94,40 @@ export const metadata = {
   },
 };
 
-export default async function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang='en' suppressHydrationWarning>
       <head>
-        <meta name="description" content={metadata.description} />
+        <meta name='description' content={metadata.description} />
         <meta
-          name="keywords"
-          content="Wasiq Bhamla, Software Testing, Web Testing, API Testing, Mobile Testing, Test Automation, Test Automation Framework, Selenium WebDriver, Appium, Rest-Assured, WebDriverIO, JavaScript, Typescript, Open Source"
+          name='keywords'
+          content='Wasiq Bhamla, Software Testing, Web Testing, API Testing, Mobile Testing, Test Automation, Test Automation Framework, Selenium WebDriver, Appium, Rest-Assured, WebDriverIO, JavaScript, Typescript, Open Source'
         />
-        <meta name="author" content="Wasiq Bhamla" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content={metadata.themeColor} />
-        <meta name="robots" content={JSON.stringify(metadata.robots)} />
-        <meta property="og:title" content={metadata.openGraph.title} />
-        <meta
-          property="og:description"
-          content={metadata.openGraph.description}
-        />
-        <meta property="og:url" content={metadata.openGraph.url} />
-        <meta property="og:site_name" content={metadata.openGraph.siteName} />
-        <meta property="og:image" content={metadata.openGraph.images[0].url} />
-        <meta
-          property="og:image:width"
-          content={metadata.openGraph.images[0].width.toString()}
-        />
-        <meta
-          property="og:image:height"
-          content={metadata.openGraph.images[0].height.toString()}
-        />
-        <meta
-          property="og:image:alt"
-          content={metadata.openGraph.images[0].alt}
-        />
-        <meta
-          property="og:image:type"
-          content={metadata.openGraph.images[0].type}
-        />
-        <meta name="twitter:card" content={metadata.twitter.card} />
-        <meta name="twitter:title" content={metadata.twitter.title} />
-        <meta
-          name="twitter:description"
-          content={metadata.twitter.description}
-        />
-        <meta name="twitter:creator" content={metadata.twitter.creator} />
-        <meta name="twitter:image" content={metadata.twitter.images[0]} />
-        <link rel="canonical" href={metadata.alternates.canonical} />
-        <link rel="icon" href={metadata.icons.icon} sizes="any" />
-        <link
-          rel="apple-touch-icon"
-          href={metadata.icons.appleIcon}
-          type="image/<generated>"
-          sizes="<generated>"
-        />
+        <meta name='author' content='Wasiq Bhamla' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta name='theme-color' content={metadata.themeColor} />
+        <meta name='robots' content={JSON.stringify(metadata.robots)} />
+        <meta property='og:title' content={metadata.openGraph.title} />
+        <meta property='og:description' content={metadata.openGraph.description} />
+        <meta property='og:url' content={metadata.openGraph.url} />
+        <meta property='og:site_name' content={metadata.openGraph.siteName} />
+        <meta property='og:image' content={metadata.openGraph.images[0].url} />
+        <meta property='og:image:width' content={metadata.openGraph.images[0].width.toString()} />
+        <meta property='og:image:height' content={metadata.openGraph.images[0].height.toString()} />
+        <meta property='og:image:alt' content={metadata.openGraph.images[0].alt} />
+        <meta property='og:image:type' content={metadata.openGraph.images[0].type} />
+        <meta name='twitter:card' content={metadata.twitter.card} />
+        <meta name='twitter:title' content={metadata.twitter.title} />
+        <meta name='twitter:description' content={metadata.twitter.description} />
+        <meta name='twitter:creator' content={metadata.twitter.creator} />
+        <meta name='twitter:image' content={metadata.twitter.images[0]} />
+        <link rel='canonical' href={metadata.alternates.canonical} />
+        <link rel='icon' href={metadata.icons.icon} sizes='any' />
+        <link rel='apple-touch-icon' href={metadata.icons.appleIcon} type='image/<generated>' sizes='<generated>' />
       </head>
       <body className={inter.className}>
         <script
-          type="application/ld+json"
+          type='application/ld+json'
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
@@ -169,19 +142,14 @@ export default async function RootLayout({
           }}
         />
         <DevCycleClientsideProvider context={getClientContext()}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <div className="flex min-h-screen flex-col">
+          <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+            <div className='flex min-h-screen flex-col'>
               <Navbar />
-              <div className="flex-1">{children}</div>
+              <div className='flex-1'>{children}</div>
               <Footer />
             </div>
             {isProd && <GoogleAnalytics gaId={Data.analytics.gaId} />}
-            <Toaster richColors expand position="top-center" />
+            <Toaster richColors expand position='top-center' />
             {isProd && <CrispChat />}
           </ThemeProvider>
         </DevCycleClientsideProvider>

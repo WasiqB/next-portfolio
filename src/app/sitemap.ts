@@ -1,16 +1,7 @@
-import { Data } from '@/data/portfolio-data';
 import type { MetadataRoute } from 'next';
+import { Data } from '@/data/portfolio-data';
 
-const staticRoutes = [
-  '',
-  '/about',
-  '/testimonials',
-  '/projects',
-  '/services',
-  '/sponsors',
-  '/blogs',
-  '/videos',
-];
+const staticRoutes = ['', '/about', '/testimonials', '/projects', '/services', '/sponsors', '/blogs', '/videos'];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const sitemap: MetadataRoute.Sitemap = [];

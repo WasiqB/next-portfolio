@@ -13,8 +13,6 @@ interface GitHubRepo {
   forks: number;
 }
 
-export const config = { revalidate: 86400 };
-
 export async function GET(
   _request: NextRequest,
   {
@@ -26,21 +24,16 @@ export async function GET(
   try {
     const { owner, repo } = await params;
 
-    const response = await fetch(
-      `https://api.github.com/repos/${owner}/${repo}`,
-      {
-        headers: {
-          Accept: 'application/vnd.github.v3+json',
-          'User-Agent': 'NextJS-Portfolio-App',
-          ...(process.env.GITHUB_TOKEN
-            ? { Authorization: `token ${process.env.GITHUB_TOKEN}` }
-            : {}),
-        },
-        next: {
-          revalidate: 60 * 60 * 24,
-        },
+    const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+      headers: {
+        Accept: 'application/vnd.github.v3+json',
+        'User-Agent': 'NextJS-Portfolio-App',
+        ...(process.env.GITHUB_TOKEN ? { Authorization: `token ${process.env.GITHUB_TOKEN}` } : {}),
       },
-    );
+      next: {
+        revalidate: 60 * 60 * 24,
+      },
+    });
 
     if (!response.ok) {
       return NextResponse.json(
@@ -63,9 +56,6 @@ export async function GET(
     return NextResponse.json(result);
   } catch (error) {
     console.error('Error fetching GitHub repository data:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch repository data' },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: 'Failed to fetch repository data' }, { status: 500 });
   }
 }

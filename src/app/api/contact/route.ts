@@ -19,16 +19,11 @@ export async function POST(req: NextRequest) {
     const parsed = contactSchema.safeParse(body);
 
     if (!parsed.success) {
-      return NextResponse.json(
-        { error: z.treeifyError(parsed.error) },
-        { status: 400 },
-      );
+      return NextResponse.json({ error: z.treeifyError(parsed.error) }, { status: 400 });
     }
 
     const { name, email, reason, message } = parsed.data;
-    let reasonName =
-      portfolioData.contact.reasons.find((r) => r.value === reason)?.name ||
-      'Other';
+    let reasonName = portfolioData.contact.reasons.find((r) => r.value === reason)?.name || 'Other';
     reasonName = reasonName === 'Other' ? 'General Inquiry' : reasonName;
 
     await resend.emails.send({
@@ -46,9 +41,6 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (_error) {
-    return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }

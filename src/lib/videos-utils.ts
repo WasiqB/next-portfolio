@@ -32,8 +32,7 @@ export async function fetchYouTubeVideos({
   );
   if (!channelRes.ok) return [];
   const channelData = await channelRes.json();
-  const uploadsPlaylistId =
-    channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
+  const uploadsPlaylistId = channelData.items?.[0]?.contentDetails?.relatedPlaylists?.uploads;
   if (!uploadsPlaylistId) return [];
 
   // 2. Get all video IDs from uploads playlist (may need to paginate)
@@ -52,9 +51,7 @@ export async function fetchYouTubeVideos({
     );
     if (!playlistRes.ok) break;
     const playlistData = await playlistRes.json();
-    const videoIds = playlistData.items
-      .map((item: any) => item.contentDetails.videoId)
-      .join(',');
+    const videoIds = playlistData.items.map((item: any) => item.contentDetails.videoId).join(',');
     if (!videoIds) break;
 
     // 3. Get video details (snippet, statistics, contentDetails)
@@ -70,17 +67,11 @@ export async function fetchYouTubeVideos({
     const videosData = await videosRes.json();
     videos.push(
       ...videosData.items.map((video: any) => {
-        const isShortVideo = isShort(
-          video.snippet.description,
-          video.snippet.title,
-        );
+        const isShortVideo = isShort(video.snippet.description, video.snippet.title);
         return {
           id: video.id,
           title: video.snippet.title,
-          thumbnail:
-            video.snippet.thumbnails?.high?.url ||
-            video.snippet.thumbnails?.default?.url ||
-            '',
+          thumbnail: video.snippet.thumbnails?.high?.url || video.snippet.thumbnails?.default?.url || '',
           videoUrl: `https://www.youtube.com/watch?v=${video.id}`,
           views: parseInt(video.statistics?.viewCount || '0', 10),
           likes: parseInt(video.statistics?.likeCount || '0', 10),
@@ -95,8 +86,5 @@ export async function fetchYouTubeVideos({
   } while (nextPageToken);
 
   // 4. Sort videos from newest to oldest
-  return videos.sort(
-    (a, b) =>
-      new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime(),
-  );
+  return videos.sort((a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime());
 }

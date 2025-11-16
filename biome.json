@@ -1,50 +1,77 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.3.0/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.3.5/schema.json",
+  "files": {
+    "includes": ["**/*.{ts,tsx,json,jsonc,mjs,css}", "!src/components/**/*.{ts,tsx}"]
+  },
   "vcs": {
     "enabled": true,
     "clientKind": "git",
     "useIgnoreFile": true
   },
-  "files": {
-    "ignoreUnknown": false
-  },
   "formatter": {
     "enabled": true,
-    "indentStyle": "space"
+    "indentWidth": 2,
+    "lineWidth": 120,
+    "lineEnding": "lf",
+    "indentStyle": "space",
+    "formatWithErrors": true
   },
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
-      "suspicious": {
-        "noArrayIndexKey": "off",
-        "noExplicitAny": "off"
-      },
-      "a11y": {
-        "noSvgWithoutTitle": "off",
-        "noStaticElementInteractions": "off"
+      "style": {
+        "useConst": "warn",
+        "recommended": true,
+        "noNonNullAssertion": "off"
       },
       "correctness": {
+        "noUnusedImports": "warn",
+        "recommended": true,
+        "useUniqueElementIds": "off",
         "useExhaustiveDependencies": "off"
       },
+      "suspicious": {
+        "noExplicitAny": "off",
+        "recommended": true,
+        "noArrayIndexKey": "off"
+      },
+      "nursery": {
+        "recommended": true
+      },
       "security": {
+        "recommended": true,
         "noDangerouslySetInnerHtml": "off"
+      },
+      "a11y": {
+        "noStaticElementInteractions": "off",
+        "noSvgWithoutTitle": "off"
       }
     }
   },
   "javascript": {
+    "linter": {
+      "enabled": true
+    },
     "formatter": {
-      "quoteStyle": "single"
+      "jsxQuoteStyle": "single",
+      "quoteStyle": "single",
+      "semicolons": "always"
     }
   },
   "json": {
     "formatter": {
-      "indentStyle": "space"
+      "enabled": true
     }
   },
   "css": {
+    "parser": {
+      "tailwindDirectives": true
+    },
     "formatter": {
-      "enabled": false
+      "enabled": true,
+      "indentStyle": "space",
+      "quoteStyle": "single"
     },
     "linter": {
       "enabled": false
@@ -53,6 +80,7 @@
   "assist": {
     "enabled": true,
     "actions": {
+      "recommended": true,
       "source": {
         "organizeImports": "on"
       }

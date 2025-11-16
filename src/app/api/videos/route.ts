@@ -1,24 +1,16 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { fetchYouTubeVideos } from '@/lib/videos-utils';
 
-export const config = { revalidate: 86400 };
-
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
   const channelId = searchParams.get('channelId');
   const apiKey = process.env.YOUTUBE_API_KEY;
 
   if (!channelId) {
-    return NextResponse.json(
-      { error: 'channelId is required' },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: 'channelId is required' }, { status: 400 });
   }
   if (!apiKey) {
-    return NextResponse.json(
-      { error: 'YOUTUBE_API_KEY is not set in environment' },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: 'YOUTUBE_API_KEY is not set in environment' }, { status: 500 });
   }
 
   try {
@@ -48,9 +40,6 @@ export const GET = async (request: NextRequest) => {
     });
   } catch (error) {
     console.error('Error fetching YouTube data:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch YouTube data' },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: 'Failed to fetch YouTube data' }, { status: 500 });
   }
 };

@@ -57,7 +57,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t bg-background">
-      <div className="container max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 md:py-12">
+      <div className="container max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 md:py-12">
         {/* Mobile layout: logo/socials on top, nav sections in 2 cols below */}
         <div className="block lg:hidden">
           {/* Logo and socials */}

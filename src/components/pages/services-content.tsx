@@ -95,7 +95,7 @@ export default function ServiceContent({
   };
 
   return (
-    <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
+    <div className="container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
       <div className="flex items-center gap-4 mb-8">
         <Button variant="outline" size="sm" asChild>
           <Link href="/#services">
@@ -123,7 +123,7 @@ export default function ServiceContent({
               whileHover={{ y: -5 }}
             >
               <Card
-                className={`h-full flex flex-col group hover:shadow-lg transition-all duration-300 border-2 cursor-pointer bg-gradient-to-br from-background to-muted/20 ${
+                className={`h-full flex flex-col group hover:shadow-lg transition-all duration-300 border-2 cursor-pointer bg-linear-to-br from-background to-muted/20 ${
                   selectedService?.id === service.id
                     ? 'border-primary shadow-lg ring-2 ring-primary/20'
                     : 'hover:border-primary/20'
@@ -145,7 +145,7 @@ export default function ServiceContent({
                     </div>
                   )}
                 </CardHeader>
-                <CardContent className="flex-grow">
+                <CardContent className="grow">
                   <ul className="space-y-2">
                     {service.features?.map((feature, featureIndex) => (
                       <motion.li
@@ -155,7 +155,7 @@ export default function ServiceContent({
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: featureIndex * 0.1 }}
                       >
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0 group-hover:bg-primary/80 transition-colors duration-300"></div>
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 group-hover:bg-primary/80 transition-colors duration-300"></div>
                         <span className="text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                           {feature}
                         </span>
@@ -191,7 +191,7 @@ export default function ServiceContent({
           <div className="max-w-4xl mx-auto">
             <div className="relative">
               {/* Timeline line */}
-              <div className="absolute left-1/2 transform -translate-x-0.5 w-0.5 h-full bg-gradient-to-b from-primary via-primary/50 to-primary hidden md:block"></div>
+              <div className="absolute left-1/2 transform -translate-x-0.5 w-0.5 h-full bg-linear-to-b from-primary via-primary/50 to-primary hidden md:block"></div>
 
               {/* Timeline steps */}
               <div className="space-y-12">
@@ -215,7 +215,7 @@ export default function ServiceContent({
                         index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'
                       }`}
                     >
-                      <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 bg-gradient-to-br from-background to-muted/10">
+                      <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-primary/30 bg-linear-to-br from-background to-muted/10">
                         <CardHeader className="relative overflow-hidden">
                           <div className="flex items-center gap-4 mb-2">
                             <div className="text-2xl">{item.icon}</div>
@@ -238,7 +238,7 @@ export default function ServiceContent({
                                 key={detailIndex}
                                 className="flex items-start gap-2 text-sm"
                               >
-                                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+                                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0"></div>
                                 <span className="text-muted-foreground">
                                   {detail}
                                 </span>
@@ -285,7 +285,7 @@ export default function ServiceContent({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.8 }}
-        className="text-center mt-12 p-8 bg-gradient-to-r from-primary/10 via-primary/5 to-primary/10 rounded-2xl border border-primary/20"
+        className="text-center mt-12 p-8 bg-linear-to-r from-primary/10 via-primary/5 to-primary/10 rounded-2xl border border-primary/20"
       >
         <h3 className="text-2xl font-bold mb-4">Ready to Get Started?</h3>
         <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">

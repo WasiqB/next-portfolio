@@ -229,7 +229,7 @@ function ProductCard({ product }: { product: SaasProduct }) {
             {product.shortDescription}
           </CardDescription>
         </CardHeader>
-        <CardContent className="flex-grow space-y-4">
+        <CardContent className="grow space-y-4">
           <div className="grid grid-cols-3 gap-2">
             {product.metrics.map((metric, index) => (
               <div
@@ -279,7 +279,7 @@ export default function Products() {
   return (
     <section
       id="products"
-      className="container max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24 lg:py-32 bg-muted/30"
+      className="container max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24 lg:py-32 bg-muted/30"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

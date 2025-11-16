@@ -44,7 +44,7 @@ function BlogCard({ blog }: { blog: Blog }) {
         <CardHeader className="p-4 pb-2">
           <h3 className="text-lg font-bold line-clamp-2">{blog.title}</h3>
         </CardHeader>
-        <CardContent className="p-4 pt-0 flex-grow">
+        <CardContent className="p-4 pt-0 grow">
           <p className="text-muted-foreground text-sm line-clamp-3 mb-3">
             {blog.description}
           </p>
@@ -77,7 +77,7 @@ function BlogSkeletonCard() {
       <div className="p-4 pb-2">
         <div className="h-5 bg-gray-300 rounded w-3/4 mb-2" />
       </div>
-      <div className="p-4 pt-0 flex-grow">
+      <div className="p-4 pt-0 grow">
         <div className="h-4 bg-gray-200 rounded w-full mb-2" />
         <div className="h-4 bg-gray-200 rounded w-5/6 mb-2" />
         <div className="flex gap-2 mb-3">
@@ -139,7 +139,7 @@ export default function Blogs() {
   return (
     <section
       id="blogs"
-      className="container max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24"
+      className="container max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

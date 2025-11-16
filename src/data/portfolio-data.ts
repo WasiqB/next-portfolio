@@ -77,8 +77,7 @@ export const Data: PortfolioData = {
   },
   projects: {
     sectionTitle: 'My Projects',
-    sectionDescription:
-      'Here are some of my recent projects that showcase my skills and expertise.',
+    sectionDescription: 'Here are some of my recent projects that showcase my skills and expertise.',
     allProjectsButton: {
       text: 'See All Projects',
       href: '/projects',
@@ -140,8 +139,7 @@ export const Data: PortfolioData = {
       {
         id: '1',
         name: 'Himanshu Sheth',
-        title:
-          'Lead [Developer Evangelism] & Senior Manager [Technical Content Marketing]',
+        title: 'Lead [Developer Evangelism] & Senior Manager [Technical Content Marketing]',
         company: 'LambdaTest',
         image: '/images/testimonials/himanshu-sheth.png',
         testimonial:
@@ -276,8 +274,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
       },
       {
         label: 'Collaboration',
-        value:
-          'The best results come from diverse perspectives and effective teamwork.',
+        value: 'The best results come from diverse perspectives and effective teamwork.',
       },
       {
         label: 'Knowledge Sharing',
@@ -319,14 +316,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
           'Diagnosed critical gaps in legacy automation framework, proposed optimisation roadmap that reduced script maintenance costs within 6 months.',
           'Mentored 4 junior automation engineers code reviews, accelerating team proficiency.',
         ],
-        skills: [
-          'Selenium WebDriver',
-          'Java',
-          'Rest-Assured',
-          'Postman',
-          'Git',
-          'Jenkins',
-        ],
+        skills: ['Selenium WebDriver', 'Java', 'Rest-Assured', 'Postman', 'Git', 'Jenkins'],
       },
       {
         title: 'Independent Consultant',
@@ -341,14 +331,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
           'Wrote Test automation related Blogs for LambdaTest.',
           'Created tutorial videos for Test Automation on YouTube.',
         ],
-        skills: [
-          'Selenium WebDriver',
-          'Appium',
-          'Java',
-          'Rest-Assured',
-          'Postman',
-          'GitLab',
-        ],
+        skills: ['Selenium WebDriver', 'Appium', 'Java', 'Rest-Assured', 'Postman', 'GitLab'],
       },
       {
         title: 'Senior QA Consultant',
@@ -388,15 +371,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
           'Screened candidates and made key hires for automation roles through technical interviews and coding assessments.',
           'Trained engineers in Selenium WebDriver and Appium, enabling the QA and Dev teams and reducing onboarding time.',
         ],
-        skills: [
-          'Selenium WebDriver',
-          'Java',
-          'Rest-Assured',
-          'Postman',
-          'Jira',
-          'Git',
-          'BitBucket',
-        ],
+        skills: ['Selenium WebDriver', 'Java', 'Rest-Assured', 'Postman', 'Jira', 'Git', 'BitBucket'],
       },
       {
         title: 'Senior QA Engineer',
@@ -434,13 +409,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
           'Architected Windows automation framework using IBM RFT & TestNG (page object pattern), adopted as enterprise standard after management validation.',
           'As a key team member, I contributed to the development of middleware for brokerage houses, aiding them in their desktop application testing efforts through both Manual and Automation testing.',
         ],
-        skills: [
-          'IBM Rational Robot',
-          'IBM Rational Functional Tester',
-          'SQA VBA',
-          'Java',
-          'StarTeam',
-        ],
+        skills: ['IBM Rational Robot', 'IBM Rational Functional Tester', 'SQA VBA', 'Java', 'StarTeam'],
       },
     ],
     education: [
@@ -449,8 +418,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
         institution: 'University of Mumbai',
         location: 'Mumbai, India',
         period: 'Jun 2003 - Mar 2006',
-        description:
-          'Specialized in Economics, Accounts and Taxations (Direct and Indirect)',
+        description: 'Specialized in Economics, Accounts and Taxations (Direct and Indirect)',
       },
       {
         degree: 'Advance Diploma inSoftware Engineering',
@@ -529,8 +497,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
   },
   sponsors: {
     sectionTitle: 'My Sponsors',
-    sectionDescription:
-      'These amazing sponsors support my work and help me create more content.',
+    sectionDescription: 'These amazing sponsors support my work and help me create more content.',
     viewAllButton: {
       text: 'See All Sponsors',
       href: '/sponsors',
@@ -554,8 +521,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
           'Including previous tier benefits',
           'Get 12 hour / month call with me anytime during the month for any consulting or mentorship',
         ],
-        githubTierUrl:
-          'https://github.com/sponsors/WasiqB/sponsorships?tier_id=206958',
+        githubTierUrl: 'https://github.com/sponsors/WasiqB/sponsorships?tier_id=206958',
       },
       {
         name: '💎 Diamond',
@@ -566,8 +532,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
           'Including previous tier benefits',
           'Get 4 hour / month of call with me anytime during the month for any consulting or mentorship',
         ],
-        githubTierUrl:
-          'https://github.com/sponsors/WasiqB/sponsorships?tier_id=235804',
+        githubTierUrl: 'https://github.com/sponsors/WasiqB/sponsorships?tier_id=235804',
       },
       {
         name: '🥇 Gold',
@@ -578,8 +543,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
           'Including previous tier benefits',
           'Get 1 hour / month of call with me anytime during the month for any consulting or mentorship',
         ],
-        githubTierUrl:
-          'https://github.com/sponsors/WasiqB/sponsorships?tier_id=206957',
+        githubTierUrl: 'https://github.com/sponsors/WasiqB/sponsorships?tier_id=206957',
       },
       {
         name: '🥈 Silver',
@@ -590,8 +554,7 @@ He is fluent in setting up automation frameworks and well versed with programmin
           'Including previous tier benefits',
           'Get 30 minutes / month of call with me anytime during the month for any consulting or mentorship',
         ],
-        githubTierUrl:
-          'https://github.com/sponsors/WasiqB/sponsorships?tier_id=157967',
+        githubTierUrl: 'https://github.com/sponsors/WasiqB/sponsorships?tier_id=157967',
       },
       {
         name: '🥉 Bronze',
@@ -602,41 +565,29 @@ He is fluent in setting up automation frameworks and well versed with programmin
           'Including previous tier benefits',
           'Get special sponsor role on my Discord server with access to private sponsor channel where you will get priority over other discussion',
         ],
-        githubTierUrl:
-          'https://github.com/sponsors/WasiqB/sponsorships?tier_id=157964',
+        githubTierUrl: 'https://github.com/sponsors/WasiqB/sponsorships?tier_id=157964',
       },
       {
         name: '🤝 Backer',
         slug: 'backer',
         description: 'Support my work with monthly contributions.',
         price: 25,
-        benefits: [
-          'Including previous tier benefits',
-          'Get your name listed on README of all my repositories',
-        ],
-        githubTierUrl:
-          'https://github.com/sponsors/WasiqB/sponsorships?tier_id=157963',
+        benefits: ['Including previous tier benefits', 'Get your name listed on README of all my repositories'],
+        githubTierUrl: 'https://github.com/sponsors/WasiqB/sponsorships?tier_id=157963',
       },
       {
         name: '🚶🏻 Starter',
         slug: 'starter',
         description: 'Support my work with monthly contributions.',
         price: 5,
-        benefits: [
-          'You get a shout-out on my Socials',
-          'Get your name listed on my personal website',
-        ],
-        githubTierUrl:
-          'https://github.com/sponsors/WasiqB/sponsorships?tier_id=157962',
+        benefits: ['You get a shout-out on my Socials', 'Get your name listed on my personal website'],
+        githubTierUrl: 'https://github.com/sponsors/WasiqB/sponsorships?tier_id=157962',
       },
       {
         name: 'Donation',
         slug: 'donation',
         description: 'Support my work with a one-time contribution.',
-        benefits: [
-          'You get a shout-out on my Socials',
-          'Get your name listed on my personal website',
-        ],
+        benefits: ['You get a shout-out on my Socials', 'Get your name listed on my personal website'],
         githubTierUrl: 'https://github.com/sponsors/WasiqB',
       },
     ],

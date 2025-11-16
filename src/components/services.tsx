@@ -46,7 +46,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      className="max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24 bg-muted/50"
+      className="max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24 bg-muted/50"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

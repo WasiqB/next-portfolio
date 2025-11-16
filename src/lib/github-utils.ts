@@ -4,9 +4,7 @@
  * @param url GitHub repository URL (e.g., https://github.com/owner/repo)
  * @returns An object with owner and repo properties, or null if the URL is invalid
  */
-export function parseGitHubUrl(
-  url: string,
-): { owner: string; repo: string } | null {
+export function parseGitHubUrl(url: string): { owner: string; repo: string } | null {
   try {
     const githubRegex = /github\.com\/([^/]+)\/([^/]+)/;
     const match = url.match(githubRegex);

@@ -12,15 +12,15 @@ const testimonials: Testimonial[] = Data.testimonials.testimonials;
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
     <Card className="h-full flex flex-col">
-      <CardContent className="p-6 flex-grow flex flex-col">
+      <CardContent className="p-6 grow flex flex-col">
         <div className="mb-4 text-primary">
           <Quote className="h-8 w-8 opacity-50" />
         </div>
-        <blockquote className="flex-grow mb-6 italic text-muted-foreground">
+        <blockquote className="grow mb-6 italic text-muted-foreground">
           "{testimonial.testimonial}"
         </blockquote>
         <div className="flex flex-col md:flex-row items-center mt-auto gap-4 md:gap-0">
-          <div className="relative w-16 h-16 flex-shrink-0 rounded-full overflow-hidden mb-2 md:mb-0 md:mr-4">
+          <div className="relative w-16 h-16 shrink-0 rounded-full overflow-hidden mb-2 md:mb-0 md:mr-4">
             <Image
               src={testimonial.image || '/placeholder.svg'}
               alt={testimonial.name}
@@ -56,7 +56,7 @@ export default function TestimonialContent() {
   );
 
   return (
-    <div className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
+    <div className="container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">
       <div className="flex items-center gap-4 mb-8">
         <Button variant="outline" size="sm" asChild>
           <Link href="/#testimonials">

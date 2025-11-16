@@ -61,7 +61,7 @@ function VideoCard({ video }: { video: Video }) {
           </div>
           <span className="sr-only">Watch {video.title}</span>
         </div>
-        <CardContent className="p-4 flex-grow">
+        <CardContent className="p-4 grow">
           <h3 className="font-medium line-clamp-2 mb-2">{video.title}</h3>
           <p className="text-xs text-muted-foreground mb-1">
             {formatDate(video.publishDate)}
@@ -92,7 +92,7 @@ function VideoSkeleton() {
   return (
     <Card className="h-full flex flex-col overflow-hidden">
       <div className="aspect-video w-full bg-muted animate-pulse" />
-      <CardContent className="p-4 flex-grow">
+      <CardContent className="p-4 grow">
         <div className="h-4 bg-muted rounded animate-pulse mb-2" />
         <div className="h-4 bg-muted rounded animate-pulse w-3/4 mb-2" />
         <div className="h-3 bg-muted rounded animate-pulse w-1/2" />
@@ -136,7 +136,7 @@ export default function Videos() {
   return (
     <section
       id="videos"
-      className="container py-12 max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24"
+      className="container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

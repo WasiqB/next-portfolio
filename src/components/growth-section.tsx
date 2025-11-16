@@ -53,7 +53,7 @@ export default function GrowthSection() {
   return (
     <section
       id="growth"
-      className="container max-w-[90rem] mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24"
+      className="container max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

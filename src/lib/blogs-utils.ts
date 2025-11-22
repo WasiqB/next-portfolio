@@ -73,7 +73,7 @@ const formatMediumPost = (post: any) => {
     image:
       post.thumbnail ||
       extractThumbnailFromMedium(
-        stripHtml(post.content, {
+        stripHtml(post.description, {
           ignoreTagsWithTheirContents: ['figure'],
           stripTogetherWithTheirContents: ['script', 'style', 'xml', 'p'],
         })

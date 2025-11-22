@@ -1,3 +1,5 @@
+import { SITE_URL } from './constants';
+
 /**
  * Parses a GitHub repository URL and extracts the owner and repository name.
  *
@@ -36,5 +38,5 @@ export function getGitHubApiUrl(repoUrl: string): string | null {
     return null;
   }
 
-  return `/api/github/${parsed.owner}/${parsed.repo}`;
+  return `${SITE_URL}/api/github/${parsed.owner}/${parsed.repo}`;
 }

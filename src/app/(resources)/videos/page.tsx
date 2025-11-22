@@ -1,5 +1,7 @@
-import VideoContent from '@/components/pages/videos-content';
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
+import VideoContent from '@/components/pages/videos-content';
+import { VideosSkeleton } from '@/components/skeletons/videos';
 
 export const metadata: Metadata = {
   title: 'My Videos',
@@ -7,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function VideosPage() {
-  return <VideoContent />;
+  return (
+    <Suspense fallback={<VideosSkeleton />}>
+      <VideoContent />
+    </Suspense>
+  );
 }

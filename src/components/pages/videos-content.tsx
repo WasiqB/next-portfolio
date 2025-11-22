@@ -7,11 +7,11 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { FaYoutube } from 'react-icons/fa6';
 import { Data as portfolioData } from '@/data/portfolio-data';
-import { CACHE_DURATION } from '@/lib/constants';
 import type { Video } from '@/types/portfolio-types';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import { getVideos } from '@/actions/videos';
 
 // Format view count
 function formatViewCount(count: number): string {
@@ -99,26 +99,8 @@ function VideoCard({ video }: { video: Video }) {
   );
 }
 
-function VideoSkeleton() {
-  return (
-    <Card className="h-full flex flex-col overflow-hidden">
-      <div className="aspect-video w-full bg-muted animate-pulse" />
-      <CardContent className="p-4 grow">
-        <div className="h-4 bg-muted rounded animate-pulse mb-2" />
-        <div className="h-4 bg-muted rounded animate-pulse w-3/4 mb-2" />
-        <div className="h-3 bg-muted rounded animate-pulse w-1/2" />
-      </CardContent>
-      <CardFooter className="p-4 pt-0 flex justify-between items-center">
-        <div className="h-3 bg-muted rounded animate-pulse w-16" />
-        <div className="h-3 bg-muted rounded animate-pulse w-12" />
-      </CardFooter>
-    </Card>
-  );
-}
-
 export default function VideoContent() {
   const [activeTab, setActiveTab] = useState('all');
-  const [isLoading, setIsLoading] = useState(true);
   const [videos, setVideos] = useState<Video[]>([]);
   const [channelStats, setChannelStats] = useState({
     subscriberCount: 0,
@@ -128,22 +110,9 @@ export default function VideoContent() {
 
   useEffect(() => {
     async function loadVideos() {
-      setIsLoading(true);
-      try {
-        const channelId = portfolioData.videos.youtubeChannelId;
-        if (!channelId) return;
-        const res = await fetch(`/api/videos?channelId=${channelId}`, {
-          next: {
-            revalidate: CACHE_DURATION,
-          },
-        });
-        if (!res.ok) return;
-        const data = await res.json();
-        setVideos(data.videos);
-        setChannelStats(data.channelStats);
-      } finally {
-        setIsLoading(false);
-      }
+      const videoList = await getVideos() || {};
+      setVideos(videoList.videos);
+      setChannelStats(videoList.channelStats);
     }
     loadVideos();
   }, []);
@@ -177,15 +146,11 @@ export default function VideoContent() {
 
         <TabsContent value="all" className="mt-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {isLoading
-              ? Array.from({ length: 4 }).map((_, index) => (
-                  <VideoSkeleton key={index} />
-                ))
-              : getFilteredVideos().map((video) => (
-                  <div key={video.id}>
-                    <VideoCard video={video} />
-                  </div>
-                ))}
+            {getFilteredVideos().map((video) => (
+              <div key={video.id}>
+                <VideoCard video={video} />
+              </div>
+            ))}
           </div>
         </TabsContent>
 

@@ -1,9 +1,10 @@
-import type React from 'react';
+import { ArrowLeft, ExternalLink, Globe, Rocket, TrendingUp, Users, Zap } from 'lucide-react';
 import Link from 'next/link';
+import type React from 'react';
+import { FaGithub } from 'react-icons/fa6';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, ExternalLink, Users, Zap, TrendingUp, Rocket, Github, Globe } from 'lucide-react';
 
 // Define the SaaS product type
 interface Product {
@@ -298,7 +299,7 @@ function ProductCard({ product }: { product: Product }) {
           <div className='flex gap-2'>
             {product.github && (
               <Link href={product.github} target='_blank' rel='noopener noreferrer'>
-                <Github className='h-4 w-4 text-muted-foreground hover:text-primary transition-colors' />
+                <FaGithub className='h-4 w-4 text-muted-foreground hover:text-primary transition-colors' />
               </Link>
             )}
             <Link href={product.website} target='_blank' rel='noopener noreferrer'>

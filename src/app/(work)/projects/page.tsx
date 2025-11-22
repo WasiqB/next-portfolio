@@ -1,5 +1,7 @@
-import ProjectPageContent from '@/components/pages/projects-content';
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
+import ProjectPageContent from '@/components/pages/projects-content';
+import { ProjectsSkeleton } from '@/components/skeletons/projects';
 
 export const metadata: Metadata = {
   title: 'My Projects',
@@ -7,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
-  return <ProjectPageContent />;
+  return (
+    <Suspense fallback={<ProjectsSkeleton />}>
+      <ProjectPageContent />
+    </Suspense>
+  );
 }

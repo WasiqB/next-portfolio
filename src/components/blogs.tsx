@@ -9,8 +9,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Data as portfolioData } from '@/data/portfolio-data';
 import type { Blog } from '@/types/portfolio-types';
+import { getBlogs } from '@/actions/blogs';
 
 function formatDate(dateString: string): string {
   const options: Intl.DateTimeFormatOptions = {
@@ -70,59 +70,14 @@ function BlogCard({ blog }: { blog: Blog }) {
   );
 }
 
-function BlogSkeletonCard() {
-  return (
-    <div className="animate-pulse h-full flex flex-col overflow-hidden border-2 rounded-lg bg-muted">
-      <div className="relative h-48 w-full bg-gray-200" />
-      <div className="p-4 pb-2">
-        <div className="h-5 bg-gray-300 rounded w-3/4 mb-2" />
-      </div>
-      <div className="p-4 pt-0 grow">
-        <div className="h-4 bg-gray-200 rounded w-full mb-2" />
-        <div className="h-4 bg-gray-200 rounded w-5/6 mb-2" />
-        <div className="flex gap-2 mb-3">
-          <div className="h-5 w-12 bg-gray-300 rounded" />
-          <div className="h-5 w-12 bg-gray-300 rounded" />
-        </div>
-        <div className="flex items-center text-xs text-muted-foreground">
-          <div className="h-4 w-4 bg-gray-300 rounded mr-1" />
-          <div className="h-4 w-20 bg-gray-200 rounded" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function Blogs() {
   const [_activeTab, setActiveTab] = useState('all');
   const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchBlogs() {
-      try {
-        const blogsPromise = portfolioData.blogs.sources.map(async (source) => {
-          if (source.source === 'Medium') {
-            const response = await fetch(
-              `/api/blogs?username=${source.username}`,
-            );
-            return response.json() as Promise<Blog[]>;
-          } else {
-            const customBlogsPromise = source.urls?.map(async (url) => {
-              const response = await fetch(`/api/blogs?url=${url}`);
-              return response.json() as Promise<Blog[]>;
-            });
-            const customBlogs = await Promise.all(customBlogsPromise || []);
-            return customBlogs.flat();
-          }
-        });
-        const blogs = await Promise.all(blogsPromise);
-        setBlogs(blogs.flat());
-      } catch (error) {
-        console.error('Error fetching blogs:', error);
-      } finally {
-        setLoading(false);
-      }
+      const blogList = await getBlogs() || [];
+      setBlogs(blogList);
     }
 
     fetchBlogs();
@@ -168,11 +123,26 @@ export default function Blogs() {
         </div>
         <TabsContent value="all" className="mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {loading
-              ? Array.from({ length: 4 }).map((_, i) => (
-                  <BlogSkeletonCard key={i} />
-                ))
-              : sortedBlogs.slice(0, 4).map((blog, index) => (
+            {sortedBlogs.slice(0, 4).map((blog, index) => (
+              <motion.div
+                key={blog.url}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <BlogCard blog={blog} />
+              </motion.div>
+            ))}
+          </div>
+        </TabsContent>
+        {sources.map((source) => (
+          <TabsContent key={source} value={source} className="mt-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {sortedBlogs
+                .filter((blog) => blog.source === source)
+                .slice(0, 4)
+                .map((blog, index) => (
                   <motion.div
                     key={blog.url}
                     initial={{ opacity: 0, y: 20 }}
@@ -182,30 +152,7 @@ export default function Blogs() {
                   >
                     <BlogCard blog={blog} />
                   </motion.div>
-                ))}
-          </div>
-        </TabsContent>
-        {sources.map((source) => (
-          <TabsContent key={source} value={source} className="mt-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {loading
-                ? Array.from({ length: 4 }).map((_, i) => (
-                    <BlogSkeletonCard key={i} />
-                  ))
-                : sortedBlogs
-                    .filter((blog) => blog.source === source)
-                    .slice(0, 4)
-                    .map((blog, index) => (
-                      <motion.div
-                        key={blog.url}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: index * 0.1 }}
-                      >
-                        <BlogCard blog={blog} />
-                      </motion.div>
-                    ))}
+              ))}
             </div>
           </TabsContent>
         ))}

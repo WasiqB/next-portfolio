@@ -8,9 +8,9 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import { Data as portfolioData } from '@/data/portfolio-data';
 import type { Video } from '@/types/portfolio-types';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import { getVideos } from '@/actions/videos';
 
 // Format view count
 function formatViewCount(count: number): string {
@@ -88,41 +88,14 @@ function VideoCard({ video }: { video: Video }) {
   );
 }
 
-function VideoSkeleton() {
-  return (
-    <Card className="h-full flex flex-col overflow-hidden">
-      <div className="aspect-video w-full bg-muted animate-pulse" />
-      <CardContent className="p-4 grow">
-        <div className="h-4 bg-muted rounded animate-pulse mb-2" />
-        <div className="h-4 bg-muted rounded animate-pulse w-3/4 mb-2" />
-        <div className="h-3 bg-muted rounded animate-pulse w-1/2" />
-      </CardContent>
-      <CardFooter className="p-4 pt-0 flex justify-between items-center">
-        <div className="h-3 bg-muted rounded animate-pulse w-16" />
-        <div className="h-3 bg-muted rounded animate-pulse w-12" />
-      </CardFooter>
-    </Card>
-  );
-}
-
 export default function Videos() {
-  const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('all');
   const [videos, setVideos] = useState<Video[]>([]);
 
   useEffect(() => {
     async function loadVideos() {
-      setIsLoading(true);
-      try {
-        const channelId = portfolioData.videos.youtubeChannelId;
-        if (!channelId) return;
-        const res = await fetch(`/api/videos?channelId=${channelId}`);
-        if (!res.ok) return;
-        const data = await res.json();
-        setVideos(data.videos);
-      } finally {
-        setIsLoading(false);
-      }
+      const videoList = await getVideos() || [];
+      setVideos(videoList);
     }
     loadVideos();
   }, []);
@@ -162,61 +135,49 @@ export default function Videos() {
 
         <TabsContent value="all" className="mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {isLoading
-              ? Array.from({ length: 4 }).map((_, index) => (
-                  <VideoSkeleton key={index} />
-                ))
-              : getFilteredVideos().map((video, index) => (
-                  <motion.div
-                    key={video.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <VideoCard video={video} />
-                  </motion.div>
-                ))}
+            {getFilteredVideos().map((video, index) => (
+              <motion.div
+                key={video.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <VideoCard video={video} />
+              </motion.div>
+            ))}
           </div>
         </TabsContent>
 
         <TabsContent value="video" className="mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {isLoading
-              ? Array.from({ length: 4 }).map((_, index) => (
-                  <VideoSkeleton key={index} />
-                ))
-              : getFilteredVideos().map((video, index) => (
-                  <motion.div
-                    key={video.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <VideoCard video={video} />
-                  </motion.div>
-                ))}
+            {getFilteredVideos().map((video, index) => (
+              <motion.div
+                key={video.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <VideoCard video={video} />
+              </motion.div>
+            ))}
           </div>
         </TabsContent>
 
         <TabsContent value="short" className="mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {isLoading
-              ? Array.from({ length: 4 }).map((_, index) => (
-                  <VideoSkeleton key={index} />
-                ))
-              : getFilteredVideos().map((video, index) => (
-                  <motion.div
-                    key={video.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                  >
-                    <VideoCard video={video} />
-                  </motion.div>
-                ))}
+            {getFilteredVideos().map((video, index) => (
+              <motion.div
+                key={video.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <VideoCard video={video} />
+              </motion.div>
+            ))}
           </div>
         </TabsContent>
       </Tabs>

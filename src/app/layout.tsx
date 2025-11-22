@@ -3,6 +3,7 @@ import type React from 'react';
 import '@/app/globals.css';
 import { DevCycleClientsideProvider } from '@devcycle/nextjs-sdk';
 import { Inter } from 'next/font/google';
+import { Suspense } from 'react';
 import { Toaster } from 'sonner';
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
@@ -81,7 +82,6 @@ export const metadata = {
     icon: '/icons/favicon.ico',
     appleIcon: '/icons/apple-touch-icon.png',
   },
-  themeColor: '#0f172a',
   robots: {
     index: true,
     follow: true,
@@ -105,7 +105,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         />
         <meta name='author' content='Wasiq Bhamla' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-        <meta name='theme-color' content={metadata.themeColor} />
         <meta name='robots' content={JSON.stringify(metadata.robots)} />
         <meta property='og:title' content={metadata.openGraph.title} />
         <meta property='og:description' content={metadata.openGraph.description} />
@@ -141,18 +140,20 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             }),
           }}
         />
-        <DevCycleClientsideProvider context={getClientContext()}>
-          <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
-            <div className='flex min-h-screen flex-col'>
-              <Navbar />
-              <div className='flex-1'>{children}</div>
-              <Footer />
-            </div>
-            {isProd && <GoogleAnalytics gaId={Data.analytics.gaId} />}
-            <Toaster richColors expand position='top-center' />
-            {isProd && <CrispChat />}
-          </ThemeProvider>
-        </DevCycleClientsideProvider>
+        <Suspense>
+          <DevCycleClientsideProvider context={getClientContext()}>
+            <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+              <div className='flex min-h-screen flex-col'>
+                <Navbar />
+                <div className='flex-1'>{children}</div>
+                <Footer />
+              </div>
+              {isProd && <GoogleAnalytics gaId={Data.analytics.gaId} />}
+              <Toaster richColors expand position='top-center' />
+              {isProd && <CrispChat />}
+            </ThemeProvider>
+          </DevCycleClientsideProvider>
+        </Suspense>
       </body>
     </html>
   );

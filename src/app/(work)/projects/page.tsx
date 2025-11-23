@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import ProjectPageContent from '@/components/pages/projects-content';
+import ProjectsServerContent from '@/components/pages/projects-server-content';
 import { ProjectsSkeleton } from '@/components/skeletons/projects';
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <Suspense fallback={<ProjectsSkeleton />}>
-      <ProjectPageContent />
+      <ProjectsServerContent />
     </Suspense>
   );
 }

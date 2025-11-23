@@ -3,13 +3,12 @@
 import { ArrowLeft, CalendarIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { Blog } from '@/types/portfolio-types';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
-import { getBlogs } from '@/actions/blogs';
 
 function formatDate(dateString: string): string {
   const options: Intl.DateTimeFormatOptions = {
@@ -21,6 +20,9 @@ function formatDate(dateString: string): string {
 }
 
 function BlogCard({ blog }: { blog: Blog }) {
+  // Check if the image is from Medium's CDN
+  const isMediumImage = blog.image?.includes('cdn-images-1.medium.com') || blog.image?.includes('miro.medium.com');
+  
   return (
     <Link
       href={blog.url}
@@ -35,6 +37,7 @@ function BlogCard({ blog }: { blog: Blog }) {
             alt={blog.title}
             fill
             className="object-cover"
+            unoptimized={isMediumImage}
           />
           <div className="absolute top-2 right-2 bg-background/80 backdrop-blur-sm rounded px-2 py-1 text-xs font-medium">
             {blog.source}
@@ -71,18 +74,7 @@ function BlogCard({ blog }: { blog: Blog }) {
   );
 }
 
-export default function BlogsContent() {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
-
-  useEffect(() => {
-    async function fetchBlogs() {
-      const blogList = await getBlogs() || [];
-      setBlogs(blogList);
-    }
-
-    fetchBlogs();
-  }, []);
-
+export default function BlogsClientContent({ blogs }: { blogs: Blog[] }) {
   // Get unique sources for tabs
   const sources = Array.from(new Set(blogs.map((b) => b.source)));
 

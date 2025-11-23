@@ -1,7 +1,6 @@
 'use client';
 
 import type { Project } from '@/types/portfolio-types';
-import { useEffect, useState } from 'react';
 import { Data as portfolioData } from '@/data/portfolio-data';
 import { Button } from '../ui/button';
 import Link from 'next/link';
@@ -16,19 +15,8 @@ import {
 } from '../ui/card';
 import { Badge } from '../ui/badge';
 import { FaGithub } from 'react-icons/fa6';
-import { getProjects } from '@/actions/projects';
 
-export default function ProjectPageContent() {
-  const [projects, setProjects] = useState<Project[]>([]);
-
-  useEffect(() => {
-    async function fetchProjects() {
-      const projectList = await getProjects() || [];
-      setProjects(projectList);
-    }
-
-    fetchProjects();
-  }, []);
+export default function ProjectsClientContent({ projects }: { projects: Project[] }) {
 
   return (
     <div className="container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24">

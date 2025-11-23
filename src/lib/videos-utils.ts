@@ -1,5 +1,9 @@
+'use server';
+
+import { cacheLife, cacheTag } from 'next/cache';
 import type { Video } from '@/types/portfolio-types';
-import { CACHE_DURATION } from './constants';
+
+const apiKey = process.env.YOUTUBE_API_KEY || '';
 
 // Helper to determine if a video is a short
 function isShort(description: string, title: string): boolean {
@@ -14,21 +18,37 @@ function isShort(description: string, title: string): boolean {
   return false;
 }
 
-export async function fetchYouTubeVideos({
-  channelId,
-  apiKey,
-}: {
-  channelId: string;
-  apiKey: string;
-}): Promise<Video[]> {
+export const fetchChannelStats = async (channelId: string) => {
+  'use cache';
+  cacheLife('days');
+  cacheTag('youtube-channel-stats');
+
+  // Fetch channel statistics
+  const channelResponse = await fetch(
+    `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`,
+  );
+  const channelData = await channelResponse.json();
+
+  if (!channelData.items?.[0]?.statistics) {
+    throw new Error('Failed to fetch channel statistics');
+  }
+
+  const stats = channelData.items[0].statistics;
+  return {
+    subscriberCount: parseInt(stats.subscriberCount, 10) || 0,
+    viewCount: parseInt(stats.viewCount, 10) || 0,
+    videoCount: parseInt(stats.videoCount, 10) || 0,
+  };
+};
+
+export async function fetchYouTubeVideos({ channelId }: { channelId: string }): Promise<Video[]> {
+  'use cache';
+  cacheLife('days');
+  cacheTag('youtube-videos');
+
   // 1. Get uploads playlist ID
   const channelRes = await fetch(
     `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${apiKey}`,
-    {
-      next: {
-        revalidate: CACHE_DURATION,
-      },
-    },
   );
   if (!channelRes.ok) return [];
   const channelData = await channelRes.json();
@@ -43,11 +63,6 @@ export async function fetchYouTubeVideos({
       `https://www.googleapis.com/youtube/v3/playlistItems?part=contentDetails&maxResults=50&playlistId=${uploadsPlaylistId}&key=${apiKey}${
         nextPageToken ? `&pageToken=${nextPageToken}` : ''
       }`,
-      {
-        next: {
-          revalidate: CACHE_DURATION,
-        },
-      },
     );
     if (!playlistRes.ok) break;
     const playlistData = await playlistRes.json();
@@ -57,11 +72,6 @@ export async function fetchYouTubeVideos({
     // 3. Get video details (snippet, statistics, contentDetails)
     const videosRes = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${videoIds}&key=${apiKey}`,
-      {
-        next: {
-          revalidate: CACHE_DURATION,
-        },
-      },
     );
     if (!videosRes.ok) break;
     const videosData = await videosRes.json();

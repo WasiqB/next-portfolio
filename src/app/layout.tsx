@@ -94,6 +94,24 @@ export const metadata = {
   },
 };
 
+/**
+ * Safely gets the DevCycle client context, handling prerendering errors.
+ * During prerendering, cookies() will throw an error when the prerender completes.
+ * This wrapper catches that error and returns undefined, allowing the client-side
+ * provider to initialize properly on the client.
+ */
+function getSafeClientContext() {
+  try {
+    return getClientContext();
+  } catch (error) {
+    // During prerendering, cookies() throws an error when the prerender is complete.
+    // Return undefined to allow the client-side provider to initialize without server context.
+    // Type assertion is needed because DevCycleClientContext doesn't officially support undefined,
+    // but the provider handles it gracefully by initializing on the client side.
+    return undefined as any;
+  }
+}
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning>
@@ -141,7 +159,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           }}
         />
         <Suspense>
-          <DevCycleClientsideProvider context={getClientContext()}>
+          <DevCycleClientsideProvider context={getSafeClientContext()}>
             <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
               <div className='flex min-h-screen flex-col'>
                 <Navbar />

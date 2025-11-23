@@ -4,14 +4,14 @@ import { ArrowLeft, Bell, Eye, Heart, MessageSquare, Play } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaYoutube } from 'react-icons/fa6';
 import { Data as portfolioData } from '@/data/portfolio-data';
 import type { Video } from '@/types/portfolio-types';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
-import { getVideos } from '@/actions/videos';
+
 
 // Format view count
 function formatViewCount(count: number): string {
@@ -99,23 +99,17 @@ function VideoCard({ video }: { video: Video }) {
   );
 }
 
-export default function VideoContent() {
-  const [activeTab, setActiveTab] = useState('all');
-  const [videos, setVideos] = useState<Video[]>([]);
-  const [channelStats, setChannelStats] = useState({
-    subscriberCount: 0,
-    viewCount: 0,
-    videoCount: 0,
-  });
+interface VideosClientContentProps {
+  videos: Video[];
+  channelStats: {
+    subscriberCount: number;
+    viewCount: number;
+    videoCount: number;
+  };
+}
 
-  useEffect(() => {
-    async function loadVideos() {
-      const videoList = await getVideos() || {};
-      setVideos(videoList.videos);
-      setChannelStats(videoList.channelStats);
-    }
-    loadVideos();
-  }, []);
+export default function VideosClientContent({ videos, channelStats }: VideosClientContentProps) {
+  const [activeTab, setActiveTab] = useState('all');
 
   // Filter videos based on active tab
   const getFilteredVideos = () => {

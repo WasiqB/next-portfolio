@@ -1,4 +1,7 @@
-import { SITE_URL } from './constants';
+'use server';
+
+import { cacheLife, cacheTag } from 'next/cache';
+import type { GitHubRepo } from '@/types/portfolio-types';
 
 /**
  * Parses a GitHub repository URL and extracts the owner and repository name.
@@ -6,7 +9,7 @@ import { SITE_URL } from './constants';
  * @param url GitHub repository URL (e.g., https://github.com/owner/repo)
  * @returns An object with owner and repo properties, or null if the URL is invalid
  */
-export function parseGitHubUrl(url: string): { owner: string; repo: string } | null {
+export async function parseGitHubUrl(url: string): Promise<{ owner: string; repo: string } | null> {
   try {
     const githubRegex = /github\.com\/([^/]+)\/([^/]+)/;
     const match = url.match(githubRegex);
@@ -25,18 +28,32 @@ export function parseGitHubUrl(url: string): { owner: string; repo: string } | n
   }
 }
 
-/**
- * Takes a GitHub repository URL and returns the API endpoint to fetch metadata.
- *
- * @param repoUrl GitHub repository URL
- * @returns API endpoint URL or null if the URL is invalid
- */
-export function getGitHubApiUrl(repoUrl: string): string | null {
-  const parsed = parseGitHubUrl(repoUrl);
+export const getGitHubRepoDetails = async (url: string) => {
+  'use cache';
+  cacheLife('days');
+  cacheTag('github-repo');
 
-  if (!parsed) {
-    return null;
+  const { owner, repo } = (await parseGitHubUrl(url)) || {};
+  const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
+    headers: {
+      Accept: 'application/vnd.github.v3+json',
+      'User-Agent': 'NextJS-Portfolio-App',
+      ...(process.env.GITHUB_TOKEN ? { Authorization: `token ${process.env.GITHUB_TOKEN}` } : {}),
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch repository: ${response.statusText}`);
   }
 
-  return `${SITE_URL}/api/github/${parsed.owner}/${parsed.repo}`;
-}
+  const repoData: GitHubRepo = await response.json();
+
+  return {
+    title: repoData.name,
+    description: repoData.description || `A project by ${owner}`,
+    link: repoData.html_url,
+    stars: repoData.stargazers_count || 0,
+    forks: repoData.forks || 0,
+    tags: repoData.topics || [],
+  };
+};

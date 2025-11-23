@@ -240,3 +240,16 @@ export interface Blog {
   source: string;
   url: string;
 }
+
+export interface GitHubRepo {
+  name: string;
+  description: string;
+  html_url: string;
+  homepage: string;
+  topics: string[];
+  owner: {
+    login: string;
+  };
+  stargazers_count: number;
+  forks: number;
+}

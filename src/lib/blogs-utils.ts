@@ -1,9 +1,15 @@
+'use server';
+
 import * as cheerio from 'cheerio';
+import { cacheLife, cacheTag } from 'next/cache';
 import { stripHtml } from 'string-strip-html';
 import type { Blog } from '@/types/portfolio-types';
-import { CACHE_DURATION } from './constants';
 
 const scrapeWebsite = async (url: string): Promise<Blog> => {
+  'use cache';
+  cacheLife('days');
+  cacheTag('other-blogs');
+
   const response = await fetch(url);
   const html = await response.text();
   const $ = cheerio.load(html);
@@ -27,11 +33,7 @@ const scrapeWebsite = async (url: string): Promise<Blog> => {
 
 const request = async (url: string) => {
   try {
-    return await fetch(url, {
-      next: {
-        revalidate: CACHE_DURATION,
-      },
-    }).then((res) => res.json());
+    return await fetch(url).then((res) => res.json());
   } catch (error) {
     if (error instanceof Error) {
       throw Error(error.message);
@@ -60,7 +62,7 @@ const textEllipsis = (str: string, length = 100, ending = '...') => {
   }
 };
 
-const formatMediumPost = (post: any) => {
+const formatMediumPost = (post: any): Blog => {
   return {
     title: post.title.trim(),
     description: textEllipsis(
@@ -87,7 +89,11 @@ const formatMediumPost = (post: any) => {
   } satisfies Blog;
 };
 
-const getMediumPost = async (user: string) => {
+const getMediumPost = async (user: string): Promise<Blog[]> => {
+  'use cache';
+  cacheLife('days');
+  cacheTag('medium-blogs');
+
   try {
     if (!user) return [];
 

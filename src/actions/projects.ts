@@ -2,30 +2,17 @@
 
 import { cacheLife, cacheTag } from 'next/cache';
 import { Data as portfolioData } from '@/data/portfolio-data';
-import { getGitHubApiUrl } from '@/lib/github-utils';
+import { getGitHubRepoDetails } from '@/lib/github-utils';
 import type { Project } from '@/types/portfolio-types';
 
 const getProjects = async () => {
   'use cache';
-  cacheTag('projects');
   cacheLife('days');
+  cacheTag('projects');
+
   try {
     const projectPromises = portfolioData.projects.projects.map(async (projectUrl: string) => {
-      const apiUrl = getGitHubApiUrl(projectUrl);
-
-      if (!apiUrl) {
-        console.error(`Invalid GitHub URL: ${projectUrl}`);
-        return null;
-      }
-
-      const response = await fetch(apiUrl);
-
-      if (!response.ok) {
-        console.error(`Error fetching project data for ${projectUrl}`);
-        return null;
-      }
-
-      const projectData = await response.json();
+      const projectData = await getGitHubRepoDetails(projectUrl);
 
       return {
         ...projectData,

@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Generate DevCycle PR Insights
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - uses: DevCycleHQ/feature-flag-pr-insights-action@v2.2.8

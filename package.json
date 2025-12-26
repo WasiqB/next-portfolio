@@ -12,12 +12,17 @@
     "lint:fix": "biome lint --write",
     "format:fix": "biome format --write",
     "ui": "pnpm dlx shadcn@latest",
-    "prepare": "husky"
+    "prepare": "husky",
+    "payload:types": "payload generate:types"
   },
   "dependencies": {
     "@devcycle/nextjs-sdk": "^3.0.2",
     "@hookform/resolvers": "^5.2.2",
-    "@next/third-parties": "^16.0.7",
+    "@next/third-parties": "^16.1.1",
+    "@payloadcms/db-postgres": "^3.69.0",
+    "@payloadcms/next": "^3.69.0",
+    "@payloadcms/richtext-lexical": "^3.69.0",
+    "@payloadcms/ui": "^3.69.0",
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
@@ -27,37 +32,40 @@
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-tabs": "^1.1.13",
-    "@react-email/components": "^1.0.1",
+    "@react-email/components": "^1.0.2",
     "@react-email/render": "^2.0.0",
     "cheerio": "^1.1.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "crisp-sdk-web": "^1.0.26",
-    "framer-motion": "^12.23.25",
-    "lucide-react": "^0.556.0",
-    "next": "16.0.7",
+    "framer-motion": "^12.23.26",
+    "graphql": "^16.12.0",
+    "lucide-react": "^0.562.0",
+    "next": "16.1.1",
     "next-themes": "^0.4.6",
-    "react": "^19.2.1",
-    "react-dom": "^19.2.1",
-    "react-hook-form": "^7.68.0",
+    "payload": "^3.69.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-hook-form": "^7.69.0",
     "react-icons": "^5.5.0",
     "react-type-animation": "^3.2.0",
-    "resend": "^6.5.2",
+    "resend": "^6.6.0",
+    "sharp": "^0.34.5",
     "sonner": "^2.0.7",
     "string-strip-html": "^13.5.0",
     "tailwind-merge": "^3.4.0",
     "tw-animate-css": "^1.4.0",
-    "zod": "^4.1.13"
+    "zod": "^4.2.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.8",
-    "@tailwindcss/postcss": "^4.1.17",
-    "@types/node": "^24.10.1",
+    "@biomejs/biome": "2.3.10",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/node": "^25.0.3",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "tailwindcss": "^4.1.17",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   },
   "lint-staged": {
@@ -75,5 +83,5 @@
   "engines": {
     "node": ">=22"
   },
-  "packageManager": "pnpm@10.24.0"
+  "packageManager": "pnpm@10.26.2"
 }

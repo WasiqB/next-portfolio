@@ -47,10 +47,7 @@ export default function Testimonials() {
   const handleMouseLeave = () => setAutoplay(true);
 
   return (
-    <section
-      id='testimonials'
-      className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'
-    >
+    <section id='testimonials' className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -105,7 +102,7 @@ export default function Testimonials() {
 
         {/* Navigation buttons */}
         <Button
-          variant="outline"
+          variant='outline'
           onClick={prevTestimonial}
           className='absolute left-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-2 shadow-md hover:bg-muted transition-colors'
           aria-label='Previous testimonial'
@@ -113,7 +110,7 @@ export default function Testimonials() {
           <ChevronLeft className='h-5 w-5' />
         </Button>
         <Button
-          variant="outline"
+          variant='outline'
           onClick={nextTestimonial}
           className='absolute right-0 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm rounded-full p-2 shadow-md hover:bg-muted transition-colors'
           aria-label='Next testimonial'
@@ -122,14 +119,14 @@ export default function Testimonials() {
         </Button>
 
         {/* Indicators */}
-        <div className="flex justify-center gap-2 mt-6">
+        <div className='flex justify-center gap-2 mt-6'>
           {featuredTestimonials.map((_, index) => (
             <Button
-              variant="default"
+              variant='default'
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={`w-2 h-2 rounded-full transition-all ${
-                index === currentIndex ? "bg-primary w-4" : "bg-muted"
+                index === currentIndex ? 'bg-primary w-4' : 'bg-muted'
               }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />

@@ -2,13 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { motion } from 'framer-motion';
-import {
-  Mail,
-  MessageCircleQuestion,
-  MessageSquare,
-  Send,
-  User,
-} from 'lucide-react';
+import { Mail, MessageCircleQuestion, MessageSquare, Send, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -18,21 +12,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Data as portfolioData } from '@/data/portfolio-data';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from './ui/form';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from './ui/select';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -128,53 +109,45 @@ export default function Contact() {
   };
 
   return (
-    <section
-      id="contact"
-      className="max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24"
-    >
+    <section id='contact' className='max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24'>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="space-y-4 text-center mb-12"
+        className='space-y-4 text-center mb-12'
       >
-        <h2 className="text-3xl md:text-4xl font-bold">{sectionTitle}</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          {sectionDescription}
-        </p>
+        <h2 className='text-3xl md:text-4xl font-bold'>{sectionTitle}</h2>
+        <p className='text-muted-foreground max-w-2xl mx-auto'>{sectionDescription}</p>
       </motion.div>
 
-      <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 gap-8">
+      <div className='max-w-4xl mx-auto'>
+        <div className='grid grid-cols-1 gap-8'>
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="lg:col-span-2"
+            className='lg:col-span-2'
           >
-            <Card className="border-2 border-muted hover:border-primary/20 transition-colors duration-300 shadow-lg">
-              <CardContent className="space-y-6">
+            <Card className='border-2 border-muted hover:border-primary/20 transition-colors duration-300 shadow-lg'>
+              <CardContent className='space-y-6'>
                 <Form {...form}>
-                  <form
-                    onSubmit={form.handleSubmit(handleSubmit)}
-                    className="space-y-6"
-                  >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-6'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
                       <FormField
                         control={form.control}
-                        name="name"
+                        name='name'
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="flex items-center gap-2">
-                              <User className="h-4 w-4 text-primary" />
+                            <FormLabel className='flex items-center gap-2'>
+                              <User className='h-4 w-4 text-primary' />
                               Full Name
                             </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="Enter your full name"
-                                className="h-12 border-2 focus:border-primary transition-colors"
+                                placeholder='Enter your full name'
+                                className='h-12 border-2 focus:border-primary transition-colors'
                                 {...field}
                               />
                             </FormControl>
@@ -184,18 +157,18 @@ export default function Contact() {
                       />
                       <FormField
                         control={form.control}
-                        name="email"
+                        name='email'
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="flex items-center gap-2">
-                              <Mail className="h-4 w-4 text-primary" />
+                            <FormLabel className='flex items-center gap-2'>
+                              <Mail className='h-4 w-4 text-primary' />
                               Email Address
                             </FormLabel>
                             <FormControl>
                               <Input
-                                type="email"
-                                placeholder="Enter your email address"
-                                className="h-12 border-2 focus:border-primary transition-colors"
+                                type='email'
+                                placeholder='Enter your email address'
+                                className='h-12 border-2 focus:border-primary transition-colors'
                                 {...field}
                               />
                             </FormControl>
@@ -207,28 +180,22 @@ export default function Contact() {
 
                     <FormField
                       control={form.control}
-                      name="reason"
+                      name='reason'
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="flex items-center gap-2">
-                            <MessageCircleQuestion className="h-4 w-4 text-primary" />
+                          <FormLabel className='flex items-center gap-2'>
+                            <MessageCircleQuestion className='h-4 w-4 text-primary' />
                             What can I help you with?
                           </FormLabel>
-                          <Select
-                            onValueChange={field.onChange}
-                            value={field.value}
-                          >
+                          <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
-                              <SelectTrigger className="h-12 w-auto border-2 focus:border-primary transition-colors">
-                                <SelectValue placeholder="Select a reason for contact" />
+                              <SelectTrigger className='h-12 w-auto border-2 focus:border-primary transition-colors'>
+                                <SelectValue placeholder='Select a reason for contact' />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
                               {reasons.map((reason) => (
-                                <SelectItem
-                                  key={reason.value}
-                                  value={reason.value}
-                                >
+                                <SelectItem key={reason.value} value={reason.value}>
                                   {reason.name}
                                 </SelectItem>
                               ))}
@@ -241,18 +208,18 @@ export default function Contact() {
 
                     <FormField
                       control={form.control}
-                      name="message"
+                      name='message'
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="flex items-center gap-2">
-                            <MessageSquare className="h-4 w-4 text-primary" />
+                          <FormLabel className='flex items-center gap-2'>
+                            <MessageSquare className='h-4 w-4 text-primary' />
                             Your Message
                           </FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Tell me about your project, timeline, budget, or any specific requirements..."
+                              placeholder='Tell me about your project, timeline, budget, or any specific requirements...'
                               rows={6}
-                              className="border-2 focus:border-primary transition-colors resize-none"
+                              className='border-2 focus:border-primary transition-colors resize-none'
                               {...field}
                             />
                           </FormControl>
@@ -261,23 +228,20 @@ export default function Contact() {
                       )}
                     />
 
-                    <motion.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                       <Button
-                        type="submit"
-                        className="w-full h-12 text-base font-semibold bg-linear-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-lg hover:shadow-xl"
+                        type='submit'
+                        className='w-full h-12 text-base font-semibold bg-linear-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-lg hover:shadow-xl'
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? (
                           <>
-                            <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></div>
+                            <div className='animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2'></div>
                             Sending Message...
                           </>
                         ) : (
                           <>
-                            <Send className="h-4 w-4 mr-2" />
+                            <Send className='h-4 w-4 mr-2' />
                             Send Message
                           </>
                         )}
@@ -286,7 +250,7 @@ export default function Contact() {
                   </form>
                 </Form>
 
-                <div className="text-center pt-4 border-t border-muted"></div>
+                <div className='text-center pt-4 border-t border-muted'></div>
               </CardContent>
             </Card>
           </motion.div>
@@ -298,7 +262,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 text-center"
+          className='mt-12 text-center'
         ></motion.div>
       </div>
     </section>

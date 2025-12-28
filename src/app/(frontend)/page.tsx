@@ -1,7 +1,5 @@
-'use client';
-
-import { useVariableValue } from '@devcycle/nextjs-sdk';
 import Blogs from '@/components/blogs';
+import { ConditionalSection } from '@/components/conditional-section';
 import Contact from '@/components/contact';
 import GrowthSection from '@/components/growth-section';
 import Hero from '@/components/hero';
@@ -13,18 +11,19 @@ import Testimonials from '@/components/testimonials';
 import Videos from '@/components/videos';
 
 export default function Home() {
-  const showProducts = useVariableValue('show-products', false);
-  const showGrowth = useVariableValue('show-growth', false);
-
   return (
     <main className='min-h-screen'>
       <Hero />
       <Projects />
       <Services />
-      {showProducts && <Products />}
+      <ConditionalSection variableKey='show-products' defaultValue={false}>
+        <Products />
+      </ConditionalSection>
       <Blogs />
       <Videos />
-      {showGrowth && <GrowthSection />}
+      <ConditionalSection variableKey='show-growth' defaultValue={false}>
+        <GrowthSection />
+      </ConditionalSection>
       <Testimonials />
       <SponsorsSection />
       <Contact />

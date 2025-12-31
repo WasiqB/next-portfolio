@@ -1,9 +1,17 @@
+import { updateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
 
 export const Socials: CollectionConfig = {
   slug: 'socials',
   admin: {
     useAsTitle: 'platform',
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        updateTag('socials');
+      },
+    ],
   },
   fields: [
     {

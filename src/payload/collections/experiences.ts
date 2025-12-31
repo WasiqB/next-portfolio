@@ -1,9 +1,17 @@
+import { updateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
 
 export const Experiences: CollectionConfig = {
   slug: 'experience',
   admin: {
     useAsTitle: 'company',
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        updateTag('experiences');
+      },
+    ],
   },
   fields: [
     {

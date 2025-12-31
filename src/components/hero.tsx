@@ -1,12 +1,13 @@
 import { Suspense } from 'react';
-import HeroClient from '@/components/hero-client';
-import HeroSkeleton from '@/components/hero-skeleton';
+import HeroClient from '@/components/client/hero-client';
+import HeroSkeleton from '@/components/skeletons/hero-skeleton';
+import { getCollectionData } from '@/payload/fetchers/collections';
 import { getHomePage } from '@/payload/fetchers/globals';
-import { getSocials } from '@/payload/fetchers/socials';
+import type { Social } from '@/payload/types';
 
 export default async function Hero() {
   const data = await getHomePage();
-  const socials = await getSocials();
+  const socials = await getCollectionData<Social[]>('socials');
 
   if (!data || !data.heroSection) {
     return <HeroSkeleton />;

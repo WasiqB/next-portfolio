@@ -1,9 +1,17 @@
+import { updateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
 
 export const SponsorTiers: CollectionConfig = {
   slug: 'sponsor-tiers',
   admin: {
     useAsTitle: 'slug',
+  },
+  hooks: {
+    afterChange: [
+      () => {
+        updateTag('sponsorTiers');
+      },
+    ],
   },
   fields: [
     {

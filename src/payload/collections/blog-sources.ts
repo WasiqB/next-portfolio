@@ -1,7 +1,15 @@
+import { updateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
 
 export const BlogSources: CollectionConfig = {
   slug: 'blog-sources',
+  hooks: {
+    afterChange: [
+      () => {
+        updateTag('blogSources');
+      },
+    ],
+  },
   fields: [
     {
       name: 'source',

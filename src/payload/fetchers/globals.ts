@@ -3,6 +3,9 @@
 import { getPayloadClient } from '@/lib/payload-client';
 
 export async function getHomePage() {
+  // 'use cache';
+  // cacheTag('homePage');
+  // cacheLife('days');
   try {
     console.debug('Fetching Home page data...');
     const payload = await getPayloadClient();

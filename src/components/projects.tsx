@@ -10,17 +10,18 @@ import ProjectsSkeleton from './skeletons/projects-skeleton';
 async function fetchProjects(projectUrls: string[]): Promise<Project[] | undefined> {
   try {
     const projects = projectUrls.map(async (projectUrl) => {
-      const apiUrl = getGitHubApiUrl(projectUrl);
+      const projectGitUrl = getGitHubApiUrl(projectUrl);
 
-      if (!apiUrl) {
+      if (!projectGitUrl) {
         console.error(`Invalid GitHub URL: ${projectUrl}`);
         return null;
       }
 
-      const response = await fetch(`${appProtocol}://${process.env.VERCEL_URL}${apiUrl}`);
+      const apiUrl = `${appProtocol}://${process.env.VERCEL_URL}${projectGitUrl}`;
+      const response = await fetch(apiUrl);
 
       if (!response.ok) {
-        console.error(`Error fetching project data for ${projectUrl}`);
+        console.error(`Error fetching project data for ${apiUrl}`);
         return null;
       }
 

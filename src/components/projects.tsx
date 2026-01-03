@@ -1,8 +1,10 @@
 import { Suspense } from 'react';
+import { appProtocol } from '@/lib/constants';
 import { getGitHubApiUrl } from '@/lib/github-utils';
 import { getHomePage } from '@/payload/fetchers/globals';
 import type { Project } from '@/types/portfolio-types';
 import ProjectsClient from './client/projects-client';
+import { SectionError } from './client/section-error';
 import ProjectsSkeleton from './skeletons/projects-skeleton';
 
 async function fetchProjects(projectUrls: string[]): Promise<Project[] | undefined> {
@@ -15,7 +17,7 @@ async function fetchProjects(projectUrls: string[]): Promise<Project[] | undefin
         return null;
       }
 
-      const response = await fetch(`${process.env.VERCEL_URL}${apiUrl}`);
+      const response = await fetch(`${appProtocol}://${process.env.VERCEL_URL}${apiUrl}`);
 
       if (!response.ok) {
         console.error(`Error fetching project data for ${projectUrl}`);
@@ -42,7 +44,11 @@ export default async function Projects() {
   const projectData = await fetchProjects(projects?.projectUrls.map((project) => project.url) || []);
 
   if (!projects || !projectData) {
-    return <ProjectsSkeleton />;
+    return (
+      <section id='projectSection' className='max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24'>
+        <SectionError title='Project section Unavailable' message='Failed to load project section data' />
+      </section>
+    );
   }
 
   return (

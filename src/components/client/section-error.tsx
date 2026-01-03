@@ -1,7 +1,8 @@
 'use client';
 
-import { AlertTriangle, RefreshCcw } from 'lucide-react';
+import { AlertTriangle, Loader2Icon, RefreshCcw } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
@@ -15,9 +16,12 @@ export function SectionError({
   message = 'Something went wrong while fetching the data. Please try refreshing to load the content.',
 }: SectionErrorProps) {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const handleRetry = () => {
+    setLoading(true);
     router.refresh();
+    setLoading(false);
   };
 
   return (
@@ -34,9 +38,9 @@ export function SectionError({
           variant='outline'
           size='sm'
           onClick={handleRetry}
-          className='gap-2 hover:bg-destructive hover:text-destructive-foreground transition-colors'
+          className='gap-2 hover:bg-destructive/70 hover:text-foreground transition-colors'
         >
-          <RefreshCcw className='h-4 w-4' />
+          {loading ? <Loader2Icon className='h-4 w-4 animate-spin' /> : <RefreshCcw className='h-4 w-4' />}
           Refresh Section
         </Button>
       </CardContent>

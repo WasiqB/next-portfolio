@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { appProtocol } from '@/lib/constants';
+import { appProtocol, domain } from '@/lib/constants';
 import { getGitHubApiUrl } from '@/lib/github-utils';
 import { getHomePage } from '@/payload/fetchers/globals';
 import type { Project } from '@/types/portfolio-types';
@@ -17,7 +17,7 @@ async function fetchProjects(projectUrls: string[]): Promise<Project[] | undefin
         return null;
       }
 
-      const apiUrl = `${appProtocol}://${process.env.VERCEL_URL}${projectGitUrl}`;
+      const apiUrl = `${appProtocol}://${domain}${projectGitUrl}`;
       const response = await fetch(apiUrl);
 
       if (!response.ok) {

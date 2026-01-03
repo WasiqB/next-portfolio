@@ -22,6 +22,8 @@ async function fetchProjects(projectUrls: string[]): Promise<Project[] | undefin
 
       if (!response.ok) {
         console.error(`Error fetching project data for ${apiUrl}`);
+        console.error(`Response status: ${response.status}`);
+        console.error(`Response Body: ${await response.text()}`);
         return null;
       }
 

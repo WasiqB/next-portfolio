@@ -16,7 +16,7 @@ interface HeroClientProps {
 
 export default function HeroClient({ heroSection, socials, typingSequences }: HeroClientProps) {
   return (
-    <section className='max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24 lg:py-32'>
+    <section id='heroSection' className='max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24 lg:py-32'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
         <div className='space-y-6 order-2 md:order-1'>
           <motion.h1

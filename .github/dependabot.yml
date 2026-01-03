@@ -21,7 +21,7 @@ updates:
     labels:
       - 'github_actions'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
       timezone: 'Asia/Calcutta'
     groups:
       dependencies:

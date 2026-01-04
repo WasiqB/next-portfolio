@@ -1,4 +1,3 @@
-import { updateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
 
 export const Experiences: CollectionConfig = {
@@ -9,7 +8,7 @@ export const Experiences: CollectionConfig = {
   hooks: {
     afterChange: [
       () => {
-        updateTag('experiences');
+        // updateTag('experiences');
       },
     ],
   },

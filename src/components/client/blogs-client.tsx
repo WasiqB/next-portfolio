@@ -28,7 +28,12 @@ function BlogCard({ blog }: { blog: Blog }) {
     >
       <Card className='h-full flex flex-col overflow-hidden cursor-pointer border-2 hover:border-primary/50'>
         <div className='relative h-48 w-full'>
-          <Image src={blog.image || '/placeholder.svg'} alt={blog.title} fill className='object-cover' />
+          <Image
+            src={blog.image || 'https://placehold.net/600x600.png'}
+            alt={blog.title}
+            fill
+            className='object-cover'
+          />
           <div className='absolute top-2 right-2 bg-background/80 backdrop-blur-sm rounded px-2 py-1 text-xs font-medium'>
             {blog.source}
           </div>

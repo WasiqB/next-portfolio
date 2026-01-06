@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
       },
       {
         hostname: 'cdn-images-1.medium.com',
+        protocol: 'https',
       },
       {
         hostname: 'www.lambdatest.com',
@@ -23,6 +24,9 @@ const nextConfig: NextConfig = {
       },
       {
         hostname: 'avatars.githubusercontent.com',
+      },
+      {
+        hostname: 'placehold.net',
       },
     ],
   },

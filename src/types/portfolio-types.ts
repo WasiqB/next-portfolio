@@ -240,3 +240,16 @@ export interface Blog {
   source: string;
   url: string;
 }
+
+export interface MediumBlog {
+  title: string;
+  description: string;
+  content: string;
+  thumbnail: string;
+  pubDate: string;
+  categories: string[];
+  link: string;
+  guid: string;
+  author: string;
+  enclosure?: any;
+}

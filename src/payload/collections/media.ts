@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import type { CollectionConfig } from 'payload';
 
 export const Media: CollectionConfig = {

@@ -2,14 +2,6 @@
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-pnpm dev
-```
-
 ## Tech stack
 
 - [Next.js](https://nextjs.org)
@@ -18,3 +10,5 @@ pnpm dev
 - [Framer Motion](https://www.framer.com/motion/)
 - [Shadcn/ui](https://ui.shadcn.com/)
 - [DevCycle](https://www.devcycle.com/)
+- [Payload CMS](https://payloadcms.com/)
+- [Neon DB](https://neon.tech/)

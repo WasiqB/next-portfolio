@@ -1,8 +1,9 @@
 'use server';
 
 import { getPayloadClient } from '@/lib/payload-client';
+import type { HomePage } from '../types';
 
-export async function getHomePage() {
+export async function getHomePage(): Promise<HomePage | null> {
   // 'use cache';
   // cacheTag('homePage');
   // cacheLife('days');

@@ -7,7 +7,7 @@ export const getSocialIcon = (platform: string) => {
       return <FaGithub className='h-5 w-5 text-muted-foreground hover:text-primary transition-colors' />;
     case 'linkedin':
       return <FaLinkedin className='h-5 w-5 text-muted-foreground hover:text-primary transition-colors' />;
-    case 'twitter':
+    case 'x':
       return <FaXTwitter className='h-5 w-5 text-muted-foreground hover:text-primary transition-colors' />;
     case 'youtube':
       return <FaYoutube className='h-5 w-5 text-muted-foreground hover:text-primary transition-colors' />;

@@ -249,7 +249,7 @@ export interface Experience {
 export interface BlogSource {
   id: number;
   source: 'medium' | 'custom';
-  urls?: string | null;
+  url?: string | null;
   username?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -535,7 +535,7 @@ export interface ExperienceSelect<T extends boolean = true> {
  */
 export interface BlogSourcesSelect<T extends boolean = true> {
   source?: T;
-  urls?: T;
+  url?: T;
   username?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -958,6 +958,7 @@ export interface HomePageSelect<T extends boolean = true> {
 export interface Auth {
   [k: string]: unknown;
 }
+
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

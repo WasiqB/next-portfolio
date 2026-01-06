@@ -21,8 +21,8 @@ export const BlogSources: CollectionConfig = {
       required: true,
     },
     {
-      name: 'urls',
-      label: 'URLs',
+      name: 'url',
+      label: 'URL',
       type: 'text',
     },
     {

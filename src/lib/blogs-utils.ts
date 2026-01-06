@@ -1,6 +1,6 @@
 import * as cheerio from 'cheerio';
 import { stripHtml } from 'string-strip-html';
-import type { Blog } from '@/types/portfolio-types';
+import type { Blog, MediumBlog } from '@/types/portfolio-types';
 import { CACHE_DURATION } from './constants';
 
 const scrapeWebsite = async (url: string): Promise<Blog> => {
@@ -40,7 +40,7 @@ const request = async (url: string) => {
   }
 };
 
-const extractThumbnailFromMedium = (html: string) => {
+const extractThumbnailFromMedium = (html: string): string => {
   const figureRegex = /<figure[^>]*>(.*?)<img[^>]*src="([^"]*)"[^>]*>.*?<\/figure>/i;
 
   const match = figureRegex.exec(html);
@@ -60,7 +60,7 @@ const textEllipsis = (str: string, length = 100, ending = '...') => {
   }
 };
 
-const formatMediumPost = (post: any) => {
+const formatMediumPost = (post: MediumBlog): Blog => {
   return {
     title: post.title.trim(),
     description: textEllipsis(
@@ -74,7 +74,7 @@ const formatMediumPost = (post: any) => {
       post.thumbnail ||
       extractThumbnailFromMedium(
         stripHtml(post.content, {
-          ignoreTagsWithTheirContents: ['figure'],
+          ignoreTagsWithTheirContents: ['figure', 'img'],
           stripTogetherWithTheirContents: ['script', 'style', 'xml', 'p'],
         })
           .result.replace('\n', '')
@@ -84,10 +84,10 @@ const formatMediumPost = (post: any) => {
     tags: post.categories,
     publishedAt: new Date(post.pubDate).toISOString(),
     source: 'Medium',
-  } satisfies Blog;
+  };
 };
 
-const getMediumPost = async (user: string) => {
+const getMediumPost = async (user: string): Promise<Blog[]> => {
   try {
     if (!user) return [];
 

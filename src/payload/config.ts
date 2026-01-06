@@ -1,9 +1,9 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
-import path from 'path';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
-import { fileURLToPath } from 'url';
 import { BlogSources } from './collections/blog-sources';
 import { Educations } from './collections/educations';
 import { Experiences } from './collections/experiences';
@@ -40,7 +40,7 @@ export default buildConfig({
   ],
   globals: [HomePage],
   editor: lexicalEditor({
-    features: ({ defaultFeatures }) => [...defaultFeatures, FixedToolbarFeature()],
+    features: ({ defaultFeatures }: { defaultFeatures: any }) => [...defaultFeatures, FixedToolbarFeature()],
   }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

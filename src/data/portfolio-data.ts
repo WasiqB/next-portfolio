@@ -50,7 +50,7 @@ export const Data: PortfolioData = {
         ariaLabel: 'LinkedIn',
       },
       {
-        platform: 'twitter',
+        platform: 'x',
         url: 'https://x.com/WasiqBhamla',
         ariaLabel: 'X',
       },

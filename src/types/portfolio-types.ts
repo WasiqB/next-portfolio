@@ -219,14 +219,13 @@ export interface PortfolioData {
   hero: HeroData;
   projects: ProjectsData;
   services: ServicesData;
-  blogs: BlogData;
-  videos: VideosData;
+  blogs?: BlogData;
+  videos?: VideosData;
   testimonials: TestimonialsData;
   about: AboutData;
   github: {
     username: string;
   };
-  contact: ContactData;
   sponsors: SponsorsData;
   analytics: Analytics;
 }

@@ -2,12 +2,12 @@ import { Suspense } from 'react';
 import HeroClient from '@/components/client/hero-client';
 import HeroSkeleton from '@/components/skeletons/hero-skeleton';
 import { getCollectionData } from '@/payload/fetchers/collections';
-import { getHomePage } from '@/payload/fetchers/globals';
-import type { Social } from '@/payload/types';
+import { getGlobalConfig } from '@/payload/fetchers/globals';
+import type { HomePage, Social } from '@/payload/types';
 import { SectionError } from './client/section-error';
 
 export default async function Hero() {
-  const data = await getHomePage();
+  const data = await getGlobalConfig<HomePage>('homePage');
   const socials = await getCollectionData<Social[]>('socials');
 
   if (!data || !data.heroSection) {

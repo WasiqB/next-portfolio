@@ -2,8 +2,8 @@ import { Suspense } from 'react';
 import { appProtocol, domain } from '@/lib/constants';
 import { fetchWithBypass } from '@/lib/fetch-utils';
 import { getCollectionData } from '@/payload/fetchers/collections';
-import { getHomePage } from '@/payload/fetchers/globals';
-import type { BlogSource } from '@/payload/types';
+import { getGlobalConfig } from '@/payload/fetchers/globals';
+import type { BlogSource, HomePage } from '@/payload/types';
 import type { Blog } from '@/types/portfolio-types';
 import BlogsClient from './client/blogs-client';
 import { SectionError } from './client/section-error';
@@ -51,7 +51,7 @@ async function fetchBlogs(sources: BlogSource[]): Promise<Blog[]> {
 }
 
 export default async function Blogs() {
-  const data = await getHomePage();
+  const data = await getGlobalConfig<HomePage>('homePage');
   const blogSection = data?.blogSection;
   const blogSources = await getCollectionData<BlogSource[]>('blog-sources');
 

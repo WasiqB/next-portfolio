@@ -1,10 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 import { z } from 'zod';
-import { Data as portfolioData } from '@/data/portfolio-data';
 import { ContactEmail } from '@/emails/ContactEmail';
 
 const contactSchema = z.object({
+  toEmail: z.email(),
   name: z.string().min(2).max(100),
   email: z.email(),
   reason: z.string().min(2),
@@ -22,19 +22,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: z.treeifyError(parsed.error) }, { status: 400 });
     }
 
-    const { name, email, reason, message } = parsed.data;
-    let reasonName = portfolioData.contact.reasons.find((r) => r.value === reason)?.name || 'Other';
-    reasonName = reasonName === 'Other' ? 'General Inquiry' : reasonName;
+    const { name, email, reason, message, toEmail } = parsed.data;
 
     await resend.emails.send({
       from: 'User Inquiry <noreply@wasiqbhamla.com>',
-      to: portfolioData.contact.email,
-      subject: `User Inquiry: ${reasonName || 'General Inquiry'}`,
-      replyTo: email,
+      to: toEmail,
+      subject: `User Inquiry: ${reason || 'General Inquiry'}`,
       react: ContactEmail({
         name,
-        email,
-        reason: reasonName,
+        email: email.toLowerCase(),
+        reason,
         message,
       }),
     });

@@ -105,9 +105,11 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     homePage: HomePage;
+    contactSection: ContactSection;
   };
   globalsSelect: {
     homePage: HomePageSelect<false> | HomePageSelect<true>;
+    contactSection: ContactSectionSelect<false> | ContactSectionSelect<true>;
   };
   locale: null;
   user: User & {
@@ -772,6 +774,25 @@ export interface HomePage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactSection".
+ */
+export interface ContactSection {
+  id: number;
+  title: string;
+  description: string;
+  email: string;
+  reasons?:
+    | {
+        name: string;
+        value: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "homePage_select".
  */
 export interface HomePageSelect<T extends boolean = true> {
@@ -946,6 +967,25 @@ export interface HomePageSelect<T extends boolean = true> {
                     blockName?: T;
                   };
             };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contactSection_select".
+ */
+export interface ContactSectionSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  email?: T;
+  reasons?:
+    | T
+    | {
+        name?: T;
+        value?: T;
+        id?: T;
       };
   updatedAt?: T;
   createdAt?: T;

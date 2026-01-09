@@ -1,7 +1,8 @@
 import { Suspense } from 'react';
 import { appProtocol, domain } from '@/lib/constants';
 import { fetchWithBypass } from '@/lib/fetch-utils';
-import { getHomePage } from '@/payload/fetchers/globals';
+import { getGlobalConfig } from '@/payload/fetchers/globals';
+import type { HomePage } from '@/payload/types';
 import type { Video } from '@/types/portfolio-types';
 import { SectionError } from './client/section-error';
 import VideosClient from './client/videos-client';
@@ -15,7 +16,7 @@ async function fetchVideos(channelId: string): Promise<Video[]> {
 }
 
 export default async function Videos() {
-  const data = await getHomePage();
+  const data = await getGlobalConfig<HomePage>('homePage');
   const videoSection = data?.videoSection;
 
   if (!videoSection) {

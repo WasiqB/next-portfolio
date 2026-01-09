@@ -14,6 +14,7 @@ import { SponsorTiers } from './collections/sponsor-tiers';
 import { Sponsors } from './collections/sponsors';
 import { Testimonials } from './collections/testimonials';
 import { Users } from './collections/users';
+import { ContactSection } from './globals/contact-section';
 import { HomePage } from './globals/home-page';
 
 const filename = fileURLToPath(import.meta.url);
@@ -38,7 +39,7 @@ export default buildConfig({
     Testimonials,
     Sponsors,
   ],
-  globals: [HomePage],
+  globals: [HomePage, ContactSection],
   editor: lexicalEditor({
     features: ({ defaultFeatures }: { defaultFeatures: any }) => [...defaultFeatures, FixedToolbarFeature()],
   }),

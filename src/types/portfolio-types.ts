@@ -226,7 +226,6 @@ export interface PortfolioData {
   github: {
     username: string;
   };
-  contact: ContactData;
   sponsors: SponsorsData;
   analytics: Analytics;
 }

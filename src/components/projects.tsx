@@ -2,7 +2,8 @@ import { Suspense } from 'react';
 import { appProtocol, domain } from '@/lib/constants';
 import { fetchWithBypass } from '@/lib/fetch-utils';
 import { getGitHubApiUrl } from '@/lib/github-utils';
-import { getHomePage } from '@/payload/fetchers/globals';
+import { getGlobalConfig } from '@/payload/fetchers/globals';
+import type { HomePage } from '@/payload/types';
 import type { Project } from '@/types/portfolio-types';
 import ProjectsClient from './client/projects-client';
 import { SectionError } from './client/section-error';
@@ -44,7 +45,7 @@ async function fetchProjects(projectUrls: string[]): Promise<Project[] | undefin
 }
 
 export default async function Projects() {
-  const data = await getHomePage();
+  const data = await getGlobalConfig<HomePage>('homePage');
   const projects = data?.projectSection;
   const projectData = await fetchProjects(projects?.projectUrls.map((project) => project.url) || []);
 

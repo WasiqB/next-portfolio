@@ -92,6 +92,30 @@ export const Data: PortfolioData = {
       href: 'https://cal.com/wasiqbhamla/discussion-with-wasiq',
     },
   },
+  blogs: {
+    sectionTitle: 'My Blogs',
+    sectionDescription: 'Check out my latest articles and insights.',
+    sources: [
+      { source: 'Medium', username: 'WasiqB' },
+      {
+        source: 'custom',
+        urls: [
+          'https://www.lambdatest.com/blog/appium-with-testng-tutorial/',
+          'https://www.lambdatest.com/blog/locators-in-appium/',
+          'https://www.lambdatest.com/blog/appium-2-migration-guide/',
+          'https://www.lambdatest.com/blog/appium-capabilities/',
+          'https://www.lambdatest.com/blog/how-to-automate-android-apps-using-appium/',
+          'https://www.lambdatest.com/blog/appium-architecture/',
+        ],
+      },
+    ],
+  },
+  videos: {
+    sectionTitle: 'My Videos',
+    sectionDescription: 'Check out my latest video tutorials and tech talks.',
+    youtubeChannelId: 'UC5dVxwIGl4xfY4gjkWuMspA',
+    channelUrl: 'https://www.youtube.com/@WasiqBhamla',
+  },
   testimonials: {
     sectionTitle: 'My Testimonials',
     sectionDescription: "Here's what people have to say about working with me.",

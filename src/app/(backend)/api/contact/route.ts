@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { ContactEmail } from '@/emails/ContactEmail';
 
 const contactSchema = z.object({
-  toEmail: z.string().email(),
+  toEmail: z.email(),
   name: z.string().min(2).max(100),
   email: z.email(),
   reason: z.string().min(2),

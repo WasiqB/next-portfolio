@@ -657,6 +657,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
           blockType: 'button';
@@ -667,6 +668,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
           blockType: 'button';
@@ -692,6 +694,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
           blockType: 'button';
@@ -706,6 +709,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
           blockType: 'button';
@@ -716,6 +720,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
           blockType: 'button';
@@ -730,6 +735,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
           blockType: 'button';
@@ -746,6 +752,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
           blockType: 'button';
@@ -760,6 +767,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
           blockType: 'button';
@@ -774,6 +782,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
           blockType: 'button';
@@ -837,6 +846,7 @@ export interface Navbar {
         icon?: string | null;
         label: string;
         url: string;
+        visible?: boolean | null;
         id?: string | null;
         blockName?: string | null;
         blockType: 'button';
@@ -866,6 +876,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    visible?: T;
                     id?: T;
                     blockName?: T;
                   };
@@ -879,6 +890,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    visible?: T;
                     id?: T;
                     blockName?: T;
                   };
@@ -916,6 +928,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    visible?: T;
                     id?: T;
                     blockName?: T;
                   };
@@ -935,6 +948,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    visible?: T;
                     id?: T;
                     blockName?: T;
                   };
@@ -948,6 +962,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    visible?: T;
                     id?: T;
                     blockName?: T;
                   };
@@ -967,6 +982,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    visible?: T;
                     id?: T;
                     blockName?: T;
                   };
@@ -988,6 +1004,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    visible?: T;
                     id?: T;
                     blockName?: T;
                   };
@@ -1007,6 +1024,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    visible?: T;
                     id?: T;
                     blockName?: T;
                   };
@@ -1026,6 +1044,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    visible?: T;
                     id?: T;
                     blockName?: T;
                   };
@@ -1094,6 +1113,7 @@ export interface NavbarSelect<T extends boolean = true> {
               icon?: T;
               label?: T;
               url?: T;
+              visible?: T;
               id?: T;
               blockName?: T;
             };

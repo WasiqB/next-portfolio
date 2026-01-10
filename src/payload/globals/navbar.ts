@@ -48,6 +48,7 @@ export const Navbar: GlobalConfig = {
         {
           name: 'visible',
           type: 'checkbox',
+          defaultValue: true,
         },
         {
           name: 'subNavItems',
@@ -78,6 +79,7 @@ export const Navbar: GlobalConfig = {
             {
               name: 'visible',
               type: 'checkbox',
+              defaultValue: true,
             },
           ],
         },

@@ -17,5 +17,10 @@ export const Button: Block = {
       type: 'text',
       required: true,
     },
+    {
+      name: 'visible',
+      type: 'checkbox',
+      defaultValue: true,
+    },
   ],
 };

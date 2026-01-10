@@ -1,21 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import type { LucideIcon } from 'lucide-react';
-import { Code2, Headphones, LifeBuoy, Pen, Settings2, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import type { HomePage, Service } from '@/payload/types';
-
-const iconMap: Record<string, LucideIcon> = {
-  Settings2,
-  ShieldCheck,
-  Pen,
-  Headphones,
-  LifeBuoy,
-  Code2,
-};
+import DynamicLucideIcon, { type IconName } from '../dynamic-icon';
 
 interface ServicesClientProps {
   serviceSection: HomePage['serviceSection'];
@@ -42,7 +32,7 @@ export default function ServicesClient({ serviceSection, services }: ServicesCli
 
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
         {services?.slice(0, 6).map((service, index) => {
-          const Icon = iconMap[service.icon];
+          const Icon: IconName = service.icon.toLowerCase() as IconName;
           return (
             <motion.div
               key={index}
@@ -57,7 +47,7 @@ export default function ServicesClient({ serviceSection, services }: ServicesCli
               >
                 <CardHeader>
                   <div className='text-primary mb-4 group-hover:scale-110 transition-transform duration-300'>
-                    {Icon && <Icon className='h-10 w-10' />}
+                    {Icon && <DynamicLucideIcon name={Icon} className='h-10 w-10' />}
                   </div>
                   <CardTitle className='group-hover:text-primary transition-colors duration-300'>
                     {service.title}

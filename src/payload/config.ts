@@ -16,6 +16,7 @@ import { Testimonials } from './collections/testimonials';
 import { Users } from './collections/users';
 import { ContactSection } from './globals/contact-section';
 import { HomePage } from './globals/home-page';
+import { Navbar } from './globals/navbar';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -40,7 +41,7 @@ export default buildConfig({
     Testimonials,
     Sponsors,
   ],
-  globals: [HomePage, ContactSection],
+  globals: [HomePage, ContactSection, Navbar],
   editor: lexicalEditor({
     features: ({ defaultFeatures }: { defaultFeatures: any }) => [...defaultFeatures, FixedToolbarFeature()],
   }),

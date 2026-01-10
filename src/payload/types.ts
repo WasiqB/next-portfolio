@@ -106,10 +106,12 @@ export interface Config {
   globals: {
     homePage: HomePage;
     contactSection: ContactSection;
+    navbar: Navbar;
   };
   globalsSelect: {
     homePage: HomePageSelect<false> | HomePageSelect<true>;
     contactSection: ContactSectionSelect<false> | ContactSectionSelect<true>;
+    navbar: NavbarSelect<false> | NavbarSelect<true>;
   };
   locale: null;
   user: User & {
@@ -652,6 +654,7 @@ export interface HomePage {
     bio: string;
     primary?:
       | {
+          icon?: string | null;
           label: string;
           url: string;
           id?: string | null;
@@ -661,6 +664,7 @@ export interface HomePage {
       | null;
     secondary?:
       | {
+          icon?: string | null;
           label: string;
           url: string;
           id?: string | null;
@@ -685,6 +689,7 @@ export interface HomePage {
     }[];
     allProjectsButton?:
       | {
+          icon?: string | null;
           label: string;
           url: string;
           id?: string | null;
@@ -698,6 +703,7 @@ export interface HomePage {
     description: string;
     allServicesButton?:
       | {
+          icon?: string | null;
           label: string;
           url: string;
           id?: string | null;
@@ -707,6 +713,7 @@ export interface HomePage {
       | null;
     bookCallButton?:
       | {
+          icon?: string | null;
           label: string;
           url: string;
           id?: string | null;
@@ -720,6 +727,7 @@ export interface HomePage {
     description: string;
     viewAllButton?:
       | {
+          icon?: string | null;
           label: string;
           url: string;
           id?: string | null;
@@ -735,6 +743,7 @@ export interface HomePage {
     channelId: string;
     viewAllButton?:
       | {
+          icon?: string | null;
           label: string;
           url: string;
           id?: string | null;
@@ -748,6 +757,7 @@ export interface HomePage {
     description: string;
     viewAllButton?:
       | {
+          icon?: string | null;
           label: string;
           url: string;
           id?: string | null;
@@ -761,6 +771,7 @@ export interface HomePage {
     description: string;
     viewAllButton?:
       | {
+          icon?: string | null;
           label: string;
           url: string;
           id?: string | null;
@@ -793,6 +804,49 @@ export interface ContactSection {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navbar".
+ */
+export interface Navbar {
+  id: number;
+  logo: {
+    lightLogo: number | Media;
+    darkLogo: number | Media;
+  };
+  navItems?:
+    | {
+        label: string;
+        url: string;
+        icon: string;
+        hasSubmenu?: boolean | null;
+        visible?: boolean | null;
+        subNavItems?:
+          | {
+              label: string;
+              url: string;
+              icon: string;
+              description?: string | null;
+              visible?: boolean | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  buyButton?:
+    | {
+        icon?: string | null;
+        label: string;
+        url: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'button';
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "homePage_select".
  */
 export interface HomePageSelect<T extends boolean = true> {
@@ -809,6 +863,7 @@ export interface HomePageSelect<T extends boolean = true> {
               button?:
                 | T
                 | {
+                    icon?: T;
                     label?: T;
                     url?: T;
                     id?: T;
@@ -821,6 +876,7 @@ export interface HomePageSelect<T extends boolean = true> {
               button?:
                 | T
                 | {
+                    icon?: T;
                     label?: T;
                     url?: T;
                     id?: T;
@@ -857,6 +913,7 @@ export interface HomePageSelect<T extends boolean = true> {
               button?:
                 | T
                 | {
+                    icon?: T;
                     label?: T;
                     url?: T;
                     id?: T;
@@ -875,6 +932,7 @@ export interface HomePageSelect<T extends boolean = true> {
               button?:
                 | T
                 | {
+                    icon?: T;
                     label?: T;
                     url?: T;
                     id?: T;
@@ -887,6 +945,7 @@ export interface HomePageSelect<T extends boolean = true> {
               button?:
                 | T
                 | {
+                    icon?: T;
                     label?: T;
                     url?: T;
                     id?: T;
@@ -905,6 +964,7 @@ export interface HomePageSelect<T extends boolean = true> {
               button?:
                 | T
                 | {
+                    icon?: T;
                     label?: T;
                     url?: T;
                     id?: T;
@@ -925,6 +985,7 @@ export interface HomePageSelect<T extends boolean = true> {
               button?:
                 | T
                 | {
+                    icon?: T;
                     label?: T;
                     url?: T;
                     id?: T;
@@ -943,6 +1004,7 @@ export interface HomePageSelect<T extends boolean = true> {
               button?:
                 | T
                 | {
+                    icon?: T;
                     label?: T;
                     url?: T;
                     id?: T;
@@ -961,6 +1023,7 @@ export interface HomePageSelect<T extends boolean = true> {
               button?:
                 | T
                 | {
+                    icon?: T;
                     label?: T;
                     url?: T;
                     id?: T;
@@ -986,6 +1049,54 @@ export interface ContactSectionSelect<T extends boolean = true> {
         name?: T;
         value?: T;
         id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "navbar_select".
+ */
+export interface NavbarSelect<T extends boolean = true> {
+  logo?:
+    | T
+    | {
+        lightLogo?: T;
+        darkLogo?: T;
+      };
+  navItems?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+        icon?: T;
+        hasSubmenu?: T;
+        visible?: T;
+        subNavItems?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              icon?: T;
+              description?: T;
+              visible?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  buyButton?:
+    | T
+    | {
+        button?:
+          | T
+          | {
+              icon?: T;
+              label?: T;
+              url?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
   updatedAt?: T;
   createdAt?: T;

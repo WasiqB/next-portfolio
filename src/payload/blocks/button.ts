@@ -4,6 +4,10 @@ export const Button: Block = {
   slug: 'button',
   fields: [
     {
+      name: 'icon',
+      type: 'text',
+    },
+    {
       name: 'label',
       type: 'text',
       required: true,
@@ -12,6 +16,11 @@ export const Button: Block = {
       name: 'url',
       type: 'text',
       required: true,
+    },
+    {
+      name: 'visible',
+      type: 'checkbox',
+      defaultValue: true,
     },
   ],
 };

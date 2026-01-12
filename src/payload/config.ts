@@ -15,6 +15,7 @@ import { Sponsors } from './collections/sponsors';
 import { Testimonials } from './collections/testimonials';
 import { Users } from './collections/users';
 import { ContactSection } from './globals/contact-section';
+import { Footer } from './globals/footer';
 import { HomePage } from './globals/home-page';
 import { Navbar } from './globals/navbar';
 
@@ -41,7 +42,7 @@ export default buildConfig({
     Testimonials,
     Sponsors,
   ],
-  globals: [HomePage, ContactSection, Navbar],
+  globals: [HomePage, ContactSection, Navbar, Footer],
   editor: lexicalEditor({
     features: ({ defaultFeatures }: { defaultFeatures: any }) => [...defaultFeatures, FixedToolbarFeature()],
   }),

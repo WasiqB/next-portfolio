@@ -107,11 +107,13 @@ export interface Config {
     homePage: HomePage;
     contactSection: ContactSection;
     navbar: Navbar;
+    footer: Footer;
   };
   globalsSelect: {
     homePage: HomePageSelect<false> | HomePageSelect<true>;
     contactSection: ContactSectionSelect<false> | ContactSectionSelect<true>;
     navbar: NavbarSelect<false> | NavbarSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
   };
   locale: null;
   user: User & {
@@ -857,6 +859,37 @@ export interface Navbar {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer".
+ */
+export interface Footer {
+  id: number;
+  logo: {
+    lightLogo: number | Media;
+    darkLogo: number | Media;
+  };
+  socialSection: {
+    title: string;
+  };
+  categories?:
+    | {
+        title: string;
+        items?:
+          | {
+              label: string;
+              url: string;
+              visible?: boolean | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  copyrightText: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "homePage_select".
  */
 export interface HomePageSelect<T extends boolean = true> {
@@ -1118,6 +1151,41 @@ export interface NavbarSelect<T extends boolean = true> {
               blockName?: T;
             };
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  logo?:
+    | T
+    | {
+        lightLogo?: T;
+        darkLogo?: T;
+      };
+  socialSection?:
+    | T
+    | {
+        title?: T;
+      };
+  categories?:
+    | T
+    | {
+        title?: T;
+        items?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              visible?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  copyrightText?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

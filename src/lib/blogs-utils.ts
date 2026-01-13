@@ -3,6 +3,20 @@ import { stripHtml } from 'string-strip-html';
 import type { Blog, MediumBlog } from '@/types/portfolio-types';
 import { CACHE_DURATION } from './constants';
 
+const getBlogSource = (url: string): string => {
+  try {
+    const hostname = new URL(url).hostname.toLowerCase().replace('www.', '');
+    const parts = hostname.split('.');
+    if (parts.length >= 2) {
+      const domain = parts[parts.length - 2];
+      return domain.charAt(0).toUpperCase() + domain.slice(1);
+    }
+    return hostname.charAt(0).toUpperCase() + hostname.slice(1);
+  } catch {
+    return 'Blog';
+  }
+};
+
 const scrapeWebsite = async (url: string): Promise<Blog> => {
   const response = await fetch(url);
   const html = await response.text();
@@ -14,13 +28,18 @@ const scrapeWebsite = async (url: string): Promise<Blog> => {
     $(`meta[property="og:${name}"]`).attr('content') ||
     $(`meta[property="twitter:${name}"]`).attr('content');
 
+  const getScriptData = (name: string) => {
+    const script = [...$('script')].find((e) => $(e).text().includes(`"${name}":`));
+    return script ? JSON.parse($(script).text())[0][name] : '';
+  };
+
   return {
-    source: getMeta('site_name') || '',
+    source: getBlogSource(url),
     title: getMeta('title') || $('title').text() || '',
     description: getMeta('description') || '',
     image: getMeta('image') || '',
     url,
-    publishedAt: new Date(getMeta('article:published_time') || '').toISOString(),
+    publishedAt: new Date(getScriptData('datePublished')).toISOString(),
     tags: [],
   } satisfies Blog;
 };
@@ -99,4 +118,4 @@ const getMediumPost = async (user: string): Promise<Blog[]> => {
   }
 };
 
-export { scrapeWebsite, getMediumPost };
+export { getBlogSource, scrapeWebsite, getMediumPost };

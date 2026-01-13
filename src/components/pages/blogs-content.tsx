@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { Data as portfolioData } from '@/data/portfolio-data';
+import { getBlogSource } from '@/lib/blogs-utils';
 import { CACHE_DURATION } from '@/lib/constants';
 import type { Blog } from '@/types/portfolio-types';
 import { Badge } from '../ui/badge';
@@ -33,7 +34,7 @@ function BlogCard({ blog }: { blog: Blog }) {
         <div className='relative h-48 w-full'>
           <Image src={blog.image || '/placeholder.svg'} alt={blog.title} fill className='object-cover' />
           <div className='absolute top-2 right-2 bg-background/80 backdrop-blur-sm rounded px-2 py-1 text-xs font-medium'>
-            {blog.source}
+            {getBlogSource(blog.url)}
           </div>
         </div>
         <CardHeader className='p-4 pb-2'>
@@ -128,10 +129,8 @@ export default function BlogsContent() {
     fetchBlogs();
   }, []);
 
-  // Get unique sources for tabs
-  const sources = Array.from(new Set(blogs.map((b) => b.source)));
+  const sources = Array.from(new Set(blogs.map((b) => getBlogSource(b.url))));
 
-  // Filter blogs based on active tab
   const [_activeTab, setActiveTab] = useState('all');
 
   const sortedBlogs = [...blogs].sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
@@ -171,7 +170,7 @@ export default function BlogsContent() {
               {loading
                 ? Array.from({ length: 6 }).map((_, i) => <BlogSkeletonCard key={i} />)
                 : sortedBlogs
-                    .filter((blog) => blog.source === source)
+                    .filter((blog) => getBlogSource(blog.url) === source)
                     .map((blog) => <BlogCard key={blog.url} blog={blog} />)}
             </div>
           </TabsContent>

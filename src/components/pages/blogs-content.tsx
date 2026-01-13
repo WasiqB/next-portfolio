@@ -3,10 +3,8 @@
 import { ArrowLeft, CalendarIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { Data as portfolioData } from '@/data/portfolio-data';
+import { useState } from 'react';
 import { getBlogSource } from '@/lib/blogs-utils';
-import { CACHE_DURATION } from '@/lib/constants';
 import type { Blog } from '@/types/portfolio-types';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
@@ -66,69 +64,11 @@ function BlogCard({ blog }: { blog: Blog }) {
   );
 }
 
-function BlogSkeletonCard() {
-  return (
-    <div className='animate-pulse h-full flex flex-col overflow-hidden border-2 rounded-lg bg-muted'>
-      <div className='relative h-48 w-full bg-gray-200' />
-      <div className='p-4 pb-2'>
-        <div className='h-5 bg-gray-300 rounded w-3/4 mb-2' />
-      </div>
-      <div className='p-4 pt-0 grow'>
-        <div className='h-4 bg-gray-200 rounded w-full mb-2' />
-        <div className='h-4 bg-gray-200 rounded w-5/6 mb-2' />
-        <div className='flex gap-2 mb-3'>
-          <div className='h-5 w-12 bg-gray-300 rounded' />
-          <div className='h-5 w-12 bg-gray-300 rounded' />
-        </div>
-        <div className='flex items-center text-xs text-muted-foreground'>
-          <div className='h-4 w-4 bg-gray-300 rounded mr-1' />
-          <div className='h-4 w-20 bg-gray-200 rounded' />
-        </div>
-      </div>
-    </div>
-  );
+interface BlogsContentProps {
+  blogs: Blog[];
 }
 
-export default function BlogsContent() {
-  const [blogs, setBlogs] = useState<Blog[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchBlogs() {
-      try {
-        const blogsPromise = portfolioData.blogs.sources.map(async (source) => {
-          if (source.source === 'Medium') {
-            const response = await fetch(`/api/blogs?username=${source.username}`, {
-              next: {
-                revalidate: CACHE_DURATION,
-              },
-            });
-            return response.json() as Promise<Blog[]>;
-          } else {
-            const customBlogsPromise = source.urls?.map(async (url) => {
-              const response = await fetch(`/api/blogs?url=${url}`, {
-                next: {
-                  revalidate: CACHE_DURATION,
-                },
-              });
-              return response.json() as Promise<Blog[]>;
-            });
-            const customBlogs = await Promise.all(customBlogsPromise || []);
-            return customBlogs.flat();
-          }
-        });
-        const blogs = await Promise.all(blogsPromise);
-        setBlogs(blogs.flat());
-      } catch (error) {
-        console.error('Error fetching blogs:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchBlogs();
-  }, []);
-
+export default function BlogsContent({ blogs }: BlogsContentProps) {
   const sources = Array.from(new Set(blogs.map((b) => getBlogSource(b.url))));
 
   const [_activeTab, setActiveTab] = useState('all');
@@ -159,19 +99,19 @@ export default function BlogsContent() {
         </div>
         <TabsContent value='all' className='mt-6'>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
-            {loading
-              ? Array.from({ length: 6 }).map((_, i) => <BlogSkeletonCard key={i} />)
-              : sortedBlogs.map((blog) => <BlogCard key={blog.url} blog={blog} />)}
+            {sortedBlogs.map((blog) => (
+              <BlogCard key={blog.url} blog={blog} />
+            ))}
           </div>
         </TabsContent>
         {sources.map((source) => (
           <TabsContent key={source} value={source} className='mt-6'>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-              {loading
-                ? Array.from({ length: 6 }).map((_, i) => <BlogSkeletonCard key={i} />)
-                : sortedBlogs
-                    .filter((blog) => getBlogSource(blog.url) === source)
-                    .map((blog) => <BlogCard key={blog.url} blog={blog} />)}
+              {sortedBlogs
+                .filter((blog) => getBlogSource(blog.url) === source)
+                .map((blog) => (
+                  <BlogCard key={blog.url} blog={blog} />
+                ))}
             </div>
           </TabsContent>
         ))}

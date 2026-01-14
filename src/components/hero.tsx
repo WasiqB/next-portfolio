@@ -3,8 +3,9 @@ import HeroClient from '@/components/client/hero-client';
 import HeroSkeleton from '@/components/skeletons/hero-skeleton';
 import { getCollectionData } from '@/payload/fetchers/collections';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { HomePage, Social } from '@/payload/types';
+import type { HomePage, Media, Social } from '@/payload/types';
 import { SectionError } from './client/section-error';
+import { ImageBox } from './image-box';
 
 export default async function Hero() {
   const data = await getGlobalConfig<HomePage>('homePage');
@@ -33,7 +34,19 @@ export default async function Hero() {
 
   return (
     <Suspense fallback={<HeroSkeleton />}>
-      <HeroClient heroSection={data.heroSection} socials={socials} typingSequences={sequences} />
+      <HeroClient
+        heroSection={data.heroSection}
+        socials={socials}
+        typingSequences={sequences}
+        profileImage={
+          <ImageBox
+            media={data.heroSection.profileImage[0].src as Media}
+            imageClassName='object-cover'
+            fill
+            alt={data.heroSection.profileImage[0].alt}
+          />
+        }
+      />
     </Suspense>
   );
 }

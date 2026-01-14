@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
         protocol: 'https',
       },
       {
-        hostname: 'www.lambdatest.com',
+        hostname: 'assets.testmu.ai',
       },
       {
         hostname: 'i.ytimg.com',

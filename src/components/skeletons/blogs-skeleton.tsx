@@ -1,15 +1,36 @@
-import { CalendarIcon } from 'lucide-react';
+import { ArrowLeft, CalendarIcon } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 
-export default function BlogsSkeleton() {
+interface BlogsSkeletonProps {
+  isSection?: boolean;
+}
+
+export default function BlogsSkeleton({ isSection = false }: BlogsSkeletonProps) {
   return (
-    <section id='blogs' className='container max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24'>
-      {/* Section title and description skeleton */}
-      <div className='space-y-4 text-center mb-8'>
-        <Skeleton className='h-10 md:h-12 w-64 mx-auto rounded-lg' />
-        <Skeleton className='h-6 w-full max-w-2xl mx-auto rounded-lg' />
-      </div>
+    <section
+      id='blogs'
+      className={
+        isSection
+          ? 'container max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24'
+          : 'container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'
+      }
+    >
+      {/* Header Skeleton */}
+      {isSection ? (
+        <div className='space-y-4 text-center mb-8'>
+          <Skeleton className='h-10 md:h-12 w-64 mx-auto rounded-lg' />
+          <Skeleton className='h-6 w-full max-w-2xl mx-auto rounded-lg' />
+        </div>
+      ) : (
+        <div className='flex items-center gap-4 mb-8'>
+          <div className='flex items-center gap-2 h-9 px-3 border rounded-md bg-muted/50 w-32'>
+            <ArrowLeft className='h-4 w-4 text-muted-foreground' />
+            <Skeleton className='h-4 w-16' />
+          </div>
+          <Skeleton className='h-9 w-48 rounded-lg' />
+        </div>
+      )}
 
       {/* Tabs skeleton */}
       <div className='mb-8'>
@@ -23,8 +44,14 @@ export default function BlogsSkeleton() {
       </div>
 
       {/* Blog cards grid skeleton */}
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-        {Array.from({ length: 4 }).map((_, index) => (
+      <div
+        className={
+          isSection
+            ? 'grid grid-cols-1 md:grid-cols-2 gap-6'
+            : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'
+        }
+      >
+        {Array.from({ length: isSection ? 4 : 8 }).map((_, index) => (
           <Card key={`skeleton-${index}`} className='h-full flex flex-col overflow-hidden border-2'>
             {/* Image skeleton */}
             <div className='relative h-48 w-full bg-muted'>
@@ -58,9 +85,11 @@ export default function BlogsSkeleton() {
       </div>
 
       {/* View All Blogs button skeleton */}
-      <div className='flex justify-center mt-8'>
-        <Skeleton className='h-10 w-40 rounded-md' />
-      </div>
+      {isSection && (
+        <div className='flex justify-center mt-8'>
+          <Skeleton className='h-10 w-40 rounded-md' />
+        </div>
+      )}
     </section>
   );
 }

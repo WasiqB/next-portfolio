@@ -9,7 +9,7 @@ import BlogsClient from './client/blogs-client';
 import { SectionError } from './client/section-error';
 import BlogsSkeleton from './skeletons/blogs-skeleton';
 
-async function fetchBlogs(sources: BlogSource[]): Promise<Blog[]> {
+export async function fetchBlogs(sources: BlogSource[]): Promise<Blog[]> {
   try {
     const blogsApiUrl = `${appProtocol}://${domain}/api/blogs`;
     const blogs = sources.map(async ({ source, username, url }) => {
@@ -66,7 +66,7 @@ export default async function Blogs() {
   }
 
   return (
-    <Suspense fallback={<BlogsSkeleton />}>
+    <Suspense fallback={<BlogsSkeleton isSection />}>
       <BlogsClient blogSection={blogSection} blogData={blogData} />
     </Suspense>
   );

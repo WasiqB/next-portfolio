@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { getBlogSource } from '@/lib/blogs-utils';
 import { formatDate } from '@/lib/date-utils';
 import type { HomePage } from '@/payload/types';
 import type { Blog } from '@/types/portfolio-types';
@@ -35,7 +36,7 @@ function BlogCard({ blog }: { blog: Blog }) {
             className='object-cover'
           />
           <div className='absolute top-2 right-2 bg-background/80 backdrop-blur-sm rounded px-2 py-1 text-xs font-medium'>
-            {blog.source}
+            {getBlogSource(blog.url)}
           </div>
         </div>
         <CardHeader className='p-4 pb-2'>
@@ -68,10 +69,14 @@ function BlogCard({ blog }: { blog: Blog }) {
 export default function BlogsClient({ blogSection, blogData }: BlogsClientProps) {
   const [_activeTab, setActiveTab] = useState('all');
 
-  // Get unique sources for tabs
-  const sources = Array.from(new Set(blogData.map((b) => b.source)));
+  const blogsWithSource = blogData.map((blog) => ({
+    ...blog,
+    displaySource: getBlogSource(blog.url),
+  }));
 
-  const sortedBlogs = [...blogData].sort(
+  const sources = Array.from(new Set(blogsWithSource.map((b) => b.displaySource)));
+
+  const sortedBlogs = [...blogsWithSource].sort(
     (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
   );
 
@@ -118,7 +123,7 @@ export default function BlogsClient({ blogSection, blogData }: BlogsClientProps)
           <TabsContent key={source} value={source} className='mt-6'>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
               {sortedBlogs
-                .filter((blog) => blog.source === source)
+                .filter((blog) => blog.displaySource === source)
                 .slice(0, 4)
                 .map((blog, index) => (
                   <motion.div

@@ -77,16 +77,6 @@ export interface ServicesData {
   };
 }
 
-export interface BlogData {
-  sectionTitle: string;
-  sectionDescription: string;
-  sources: {
-    source: 'Medium' | 'custom';
-    username?: string;
-    urls?: string[];
-  }[];
-}
-
 export interface Video {
   id: string;
   title: string;
@@ -219,7 +209,6 @@ export interface PortfolioData {
   hero: HeroData;
   projects: ProjectsData;
   services: ServicesData;
-  blogs: BlogData;
   videos: VideosData;
   testimonials: TestimonialsData;
   about: AboutData;

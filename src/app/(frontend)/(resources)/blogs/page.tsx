@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import { fetchBlogs } from '@/components/blogs';
+import { ImageBox } from '@/components/image-box';
 import BlogsContent from '@/components/pages/blogs-content';
 import BlogsSkeleton from '@/components/skeletons/blogs-skeleton';
 import { getCollectionData } from '@/payload/fetchers/collections';
@@ -54,7 +55,19 @@ async function BlogsData() {
   const blogSources = await getCollectionData<BlogSource[]>('blog-sources');
   const blogs = await fetchBlogs(blogSources);
 
-  return <BlogsContent blogs={blogs} />;
+  const blogsWithImages = blogs.map((blog) => ({
+    ...blog,
+    imageNode: (
+      <ImageBox
+        imageUrl={blog.image || 'https://placehold.net/600x600.png'}
+        imageClassName='object-cover'
+        fill
+        alt={blog.title}
+      />
+    ),
+  }));
+
+  return <BlogsContent blogs={blogsWithImages} />;
 }
 
 export default function BlogsPage() {

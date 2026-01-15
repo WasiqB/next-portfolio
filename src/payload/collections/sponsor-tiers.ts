@@ -53,7 +53,7 @@ export const SponsorTiers: CollectionConfig = {
       ],
     },
     {
-      name: 'tier-url',
+      name: 'tierUrl',
       label: 'Tier URL',
       type: 'text',
       required: true,

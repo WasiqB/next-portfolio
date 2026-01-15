@@ -287,7 +287,7 @@ export interface SponsorTier {
     benefit: string;
     id?: string | null;
   }[];
-  'tier-url': string;
+  tierUrl: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -574,7 +574,7 @@ export interface SponsorTiersSelect<T extends boolean = true> {
         benefit?: T;
         id?: T;
       };
-  'tier-url'?: T;
+  tierUrl?: T;
   updatedAt?: T;
   createdAt?: T;
 }

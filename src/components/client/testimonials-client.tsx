@@ -2,16 +2,15 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import type { HomePage, Media, Testimonial } from '@/payload/types';
+import type { HomePage, Testimonial } from '@/payload/types';
 
 interface TestimonialsClientProps {
   testimonialSection: HomePage['testimonialSection'];
-  testimonials: Testimonial[];
+  testimonials: (Testimonial & { imageNode?: React.ReactNode })[];
 }
 
 export default function TestimonialsClient({ testimonialSection, testimonials }: TestimonialsClientProps) {
@@ -83,16 +82,7 @@ export default function TestimonialsClient({ testimonialSection, testimonials }:
                   </blockquote>
                   <div className='flex flex-col md:flex-row items-center mt-auto gap-4 md:gap-0'>
                     <div className='relative w-12 h-12 rounded-full overflow-hidden mb-2 md:mb-0 md:mr-4'>
-                      <Image
-                        src={
-                          typeof featuredTestimonials[currentIndex].image === 'object'
-                            ? (featuredTestimonials[currentIndex].image as Media).url || '/placeholder.svg'
-                            : '/placeholder.svg'
-                        }
-                        alt={featuredTestimonials[currentIndex].name}
-                        fill
-                        className='object-cover'
-                      />
+                      {featuredTestimonials[currentIndex].imageNode}
                     </div>
                     <div className='text-center md:text-left text-balance'>
                       <div className='font-medium'>{featuredTestimonials[currentIndex].name}</div>

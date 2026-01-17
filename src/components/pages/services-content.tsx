@@ -1,57 +1,38 @@
 'use client';
 
-import { useVariableValue } from '@devcycle/nextjs-sdk';
 import { motion } from 'framer-motion';
-import {
-  ArrowLeft,
-  CheckCircle,
-  Code2,
-  Headphones,
-  LifeBuoy,
-  type LucideIcon,
-  Pen,
-  Settings2,
-  ShieldCheck,
-} from 'lucide-react';
+import { ArrowLeft, CheckCircle } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import type { Service } from '@/types/portfolio-types';
+import type { HomePage, Service } from '@/payload/types';
+import DynamicLucideIcon, { type IconName } from '../dynamic-icon';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
-
-const iconMap: Record<string, LucideIcon> = {
-  Settings2,
-  ShieldCheck,
-  Pen,
-  Headphones,
-  LifeBuoy,
-  Code2,
-};
 
 interface ServicesPageProps {
   sectionTitle: string;
   sectionDescription: string;
-  bookCallButton: {
-    text: string;
-    href: string;
-  };
+  bookCallButton: HomePage['serviceSection']['bookCallButton'];
+  services: Service[];
 }
 
-export default function ServiceContent({ sectionTitle, sectionDescription, bookCallButton }: ServicesPageProps) {
+export default function ServiceContent({
+  sectionTitle,
+  sectionDescription,
+  bookCallButton,
+  services,
+}: ServicesPageProps) {
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const searchParams = useSearchParams();
-  const services = useVariableValue('services', {
-    status: 'off',
-  }).services?.valueOf() as Service[] | undefined;
 
   useEffect(() => {
-    const serviceId = searchParams.get('service');
-    if (serviceId) {
-      const service = services?.find((s) => s.id === serviceId);
+    const serviceSlug = searchParams.get('service');
+    if (serviceSlug) {
+      const service = services?.find((s) => s.slug === serviceSlug);
       if (service) {
         setSelectedService(service);
-        // Scroll to timeline section after a short delay
+
         setTimeout(() => {
           const timelineElement = document.getElementById('service-timeline');
           if (timelineElement) {
@@ -63,16 +44,15 @@ export default function ServiceContent({ sectionTitle, sectionDescription, bookC
         }, 100);
       }
     }
-  }, [searchParams, services?.find]);
+  }, [searchParams, services]);
 
   const handleServiceClick = (service: Service) => {
     setSelectedService(service);
-    // Update URL without page reload
+
     const url = new URL(window.location.href);
-    url.searchParams.set('service', service.id);
+    url.searchParams.set('service', service.slug);
     window.history.pushState({}, '', url.toString());
 
-    // Scroll to timeline section
     setTimeout(() => {
       const timelineElement = document.getElementById('service-timeline');
       if (timelineElement) {
@@ -102,7 +82,7 @@ export default function ServiceContent({ sectionTitle, sectionDescription, bookC
 
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16'>
         {services?.map((service, index) => {
-          const Icon = iconMap[service.icon];
+          const Icon: IconName = service.icon.toLowerCase() as IconName;
           return (
             <motion.div
               key={service.id}
@@ -122,7 +102,7 @@ export default function ServiceContent({ sectionTitle, sectionDescription, bookC
               >
                 <CardHeader className='relative overflow-hidden'>
                   <div className='text-primary mb-4 group-hover:scale-110 transition-transform duration-300'>
-                    <Icon className='h-6 w-6' />
+                    <DynamicLucideIcon name={Icon} className='h-6 w-6' />
                   </div>
                   <CardTitle className='group-hover:text-primary transition-colors duration-300'>
                     {service.title}
@@ -137,7 +117,7 @@ export default function ServiceContent({ sectionTitle, sectionDescription, bookC
                 </CardHeader>
                 <CardContent className='grow'>
                   <ul className='space-y-2'>
-                    {service.features?.map((feature, featureIndex) => (
+                    {service.features?.map((f, featureIndex) => (
                       <motion.li
                         key={featureIndex}
                         className='flex items-start gap-2 text-sm'
@@ -147,7 +127,7 @@ export default function ServiceContent({ sectionTitle, sectionDescription, bookC
                       >
                         <div className='w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 group-hover:bg-primary/80 transition-colors duration-300'></div>
                         <span className='text-muted-foreground group-hover:text-foreground transition-colors duration-300'>
-                          {feature}
+                          {f.feature}
                         </span>
                       </motion.li>
                     ))}
@@ -166,7 +146,8 @@ export default function ServiceContent({ sectionTitle, sectionDescription, bookC
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className='text-center mb-12'
+          className='w-full mb-12'
+          id='service-timeline'
         >
           <div className='text-center mb-12'>
             <h2 className='text-3xl font-bold mb-4'>{selectedService.title} Process</h2>
@@ -212,10 +193,10 @@ export default function ServiceContent({ sectionTitle, sectionDescription, bookC
                         </CardHeader>
                         <CardContent>
                           <ul className='space-y-2 mb-4'>
-                            {item.details.map((detail, detailIndex) => (
-                              <li key={detailIndex} className='flex items-start gap-2 text-sm'>
+                            {item.details.map((d, detailIndex) => (
+                              <li key={detailIndex} className='flex items-start gap-2 text-sm text-left'>
                                 <div className='w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0'></div>
-                                <span className='text-muted-foreground'>{detail}</span>
+                                <span className='text-muted-foreground'>{d.detail}</span>
                               </li>
                             ))}
                           </ul>
@@ -246,44 +227,46 @@ export default function ServiceContent({ sectionTitle, sectionDescription, bookC
       )}
 
       {/* Call to action */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.8 }}
-        className='text-center mt-12 p-8 bg-linear-to-r from-primary/10 via-primary/5 to-primary/10 rounded-2xl border border-primary/20'
-      >
-        <h3 className='text-2xl font-bold mb-4'>Ready to Get Started?</h3>
-        <p className='text-muted-foreground mb-6 max-w-2xl mx-auto'>
-          {selectedService
-            ? `Let's discuss your ${selectedService.title.toLowerCase()} project and see how I can help bring your vision to life.`
-            : "Let's discuss your project and see how I can help bring your vision to life."}{' '}
-          Book your free discovery call today - no strings attached!
-        </p>
-        <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-          <Button size='lg' asChild className='group'>
-            <Link href={bookCallButton.href} target='_blank'>
-              <span>{bookCallButton.text}</span>
-              <motion.div
-                className='ml-2'
-                animate={{ x: [0, 4, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Number.POSITIVE_INFINITY,
-                }}
-              >
-                →
-              </motion.div>
-            </Link>
-          </Button>
-          <Button size='lg' variant='outline' asChild>
-            <Link href='/#contact'>Send Quick Message</Link>
-          </Button>
-        </div>
-        <p className='text-xs text-muted-foreground mt-4'>
-          ⚡ Most clients see results within the first week of starting
-        </p>
-      </motion.div>
+      {bookCallButton?.[0] && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.8 }}
+          className='text-center mt-12 p-8 bg-linear-to-r from-primary/10 via-primary/5 to-primary/10 rounded-2xl border border-primary/20'
+        >
+          <h3 className='text-2xl font-bold mb-4'>Ready to Get Started?</h3>
+          <p className='text-muted-foreground mb-6 max-w-2xl mx-auto'>
+            {selectedService
+              ? `Let's discuss your ${selectedService.title.toLowerCase()} project and see how I can help bring your vision to life.`
+              : "Let's discuss your project and see how I can help bring your vision to life."}{' '}
+            Book your free discovery call today - no strings attached!
+          </p>
+          <div className='flex flex-col sm:flex-row gap-4 justify-center'>
+            <Button size='lg' asChild className='group'>
+              <Link href={bookCallButton[0].url} target='_blank'>
+                <span>{bookCallButton[0].label}</span>
+                <motion.div
+                  className='ml-2'
+                  animate={{ x: [0, 4, 0] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Number.POSITIVE_INFINITY,
+                  }}
+                >
+                  →
+                </motion.div>
+              </Link>
+            </Button>
+            <Button size='lg' variant='outline' asChild>
+              <Link href='/#contact'>Send Quick Message</Link>
+            </Button>
+          </div>
+          <p className='text-xs text-muted-foreground mt-4'>
+            ⚡ Most clients see results within the first week of starting
+          </p>
+        </motion.div>
+      )}
     </div>
   );
 }

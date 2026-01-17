@@ -20,7 +20,7 @@ export default async function Services() {
   }
 
   return (
-    <Suspense fallback={<ServicesSkeleton />}>
+    <Suspense fallback={<ServicesSkeleton isSection />}>
       <ServicesClient serviceSection={serviceSection} services={services} />
     </Suspense>
   );

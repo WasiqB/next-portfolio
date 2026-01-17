@@ -97,27 +97,6 @@ export interface VideosData {
   channelUrl: string;
 }
 
-export interface Testimonial {
-  id: string;
-  name: string;
-  title: string;
-  company: string;
-  image: string;
-  testimonial: string;
-  category?: 'client' | 'colleague' | 'student' | 'general';
-  featured?: boolean;
-}
-
-export interface TestimonialsData {
-  sectionTitle: string;
-  sectionDescription: string;
-  testimonials: Testimonial[];
-  viewAllButton?: {
-    text: string;
-    href: string;
-  };
-}
-
 export interface Experience {
   title: string;
   company: string;
@@ -163,47 +142,6 @@ export interface AboutData {
   };
 }
 
-type TierType = 'starter' | 'backer' | 'bronze' | 'silver' | 'gold' | 'diamond' | 'platinum' | 'donation' | 'one_time';
-
-export interface SponsorTier {
-  name: string;
-  slug: TierType;
-  description: string;
-  price?: number;
-  benefits: string[];
-  githubTierUrl: string;
-}
-
-export interface Sponsor {
-  id: string;
-  name: string;
-  avatarUrl: string;
-  profileUrl: string;
-  tier: TierType;
-  message?: string;
-}
-
-export interface SponsorsData {
-  sectionTitle: string;
-  sectionDescription: string;
-  tiers: SponsorTier[];
-  sponsors: Sponsor[];
-  viewAllButton?: {
-    text: string;
-    href: string;
-  };
-}
-
-export interface ContactData {
-  sectionTitle: string;
-  sectionDescription: string;
-  email: string;
-  reasons: {
-    name: string;
-    value: string;
-  }[];
-}
-
 export interface PortfolioData {
   url: string;
   hero: HeroData;
@@ -214,7 +152,6 @@ export interface PortfolioData {
   github: {
     username: string;
   };
-  sponsors: SponsorsData;
   analytics: Analytics;
 }
 

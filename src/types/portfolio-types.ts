@@ -45,38 +45,6 @@ export interface ProjectsData {
   };
 }
 
-export interface Service {
-  id: string;
-  title: string;
-  description: string;
-  icon: string;
-  features: string[];
-  deliverables: Deliverable[];
-}
-
-export interface Deliverable {
-  step: string;
-  title: string;
-  description: string;
-  details: string[];
-  icon: string;
-  duration: string;
-  cost: string;
-}
-
-export interface ServicesData {
-  sectionTitle: string;
-  sectionDescription: string;
-  viewAllButton: {
-    text: string;
-    href: string;
-  };
-  bookCallButton: {
-    text: string;
-    href: string;
-  };
-}
-
 export interface Video {
   id: string;
   title: string;
@@ -146,7 +114,6 @@ export interface PortfolioData {
   url: string;
   hero: HeroData;
   projects: ProjectsData;
-  services: ServicesData;
   videos: VideosData;
   about: AboutData;
   github: {

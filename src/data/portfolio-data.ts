@@ -79,19 +79,6 @@ export const Data: PortfolioData = {
       'https://github.com/WasiqB/maven-publish-action',
     ],
   },
-  services: {
-    sectionTitle: 'My Services',
-    sectionDescription:
-      'Here are the freelance services I offer to help you achieve the quality of your products. Click on any service to see the detailed process.',
-    viewAllButton: {
-      text: 'View All Services',
-      href: '/services',
-    },
-    bookCallButton: {
-      text: 'Book Free Discovery Call',
-      href: 'https://cal.com/wasiqbhamla/discussion-with-wasiq',
-    },
-  },
   videos: {
     sectionTitle: 'My Videos',
     sectionDescription: 'Check out my latest video tutorials and tech talks.',

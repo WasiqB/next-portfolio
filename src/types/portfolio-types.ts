@@ -210,7 +210,6 @@ export interface PortfolioData {
   projects: ProjectsData;
   services: ServicesData;
   videos: VideosData;
-  testimonials: TestimonialsData;
   about: AboutData;
   github: {
     username: string;

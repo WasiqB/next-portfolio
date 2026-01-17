@@ -1,19 +1,16 @@
 'use client';
 
 import { ArrowLeft, Bell, Eye, Heart, MessageSquare, Play } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaYoutube } from 'react-icons/fa6';
-import { Data as portfolioData } from '@/data/portfolio-data';
-import { CACHE_DURATION } from '@/lib/constants';
+import { formatDate } from '@/lib/date-utils';
 import type { Video } from '@/types/portfolio-types';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
-// Format view count
 function formatViewCount(count: number): string {
   if (count >= 1000000) {
     return `${(count / 1000000).toFixed(1)}M views`;
@@ -24,16 +21,6 @@ function formatViewCount(count: number): string {
   }
 }
 
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
-}
-
-// Format large numbers
 function formatNumber(num: number): string {
   if (num >= 1000000) {
     return `${(num / 1000000).toFixed(1)}M`;
@@ -43,8 +30,7 @@ function formatNumber(num: number): string {
   return num.toString();
 }
 
-// Video card component
-function VideoCard({ video }: { video: Video }) {
+function VideoCard({ video }: { video: Video & { imageNode?: React.ReactNode } }) {
   const { theme } = useTheme();
   return (
     <Link
@@ -56,7 +42,7 @@ function VideoCard({ video }: { video: Video }) {
     >
       <Card className='h-full flex flex-col overflow-hidden hover:border-primary/50'>
         <div className='relative aspect-video w-full group cursor-pointer'>
-          <Image src={video.thumbnail || '/placeholder.svg'} alt={video.title} fill className='object-cover' />
+          {video.imageNode}
           <div className='absolute inset-0 bg-black/50 dark:bg-white/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity'>
             <div className='rounded-full bg-primary/90 p-3'>
               <Play className='h-6 w-6' fill={theme !== 'dark' ? 'white' : 'black'} />
@@ -89,59 +75,23 @@ function VideoCard({ video }: { video: Video }) {
   );
 }
 
-function VideoSkeleton() {
-  return (
-    <Card className='h-full flex flex-col overflow-hidden'>
-      <div className='aspect-video w-full bg-muted animate-pulse' />
-      <CardContent className='p-4 grow'>
-        <div className='h-4 bg-muted rounded animate-pulse mb-2' />
-        <div className='h-4 bg-muted rounded animate-pulse w-3/4 mb-2' />
-        <div className='h-3 bg-muted rounded animate-pulse w-1/2' />
-      </CardContent>
-      <CardFooter className='p-4 pt-0 flex justify-between items-center'>
-        <div className='h-3 bg-muted rounded animate-pulse w-16' />
-        <div className='h-3 bg-muted rounded animate-pulse w-12' />
-      </CardFooter>
-    </Card>
-  );
+interface VideoContentProps {
+  initialVideos: (Video & { imageNode?: React.ReactNode })[];
+  channelStats: {
+    subscriberCount: number;
+    viewCount: number;
+    videoCount: number;
+  };
+  channelUrl: string;
 }
 
-export default function VideoContent() {
+export default function VideoContent({ initialVideos, channelStats, channelUrl }: VideoContentProps) {
   const [activeTab, setActiveTab] = useState('all');
-  const [isLoading, setIsLoading] = useState(true);
-  const [videos, setVideos] = useState<Video[]>([]);
-  const [channelStats, setChannelStats] = useState({
-    subscriberCount: 0,
-    viewCount: 0,
-    videoCount: 0,
-  });
-
-  useEffect(() => {
-    async function loadVideos() {
-      setIsLoading(true);
-      try {
-        const channelId = portfolioData.videos.youtubeChannelId;
-        if (!channelId) return;
-        const res = await fetch(`/api/videos?channelId=${channelId}`, {
-          next: {
-            revalidate: CACHE_DURATION,
-          },
-        });
-        if (!res.ok) return;
-        const data = await res.json();
-        setVideos(data.videos);
-        setChannelStats(data.channelStats);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    loadVideos();
-  }, []);
 
   // Filter videos based on active tab
   const getFilteredVideos = () => {
-    if (activeTab === 'all') return videos;
-    return videos.filter((video) => video.category === activeTab);
+    if (activeTab === 'all') return initialVideos;
+    return initialVideos.filter((video) => video.category === activeTab);
   };
 
   return (
@@ -167,13 +117,11 @@ export default function VideoContent() {
 
         <TabsContent value='all' className='mt-6'>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
-            {isLoading
-              ? Array.from({ length: 4 }).map((_, index) => <VideoSkeleton key={index} />)
-              : getFilteredVideos().map((video) => (
-                  <div key={video.id}>
-                    <VideoCard video={video} />
-                  </div>
-                ))}
+            {getFilteredVideos().map((video) => (
+              <div key={video.id}>
+                <VideoCard video={video} />
+              </div>
+            ))}
           </div>
         </TabsContent>
 
@@ -202,17 +150,13 @@ export default function VideoContent() {
         </p>
         <div className='flex flex-col sm:flex-row gap-4 justify-center'>
           <Button asChild variant='outline' size='lg'>
-            <Link href={portfolioData.videos.channelUrl} target='_blank' rel='noopener noreferrer'>
+            <Link href={channelUrl} target='_blank' rel='noopener noreferrer'>
               <FaYoutube className='h-5 w-5 mr-2' />
               Visit My Channel
             </Link>
           </Button>
           <Button asChild size='lg'>
-            <Link
-              href={`${portfolioData.videos.channelUrl}?sub_confirmation=1`}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
+            <Link href={`${channelUrl}?sub_confirmation=1`} target='_blank' rel='noopener noreferrer'>
               <Bell className='h-5 w-5 mr-2' />
               Subscribe Now
             </Link>
@@ -220,15 +164,15 @@ export default function VideoContent() {
         </div>
         <div className='mt-6 flex justify-center gap-8 text-sm text-muted-foreground'>
           <div className='text-center'>
-            <div className='font-semibold text-foreground'>{formatNumber(channelStats.subscriberCount)}</div>
+            <div className='font-semibold text-foreground'>{formatNumber(channelStats?.subscriberCount || 0)}</div>
             <div>Subscribers</div>
           </div>
           <div className='text-center'>
-            <div className='font-semibold text-foreground'>{formatNumber(channelStats.videoCount)}</div>
+            <div className='font-semibold text-foreground'>{formatNumber(channelStats?.videoCount || 0)}</div>
             <div>Videos</div>
           </div>
           <div className='text-center'>
-            <div className='font-semibold text-foreground'>{formatNumber(channelStats.viewCount)}</div>
+            <div className='font-semibold text-foreground'>{formatNumber(channelStats?.viewCount || 0)}</div>
             <div>Total Views</div>
           </div>
         </div>

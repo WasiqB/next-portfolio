@@ -6,6 +6,7 @@ import type { HomePage } from '@/payload/types';
 import type { Video } from '@/types/portfolio-types';
 import { SectionError } from './client/section-error';
 import VideosClient from './client/videos-client';
+import { ImageBox } from './image-box';
 import VideosSkeleton from './skeletons/videos-skeleton';
 
 async function fetchVideos(channelId: string): Promise<Video[]> {
@@ -37,9 +38,14 @@ export default async function Videos() {
     );
   }
 
+  const videosWithImages = videos.map((video) => ({
+    ...video,
+    imageNode: <ImageBox imageUrl={video.thumbnail} imageClassName='object-cover' fill alt={video.title} />,
+  }));
+
   return (
-    <Suspense fallback={<VideosSkeleton />}>
-      <VideosClient videoSection={videoSection} videos={videos} />
+    <Suspense fallback={<VideosSkeleton isSection />}>
+      <VideosClient videoSection={videoSection} videos={videosWithImages} />
     </Suspense>
   );
 }

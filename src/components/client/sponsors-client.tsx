@@ -2,14 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import type { HomePage, Media, Sponsor, SponsorTier } from '@/payload/types';
+import type { HomePage, Sponsor, SponsorTier } from '@/payload/types';
 
 interface SponsorsClientProps {
   sponsorSection: HomePage['sponsorSection'];
-  sponsors: Sponsor[];
+  sponsors: (Sponsor & { imageNode?: React.ReactNode })[];
   tiers: SponsorTier[];
 }
 
@@ -49,7 +48,6 @@ export default function SponsorsClient({ sponsorSection, sponsors, tiers }: Spon
 
       <div className='grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-3xl mx-auto mb-12'>
         {topSponsors.map((sponsor, index) => {
-          const avatarUrl = typeof sponsor.avatar === 'object' ? (sponsor.avatar as Media).url : '';
           return (
             <motion.div
               key={sponsor.id}
@@ -61,12 +59,7 @@ export default function SponsorsClient({ sponsorSection, sponsors, tiers }: Spon
             >
               <Link href={sponsor.url} target='_blank' rel='noopener noreferrer' className='group'>
                 <div className='relative w-24 h-24 md:w-32 md:h-32 overflow-hidden rounded-full border-2 border-muted transition-all hover:border-primary'>
-                  <Image
-                    src={avatarUrl || '/placeholder.svg'}
-                    alt={sponsor.name}
-                    fill
-                    className='object-cover transition-transform group-hover:scale-105'
-                  />
+                  {sponsor.imageNode}
                 </div>
               </Link>
             </motion.div>

@@ -1,30 +1,26 @@
 'use client';
 
 import { ArrowLeft, Heart } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { Data as portfolioData } from '@/data/portfolio-data';
-import type { Sponsor, SponsorsData, SponsorTier } from '@/types/portfolio-types';
+import type { Sponsor, SponsorTier } from '@/payload/types';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
-function SponsorCard({ sponsor }: { sponsor: Sponsor }) {
+interface SponsorCardProps {
+  sponsor: Sponsor & { imageNode?: React.ReactNode };
+}
+
+function SponsorCard({ sponsor }: SponsorCardProps) {
+  const tierName = typeof sponsor.tier === 'object' ? sponsor.tier.name : '';
+
   return (
-    <Link href={sponsor.profileUrl} target='_blank' rel='noopener noreferrer' className='group'>
+    <Link href={sponsor.url} target='_blank' rel='noopener noreferrer' className='group'>
       <div className='relative aspect-square overflow-hidden rounded-full border-2 border-muted transition-all hover:border-primary'>
-        <Image
-          src={sponsor.avatarUrl || '/placeholder.svg'}
-          alt={sponsor.name}
-          fill
-          className='object-cover transition-transform group-hover:scale-105'
-        />
+        {sponsor.imageNode}
       </div>
       <div className='mt-3 text-center'>
         <h3 className='font-medium'>{sponsor.name}</h3>
-        <p className='text-xs text-muted-foreground capitalize'>
-          {sponsor.tier.charAt(0).toUpperCase() + sponsor.tier.slice(1)} Sponsor
-        </p>
-        {sponsor.message && <p className='text-xs text-muted-foreground mt-1 italic'>"{sponsor.message}"</p>}
+        {tierName && <p className='text-xs text-muted-foreground capitalize'>{tierName} Sponsor</p>}
       </div>
     </Link>
   );
@@ -45,13 +41,19 @@ function getTierClass(tier: string) {
   }
 }
 
-export default function SponsorContent() {
-  const sponsors: SponsorsData = portfolioData.sponsors;
-  const sponsorTiers: SponsorTier[] = sponsors.tiers;
+interface SponsorContentProps {
+  sponsors: (Sponsor & { imageNode?: React.ReactNode })[];
+  tiers: SponsorTier[];
+}
 
-  const getSponsorsByTier = (tier: string) =>
-    sponsors.sponsors.filter((s) => s.tier === tier && tier !== 'one_time' && tier !== 'donation');
-  const otherSponsors = sponsors.sponsors.filter((s) => s.tier === 'one_time' || s.tier === 'donation');
+export default function SponsorContent({ sponsors, tiers }: SponsorContentProps) {
+  const getSponsorsByTier = (tierSlug: string) =>
+    sponsors.filter((s) => (typeof s.tier === 'object' ? s.tier.slug === tierSlug : String(s.tier) === tierSlug));
+
+  const otherSponsors = sponsors.filter((s) => {
+    const tierSlug = typeof s.tier === 'object' ? s.tier.slug : String(s.tier);
+    return tierSlug === 'one_time' || tierSlug === 'donation';
+  });
 
   return (
     <div className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'>
@@ -118,23 +120,25 @@ export default function SponsorContent() {
 
       <div className='space-y-16'>
         <h2 className='text-2xl font-bold mb-8'>Current Sponsors</h2>
-        {sponsorTiers.map((tier) => {
-          const tierSponsors = getSponsorsByTier(tier.slug);
-          if (!tierSponsors.length) return null;
-          return (
-            <div className='mb-12' key={tier.slug}>
-              <h3 className='text-xl font-semibold mb-4 inline-flex items-center'>
-                <span className={`${getTierClass(tier.slug)} w-6 h-6 rounded-full mr-2`}></span>
-                {tier.name} Sponsors
-              </h3>
-              <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6'>
-                {tierSponsors.map((sponsor) => (
-                  <SponsorCard key={sponsor.id} sponsor={sponsor} />
-                ))}
+        {tiers
+          .sort((a, b) => b.price - a.price)
+          .map((tier) => {
+            const tierSponsors = getSponsorsByTier(tier.slug);
+            if (!tierSponsors.length) return null;
+            return (
+              <div className='mb-12' key={tier.slug}>
+                <h3 className='text-xl font-semibold mb-4 inline-flex items-center'>
+                  <span className={`${getTierClass(tier.slug)} w-6 h-6 rounded-full mr-2`}></span>
+                  {tier.name} Sponsors
+                </h3>
+                <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6'>
+                  {tierSponsors.map((sponsor) => (
+                    <SponsorCard key={sponsor.id} sponsor={sponsor} />
+                  ))}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
         {/* Other Sponsors */}
         {otherSponsors.length > 0 && (
           <div className='mb-12'>
@@ -154,7 +158,7 @@ export default function SponsorContent() {
       <div className='mb-16'>
         <h2 className='text-2xl font-bold mb-8'>Sponsorship Tiers</h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
-          {sponsorTiers.map((tier) => (
+          {tiers.map((tier) => (
             <Card key={tier.slug} className='flex flex-col border-border'>
               <CardHeader>
                 <CardTitle className='flex items-center gap-2'>
@@ -168,17 +172,17 @@ export default function SponsorContent() {
               </CardHeader>
               <CardContent className='grow'>
                 <ul className='space-y-2'>
-                  {tier.benefits.map((benefit) => (
-                    <li key={benefit} className='flex items-start'>
+                  {tier.benefits?.map((benefit) => (
+                    <li key={benefit.id} className='flex items-start'>
                       <span className='h-2 w-2 rounded-full bg-primary mt-2 mr-2' />
-                      <span>{benefit}</span>
+                      <span>{benefit.benefit}</span>
                     </li>
                   ))}
                 </ul>
               </CardContent>
               <div className='p-4 pt-0'>
                 <Button asChild className='w-full'>
-                  <Link href={tier.githubTierUrl} target='_blank' rel='noopener noreferrer'>
+                  <Link href={tier.tierUrl} target='_blank' rel='noopener noreferrer'>
                     Sponsor {tier.name}
                   </Link>
                 </Button>

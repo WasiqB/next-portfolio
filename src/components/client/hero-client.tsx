@@ -1,20 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import { TypeAnimation } from 'react-type-animation';
 import { Button } from '@/components/ui/button';
 import { getSocialIcon } from '@/lib/social-utils';
-import type { HomePage, Media, Social } from '@/payload/types';
+import type { HomePage, Social } from '@/payload/types';
 
 interface HeroClientProps {
   heroSection: HomePage['heroSection'];
   socials: Social[];
   typingSequences: any[];
+  profileImage: React.ReactNode;
 }
 
-export default function HeroClient({ heroSection, socials, typingSequences }: HeroClientProps) {
+export default function HeroClient({ heroSection, socials, typingSequences, profileImage }: HeroClientProps) {
   return (
     <section id='heroSection' className='max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24 lg:py-32'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
@@ -88,17 +88,7 @@ export default function HeroClient({ heroSection, socials, typingSequences }: He
           transition={{ duration: 0.5 }}
         >
           <div className='relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary mx-auto'>
-            <Image
-              src={
-                typeof heroSection?.profileImage?.[0]?.src === 'object'
-                  ? (heroSection.profileImage[0].src as Media).url || ''
-                  : ''
-              }
-              alt={heroSection?.profileImage?.[0]?.alt || ''}
-              fill
-              className='object-cover'
-              priority
-            />
+            {profileImage}
           </div>
         </motion.div>
       </div>

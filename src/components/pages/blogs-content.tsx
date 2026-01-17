@@ -1,26 +1,17 @@
 'use client';
 
 import { ArrowLeft, CalendarIcon } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { getBlogSource } from '@/lib/blogs-utils';
+import { formatDate } from '@/lib/date-utils';
 import type { Blog } from '@/types/portfolio-types';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardHeader } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
-function formatDate(dateString: string): string {
-  const options: Intl.DateTimeFormatOptions = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
-  return new Date(dateString).toLocaleDateString('en-US', options);
-}
-
-function BlogCard({ blog }: { blog: Blog }) {
+function BlogCard({ blog }: { blog: Blog & { imageNode?: React.ReactNode } }) {
   return (
     <Link
       href={blog.url}
@@ -30,12 +21,7 @@ function BlogCard({ blog }: { blog: Blog }) {
     >
       <Card className='h-full flex flex-col overflow-hidden cursor-pointer border-2 hover:border-primary/50'>
         <div className='relative h-48 w-full'>
-          <Image
-            src={blog.image || 'https://placehold.net/600x600.png'}
-            alt={blog.title}
-            fill
-            className='object-cover'
-          />
+          {blog.imageNode}
           <div className='absolute top-2 right-2 bg-background/80 backdrop-blur-sm rounded px-2 py-1 text-xs font-medium'>
             {getBlogSource(blog.url)}
           </div>
@@ -70,7 +56,7 @@ function BlogCard({ blog }: { blog: Blog }) {
 }
 
 interface BlogsContentProps {
-  blogs: Blog[];
+  blogs: (Blog & { imageNode?: React.ReactNode })[];
 }
 
 export default function BlogsContent({ blogs }: BlogsContentProps) {

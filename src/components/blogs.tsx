@@ -7,6 +7,7 @@ import type { BlogSource, HomePage } from '@/payload/types';
 import type { Blog } from '@/types/portfolio-types';
 import BlogsClient from './client/blogs-client';
 import { SectionError } from './client/section-error';
+import { ImageBox } from './image-box';
 import BlogsSkeleton from './skeletons/blogs-skeleton';
 
 export async function fetchBlogs(sources: BlogSource[]): Promise<Blog[]> {
@@ -65,9 +66,21 @@ export default async function Blogs() {
     );
   }
 
+  const blogsWithImages = blogData.map((blog) => ({
+    ...blog,
+    imageNode: (
+      <ImageBox
+        imageUrl={blog.image || 'https://placehold.net/600x600.png'}
+        imageClassName='object-cover'
+        fill
+        alt={blog.title}
+      />
+    ),
+  }));
+
   return (
     <Suspense fallback={<BlogsSkeleton isSection />}>
-      <BlogsClient blogSection={blogSection} blogData={blogData} />
+      <BlogsClient blogSection={blogSection} blogData={blogsWithImages} />
     </Suspense>
   );
 }

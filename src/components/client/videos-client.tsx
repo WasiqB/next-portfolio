@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { Eye, Heart, MessageSquare, Play } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
@@ -15,7 +14,7 @@ import type { Video } from '@/types/portfolio-types';
 
 interface VideosClientProps {
   videoSection: HomePage['videoSection'];
-  videos: Video[];
+  videos: (Video & { imageNode?: React.ReactNode })[];
 }
 
 function formatViewCount(count: number): string {
@@ -28,7 +27,7 @@ function formatViewCount(count: number): string {
   }
 }
 
-function VideoCard({ video }: { video: Video }) {
+function VideoCard({ video }: { video: Video & { imageNode?: React.ReactNode } }) {
   const { theme } = useTheme();
   return (
     <Link
@@ -40,7 +39,7 @@ function VideoCard({ video }: { video: Video }) {
     >
       <Card className='h-full flex flex-col overflow-hidden hover:border-primary/50'>
         <div className='relative aspect-video w-full group cursor-pointer'>
-          <Image src={video.thumbnail || '/placeholder.svg'} alt={video.title} fill className='object-cover' />
+          {video.imageNode}
           <div className='absolute inset-0 bg-black/50 dark:bg-white/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity'>
             <div className='rounded-full bg-primary/90 p-3'>
               <Play className='h-6 w-6' fill={theme !== 'dark' ? 'white' : 'black'} />

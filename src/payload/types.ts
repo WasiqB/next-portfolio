@@ -174,6 +174,7 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
+  blurhash?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -286,7 +287,7 @@ export interface SponsorTier {
     benefit: string;
     id?: string | null;
   }[];
-  'tier-url': string;
+  tierUrl: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -456,6 +457,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  blurhash?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -572,7 +574,7 @@ export interface SponsorTiersSelect<T extends boolean = true> {
         benefit?: T;
         id?: T;
       };
-  'tier-url'?: T;
+  tierUrl?: T;
   updatedAt?: T;
   createdAt?: T;
 }

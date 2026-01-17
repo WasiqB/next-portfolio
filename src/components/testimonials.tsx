@@ -1,9 +1,10 @@
 import { Suspense } from 'react';
 import { getCollectionData } from '@/payload/fetchers/collections';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { HomePage, Testimonial } from '@/payload/types';
+import type { HomePage, Media, Testimonial } from '@/payload/types';
 import { SectionError } from './client/section-error';
 import TestimonialsClient from './client/testimonials-client';
+import { ImageBox } from './image-box';
 import TestimonialsSkeleton from './skeletons/testimonials-skeleton';
 
 export default async function Testimonials() {
@@ -19,9 +20,16 @@ export default async function Testimonials() {
     );
   }
 
+  const testimonialsWithImages = testimonials.map((testimonial) => ({
+    ...testimonial,
+    imageNode: (
+      <ImageBox media={testimonial.image as Media} imageClassName='object-cover' fill alt={testimonial.name} />
+    ),
+  }));
+
   return (
-    <Suspense fallback={<TestimonialsSkeleton />}>
-      <TestimonialsClient testimonialSection={testimonialSection} testimonials={testimonials} />
+    <Suspense fallback={<TestimonialsSkeleton isSection />}>
+      <TestimonialsClient testimonialSection={testimonialSection} testimonials={testimonialsWithImages} />
     </Suspense>
   );
 }

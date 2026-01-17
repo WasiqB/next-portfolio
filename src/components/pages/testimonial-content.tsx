@@ -1,14 +1,10 @@
 import { ArrowLeft, Quote } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { Data } from '@/data/portfolio-data';
-import type { Testimonial } from '@/types/portfolio-types';
+import type { Testimonial } from '@/payload/types';
 import { Button } from '../ui/button';
 import { Card, CardContent } from '../ui/card';
 
-const testimonials: Testimonial[] = Data.testimonials.testimonials;
-
-function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+function TestimonialCard({ testimonial }: { testimonial: Testimonial & { imageNode?: React.ReactNode } }) {
   return (
     <Card className='h-full flex flex-col'>
       <CardContent className='p-6 grow flex flex-col'>
@@ -18,7 +14,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         <blockquote className='grow mb-6 italic text-muted-foreground'>"{testimonial.testimonial}"</blockquote>
         <div className='flex flex-col md:flex-row items-center mt-auto gap-4 md:gap-0'>
           <div className='relative w-16 h-16 shrink-0 rounded-full overflow-hidden mb-2 md:mb-0 md:mr-4'>
-            <Image src={testimonial.image || '/placeholder.svg'} alt={testimonial.name} fill className='object-cover' />
+            {testimonial.imageNode}
           </div>
           <div className='text-center md:text-left min-w-0 text-balance'>
             <div className='font-medium truncate'>{testimonial.name}</div>
@@ -32,10 +28,13 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   );
 }
 
-export default function TestimonialContent() {
+interface TestimonialContentProps {
+  testimonials: (Testimonial & { imageNode?: React.ReactNode })[];
+}
+
+export default function TestimonialContent({ testimonials }: TestimonialContentProps) {
   const clientTestimonials = testimonials.filter((t) => t.category === 'client');
   const colleagueTestimonials = testimonials.filter((t) => t.category === 'colleague');
-  const studentTestimonials = testimonials.filter((t) => t.category === 'student');
   const generalTestimonials = testimonials.filter((t) => t.category === 'general' || !t.category);
 
   return (
@@ -69,18 +68,6 @@ export default function TestimonialContent() {
             <h2 className='text-2xl font-bold mb-6'>Colleague Testimonials</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {colleagueTestimonials.map((testimonial) => (
-                <TestimonialCard key={testimonial.id} testimonial={testimonial} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Student Testimonials */}
-        {studentTestimonials.length > 0 && (
-          <div>
-            <h2 className='text-2xl font-bold mb-6'>Student Testimonials</h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
-              {studentTestimonials.map((testimonial) => (
                 <TestimonialCard key={testimonial.id} testimonial={testimonial} />
               ))}
             </div>

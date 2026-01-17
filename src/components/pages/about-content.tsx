@@ -1,7 +1,6 @@
 'use client';
 
 import { ArrowLeft, ExternalLink } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from 'react-icons/fa6';
 import { Data } from '@/data/portfolio-data';
@@ -10,9 +9,12 @@ import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
-const about: AboutData = Data.about;
+interface AboutContentProps {
+  imageNode?: React.ReactNode;
+}
 
-export default function AboutContent() {
+export default function AboutContent({ imageNode }: AboutContentProps) {
+  const about: AboutData = Data.about;
   return (
     <div className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'>
       <div className='flex items-center gap-4 mb-8'>
@@ -29,9 +31,7 @@ export default function AboutContent() {
       <div className='md:hidden mb-8'>
         <Card>
           <CardContent className='p-0'>
-            <div className='relative aspect-square w-full overflow-hidden'>
-              <Image src={about.profileImage.src} alt={about.profileImage.alt} fill className='object-cover' priority />
-            </div>
+            <div className='relative aspect-square w-full overflow-hidden'>{imageNode}</div>
           </CardContent>
         </Card>
       </div>
@@ -64,15 +64,7 @@ export default function AboutContent() {
         <div className='space-y-8 hidden md:block'>
           <Card>
             <CardContent className='p-0'>
-              <div className='relative aspect-square w-full overflow-hidden'>
-                <Image
-                  src={about.profileImage.src}
-                  alt={about.profileImage.alt}
-                  fill
-                  className='object-cover'
-                  priority
-                />
-              </div>
+              <div className='relative aspect-square w-full overflow-hidden'>{imageNode}</div>
             </CardContent>
           </Card>
 

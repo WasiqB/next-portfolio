@@ -9,10 +9,11 @@ interface ImageBoxProps {
   fill?: boolean;
   sizes?: string;
   imageClassName?: string;
+  priority?: boolean;
 }
 
 export const ImageBox = async (props: ImageBoxProps) => {
-  const { media, imageUrl, fill, imageClassName, sizes, alt: altProp } = props;
+  const { media, imageUrl, fill, imageClassName, sizes, alt: altProp, priority } = props;
 
   let width: number | undefined;
   let height: number | undefined;
@@ -58,12 +59,13 @@ export const ImageBox = async (props: ImageBoxProps) => {
     <Image
       src={url}
       alt={alt}
-      quality={95}
+      quality={75}
       fill={shouldFill}
       width={!shouldFill ? width : undefined}
       height={!shouldFill ? height : undefined}
       className={imageClassName}
       sizes={sizes}
+      priority={priority}
       style={{
         objectFit: 'cover',
         objectPosition,

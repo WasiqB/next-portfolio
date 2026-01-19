@@ -79,12 +79,6 @@ export const Data: PortfolioData = {
       'https://github.com/WasiqB/maven-publish-action',
     ],
   },
-  videos: {
-    sectionTitle: 'My Videos',
-    sectionDescription: 'Check out my latest video tutorials and tech talks.',
-    youtubeChannelId: 'UC5dVxwIGl4xfY4gjkWuMspA',
-    channelUrl: 'https://www.youtube.com/@WasiqBhamla',
-  },
   about: {
     name: 'Wasiq Amjad Bhamla',
     email: 'wasbhamla2005@gmail.com',

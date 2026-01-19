@@ -6,28 +6,14 @@ import { useTheme } from 'next-themes';
 import { useState } from 'react';
 import { FaYoutube } from 'react-icons/fa6';
 import { formatDate } from '@/lib/date-utils';
+import { shortenNumber } from '@/lib/number-utils';
 import type { Video } from '@/types/portfolio-types';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardFooter } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 function formatViewCount(count: number): string {
-  if (count >= 1000000) {
-    return `${(count / 1000000).toFixed(1)}M views`;
-  } else if (count >= 1000) {
-    return `${(count / 1000).toFixed(1)}K views`;
-  } else {
-    return `${count} views`;
-  }
-}
-
-function formatNumber(num: number): string {
-  if (num >= 1000000) {
-    return `${(num / 1000000).toFixed(1)}M`;
-  } else if (num >= 1000) {
-    return `${(num / 1000).toFixed(1)}K`;
-  }
-  return num.toString();
+  return `${shortenNumber(count)} views`;
 }
 
 function VideoCard({ video }: { video: Video & { imageNode?: React.ReactNode } }) {
@@ -164,15 +150,15 @@ export default function VideoContent({ initialVideos, channelStats, channelUrl }
         </div>
         <div className='mt-6 flex justify-center gap-8 text-sm text-muted-foreground'>
           <div className='text-center'>
-            <div className='font-semibold text-foreground'>{formatNumber(channelStats?.subscriberCount || 0)}</div>
+            <div className='font-semibold text-foreground'>{shortenNumber(channelStats?.subscriberCount || 0)}</div>
             <div>Subscribers</div>
           </div>
           <div className='text-center'>
-            <div className='font-semibold text-foreground'>{formatNumber(channelStats?.videoCount || 0)}</div>
+            <div className='font-semibold text-foreground'>{shortenNumber(channelStats?.videoCount || 0)}</div>
             <div>Videos</div>
           </div>
           <div className='text-center'>
-            <div className='font-semibold text-foreground'>{formatNumber(channelStats?.viewCount || 0)}</div>
+            <div className='font-semibold text-foreground'>{shortenNumber(channelStats?.viewCount || 0)}</div>
             <div>Total Views</div>
           </div>
         </div>

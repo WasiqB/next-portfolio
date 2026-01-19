@@ -3,8 +3,8 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { TypeAnimation } from 'react-type-animation';
+import { getSocialIcon } from '@/components/social-icons';
 import { Button } from '@/components/ui/button';
-import { getSocialIcon } from '@/lib/social-utils';
 import type { HomePage, Social } from '@/payload/types';
 
 interface HeroClientProps {

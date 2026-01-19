@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { formatDate } from '@/lib/date-utils';
+import { shortenNumber } from '@/lib/number-utils';
 import type { HomePage } from '@/payload/types';
 import type { Video } from '@/types/portfolio-types';
 
@@ -18,13 +19,7 @@ interface VideosClientProps {
 }
 
 function formatViewCount(count: number): string {
-  if (count >= 1000000) {
-    return `${(count / 1000000).toFixed(1)}M views`;
-  } else if (count >= 1000) {
-    return `${(count / 1000).toFixed(1)}K views`;
-  } else {
-    return `${count} views`;
-  }
+  return `${shortenNumber(count)} views`;
 }
 
 function VideoCard({ video }: { video: Video & { imageNode?: React.ReactNode } }) {

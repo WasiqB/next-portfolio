@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import { getSocialIcon } from '@/lib/social-utils';
+import { getSocialIcon } from '@/components/social-icons';
 import type { Footer, Media, Social } from '@/payload/types';
 
 interface FooterClientProps {

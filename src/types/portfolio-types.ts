@@ -58,13 +58,6 @@ export interface Video {
   platform: string;
 }
 
-export interface VideosData {
-  sectionTitle: string;
-  sectionDescription: string;
-  youtubeChannelId: string;
-  channelUrl: string;
-}
-
 export interface Experience {
   title: string;
   company: string;
@@ -114,7 +107,6 @@ export interface PortfolioData {
   url: string;
   hero: HeroData;
   projects: ProjectsData;
-  videos: VideosData;
   about: AboutData;
   github: {
     username: string;

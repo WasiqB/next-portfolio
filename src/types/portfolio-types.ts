@@ -35,16 +35,6 @@ export interface Project {
   forks: number;
 }
 
-export interface ProjectsData {
-  sectionTitle: string;
-  sectionDescription: string;
-  projects: string[];
-  allProjectsButton: {
-    text: string;
-    href: string;
-  };
-}
-
 export interface Video {
   id: string;
   title: string;
@@ -106,11 +96,7 @@ export interface AboutData {
 export interface PortfolioData {
   url: string;
   hero: HeroData;
-  projects: ProjectsData;
   about: AboutData;
-  github: {
-    username: string;
-  };
   analytics: Analytics;
 }
 

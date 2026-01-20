@@ -58,7 +58,7 @@ export default async function Projects() {
   }
 
   return (
-    <Suspense fallback={<ProjectsSkeleton />}>
+    <Suspense fallback={<ProjectsSkeleton isSection />}>
       <ProjectsClient projectSection={projects} projectData={projectData} />
     </Suspense>
   );

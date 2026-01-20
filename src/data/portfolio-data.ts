@@ -63,22 +63,6 @@ export const Data: PortfolioData = {
       alt: 'Profile',
     },
   },
-  projects: {
-    sectionTitle: 'My Projects',
-    sectionDescription: 'Here are some of my recent projects that showcase my skills and expertise.',
-    allProjectsButton: {
-      text: 'See All Projects',
-      href: '/projects',
-    },
-    projects: [
-      'https://github.com/BoykaFramework/boyka-framework',
-      'https://github.com/WasiqB/multiple-cucumber-html-reporter',
-      'https://github.com/WasiqB/coteafs-selenium',
-      'https://github.com/WasiqB/coteafs-appium',
-      'https://github.com/BoykaFramework/boyka-cli',
-      'https://github.com/WasiqB/maven-publish-action',
-    ],
-  },
   about: {
     name: 'Wasiq Amjad Bhamla',
     email: 'wasbhamla2005@gmail.com',
@@ -318,9 +302,6 @@ export const Data: PortfolioData = {
       src: '/images/wasiq-1.jpg',
       alt: 'Wasiq Amjad Bhamla',
     },
-  },
-  github: {
-    username: 'WasiqB',
   },
   analytics: {
     gaId: 'G-1R5917Q9SG',

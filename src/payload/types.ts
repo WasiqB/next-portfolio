@@ -76,6 +76,7 @@ export interface Config {
     socials: Social;
     'sponsor-tiers': SponsorTier;
     testimonials: Testimonial;
+    certificates: Certificate;
     sponsors: Sponsor;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -93,6 +94,7 @@ export interface Config {
     socials: SocialsSelect<false> | SocialsSelect<true>;
     'sponsor-tiers': SponsorTiersSelect<false> | SponsorTiersSelect<true>;
     testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    certificates: CertificatesSelect<false> | CertificatesSelect<true>;
     sponsors: SponsorsSelect<false> | SponsorsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -105,12 +107,14 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     homePage: HomePage;
+    aboutPage: AboutPage;
     contactSection: ContactSection;
     navbar: Navbar;
     footer: Footer;
   };
   globalsSelect: {
     homePage: HomePageSelect<false> | HomePageSelect<true>;
+    aboutPage: AboutPageSelect<false> | AboutPageSelect<true>;
     contactSection: ContactSectionSelect<false> | ContactSectionSelect<true>;
     navbar: NavbarSelect<false> | NavbarSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
@@ -309,6 +313,19 @@ export interface Testimonial {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "certificates".
+ */
+export interface Certificate {
+  id: number;
+  title: string;
+  issuer: string;
+  issued: string;
+  verifyUrl?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sponsors".
  */
 export interface Sponsor {
@@ -379,6 +396,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'testimonials';
         value: number | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'certificates';
+        value: number | Certificate;
       } | null)
     | ({
         relationTo: 'sponsors';
@@ -595,6 +616,18 @@ export interface TestimonialsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "certificates_select".
+ */
+export interface CertificatesSelect<T extends boolean = true> {
+  title?: T;
+  issuer?: T;
+  issued?: T;
+  verifyUrl?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "sponsors_select".
  */
 export interface SponsorsSelect<T extends boolean = true> {
@@ -793,6 +826,34 @@ export interface HomePage {
         }[]
       | null;
   };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "aboutPage".
+ */
+export interface AboutPage {
+  id: number;
+  name: string;
+  title: string;
+  aboutImage: {
+    src: number | Media;
+    alt: string;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'image';
+  }[];
+  description: {
+    desc: string;
+    id?: string | null;
+  }[];
+  coreValues: {
+    label: string;
+    value: string;
+    id?: string | null;
+  }[];
+  skills: string[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1085,6 +1146,43 @@ export interface HomePageSelect<T extends boolean = true> {
                   };
             };
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "aboutPage_select".
+ */
+export interface AboutPageSelect<T extends boolean = true> {
+  name?: T;
+  title?: T;
+  aboutImage?:
+    | T
+    | {
+        image?:
+          | T
+          | {
+              src?: T;
+              alt?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  description?:
+    | T
+    | {
+        desc?: T;
+        id?: T;
+      };
+  coreValues?:
+    | T
+    | {
+        label?: T;
+        value?: T;
+        id?: T;
+      };
+  skills?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -3,18 +3,28 @@
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from 'react-icons/fa6';
-import { Data } from '@/data/portfolio-data';
-import type { AboutData } from '@/types/portfolio-types';
+import type { AboutPage, Certificate, Education, Experience, Social } from '@/payload/types';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
 interface AboutContentProps {
   imageNode?: React.ReactNode;
+  about: AboutPage;
+  certificates: Certificate[];
+  experiences: Experience[];
+  educations: Education[];
+  socialLinks: Social[];
 }
 
-export default function AboutContent({ imageNode }: AboutContentProps) {
-  const about: AboutData = Data.about;
+export default function AboutContent({
+  imageNode,
+  about,
+  certificates,
+  experiences,
+  educations,
+  socialLinks,
+}: AboutContentProps) {
   return (
     <div className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'>
       <div className='flex items-center gap-4 mb-8'>
@@ -44,8 +54,8 @@ export default function AboutContent({ imageNode }: AboutContentProps) {
               <CardDescription>{about.title}</CardDescription>
             </CardHeader>
             <CardContent className='space-y-4'>
-              {about.description.map((desc, i) => (
-                <p key={i}>{desc}</p>
+              {about.description.map((item, i) => (
+                <p key={i}>{item.desc}</p>
               ))}
               <div className='pt-4'>
                 <h3 className='text-lg font-semibold mb-2'>My Core Values</h3>
@@ -74,7 +84,7 @@ export default function AboutContent({ imageNode }: AboutContentProps) {
             </CardHeader>
             <CardContent>
               <div className='grid grid-cols-3 gap-4'>
-                {about.socialLinks.map((link) => {
+                {socialLinks.map((link) => {
                   let Icon = null;
                   switch (link.platform) {
                     case 'github':
@@ -83,7 +93,6 @@ export default function AboutContent({ imageNode }: AboutContentProps) {
                     case 'linkedin':
                       Icon = FaLinkedin;
                       break;
-                    case 'twitter':
                     case 'x':
                       Icon = FaXTwitter;
                       break;
@@ -138,7 +147,7 @@ export default function AboutContent({ imageNode }: AboutContentProps) {
             </CardHeader>
             <CardContent>
               <div className='grid grid-cols-3 gap-4'>
-                {about.socialLinks.map((link) => {
+                {socialLinks.map((link) => {
                   let Icon = null;
                   switch (link.platform) {
                     case 'github':
@@ -147,7 +156,6 @@ export default function AboutContent({ imageNode }: AboutContentProps) {
                     case 'linkedin':
                       Icon = FaLinkedin;
                       break;
-                    case 'twitter':
                     case 'x':
                       Icon = FaXTwitter;
                       break;
@@ -199,7 +207,7 @@ export default function AboutContent({ imageNode }: AboutContentProps) {
         <div>
           <h2 className='text-2xl font-bold mb-6'>Professional Experience</h2>
           <div className='relative border-l border-muted pl-6 ml-3'>
-            {about.experiences.map((experience, index) => (
+            {experiences.map((experience, index) => (
               <div key={index} className='mb-10 relative'>
                 {/* Timeline dot */}
                 <div className='absolute w-4 h-4 bg-primary rounded-full -left-[30px] top-1.5 border-4 border-background'></div>
@@ -219,8 +227,8 @@ export default function AboutContent({ imageNode }: AboutContentProps) {
                   </div>
 
                   <ul className='list-disc pl-6 space-y-1 mb-4 text-muted-foreground'>
-                    {experience.description.map((item, i) => (
-                      <li key={i}>{item}</li>
+                    {experience.responsibilities.map((item, i) => (
+                      <li key={i}>{item.responsibility}</li>
                     ))}
                   </ul>
 
@@ -240,7 +248,7 @@ export default function AboutContent({ imageNode }: AboutContentProps) {
         <div>
           <h2 className='text-2xl font-bold mb-6'>Education</h2>
           <div className='relative border-l border-muted pl-6 ml-3'>
-            {about.education.map((edu, index) => (
+            {educations.map((edu, index) => (
               <div key={index} className='mb-10 relative'>
                 {/* Timeline dot */}
                 <div className='absolute w-4 h-4 bg-primary rounded-full -left-[30px] top-1.5 border-4 border-background'></div>
@@ -249,9 +257,9 @@ export default function AboutContent({ imageNode }: AboutContentProps) {
                 <div className='bg-card border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow'>
                   <div className='flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2'>
                     <div>
-                      <h3 className='text-xl font-semibold'>{edu.degree}</h3>
+                      <h3 className='text-xl font-semibold'>{edu.title}</h3>
                       <p className='text-muted-foreground'>
-                        {edu.institution} • {edu.location}
+                        {edu.university} • {edu.location}
                       </p>
                     </div>
                     <div className='text-sm bg-primary/10 text-primary px-3 py-1 rounded-full font-medium'>
@@ -266,11 +274,11 @@ export default function AboutContent({ imageNode }: AboutContentProps) {
           </div>
         </div>
 
-        {about.certifications && (
+        {certificates && certificates.length > 0 && (
           <div>
             <h2 className='text-2xl font-bold mb-6'>Certifications</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-              {about.certifications.map((cert, idx) => (
+              {certificates.map((cert, idx) => (
                 <Card key={cert.title + idx}>
                   <CardHeader>
                     <CardTitle>{cert.title}</CardTitle>

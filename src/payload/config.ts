@@ -5,6 +5,7 @@ import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import { BlogSources } from './collections/blog-sources';
+import { Certificates } from './collections/certificates';
 import { Educations } from './collections/educations';
 import { Experiences } from './collections/experiences';
 import { Media } from './collections/media';
@@ -14,6 +15,7 @@ import { SponsorTiers } from './collections/sponsor-tiers';
 import { Sponsors } from './collections/sponsors';
 import { Testimonials } from './collections/testimonials';
 import { Users } from './collections/users';
+import { AboutPage } from './globals/about-page';
 import { ContactSection } from './globals/contact-section';
 import { Footer } from './globals/footer';
 import { HomePage } from './globals/home-page';
@@ -40,11 +42,12 @@ export default buildConfig({
     Socials,
     SponsorTiers,
     Testimonials,
+    Certificates,
     Sponsors,
   ],
-  globals: [HomePage, ContactSection, Navbar, Footer],
+  globals: [HomePage, AboutPage, ContactSection, Navbar, Footer],
   editor: lexicalEditor({
-    features: ({ defaultFeatures }: { defaultFeatures: any }) => [...defaultFeatures, FixedToolbarFeature()],
+    features: ({ defaultFeatures }) => [...defaultFeatures, FixedToolbarFeature()],
   }),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

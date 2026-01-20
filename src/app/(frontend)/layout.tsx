@@ -18,7 +18,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: {
     default: Data.hero.name,
-    template: `%s | ${Data.about.name}`,
+    template: `%s | ${Data.hero.name}`,
   },
   description: Data.hero.bio,
   keywords: [
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   ],
   metadataBase: new URL(Data.url),
   openGraph: {
-    title: `${Data.hero.name} | ${Data.about.title}`,
+    title: Data.hero.name,
     description: Data.hero.bio,
     url: Data.url,
     siteName: Data.hero.name,
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${Data.hero.name} | ${Data.about.title}`,
+    title: Data.hero.name,
     description: Data.hero.bio,
     creator: '@WasiqBhamla',
     images: [Data.hero.profileImage.src],
@@ -108,7 +108,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               url: Data.url,
               image: Data.hero.profileImage.src,
               sameAs: Data.hero.socialLinks.map((link) => link.url),
-              jobTitle: Data.about.title,
+              jobTitle: Data.hero.name,
               description: Data.hero.bio,
             }),
           }}

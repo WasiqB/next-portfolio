@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { appProtocol, domain } from '@/lib/constants';
+import { domain } from '@/lib/constants';
 import { fetchWithBypass } from '@/lib/fetch-utils';
 import { getCollectionData } from '@/payload/fetchers/collections';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
@@ -12,7 +12,7 @@ import BlogsSkeleton from './skeletons/blogs-skeleton';
 
 export async function fetchBlogs(sources: BlogSource[]): Promise<Blog[]> {
   try {
-    const blogsApiUrl = `${appProtocol}://${domain}/api/blogs`;
+    const blogsApiUrl = `${domain}/api/blogs`;
     const blogs = sources.map(async ({ source, username, url }) => {
       if (source === 'medium' && username) {
         const apiUrl = `${blogsApiUrl}?username=${username}`;

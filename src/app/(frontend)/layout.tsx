@@ -9,75 +9,15 @@ import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import CrispChat from '@/components/pages/crisp-chat';
 import { ThemeProvider } from '@/components/theme-provider';
-import { Data } from '@/data/portfolio-data';
-import { isProd } from '@/lib/constants';
+import { domain, isProd } from '@/lib/constants';
 import { getClientContext } from '@/lib/feature-toggle/devcycle';
+import { getGlobalConfig } from '@/payload/fetchers/globals';
+import type { Analytics } from '@/payload/types';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: {
-    default: Data.hero.name,
-    template: `%s | ${Data.hero.name}`,
-  },
-  description: Data.hero.bio,
-  keywords: [
-    'Wasiq Bhamla',
-    'Wasiq',
-    'Bhamla',
-    'Automation',
-    'Testing',
-    'QA',
-    'Quality Assurance',
-    'Quality Assurance Engineer',
-    'Quality Assurance Analyst',
-    'Quality Assurance Tester',
-    'Quality Assurance Lead',
-    'SDET',
-    'Selenium WebDriver',
-    'Appium',
-    'Rest-Assured',
-    'WebDriverIO',
-    'Java',
-    'JavaScript',
-    'TypeScript',
-    'Open Source',
-    'Freelancing',
-    'Consulting',
-    'Technical Support',
-    'Automation Testing',
-    'Test Automation',
-    'Test Automation Framework',
-    'Test Automation Tools',
-  ],
-  metadataBase: new URL(Data.url),
-  openGraph: {
-    title: Data.hero.name,
-    description: Data.hero.bio,
-    url: Data.url,
-    siteName: Data.hero.name,
-    images: [
-      {
-        url: Data.hero.profileImage.src,
-        width: 400,
-        height: 400,
-        alt: Data.hero.profileImage.alt,
-        type: 'image/jpeg',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: Data.hero.name,
-    description: Data.hero.bio,
-    creator: '@WasiqBhamla',
-    images: [Data.hero.profileImage.src],
-  },
-  alternates: {
-    canonical: Data.url,
-  },
+  metadataBase: new URL(domain),
   icons: {
     icon: '/icons/favicon.ico',
     apple: '/icons/apple-touch-icon.png',
@@ -95,24 +35,10 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const analytics = await getGlobalConfig<Analytics>('analytics');
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={inter.className}>
-        <script
-          type='application/ld+json'
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Person',
-              name: Data.hero.name,
-              url: Data.url,
-              image: Data.hero.profileImage.src,
-              sameAs: Data.hero.socialLinks.map((link) => link.url),
-              jobTitle: Data.hero.name,
-              description: Data.hero.bio,
-            }),
-          }}
-        />
         <DevCycleClientsideProvider context={getClientContext()}>
           <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
             <div className='flex min-h-screen flex-col'>
@@ -120,7 +46,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
               <div className='flex-1'>{children}</div>
               <Footer />
             </div>
-            {isProd && <GoogleAnalytics gaId={Data.analytics.gaId} />}
+            {isProd && <GoogleAnalytics gaId={analytics?.googleAnalyticsId || ''} />}
             <Toaster richColors expand position='top-center' />
             {isProd && <CrispChat />}
           </ThemeProvider>

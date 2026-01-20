@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { appProtocol, domain } from '@/lib/constants';
+import { domain } from '@/lib/constants';
 import { fetchWithBypass } from '@/lib/fetch-utils';
 import { getGitHubApiUrl } from '@/lib/github-utils';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
@@ -19,7 +19,7 @@ async function fetchProjects(projectUrls: string[]): Promise<Project[] | undefin
         return null;
       }
 
-      const apiUrl = `${appProtocol}://${domain}${projectGitUrl}`;
+      const apiUrl = `${domain}${projectGitUrl}`;
       console.info(`Fetching project data for ${apiUrl}`);
       const response = await fetchWithBypass(apiUrl);
 

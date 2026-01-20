@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { Data } from '@/data/portfolio-data';
+import { domain } from '@/lib/constants';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/'],
     },
-    sitemap: `${Data.url}/sitemap.xml`,
+    sitemap: `${domain}/sitemap.xml`,
   };
 }

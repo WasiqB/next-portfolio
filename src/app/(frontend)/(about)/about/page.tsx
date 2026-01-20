@@ -116,7 +116,7 @@ async function AboutData() {
         imageNode={
           media && (
             <ImageBox
-              imageUrl={media.url || ''}
+              media={media}
               alt={aboutImage.alt || media.alt || 'About'}
               fill
               imageClassName='object-cover'

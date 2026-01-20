@@ -2,6 +2,13 @@ import type { GlobalConfig } from 'payload';
 
 export const SiteSettings: GlobalConfig = {
   slug: 'siteSettings',
+  hooks: {
+    afterChange: [
+      () => {
+        // updateTag('servicesPage');
+      },
+    ],
+  },
   fields: [
     {
       name: 'siteName',

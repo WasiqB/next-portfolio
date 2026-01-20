@@ -72,5 +72,19 @@ export const AboutPage: GlobalConfig = {
       hasMany: true,
       required: true,
     },
+    {
+      name: 'seo',
+      label: 'SEO',
+      type: 'group',
+      fields: [
+        {
+          name: 'keywords',
+          label: 'Keywords',
+          type: 'text',
+          hasMany: true,
+          required: true,
+        },
+      ],
+    },
   ],
 };

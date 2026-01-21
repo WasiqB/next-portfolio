@@ -16,7 +16,6 @@
     "payload:types": "payload generate:types"
   },
   "dependencies": {
-    "@devcycle/nextjs-sdk": "^3.0.2",
     "@hookform/resolvers": "^5.2.2",
     "@next/third-parties": "^16.1.4",
     "@payloadcms/db-postgres": "^3.72.0",
@@ -39,7 +38,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "crisp-sdk-web": "^1.0.27",
-    "framer-motion": "^12.27.5",
+    "framer-motion": "^12.28.1",
     "graphql": "^16.12.0",
     "lucide-react": "^0.562.0",
     "next": "16.1.4",

@@ -9,12 +9,12 @@ export const Experiences: CollectionConfig = {
   hooks: {
     afterChange: [
       () => {
-        updateTag('experiences');
+        updateTag('experience');
       },
     ],
     afterDelete: [
       () => {
-        updateTag('experiences');
+        updateTag('experience');
       },
     ],
   },

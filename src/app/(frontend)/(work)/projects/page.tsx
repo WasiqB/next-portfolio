@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
+import { cacheLife, cacheTag } from 'next/cache';
 import { Suspense } from 'react';
+import { fetchGitHubRepoAction } from '@/components/actions/github';
 import ProjectPageContent from '@/components/pages/projects-content';
 import ProjectsSkeleton from '@/components/skeletons/projects-skeleton';
-import { domain } from '@/lib/constants';
-import { fetchWithBypass } from '@/lib/fetch-utils';
-import { getGitHubApiUrl } from '@/lib/github-utils';
+import { CACHE_TAGS, domain } from '@/lib/constants';
+import { parseGitHubUrl } from '@/lib/github-utils';
 import { getCollectionData } from '@/payload/fetchers/collections';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
 import type { HomePage, ProjectsPage as ProjectsPageType, SiteSetting, Social } from '@/payload/types';
@@ -55,24 +56,27 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 async function fetchProjects(projectUrls: string[]): Promise<Project[]> {
+  'use cache';
+  cacheTag(CACHE_TAGS.PROJECTS);
+  cacheLife('days');
+
   try {
     const projects = projectUrls.map(async (projectUrl) => {
-      const projectGitUrl = getGitHubApiUrl(projectUrl);
+      const parsed = parseGitHubUrl(projectUrl);
 
-      if (!projectGitUrl) {
+      if (!parsed) {
         console.error(`Invalid GitHub URL: ${projectUrl}`);
         return null;
       }
 
-      const apiUrl = `${domain}${projectGitUrl}`;
-      const response = await fetchWithBypass(apiUrl);
+      const result = await fetchGitHubRepoAction(parsed.owner, parsed.repo);
 
-      if (!response.ok) {
-        console.error(`Error fetching project data for ${apiUrl}`);
+      if ('error' in result) {
+        console.error(`Error fetching project data for ${projectUrl}:`, result.error);
         return null;
       }
 
-      return await response.json();
+      return result;
     });
     return (await Promise.all(projects)).filter(Boolean) as Project[];
   } catch (error) {

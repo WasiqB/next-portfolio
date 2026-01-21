@@ -12,6 +12,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import type { ContactSection } from '@/payload/types';
+import { sendContactEmailAction } from '../actions/contact';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 
@@ -81,31 +82,27 @@ export default function ContactClient({ contactSection }: ContactClientProps) {
 
     setIsSubmitting(true);
     try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...values,
-          toEmail: contactSection.email,
-          reason: contactSection.reasons?.filter((r) => r.value === values.reason)?.[0]?.name,
-        }),
+      const result = await sendContactEmailAction({
+        ...values,
+        toEmail: contactSection.email,
+        reason: contactSection.reasons?.filter((r) => r.value === values.reason)?.[0]?.name || values.reason,
       });
-      if (!res.ok) {
-        const data = await res.json();
-        if (data?.error?.fieldErrors) {
+
+      if (result.error) {
+        if ('fieldErrors' in result && result.fieldErrors) {
           const errors: Record<string, string> = {};
-          const fieldErrors = data.error.fieldErrors;
-          Object.keys(fieldErrors).forEach((key) => {
-            const errArr = fieldErrors[key as keyof typeof fieldErrors];
+          Object.keys(result.fieldErrors).forEach((key) => {
+            const errArr = (result.fieldErrors as any)[key];
             if (errArr && errArr.length > 0) errors[key] = errArr[0] ?? '';
           });
           setFieldErrors(errors);
         } else {
-          setFormError(data?.error || 'Failed to send message.');
+          setFormError(result.error);
         }
         setIsSubmitting(false);
         return;
       }
+
       setFormSuccess(true);
       form.reset();
     } catch (_err) {

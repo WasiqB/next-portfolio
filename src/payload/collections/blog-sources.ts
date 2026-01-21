@@ -1,17 +1,20 @@
 import { updateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
+import { CACHE_TAGS } from '@/lib/constants';
 
 export const BlogSources: CollectionConfig = {
   slug: 'blog-sources',
   hooks: {
     afterChange: [
       () => {
-        updateTag('blogSources');
+        updateTag('blog-sources');
+        updateTag(CACHE_TAGS.BLOGS);
       },
     ],
     afterDelete: [
       () => {
-        updateTag('blogSources');
+        updateTag('blog-sources');
+        updateTag(CACHE_TAGS.BLOGS);
       },
     ],
   },

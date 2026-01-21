@@ -1,11 +1,14 @@
+import { updateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
+import { CACHE_TAGS } from '@/lib/constants';
 
 export const ProjectsPage: GlobalConfig = {
   slug: 'projectsPage',
   hooks: {
     afterChange: [
       () => {
-        // updateTag('projectsPage');
+        updateTag('projectsPage');
+        updateTag(CACHE_TAGS.PROJECTS);
       },
     ],
   },

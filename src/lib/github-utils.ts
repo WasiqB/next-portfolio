@@ -22,19 +22,3 @@ export function parseGitHubUrl(url: string): { owner: string; repo: string } | n
     return null;
   }
 }
-
-/**
- * Takes a GitHub repository URL and returns the API endpoint to fetch metadata.
- *
- * @param repoUrl GitHub repository URL
- * @returns API endpoint URL or null if the URL is invalid
- */
-export function getGitHubApiUrl(repoUrl: string): string | null {
-  const parsed = parseGitHubUrl(repoUrl);
-
-  if (!parsed) {
-    return null;
-  }
-
-  return `/api/github/${parsed.owner}/${parsed.repo}`;
-}

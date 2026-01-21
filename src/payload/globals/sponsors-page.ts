@@ -1,3 +1,4 @@
+import { updateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
 
 export const SponsorsPage: GlobalConfig = {
@@ -5,7 +6,7 @@ export const SponsorsPage: GlobalConfig = {
   hooks: {
     afterChange: [
       () => {
-        // updateTag('sponsorsPage');
+        updateTag('sponsorsPage');
       },
     ],
   },

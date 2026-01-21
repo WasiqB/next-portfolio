@@ -1,19 +1,19 @@
 import { Suspense } from 'react';
-import { domain } from '@/lib/constants';
-import { fetchWithBypass } from '@/lib/fetch-utils';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
 import type { HomePage } from '@/payload/types';
 import type { Video } from '@/types/portfolio-types';
+import { fetchVideosAction } from './actions/videos';
 import { SectionError } from './client/section-error';
 import VideosClient from './client/videos-client';
 import { ImageBox } from './image-box';
 import VideosSkeleton from './skeletons/videos-skeleton';
 
 async function fetchVideos(channelId: string): Promise<Video[]> {
-  const res = await fetchWithBypass(`${domain}/api/videos?channelId=${channelId}`);
-  if (!res.ok) throw new Error('Failed to fetch videos');
-  const data = await res.json();
-  return data.videos || [];
+  const result = await fetchVideosAction(channelId);
+  if ('error' in result) {
+    throw new Error(result.error);
+  }
+  return result.videos || [];
 }
 
 export default async function Videos() {

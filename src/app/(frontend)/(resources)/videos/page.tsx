@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
+import { fetchVideosAction } from '@/components/actions/videos';
 import { ImageBox } from '@/components/image-box';
 import VideoContent from '@/components/pages/videos-content';
 import VideosSkeleton from '@/components/skeletons/videos-skeleton';
 import { domain } from '@/lib/constants';
-import { fetchWithBypass } from '@/lib/fetch-utils';
 import { getCollectionData } from '@/payload/fetchers/collections';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
 import type { HomePage, SiteSetting, Social, VideosPage as VideosPageType } from '@/payload/types';
@@ -60,11 +60,11 @@ async function VideoData() {
 
   if (!channelId) return null;
 
-  const res = await fetchWithBypass(`${domain}/api/videos?channelId=${channelId}`);
-  if (!res.ok) return null;
-  const data = await res.json();
-  const videos: Video[] = data.videos || [];
-  const channelStats = data.channelStats;
+  const result = await fetchVideosAction(channelId);
+  if ('error' in result) return null;
+
+  const videos: Video[] = result.videos || [];
+  const channelStats = result.channelStats;
 
   const videosWithImages = videos.map((video) => ({
     ...video,

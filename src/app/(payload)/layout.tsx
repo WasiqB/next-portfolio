@@ -4,10 +4,10 @@ import config from '@payload-config';
 import '@payloadcms/next/css';
 import { handleServerFunctions, RootLayout } from '@payloadcms/next/layouts';
 import type { ServerFunctionClient } from 'payload';
-import type React from 'react';
 
 import './custom.scss';
 import { importMap } from './admin/import-map';
+import { Suspense } from 'react';
 
 type Args = {
   children: React.ReactNode;
@@ -23,9 +23,11 @@ const serverFunction: ServerFunctionClient = async (args) => {
 };
 
 const Layout = ({ children }: Args) => (
-  <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
-    {children}
-  </RootLayout>
+  <Suspense>
+    <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
+      {children}
+    </RootLayout>
+  </Suspense>
 );
 
 export default Layout;

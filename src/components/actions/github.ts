@@ -1,4 +1,7 @@
-import { type NextRequest, NextResponse } from 'next/server';
+'use server';
+
+import { CACHE_DURATION } from '@/lib/constants';
+import type { Project } from '@/types/portfolio-types';
 
 interface GitHubRepo {
   name: string;
@@ -13,17 +16,8 @@ interface GitHubRepo {
   forks: number;
 }
 
-export async function GET(
-  _request: NextRequest,
-  {
-    params,
-  }: {
-    params: Promise<{ owner: string; repo: string }>;
-  },
-) {
+export async function fetchGitHubRepoAction(owner: string, repo: string): Promise<Project | { error: string }> {
   try {
-    const { owner, repo } = await params;
-
     const response = await fetch(`https://api.github.com/repos/${owner}/${repo}`, {
       headers: {
         Accept: 'application/vnd.github.v3+json',
@@ -31,20 +25,17 @@ export async function GET(
         ...(process.env.GITHUB_TOKEN ? { Authorization: `token ${process.env.GITHUB_TOKEN}` } : {}),
       },
       next: {
-        revalidate: 60 * 60 * 24,
+        revalidate: CACHE_DURATION,
       },
     });
 
     if (!response.ok) {
-      return NextResponse.json(
-        { error: `Failed to fetch repository: ${response.statusText}` },
-        { status: response.status },
-      );
+      return { error: `Failed to fetch repository: ${response.statusText}` };
     }
 
     const repoData: GitHubRepo = await response.json();
 
-    const result = {
+    const result: Project = {
       title: repoData.name,
       description: repoData.description || `A project by ${owner}`,
       link: repoData.html_url,
@@ -53,9 +44,9 @@ export async function GET(
       tags: repoData.topics || [],
     };
 
-    return NextResponse.json(result);
+    return result;
   } catch (error) {
     console.error('Error fetching GitHub repository data:', error);
-    return NextResponse.json({ error: 'Failed to fetch repository data' }, { status: 500 });
+    return { error: 'Failed to fetch repository data' };
   }
 }

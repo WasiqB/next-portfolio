@@ -1,46 +1,39 @@
+import { cacheLife, cacheTag } from 'next/cache';
 import { Suspense } from 'react';
-import { domain } from '@/lib/constants';
-import { fetchWithBypass } from '@/lib/fetch-utils';
+import { CACHE_TAGS } from '@/lib/constants';
 import { getCollectionData } from '@/payload/fetchers/collections';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
 import type { BlogSource, HomePage } from '@/payload/types';
 import type { Blog } from '@/types/portfolio-types';
+import { fetchBlogsAction } from './actions/blogs';
 import BlogsClient from './client/blogs-client';
 import { SectionError } from './client/section-error';
 import { ImageBox } from './image-box';
 import BlogsSkeleton from './skeletons/blogs-skeleton';
 
 export async function fetchBlogs(sources: BlogSource[]): Promise<Blog[]> {
+  'use cache';
+  cacheTag(CACHE_TAGS.BLOGS);
+  cacheLife('days');
+
   try {
-    const blogsApiUrl = `${domain}/api/blogs`;
     const blogs = sources.map(async ({ source, username, url }) => {
       if (source === 'medium' && username) {
-        const apiUrl = `${blogsApiUrl}?username=${username}`;
-        console.info(`Fetching Medium blogs for ${username} from ${apiUrl}`);
-        const response = await fetchWithBypass(apiUrl);
-
-        if (!response.ok) {
-          console.error(`Error fetching Medium blogs for ${username}`);
-          console.error(`Response status: ${response.status}`);
-          console.error(`Response Body: ${await response.text()}`);
+        console.info(`Fetching Medium blogs for ${username}`);
+        const result = await fetchBlogsAction({ username });
+        if ('error' in result) {
+          console.error(`Error fetching Medium blogs for ${username}:`, result.error);
           return [];
         }
-
-        const mediumBlogs = (await response.json()) as Blog[];
-        return mediumBlogs;
+        return result as Blog[];
       } else if (source === 'custom' && url) {
-        const apiUrl = `${blogsApiUrl}?url=${url}`;
-        console.info(`Fetching custom blog from ${apiUrl}`);
-        const response = await fetchWithBypass(apiUrl);
-
-        if (!response.ok) {
-          console.error(`Error fetching custom blog from ${url}`);
-          console.error(`Response status: ${response.status}`);
-          console.error(`Response Body: ${await response.text()}`);
+        console.info(`Fetching custom blog from ${url}`);
+        const result = await fetchBlogsAction({ url });
+        if ('error' in result) {
+          console.error(`Error fetching custom blog from ${url}:`, result.error);
           return [];
         }
-
-        return Array.of((await response.json()) as Blog);
+        return Array.of(result as Blog);
       }
       return [];
     });

@@ -1,3 +1,4 @@
+import { updateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
 
 export const Sponsors: CollectionConfig = {
@@ -8,7 +9,12 @@ export const Sponsors: CollectionConfig = {
   hooks: {
     afterChange: [
       () => {
-        // updateTag('sponsors');
+        updateTag('sponsors');
+      },
+    ],
+    afterDelete: [
+      () => {
+        updateTag('sponsors');
       },
     ],
   },

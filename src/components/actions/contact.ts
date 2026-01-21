@@ -1,4 +1,5 @@
-import { type NextRequest, NextResponse } from 'next/server';
+'use server';
+
 import { Resend } from 'resend';
 import { z } from 'zod';
 import { ContactEmail } from '@/emails/ContactEmail';
@@ -13,13 +14,12 @@ const contactSchema = z.object({
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function POST(req: NextRequest) {
+export async function sendContactEmailAction(values: z.infer<typeof contactSchema>) {
   try {
-    const body = await req.json();
-    const parsed = contactSchema.safeParse(body);
+    const parsed = contactSchema.safeParse(values);
 
     if (!parsed.success) {
-      return NextResponse.json({ error: z.treeifyError(parsed.error) }, { status: 400 });
+      return { error: 'Invalid form data', fieldErrors: parsed.error.flatten().fieldErrors };
     }
 
     const { name, email, reason, message, toEmail } = parsed.data;
@@ -36,8 +36,9 @@ export async function POST(req: NextRequest) {
       }),
     });
 
-    return NextResponse.json({ success: true });
-  } catch (_error) {
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return { success: true };
+  } catch (error) {
+    console.error('Error sending contact email:', error);
+    return { error: 'Failed to send message. Please try again later.' };
   }
 }

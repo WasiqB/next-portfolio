@@ -1,3 +1,4 @@
+import { updateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
 
 export const TestimonialsPage: GlobalConfig = {
@@ -5,7 +6,7 @@ export const TestimonialsPage: GlobalConfig = {
   hooks: {
     afterChange: [
       () => {
-        // updateTag('testimonialsPage');
+        updateTag('testimonialsPage');
       },
     ],
   },

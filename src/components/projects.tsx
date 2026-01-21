@@ -1,42 +1,40 @@
+import { cacheLife, cacheTag } from 'next/cache';
 import { Suspense } from 'react';
-import { domain } from '@/lib/constants';
-import { fetchWithBypass } from '@/lib/fetch-utils';
-import { getGitHubApiUrl } from '@/lib/github-utils';
+import { CACHE_TAGS } from '@/lib/constants';
+import { parseGitHubUrl } from '@/lib/github-utils';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
 import type { HomePage } from '@/payload/types';
 import type { Project } from '@/types/portfolio-types';
+import { fetchGitHubRepoAction } from './actions/github';
 import ProjectsClient from './client/projects-client';
 import { SectionError } from './client/section-error';
 import ProjectsSkeleton from './skeletons/projects-skeleton';
 
 async function fetchProjects(projectUrls: string[]): Promise<Project[] | undefined> {
+  'use cache';
+  cacheTag(CACHE_TAGS.PROJECTS);
+  cacheLife('days');
+
   try {
     const projects = projectUrls.map(async (projectUrl) => {
-      const projectGitUrl = getGitHubApiUrl(projectUrl);
+      const parsed = parseGitHubUrl(projectUrl);
 
-      if (!projectGitUrl) {
+      if (!parsed) {
         console.error(`Invalid GitHub URL: ${projectUrl}`);
         return null;
       }
 
-      const apiUrl = `${domain}${projectGitUrl}`;
-      console.info(`Fetching project data for ${apiUrl}`);
-      const response = await fetchWithBypass(apiUrl);
+      console.info(`Fetching project data for ${parsed.owner}/${parsed.repo}`);
+      const result = await fetchGitHubRepoAction(parsed.owner, parsed.repo);
 
-      if (!response.ok) {
-        console.error(`Error fetching project data for ${apiUrl}`);
-        console.error(`Response status: ${response.status}`);
-        console.error(`Response Body: ${await response.text()}`);
+      if ('error' in result) {
+        console.error(`Error fetching project data for ${projectUrl}:`, result.error);
         return null;
       }
 
-      const projectData = await response.json();
-
-      return {
-        ...projectData,
-      };
+      return result;
     });
-    const fetchedProjects = (await Promise.all(projects)).filter(Boolean) as (Project & { tags: string[] })[];
+    const fetchedProjects = (await Promise.all(projects)).filter(Boolean) as Project[];
     return fetchedProjects;
   } catch (error) {
     console.error('Error fetching projects:', error);

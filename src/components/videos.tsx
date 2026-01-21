@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { appProtocol, domain } from '@/lib/constants';
+import { domain } from '@/lib/constants';
 import { fetchWithBypass } from '@/lib/fetch-utils';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
 import type { HomePage } from '@/payload/types';
@@ -10,7 +10,7 @@ import { ImageBox } from './image-box';
 import VideosSkeleton from './skeletons/videos-skeleton';
 
 async function fetchVideos(channelId: string): Promise<Video[]> {
-  const res = await fetchWithBypass(`${appProtocol}://${domain}/api/videos?channelId=${channelId}`);
+  const res = await fetchWithBypass(`${domain}/api/videos?channelId=${channelId}`);
   if (!res.ok) throw new Error('Failed to fetch videos');
   const data = await res.json();
   return data.videos || [];

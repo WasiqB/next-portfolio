@@ -257,5 +257,19 @@ export const HomePage: GlobalConfig = {
         },
       ],
     },
+    {
+      name: 'seo',
+      label: 'SEO',
+      type: 'group',
+      fields: [
+        {
+          name: 'keywords',
+          label: 'Keywords',
+          type: 'text',
+          hasMany: true,
+          required: true,
+        },
+      ],
+    },
   ],
 };

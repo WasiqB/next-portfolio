@@ -108,16 +108,32 @@ export interface Config {
   globals: {
     homePage: HomePage;
     aboutPage: AboutPage;
+    projectsPage: ProjectsPage;
+    servicesPage: ServicesPage;
+    sponsorsPage: SponsorsPage;
+    blogsPage: BlogsPage;
+    videosPage: VideosPage;
+    testimonialsPage: TestimonialsPage;
     contactSection: ContactSection;
     navbar: Navbar;
     footer: Footer;
+    analytics: Analytics;
+    siteSettings: SiteSetting;
   };
   globalsSelect: {
     homePage: HomePageSelect<false> | HomePageSelect<true>;
     aboutPage: AboutPageSelect<false> | AboutPageSelect<true>;
+    projectsPage: ProjectsPageSelect<false> | ProjectsPageSelect<true>;
+    servicesPage: ServicesPageSelect<false> | ServicesPageSelect<true>;
+    sponsorsPage: SponsorsPageSelect<false> | SponsorsPageSelect<true>;
+    blogsPage: BlogsPageSelect<false> | BlogsPageSelect<true>;
+    videosPage: VideosPageSelect<false> | VideosPageSelect<true>;
+    testimonialsPage: TestimonialsPageSelect<false> | TestimonialsPageSelect<true>;
     contactSection: ContactSectionSelect<false> | ContactSectionSelect<true>;
     navbar: NavbarSelect<false> | NavbarSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    analytics: AnalyticsSelect<false> | AnalyticsSelect<true>;
+    siteSettings: SiteSettingsSelect<false> | SiteSettingsSelect<true>;
   };
   locale: null;
   user: User & {
@@ -826,6 +842,9 @@ export interface HomePage {
         }[]
       | null;
   };
+  seo: {
+    keywords: string[];
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -854,6 +873,93 @@ export interface AboutPage {
     id?: string | null;
   }[];
   skills: string[];
+  seo: {
+    keywords: string[];
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projectsPage".
+ */
+export interface ProjectsPage {
+  id: number;
+  title: string;
+  description: string;
+  seo: {
+    keywords: string[];
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "servicesPage".
+ */
+export interface ServicesPage {
+  id: number;
+  title: string;
+  description: string;
+  seo: {
+    keywords: string[];
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sponsorsPage".
+ */
+export interface SponsorsPage {
+  id: number;
+  title: string;
+  description: string;
+  seo: {
+    keywords: string[];
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogsPage".
+ */
+export interface BlogsPage {
+  id: number;
+  title: string;
+  description: string;
+  seo: {
+    keywords: string[];
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videosPage".
+ */
+export interface VideosPage {
+  id: number;
+  title: string;
+  description: string;
+  seo: {
+    keywords: string[];
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonialsPage".
+ */
+export interface TestimonialsPage {
+  id: number;
+  title: string;
+  description: string;
+  seo: {
+    keywords: string[];
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -948,6 +1054,31 @@ export interface Footer {
       }[]
     | null;
   copyrightText: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "analytics".
+ */
+export interface Analytics {
+  id: number;
+  googleAnalyticsId: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSettings".
+ */
+export interface SiteSetting {
+  id: number;
+  siteName: string;
+  /**
+   * Use %s where the page title should be inserted.
+   */
+  titleTemplate: string;
+  defaultLanguage: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1146,6 +1277,11 @@ export interface HomePageSelect<T extends boolean = true> {
                   };
             };
       };
+  seo?:
+    | T
+    | {
+        keywords?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1183,6 +1319,107 @@ export interface AboutPageSelect<T extends boolean = true> {
         id?: T;
       };
   skills?: T;
+  seo?:
+    | T
+    | {
+        keywords?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projectsPage_select".
+ */
+export interface ProjectsPageSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  seo?:
+    | T
+    | {
+        keywords?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "servicesPage_select".
+ */
+export interface ServicesPageSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  seo?:
+    | T
+    | {
+        keywords?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sponsorsPage_select".
+ */
+export interface SponsorsPageSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  seo?:
+    | T
+    | {
+        keywords?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "blogsPage_select".
+ */
+export interface BlogsPageSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  seo?:
+    | T
+    | {
+        keywords?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "videosPage_select".
+ */
+export interface VideosPageSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  seo?:
+    | T
+    | {
+        keywords?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonialsPage_select".
+ */
+export interface TestimonialsPageSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  seo?:
+    | T
+    | {
+        keywords?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1286,6 +1523,28 @@ export interface FooterSelect<T extends boolean = true> {
         id?: T;
       };
   copyrightText?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "analytics_select".
+ */
+export interface AnalyticsSelect<T extends boolean = true> {
+  googleAnalyticsId?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "siteSettings_select".
+ */
+export interface SiteSettingsSelect<T extends boolean = true> {
+  siteName?: T;
+  titleTemplate?: T;
+  defaultLanguage?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

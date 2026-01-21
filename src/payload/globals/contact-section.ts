@@ -1,7 +1,15 @@
+import { updateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
 
 export const ContactSection: GlobalConfig = {
   slug: 'contactSection',
+  hooks: {
+    afterChange: [
+      () => {
+        updateTag('contactSection');
+      },
+    ],
+  },
   fields: [
     {
       name: 'title',

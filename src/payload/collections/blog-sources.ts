@@ -1,3 +1,4 @@
+import { updateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
 
 export const BlogSources: CollectionConfig = {
@@ -5,7 +6,12 @@ export const BlogSources: CollectionConfig = {
   hooks: {
     afterChange: [
       () => {
-        // updateTag('blogSources');
+        updateTag('blogSources');
+      },
+    ],
+    afterDelete: [
+      () => {
+        updateTag('blogSources');
       },
     ],
   },

@@ -1,7 +1,15 @@
+import { updateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
+  hooks: {
+    afterChange: [
+      () => {
+        updateTag('footer');
+      },
+    ],
+  },
   fields: [
     {
       name: 'logo',

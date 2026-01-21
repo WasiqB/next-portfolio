@@ -1,8 +1,16 @@
+import { updateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
 import { Button } from '@/payload/blocks/button';
 
 export const Navbar: GlobalConfig = {
   slug: 'navbar',
+  hooks: {
+    afterChange: [
+      () => {
+        updateTag('navbar');
+      },
+    ],
+  },
   fields: [
     {
       name: 'logo',

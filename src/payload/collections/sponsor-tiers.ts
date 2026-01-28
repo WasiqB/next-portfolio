@@ -1,4 +1,4 @@
-import { updateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
 
 export const SponsorTiers: CollectionConfig = {
@@ -9,12 +9,12 @@ export const SponsorTiers: CollectionConfig = {
   hooks: {
     afterChange: [
       () => {
-        updateTag('sponsor-tiers');
+        revalidateTag('sponsor-tiers', 'max');
       },
     ],
     afterDelete: [
       () => {
-        updateTag('sponsor-tiers');
+        revalidateTag('sponsor-tiers', 'max');
       },
     ],
   },

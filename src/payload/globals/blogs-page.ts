@@ -1,4 +1,4 @@
-import { updateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
 import { CACHE_TAGS } from '@/lib/constants';
 
@@ -7,8 +7,8 @@ export const BlogsPage: GlobalConfig = {
   hooks: {
     afterChange: [
       () => {
-        updateTag('blogsPage');
-        updateTag(CACHE_TAGS.BLOGS);
+        revalidateTag('blogsPage', 'max');
+        revalidateTag(CACHE_TAGS.BLOGS, 'max');
       },
     ],
   },

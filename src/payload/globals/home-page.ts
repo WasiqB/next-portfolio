@@ -1,4 +1,4 @@
-import { updateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
 import { Button } from '@/payload/blocks/button';
 import { Image } from '../blocks/image';
@@ -8,7 +8,7 @@ export const HomePage: GlobalConfig = {
   hooks: {
     afterChange: [
       () => {
-        updateTag('homePage');
+        revalidateTag('homePage', 'max');
       },
     ],
   },

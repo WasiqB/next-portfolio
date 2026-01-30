@@ -57,15 +57,10 @@ const request = async (url: string) => {
 };
 
 const extractThumbnailFromMedium = (html: string): string => {
-  const figureRegex = /<figure[^>]*>(.*?)<img[^>]*src="([^"]*)"[^>]*>.*?<\/figure>/i;
-
-  const match = figureRegex.exec(html);
-
-  if (match && match.length >= 3) {
-    return match[2];
-  } else {
-    return '';
-  }
+  if (!html) return '';
+  const $ = cheerio.load(html);
+  const imageUrl = $('figure img').first().attr('src') || $('img').first().attr('src');
+  return imageUrl || '';
 };
 
 const textEllipsis = (str: string, length = 100, ending = '...') => {
@@ -86,16 +81,7 @@ const formatMediumPost = (post: MediumBlog): Blog => {
         .result.replace('\n', '')
         .trim(),
     ),
-    image:
-      post.thumbnail ||
-      extractThumbnailFromMedium(
-        stripHtml(post.content, {
-          ignoreTagsWithTheirContents: ['figure', 'img'],
-          stripTogetherWithTheirContents: ['script', 'style', 'xml', 'p'],
-        })
-          .result.replace('\n', '')
-          .trim(),
-      ),
+    image: post.thumbnail || extractThumbnailFromMedium(post.content),
     url: post.guid,
     tags: post.categories,
     publishedAt: new Date(post.pubDate).toISOString(),

@@ -1,4 +1,4 @@
-import { updateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
 
 export const ContactSection: GlobalConfig = {
@@ -6,7 +6,7 @@ export const ContactSection: GlobalConfig = {
   hooks: {
     afterChange: [
       () => {
-        updateTag('contactSection');
+        revalidateTag('contactSection', 'max');
       },
     ],
   },

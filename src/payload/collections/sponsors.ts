@@ -1,4 +1,4 @@
-import { updateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
 
 export const Sponsors: CollectionConfig = {
@@ -9,12 +9,12 @@ export const Sponsors: CollectionConfig = {
   hooks: {
     afterChange: [
       () => {
-        updateTag('sponsors');
+        revalidateTag('sponsors', 'max');
       },
     ],
     afterDelete: [
       () => {
-        updateTag('sponsors');
+        revalidateTag('sponsors', 'max');
       },
     ],
   },

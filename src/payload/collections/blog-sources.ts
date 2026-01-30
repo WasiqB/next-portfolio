@@ -1,4 +1,4 @@
-import { updateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
 import { CACHE_TAGS } from '@/lib/constants';
 
@@ -7,14 +7,14 @@ export const BlogSources: CollectionConfig = {
   hooks: {
     afterChange: [
       () => {
-        updateTag('blog-sources');
-        updateTag(CACHE_TAGS.BLOGS);
+        revalidateTag('blog-sources', 'max');
+        revalidateTag(CACHE_TAGS.BLOGS, 'max');
       },
     ],
     afterDelete: [
       () => {
-        updateTag('blog-sources');
-        updateTag(CACHE_TAGS.BLOGS);
+        revalidateTag('blog-sources', 'max');
+        revalidateTag(CACHE_TAGS.BLOGS, 'max');
       },
     ],
   },

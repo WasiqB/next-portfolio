@@ -1,4 +1,4 @@
-import { updateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
 import { CACHE_TAGS } from '@/lib/constants';
 
@@ -7,8 +7,8 @@ export const VideosPage: GlobalConfig = {
   hooks: {
     afterChange: [
       () => {
-        updateTag('videosPage');
-        updateTag(CACHE_TAGS.VIDEOS);
+        revalidateTag('videosPage', 'max');
+        revalidateTag(CACHE_TAGS.VIDEOS, 'max');
       },
     ],
   },

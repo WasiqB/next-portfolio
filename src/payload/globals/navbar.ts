@@ -1,4 +1,4 @@
-import { updateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
 import { Button } from '@/payload/blocks/button';
 
@@ -7,7 +7,7 @@ export const Navbar: GlobalConfig = {
   hooks: {
     afterChange: [
       () => {
-        updateTag('navbar');
+        revalidateTag('navbar', 'max');
       },
     ],
   },

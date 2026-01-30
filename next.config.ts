@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
         protocol: 'https',
       },
       {
-        hostname: 'assets.testmu.ai',
+        hostname: 'assets.testmuai.com',
       },
       {
         hostname: 'i.ytimg.com',

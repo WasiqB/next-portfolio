@@ -1,4 +1,4 @@
-import { updateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
 
 export const Services: CollectionConfig = {
@@ -9,12 +9,12 @@ export const Services: CollectionConfig = {
   hooks: {
     afterChange: [
       () => {
-        updateTag('services');
+        revalidateTag('services', 'max');
       },
     ],
     afterDelete: [
       () => {
-        updateTag('services');
+        revalidateTag('services', 'max');
       },
     ],
   },

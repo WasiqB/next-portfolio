@@ -1,4 +1,4 @@
-import { updateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import type { GlobalConfig } from 'payload';
 
 export const Footer: GlobalConfig = {
@@ -6,7 +6,7 @@ export const Footer: GlobalConfig = {
   hooks: {
     afterChange: [
       () => {
-        updateTag('footer');
+        revalidateTag('footer', 'max');
       },
     ],
   },

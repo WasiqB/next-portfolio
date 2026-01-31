@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { GitFork, Star } from 'lucide-react';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -37,38 +37,35 @@ export default function ProjectsClient({ projectSection, projectData }: Projects
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <Link
-              key={index}
-              href={project.link}
-              target='_blank'
-              className='block h-full transition-transform hover:scale-[1.02]'
-            >
-              <Card className='h-full flex flex-col overflow-hidden cursor-pointer border-2 hover:border-primary/50'>
-                <CardHeader>
-                  <CardTitle>{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent className='grow'>
-                  <div className='flex flex-wrap gap-2'>
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant='secondary'>
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-                <CardFooter className='flex justify-end gap-4 text-sm text-muted-foreground pt-0'>
-                  <div className='flex items-center gap-1'>
-                    <Star className='h-4 w-4' />
-                    <span>{project.stars}</span>
-                  </div>
-                  <div className='flex items-center gap-1'>
-                    <GitFork className='h-4 w-4' />
-                    <span>{project.forks}</span>
-                  </div>
-                </CardFooter>
-              </Card>
-            </Link>
+            <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.5 }} className='h-full'>
+              <Link key={index} href={project.link} target='_blank' className='block h-full'>
+                <Card className='h-full flex flex-col overflow-hidden cursor-pointer border-2 hover:border-primary/50'>
+                  <CardHeader>
+                    <CardTitle>{project.title}</CardTitle>
+                    <CardDescription>{project.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent className='grow'>
+                    <div className='flex flex-wrap gap-2'>
+                      {project.tags.map((tag) => (
+                        <Badge key={tag} variant='secondary'>
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </CardContent>
+                  <CardFooter className='flex justify-end gap-4 text-sm text-muted-foreground pt-0'>
+                    <div className='flex items-center gap-1'>
+                      <Star className='h-4 w-4' />
+                      <span>{project.stars}</span>
+                    </div>
+                    <div className='flex items-center gap-1'>
+                      <GitFork className='h-4 w-4' />
+                      <span>{project.forks}</span>
+                    </div>
+                  </CardFooter>
+                </Card>
+              </Link>
+            </motion.div>
           </motion.div>
         ))}
       </div>

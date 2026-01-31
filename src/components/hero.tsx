@@ -29,7 +29,6 @@ export default async function Hero() {
   const sequences: any[] = [];
   data.heroSection.typingTexts.forEach((text: string) => {
     sequences.push(text);
-    sequences.push(data.heroSection.typingDelay || 1000);
   });
 
   return (

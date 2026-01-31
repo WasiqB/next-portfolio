@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { getSocialIcon } from '@/components/social-icons';
+import { smoothScrollTo } from '@/lib/utils';
 import type { Footer, Media, Social } from '@/payload/types';
 
 interface FooterClientProps {
@@ -84,6 +85,7 @@ export default function FooterClient({ footer, socials, userName }: FooterClient
                         key={item.label}
                         href={item.url}
                         className='text-muted-foreground hover:text-primary transition-colors text-sm'
+                        onClick={smoothScrollTo}
                       >
                         {item.label}
                       </Link>

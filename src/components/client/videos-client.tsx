@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Eye, Heart, MessageSquare, Play } from 'lucide-react';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
@@ -25,52 +25,47 @@ function formatViewCount(count: number): string {
 function VideoCard({ video }: { video: Video & { imageNode?: React.ReactNode } }) {
   const { theme } = useTheme();
   return (
-    <Link
-      key={video.id}
-      href={video.videoUrl}
-      target='_blank'
-      rel='noopener noreferrer'
-      className='block h-full transition-transform hover:scale-[1.02]'
-    >
-      <Card className='h-full flex flex-col overflow-hidden hover:border-primary/50'>
-        <div className='relative aspect-video w-full group cursor-pointer'>
-          {video.imageNode}
-          <div className='absolute inset-0 bg-black/50 dark:bg-white/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity'>
-            <div className='rounded-full bg-primary/90 p-3'>
-              <Play className='h-6 w-6' fill={theme !== 'dark' ? 'white' : 'black'} />
+    <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.5 }} className='h-full'>
+      <Link key={video.id} href={video.videoUrl} target='_blank' rel='noopener noreferrer' className='block h-full'>
+        <Card className='h-full flex flex-col overflow-hidden hover:border-primary/50'>
+          <div className='relative aspect-video w-full group cursor-pointer'>
+            {video.imageNode}
+            <div className='absolute inset-0 bg-black/50 dark:bg-white/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity'>
+              <div className='rounded-full bg-primary/90 p-3'>
+                <Play className='h-6 w-6' fill={theme !== 'dark' ? 'white' : 'black'} />
+              </div>
             </div>
+            <span className='sr-only'>Watch {video.title}</span>
           </div>
-          <span className='sr-only'>Watch {video.title}</span>
-        </div>
-        <CardContent className='p-4 grow'>
-          <h3 className='font-medium line-clamp-2 mb-2'>{video.title}</h3>
-          <p className='text-xs text-muted-foreground mb-1'>{formatDate(video.publishDate)}</p>
-        </CardContent>
-        <CardFooter className='p-4 pt-0 flex justify-between items-center text-sm text-muted-foreground'>
-          <div className='flex items-center gap-3'>
+          <CardContent className='p-4 grow'>
+            <h3 className='font-medium line-clamp-2 mb-2'>{video.title}</h3>
+            <p className='text-xs text-muted-foreground mb-1'>{formatDate(video.publishDate)}</p>
+          </CardContent>
+          <CardFooter className='p-4 pt-0 flex justify-between items-center text-sm text-muted-foreground'>
+            <div className='flex items-center gap-3'>
+              <div className='flex items-center gap-1'>
+                <Heart className='h-3.5 w-3.5' />
+                <span>{video.likes}</span>
+              </div>
+              <div className='flex items-center gap-1'>
+                <MessageSquare className='h-3.5 w-3.5' />
+                <span>{video.comments}</span>
+              </div>
+            </div>
             <div className='flex items-center gap-1'>
-              <Heart className='h-3.5 w-3.5' />
-              <span>{video.likes}</span>
+              <Eye className='h-3.5 w-3.5' />
+              <span>{formatViewCount(video.views)}</span>
             </div>
-            <div className='flex items-center gap-1'>
-              <MessageSquare className='h-3.5 w-3.5' />
-              <span>{video.comments}</span>
-            </div>
-          </div>
-          <div className='flex items-center gap-1'>
-            <Eye className='h-3.5 w-3.5' />
-            <span>{formatViewCount(video.views)}</span>
-          </div>
-        </CardFooter>
-      </Card>
-    </Link>
+          </CardFooter>
+        </Card>
+      </Link>
+    </motion.div>
   );
 }
 
 export default function VideosClient({ videoSection, videos }: VideosClientProps) {
   const [activeTab, setActiveTab] = useState('all');
 
-  // Filter videos based on active tab
   const getFilteredVideos = () => {
     if (activeTab === 'all') return videos.slice(0, 4);
     return videos.filter((video) => video.category === activeTab).slice(0, 4);

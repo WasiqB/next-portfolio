@@ -5,12 +5,14 @@ import '@/app/(frontend)/globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'sonner';
+import ScrollToTop from '@/components/client/scroll-to-top';
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import CrispChat from '@/components/pages/crisp-chat';
 import FooterSkeleton from '@/components/skeletons/footer-skeleton';
 import NavbarSkeleton from '@/components/skeletons/navbar-skeleton';
 import { ThemeProvider } from '@/components/theme-provider';
+import { ScrollProgress } from '@/components/ui/scroll-progress';
 import { domain, isProd } from '@/lib/constants';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
 import type { Analytics } from '@/payload/types';
@@ -41,8 +43,10 @@ function LayoutContent({ children, analyticsId }: { children: ReactNode; analyti
       <div className='flex min-h-screen flex-col'>
         <Suspense fallback={<NavbarSkeleton />}>
           <Navbar />
+          <ScrollProgress />
         </Suspense>
         <div className='flex-1'>{children}</div>
+        <ScrollToTop />
         <Suspense fallback={<FooterSkeleton />}>
           <Footer />
         </Suspense>

@@ -2,9 +2,10 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { TypeAnimation } from 'react-type-animation';
 import { getSocialIcon } from '@/components/social-icons';
 import { Button } from '@/components/ui/button';
+import { LayoutTextFlip } from '@/components/ui/layout-text-flip';
+import { smoothScrollTo } from '@/lib/utils';
 import type { HomePage, Social } from '@/payload/types';
 
 interface HeroClientProps {
@@ -19,24 +20,11 @@ export default function HeroClient({ heroSection, socials, typingSequences, prof
     <section id='heroSection' className='max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24 lg:py-32'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
         <div className='space-y-6 order-2 md:order-1'>
-          <motion.h1
-            className='text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight'
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {heroSection?.name}
-          </motion.h1>
-
-          <div className='h-12'>
-            <TypeAnimation
-              sequence={typingSequences}
-              wrapper='h2'
-              speed={50}
-              className='text-xl md:text-2xl text-muted-foreground'
-              repeat={Number.POSITIVE_INFINITY}
-            />
-          </div>
+          <LayoutTextFlip
+            text={heroSection?.name}
+            words={typingSequences}
+            duration={heroSection?.typingDelay || 2000}
+          />
 
           <motion.p
             className='text-lg text-muted-foreground max-w-prose'
@@ -54,10 +42,14 @@ export default function HeroClient({ heroSection, socials, typingSequences, prof
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <Button asChild>
-              <Link href={heroSection?.primary?.[0]?.url || ''}>{heroSection?.primary?.[0]?.label}</Link>
+              <Link href={heroSection?.primary?.[0]?.url || ''} onClick={smoothScrollTo}>
+                {heroSection?.primary?.[0]?.label}
+              </Link>
             </Button>
             <Button variant='outline' asChild>
-              <Link href={heroSection?.secondary?.[0]?.url || ''}>{heroSection?.secondary?.[0]?.label}</Link>
+              <Link href={heroSection?.secondary?.[0]?.url || ''} onClick={smoothScrollTo}>
+                {heroSection?.secondary?.[0]?.label}
+              </Link>
             </Button>
           </motion.div>
 

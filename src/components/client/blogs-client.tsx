@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { CalendarIcon } from 'lucide-react';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
@@ -20,43 +20,40 @@ interface BlogsClientProps {
 
 function BlogCard({ blog }: { blog: Blog & { imageNode?: React.ReactNode } }) {
   return (
-    <Link
-      href={blog.url}
-      target='_blank'
-      rel='noopener noreferrer'
-      className='block h-full transition-transform hover:scale-[1.02]'
-    >
-      <Card className='h-full flex flex-col overflow-hidden cursor-pointer border-2 hover:border-primary/50'>
-        <div className='relative h-48 w-full'>
-          {blog.imageNode}
-          <div className='absolute top-2 right-2 bg-background/80 backdrop-blur-sm rounded px-2 py-1 text-xs font-medium'>
-            {getBlogSource(blog.url)}
+    <motion.div whileHover={{ y: -5 }} transition={{ duration: 0.5 }} className='h-full'>
+      <Link href={blog.url} target='_blank' rel='noopener noreferrer' className='block h-full'>
+        <Card className='h-full flex flex-col overflow-hidden cursor-pointer border-2 hover:border-primary/50'>
+          <div className='relative h-48 w-full'>
+            {blog.imageNode}
+            <div className='absolute top-2 right-2 bg-background/80 backdrop-blur-sm rounded px-2 py-1 text-xs font-medium'>
+              {getBlogSource(blog.url)}
+            </div>
           </div>
-        </div>
-        <CardHeader className='p-4 pb-2'>
-          <h3 className='text-lg font-bold line-clamp-2'>{blog.title}</h3>
-        </CardHeader>
-        <CardContent className='p-4 pt-0 grow'>
-          <p className='text-muted-foreground text-sm line-clamp-3 mb-3'>{blog.description}</p>
-          <div className='flex flex-wrap gap-2 mb-3'>
-            {blog.tags.slice(0, 2).map((tag) => (
-              <Badge key={tag} variant='secondary' className='text-xs'>
-                {tag}
-              </Badge>
-            ))}
-            {blog.tags.length > 2 && (
-              <Badge variant='outline' className='text-xs'>
-                +{blog.tags.length - 2}
-              </Badge>
-            )}
-          </div>
-          <div className='flex items-center text-xs text-muted-foreground'>
-            <CalendarIcon className='h-3.5 w-3.5 mr-1' />
-            <span>{formatDate(blog.publishedAt)}</span>
-          </div>
-        </CardContent>
-      </Card>
-    </Link>
+          <CardHeader className='p-4 pb-2'>
+            <h3 className='text-lg font-bold line-clamp-2'>{blog.title}</h3>
+          </CardHeader>
+          <CardContent className='p-4 pt-0 grow'>
+            <p className='text-muted-foreground text-sm line-clamp-3 mb-3'>{blog.description}</p>
+            <div className='flex flex-wrap gap-2 mb-3'>
+              {blog.tags.slice(0, 2).map((tag) => (
+                <Badge key={tag} variant='secondary' className='text-xs'>
+                  {tag}
+                </Badge>
+              ))}
+              {blog.tags.length > 2 && (
+                <Badge variant='outline' className='text-xs'>
+                  +{blog.tags.length - 2}
+                </Badge>
+              )}
+            </div>
+            <div className='flex items-center text-xs text-muted-foreground'>
+              <CalendarIcon className='h-3.5 w-3.5 mr-1' />
+              <span>{formatDate(blog.publishedAt)}</span>
+            </div>
+          </CardContent>
+        </Card>
+      </Link>
+    </motion.div>
   );
 }
 

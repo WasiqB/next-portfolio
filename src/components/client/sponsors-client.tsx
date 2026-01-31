@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import type { HomePage, Sponsor, SponsorTier } from '@/payload/types';

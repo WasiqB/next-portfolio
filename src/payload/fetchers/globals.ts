@@ -6,7 +6,7 @@ import { getPayloadClient } from '@/lib/payload-client';
 
 export const getGlobalConfig = async <T>(slug: GlobalSlug): Promise<T | null> => {
   'use cache';
-  cacheTag(slug.toString());
+  cacheTag(slug);
   cacheLife('days');
   const payload = await getPayloadClient();
   const config = await payload.findGlobal({

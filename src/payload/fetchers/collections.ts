@@ -6,7 +6,7 @@ import { getPayloadClient } from '@/lib/payload-client';
 
 export const getCollectionData = async <T>(collection: CollectionSlug): Promise<T> => {
   'use cache';
-  cacheTag(collection.toString());
+  cacheTag(collection);
   cacheLife('days');
   const payload = await getPayloadClient();
   const collectionData = await payload.find({

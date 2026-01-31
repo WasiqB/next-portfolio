@@ -27,6 +27,9 @@ export const LayoutTextFlip = ({
       <motion.h1
         layoutId="subtext"
         className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
       >
         {text}
       </motion.h1>

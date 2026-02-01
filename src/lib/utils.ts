@@ -6,6 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const smoothScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, callback?: () => void) => {
+  callback?.();
   const href = e.currentTarget.getAttribute('href');
   if (href?.includes('#')) {
     const targetId = href.split('#')[1];
@@ -13,7 +14,6 @@ export const smoothScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, callback?
 
     if (targetElement) {
       e.preventDefault();
-      callback?.();
       const headerOffset = 0;
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;

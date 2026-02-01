@@ -96,9 +96,11 @@ export default function FooterClient({ footer, socials, userName }: FooterClient
           </div>
         </div>
 
-        <div className='mt-8 pt-8 border-t text-center text-sm text-muted-foreground'>
+        <div className='mt-8 pt-8 border-t text-left text-sm text-muted-foreground'>
           <p className='whitespace-pre-line'>
-            &copy; {new Date().getFullYear()} {userName}. {footer.copyrightText}
+            &copy; {new Date().getFullYear()}, {userName}.
+            <br />
+            {footer.copyrightText}
           </p>
         </div>
       </div>

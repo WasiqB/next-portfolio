@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { getSocialIcon } from '@/components/social-icons';
 import { Button } from '@/components/ui/button';
-import { LayoutTextFlip } from '@/components/ui/layout-text-flip';
+import { TypingAnimation } from '@/components/ui/typing-animation';
 import { smoothScrollTo } from '@/lib/utils';
 import type { HomePage, Social } from '@/payload/types';
 
@@ -19,11 +19,23 @@ export default function HeroClient({ heroSection, socials, profileImage }: HeroC
     <section id='heroSection' className='max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24 lg:py-32'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-8 items-center'>
         <div className='space-y-6 order-2 md:order-1'>
-          <LayoutTextFlip
-            text={heroSection?.name}
-            words={heroSection?.typingTexts}
-            duration={heroSection?.typingDelay || 2000}
-          />
+          <motion.h1
+            className='text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight'
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {heroSection?.name}
+          </motion.h1>
+          <div className='h-12'>
+            <TypingAnimation
+              words={heroSection?.typingTexts}
+              pauseDelay={heroSection?.typingDelay || 2000}
+              cursorStyle='block'
+              className='text-xl md:text-2xl text-muted-foreground'
+              loop
+            />
+          </div>
 
           <motion.p
             className='text-lg text-muted-foreground max-w-prose'

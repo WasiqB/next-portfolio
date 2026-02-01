@@ -20,24 +20,18 @@ export default async function Hero() {
   }
 
   if (!socials) {
-    <section id='heroSection' className='container py-12 md:py-24'>
-      <SectionError title='Hero section Unavailable' message='Failed to load social links data' />
-    </section>;
+    return (
+      <section id='heroSection' className='container py-12 md:py-24'>
+        <SectionError title='Hero section Unavailable' message='Failed to load social links data' />
+      </section>
+    );
   }
-
-  // Build typing sequences array
-  const sequences: any[] = [];
-  data.heroSection.typingTexts.forEach((text: string) => {
-    sequences.push(text);
-    sequences.push(data.heroSection.typingDelay || 1000);
-  });
 
   return (
     <Suspense fallback={<HeroSkeleton />}>
       <HeroClient
         heroSection={data.heroSection}
         socials={socials}
-        typingSequences={sequences}
         profileImage={
           <ImageBox
             media={data.heroSection.profileImage[0].src as Media}

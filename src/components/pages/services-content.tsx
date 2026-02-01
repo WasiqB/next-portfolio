@@ -1,7 +1,7 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -66,7 +66,12 @@ export default function ServiceContent({
 
   return (
     <div className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'>
-      <div className='flex items-center gap-4 mb-8'>
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className='flex items-center gap-4 mb-8'
+      >
         <Button variant='outline' size='sm' asChild>
           <Link href='/#services'>
             <ArrowLeft className='h-4 w-4 mr-2' />
@@ -74,11 +79,16 @@ export default function ServiceContent({
           </Link>
         </Button>
         <h1 className='text-3xl font-bold'>{sectionTitle}</h1>
-      </div>
+      </motion.div>
 
-      <div className='max-w-3xl mx-auto mb-12'>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className='max-w-3xl mx-auto mb-12'
+      >
         <p className='text-lg text-muted-foreground'>{sectionDescription}</p>
-      </div>
+      </motion.div>
 
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16'>
         {services?.map((service, index) => {

@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { cn } from '@/lib/utils';
+import { cn, smoothScrollTo } from '@/lib/utils';
 import type { Media, Navbar } from '@/payload/types';
 import DynamicLucideIcon, { type IconName } from '../dynamic-icon';
 import {
@@ -60,6 +60,7 @@ export default function NavbarClient({ navbar }: NavbarClientProps) {
   const { theme, setTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
   const [openCollapsible, setOpenCollapsible] = useState<string | null>(null);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
@@ -67,6 +68,15 @@ export default function NavbarClient({ navbar }: NavbarClientProps) {
 
   const toggleCollapsible = (name: string) => {
     setOpenCollapsible(openCollapsible === name ? null : name);
+  };
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    smoothScrollTo(e, () => setIsSheetOpen(false));
+  };
+
+  const handleThemeToggle = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setIsSheetOpen(false);
   };
 
   if (!isMounted) {
@@ -128,6 +138,7 @@ export default function NavbarClient({ navbar }: NavbarClientProps) {
                                   href={subItem.url}
                                   icon={subItem.icon}
                                   description={subItem.description || ''}
+                                  onClick={handleClick}
                                 />
                               ))}
                           </ul>
@@ -137,6 +148,7 @@ export default function NavbarClient({ navbar }: NavbarClientProps) {
                       <NavigationMenuLink
                         href={item.url}
                         className='group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-active:bg-accent/50 data-[state=open]:bg-accent/50'
+                        onClick={handleClick}
                       >
                         <span className='flex items-center gap-2'>
                           <DynamicLucideIcon name={item.icon as IconName} className='h-4 w-4' />
@@ -158,19 +170,14 @@ export default function NavbarClient({ navbar }: NavbarClientProps) {
             </Button>
           )}
 
-          <Button
-            variant='ghost'
-            size='icon'
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            aria-label='Toggle theme'
-          >
+          <Button variant='ghost' size='icon' onClick={handleThemeToggle} aria-label='Toggle theme'>
             <Sun className='h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
             <Moon className='absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
           </Button>
         </nav>
 
         {/* Mobile Navigation */}
-        <Sheet>
+        <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
           <SheetTrigger asChild className='lg:hidden'>
             <Button variant='ghost' size='icon' aria-label='Menu'>
               <Menu className='h-5 w-5' />
@@ -216,6 +223,7 @@ export default function NavbarClient({ navbar }: NavbarClientProps) {
                                 key={subItem.label}
                                 href={subItem.url}
                                 className='flex items-start gap-3 p-2 rounded-md text-sm hover:bg-accent transition-colors'
+                                onClick={handleClick}
                               >
                                 <div className='text-muted-foreground mt-0.5'>
                                   <DynamicLucideIcon name={subItem.icon as IconName} className='h-4 w-4' />
@@ -236,6 +244,7 @@ export default function NavbarClient({ navbar }: NavbarClientProps) {
                       <Link
                         href={item.url}
                         className='flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent'
+                        onClick={handleClick}
                       >
                         <DynamicLucideIcon name={item.icon as IconName} className='h-4 w-4' />
                         {item.label}
@@ -248,18 +257,14 @@ export default function NavbarClient({ navbar }: NavbarClientProps) {
                 <Link
                   href={navbar.buyButton[0].url}
                   className='flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent mt-4 border border-border'
+                  onClick={handleClick}
                 >
                   <DynamicLucideIcon name={navbar.buyButton[0].icon as IconName} className='h-4 w-4' />
                   {navbar.buyButton[0].label}
                 </Link>
               )}
 
-              <Button
-                variant='ghost'
-                size='sm'
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className='justify-start px-2 mt-4'
-              >
+              <Button variant='ghost' size='sm' onClick={handleThemeToggle} className='justify-start px-2 mt-4'>
                 {theme === 'dark' ? (
                   <>
                     <Sun className='h-4 w-4 mr-2' />

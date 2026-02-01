@@ -1,10 +1,30 @@
 'use client';
 
 import { ArrowLeft, Heart } from 'lucide-react';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 import type { Sponsor, SponsorTier } from '@/payload/types';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+};
 
 interface SponsorCardProps {
   sponsor: Sponsor & { imageNode?: React.ReactNode };
@@ -14,15 +34,17 @@ function SponsorCard({ sponsor }: SponsorCardProps) {
   const tierName = typeof sponsor.tier === 'object' ? sponsor.tier.name : '';
 
   return (
-    <Link href={sponsor.url} target='_blank' rel='noopener noreferrer' className='group'>
-      <div className='relative aspect-square overflow-hidden rounded-full border-2 border-muted transition-all hover:border-primary'>
-        {sponsor.imageNode}
-      </div>
-      <div className='mt-3 text-center'>
-        <h3 className='font-medium'>{sponsor.name}</h3>
-        {tierName && <p className='text-xs text-muted-foreground capitalize'>{tierName} Sponsor</p>}
-      </div>
-    </Link>
+    <motion.div variants={itemVariants} whileHover={{ y: -5 }}>
+      <Link href={sponsor.url} target='_blank' rel='noopener noreferrer' className='group'>
+        <div className='relative aspect-square overflow-hidden rounded-full border-2 border-muted transition-all hover:border-primary'>
+          {sponsor.imageNode}
+        </div>
+        <div className='mt-3 text-center'>
+          <h3 className='font-medium'>{sponsor.name}</h3>
+          {tierName && <p className='text-xs text-muted-foreground capitalize'>{tierName} Sponsor</p>}
+        </div>
+      </Link>
+    </motion.div>
   );
 }
 
@@ -56,8 +78,13 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
   });
 
   return (
-    <div className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'>
-      <div className='flex items-center gap-4 mb-8'>
+    <motion.div
+      variants={containerVariants}
+      initial='hidden'
+      animate='visible'
+      className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'
+    >
+      <motion.div variants={itemVariants} className='flex items-center gap-4 mb-8'>
         <Button variant='outline' size='sm' asChild>
           <Link href='/#sponsors'>
             <ArrowLeft className='h-4 w-4 mr-2' />
@@ -65,11 +92,11 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
           </Link>
         </Button>
         <h1 className='text-3xl font-bold'>My Sponsors</h1>
-      </div>
+      </motion.div>
 
       <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16'>
-        <div className='md:col-span-2'>
-          <Card>
+        <motion.div variants={itemVariants} className='md:col-span-2'>
+          <Card className='h-full'>
             <CardHeader>
               <CardTitle>Why Sponsor Me?</CardTitle>
               <CardDescription>Support my open source work and help me create more content</CardDescription>
@@ -92,9 +119,9 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
               </p>
             </CardContent>
           </Card>
-        </div>
+        </motion.div>
 
-        <div>
+        <motion.div variants={itemVariants}>
           <Card>
             <CardHeader>
               <CardTitle className='flex items-center'>
@@ -115,18 +142,20 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
               </Button>
             </CardContent>
           </Card>
-        </div>
+        </motion.div>
       </div>
 
       <div className='space-y-16'>
-        <h2 className='text-2xl font-bold mb-8'>Current Sponsors</h2>
+        <motion.h2 variants={itemVariants} className='text-2xl font-bold mb-8'>
+          Current Sponsors
+        </motion.h2>
         {tiers
           .sort((a, b) => b.price - a.price)
           .map((tier) => {
             const tierSponsors = getSponsorsByTier(tier.slug);
             if (!tierSponsors.length) return null;
             return (
-              <div className='mb-12' key={tier.slug}>
+              <motion.div variants={itemVariants} className='mb-12' key={tier.slug}>
                 <h3 className='text-xl font-semibold mb-4 inline-flex items-center'>
                   <span className={`${getTierClass(tier.slug)} w-6 h-6 rounded-full mr-2`}></span>
                   {tier.name} Sponsors
@@ -136,7 +165,7 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
                     <SponsorCard key={sponsor.id} sponsor={sponsor} />
                   ))}
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         {/* Other Sponsors */}
@@ -156,41 +185,45 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
       </div>
 
       <div className='mb-16'>
-        <h2 className='text-2xl font-bold mb-8'>Sponsorship Tiers</h2>
+        <motion.h2 variants={itemVariants} className='text-2xl font-bold mb-8'>
+          Sponsorship Tiers
+        </motion.h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
           {tiers.map((tier) => (
-            <Card key={tier.slug} className='flex flex-col border-border'>
-              <CardHeader>
-                <CardTitle className='flex items-center gap-2'>
-                  <span className={`${getTierClass(tier.slug)} w-4 h-4 rounded-full`}></span>
-                  {tier.name}
-                </CardTitle>
-                <CardDescription>{tier.description}</CardDescription>
-                <div className='mt-4'>
-                  <span className='text-2xl font-bold'>{tier.price ? `$${tier.price}/mo` : 'Any amount'}</span>
+            <motion.div key={tier.slug} variants={itemVariants}>
+              <Card className='flex flex-col h-full border-border hover:shadow-lg transition-shadow'>
+                <CardHeader>
+                  <CardTitle className='flex items-center gap-2'>
+                    <span className={`${getTierClass(tier.slug)} w-4 h-4 rounded-full`}></span>
+                    {tier.name}
+                  </CardTitle>
+                  <CardDescription>{tier.description}</CardDescription>
+                  <div className='mt-4'>
+                    <span className='text-2xl font-bold'>{tier.price ? `$${tier.price}/mo` : 'Any amount'}</span>
+                  </div>
+                </CardHeader>
+                <CardContent className='grow'>
+                  <ul className='space-y-2'>
+                    {tier.benefits?.map((benefit) => (
+                      <li key={benefit.id} className='flex items-start'>
+                        <span className='h-2 w-2 rounded-full bg-primary mt-2 mr-2' />
+                        <span>{benefit.benefit}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+                <div className='p-4 pt-0'>
+                  <Button asChild className='w-full'>
+                    <Link href={tier.tierUrl} target='_blank' rel='noopener noreferrer'>
+                      Sponsor {tier.name}
+                    </Link>
+                  </Button>
                 </div>
-              </CardHeader>
-              <CardContent className='grow'>
-                <ul className='space-y-2'>
-                  {tier.benefits?.map((benefit) => (
-                    <li key={benefit.id} className='flex items-start'>
-                      <span className='h-2 w-2 rounded-full bg-primary mt-2 mr-2' />
-                      <span>{benefit.benefit}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-              <div className='p-4 pt-0'>
-                <Button asChild className='w-full'>
-                  <Link href={tier.tierUrl} target='_blank' rel='noopener noreferrer'>
-                    Sponsor {tier.name}
-                  </Link>
-                </Button>
-              </div>
-            </Card>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

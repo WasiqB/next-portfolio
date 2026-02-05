@@ -2,6 +2,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { postgresAdapter } from '@payloadcms/db-postgres';
 import { FixedToolbarFeature, lexicalEditor } from '@payloadcms/richtext-lexical';
+import { uploadthingStorage } from '@payloadcms/storage-uploadthing';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
 import { BlogSources } from './collections/blog-sources';
@@ -81,5 +82,14 @@ export default buildConfig({
     },
   }),
   sharp,
-  plugins: [],
+  plugins: [
+    uploadthingStorage({
+      collections: {
+        media: true,
+      },
+      options: {
+        token: process.env.UPLOADTHING_TOKEN,
+      },
+    }),
+  ],
 });

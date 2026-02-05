@@ -1,4 +1,3 @@
-import path from 'node:path';
 import type { CollectionConfig } from 'payload';
 import { generateBlurHash } from '../hooks/image-hook';
 
@@ -24,7 +23,7 @@ export const Media: CollectionConfig = {
     },
   ],
   upload: {
-    staticDir: path.resolve('./public/media'),
+    mimeTypes: ['image/*', 'image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'],
   },
   hooks: {
     beforeValidate: [generateBlurHash],

@@ -38,7 +38,7 @@ export const ImageBox = async (props: ImageBoxProps) => {
   } else if (imageUrl) {
     try {
       const { base64, img } = await getImage(imageUrl);
-      url = img.src;
+      url = img.url;
       blurhash = base64;
       width = img.width;
       height = img.height;

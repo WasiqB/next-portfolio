@@ -1,24 +1,25 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
 import { getPlaiceholder } from 'plaiceholder';
+import { domain } from './constants';
+import { fetchWithBypass } from './fetch-utils';
 
 export async function getImage(src: string) {
-  let buffer: Buffer;
+  const url = src.startsWith('/') ? `${domain}${src}` : src;
+  try {
+    const buffer = await fetchWithBypass(url).then(async (res) => Buffer.from(await res.arrayBuffer()));
+    const {
+      metadata: { height, width },
+      ...plaiceholder
+    } = await getPlaiceholder(buffer, { size: 10 });
 
-  if (src.startsWith('/')) {
-    const filePath = path.join(process.cwd(), 'public', src);
-    buffer = await fs.readFile(filePath);
-  } else {
-    buffer = await fetch(src).then(async (res) => Buffer.from(await res.arrayBuffer()));
+    return {
+      ...plaiceholder,
+      img: { url, height, width },
+    };
+  } catch (error) {
+    console.error(`Error generating plaiceholder for ${url}:`, error);
+    return {
+      base64: '',
+      img: { url: 'https://placehold.net/600x600.png', height: 600, width: 600 },
+    };
   }
-
-  const {
-    metadata: { height, width },
-    ...plaiceholder
-  } = await getPlaiceholder(buffer, { size: 10 });
-
-  return {
-    ...plaiceholder,
-    img: { src, height, width },
-  };
 }

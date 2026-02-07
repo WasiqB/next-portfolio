@@ -61,14 +61,7 @@ export default async function Blogs() {
 
   const blogsWithImages = blogData.map((blog) => ({
     ...blog,
-    imageNode: (
-      <ImageBox
-        imageUrl={blog.image || 'https://placehold.net/600x600.png'}
-        imageClassName='object-cover'
-        fill
-        alt={blog.title}
-      />
-    ),
+    imageNode: <ImageBox imageUrl={blog.image} imageClassName='object-cover' fill alt={blog.title} />,
   }));
 
   return (

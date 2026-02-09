@@ -1,5 +1,4 @@
 import { cacheLife, cacheTag } from 'next/cache';
-import { Suspense } from 'react';
 import { CACHE_TAGS } from '@/lib/constants';
 import { parseGitHubUrl } from '@/lib/github-utils';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
@@ -8,7 +7,6 @@ import type { Project } from '@/types/portfolio-types';
 import { fetchGitHubRepoAction } from './actions/github';
 import ProjectsClient from './client/projects-client';
 import { SectionError } from './client/section-error';
-import ProjectsSkeleton from './skeletons/projects-skeleton';
 
 async function fetchProjects(projectUrls: string[]): Promise<Project[] | undefined> {
   'use cache';
@@ -55,9 +53,5 @@ export default async function Projects() {
     );
   }
 
-  return (
-    <Suspense fallback={<ProjectsSkeleton isSection />}>
-      <ProjectsClient projectSection={projects} projectData={projectData} />
-    </Suspense>
-  );
+  return <ProjectsClient projectSection={projects} projectData={projectData} />;
 }

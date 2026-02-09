@@ -1,11 +1,9 @@
-import { Suspense } from 'react';
 import { getCollectionData } from '@/payload/fetchers/collections';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
 import type { HomePage, Media, Testimonial } from '@/payload/types';
 import { SectionError } from './client/section-error';
 import TestimonialsClient from './client/testimonials-client';
 import { ImageBox } from './image-box';
-import TestimonialsSkeleton from './skeletons/testimonials-skeleton';
 
 export default async function Testimonials() {
   const data = await getGlobalConfig<HomePage>('homePage');
@@ -27,9 +25,5 @@ export default async function Testimonials() {
     ),
   }));
 
-  return (
-    <Suspense fallback={<TestimonialsSkeleton isSection />}>
-      <TestimonialsClient testimonialSection={testimonialSection} testimonials={testimonialsWithImages} />
-    </Suspense>
-  );
+  return <TestimonialsClient testimonialSection={testimonialSection} testimonials={testimonialsWithImages} />;
 }

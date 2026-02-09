@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
 import type { HomePage } from '@/payload/types';
 import type { Video } from '@/types/portfolio-types';
@@ -6,7 +5,6 @@ import { fetchVideosAction } from './actions/videos';
 import { SectionError } from './client/section-error';
 import VideosClient from './client/videos-client';
 import { ImageBox } from './image-box';
-import VideosSkeleton from './skeletons/videos-skeleton';
 
 async function fetchVideos(channelId: string): Promise<Video[]> {
   const result = await fetchVideosAction(channelId);
@@ -43,9 +41,5 @@ export default async function Videos() {
     imageNode: <ImageBox imageUrl={video.thumbnail} imageClassName='object-cover' fill alt={video.title} />,
   }));
 
-  return (
-    <Suspense fallback={<VideosSkeleton isSection />}>
-      <VideosClient videoSection={videoSection} videos={videosWithImages} />
-    </Suspense>
-  );
+  return <VideosClient videoSection={videoSection} videos={videosWithImages} />;
 }

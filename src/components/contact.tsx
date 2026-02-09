@@ -1,9 +1,7 @@
-import { Suspense } from 'react';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
 import type { ContactSection } from '@/payload/types';
 import ContactClient from './client/contact-client';
 import { SectionError } from './client/section-error';
-import ContactSkeleton from './skeletons/contact-skeleton';
 
 export default async function Contact() {
   const contactSection = await getGlobalConfig<ContactSection>('contactSection');
@@ -16,9 +14,5 @@ export default async function Contact() {
     );
   }
 
-  return (
-    <Suspense fallback={<ContactSkeleton />}>
-      <ContactClient contactSection={contactSection} />
-    </Suspense>
-  );
+  return <ContactClient contactSection={contactSection} />;
 }

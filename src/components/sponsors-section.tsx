@@ -1,11 +1,9 @@
-import { Suspense } from 'react';
 import { getCollectionData } from '@/payload/fetchers/collections';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
 import type { HomePage, Media, Sponsor, SponsorTier } from '@/payload/types';
 import { SectionError } from './client/section-error';
 import SponsorsClient from './client/sponsors-client';
 import { ImageBox } from './image-box';
-import SponsorsSkeleton from './skeletons/sponsors-skeleton';
 
 export default async function SponsorsSection() {
   const data = await getGlobalConfig<HomePage>('homePage');
@@ -33,9 +31,5 @@ export default async function SponsorsSection() {
     ),
   }));
 
-  return (
-    <Suspense fallback={<SponsorsSkeleton isSection />}>
-      <SponsorsClient sponsorSection={sponsorsSection} sponsors={sponsorsWithImages} tiers={tiers} />
-    </Suspense>
-  );
+  return <SponsorsClient sponsorSection={sponsorsSection} sponsors={sponsorsWithImages} tiers={tiers} />;
 }

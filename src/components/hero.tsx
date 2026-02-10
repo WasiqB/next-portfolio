@@ -1,6 +1,4 @@
-import { Suspense } from 'react';
 import HeroClient from '@/components/client/hero-client';
-import HeroSkeleton from '@/components/skeletons/hero-skeleton';
 import { getCollectionData } from '@/payload/fetchers/collections';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
 import type { HomePage, Media, Social } from '@/payload/types';
@@ -28,19 +26,17 @@ export default async function Hero() {
   }
 
   return (
-    <Suspense fallback={<HeroSkeleton />}>
-      <HeroClient
-        heroSection={data.heroSection}
-        socials={socials}
-        profileImage={
-          <ImageBox
-            media={data.heroSection.profileImage[0].src as Media}
-            imageClassName='object-cover'
-            fill
-            alt={data.heroSection.profileImage[0].alt}
-          />
-        }
-      />
-    </Suspense>
+    <HeroClient
+      heroSection={data.heroSection}
+      socials={socials}
+      profileImage={
+        <ImageBox
+          media={data.heroSection.profileImage[0].src as Media}
+          imageClassName='object-cover'
+          fill
+          alt={data.heroSection.profileImage[0].alt}
+        />
+      }
+    />
   );
 }

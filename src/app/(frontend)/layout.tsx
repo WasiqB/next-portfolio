@@ -15,7 +15,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { ScrollProgress } from '@/components/ui/scroll-progress';
 import { domain, isProd } from '@/lib/constants';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { Analytics } from '@/payload/types';
+import type { Analytics as AnalyticsType } from '@/payload/types';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
   },
 };
 
-function LayoutContent({ children, analyticsId }: { children: ReactNode; analyticsId?: string | null }) {
+function LayoutContent({ children }: { children: ReactNode }) {
   return (
-    <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+    <ThemeProvider attribute='class' defaultTheme='light' enableSystem disableTransitionOnChange>
       <div className='flex min-h-screen flex-col'>
         <Suspense fallback={<NavbarSkeleton />}>
           <Navbar />
@@ -51,21 +51,28 @@ function LayoutContent({ children, analyticsId }: { children: ReactNode; analyti
           <Footer />
         </Suspense>
       </div>
-      {isProd && <GoogleAnalytics gaId={analyticsId || ''} />}
       <Toaster richColors expand position='top-center' />
       {isProd && <CrispChat />}
     </ThemeProvider>
   );
 }
 
-export default async function RootLayout({ children }: { children: ReactNode }) {
-  const analytics = await getGlobalConfig<Analytics>('analytics');
+async function AnalyticsWrapper() {
+  if (!isProd) return null;
+  const analytics = await getGlobalConfig<AnalyticsType>('analytics');
   const analyticsId = analytics?.googleAnalyticsId;
+  if (!analyticsId) return null;
+  return <GoogleAnalytics gaId={analyticsId} />;
+}
 
+export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning>
       <body className={inter.className}>
-        <LayoutContent analyticsId={analyticsId}>{children}</LayoutContent>
+        <LayoutContent>{children}</LayoutContent>
+        <Suspense>
+          <AnalyticsWrapper />
+        </Suspense>
       </body>
     </html>
   );

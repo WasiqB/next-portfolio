@@ -1,5 +1,4 @@
 import { cacheLife, cacheTag } from 'next/cache';
-import { Suspense } from 'react';
 import { CACHE_TAGS } from '@/lib/constants';
 import { getCollectionData } from '@/payload/fetchers/collections';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
@@ -9,7 +8,6 @@ import { fetchBlogsAction } from './actions/blogs';
 import BlogsClient from './client/blogs-client';
 import { SectionError } from './client/section-error';
 import { ImageBox } from './image-box';
-import BlogsSkeleton from './skeletons/blogs-skeleton';
 
 export async function fetchBlogs(sources: BlogSource[]): Promise<Blog[]> {
   'use cache';
@@ -63,10 +61,5 @@ export default async function Blogs() {
     ...blog,
     imageNode: <ImageBox imageUrl={blog.image} imageClassName='object-cover' fill alt={blog.title} />,
   }));
-
-  return (
-    <Suspense fallback={<BlogsSkeleton isSection />}>
-      <BlogsClient blogSection={blogSection} blogData={blogsWithImages} />
-    </Suspense>
-  );
+  return <BlogsClient blogSection={blogSection} blogData={blogsWithImages} />;
 }

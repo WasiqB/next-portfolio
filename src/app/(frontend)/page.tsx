@@ -1,9 +1,18 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import Blogs from '@/components/blogs';
 import Contact from '@/components/contact';
 import Hero from '@/components/hero';
 import Projects from '@/components/projects';
 import Services from '@/components/services';
+import BlogsSkeleton from '@/components/skeletons/blogs-skeleton';
+import ContactSkeleton from '@/components/skeletons/contact-skeleton';
+import HeroSkeleton from '@/components/skeletons/hero-skeleton';
+import ProjectsSkeleton from '@/components/skeletons/projects-skeleton';
+import ServicesSkeleton from '@/components/skeletons/services-skeleton';
+import SponsorsSkeleton from '@/components/skeletons/sponsors-skeleton';
+import TestimonialsSkeleton from '@/components/skeletons/testimonials-skeleton';
+import VideosSkeleton from '@/components/skeletons/videos-skeleton';
 import SponsorsSection from '@/components/sponsors-section';
 import Testimonials from '@/components/testimonials';
 import Videos from '@/components/videos';
@@ -95,20 +104,30 @@ export default async function Home() {
           }}
         />
       )}
-      <Hero />
-      <Projects />
-      <Services />
-
-      {/* <Products /> */}
-
-      <Blogs />
-      <Videos />
-
-      {/* <GrowthSection /> */}
-
-      <Testimonials />
-      <SponsorsSection />
-      <Contact />
+      <Suspense fallback={<HeroSkeleton />}>
+        <Hero />
+      </Suspense>
+      <Suspense fallback={<ProjectsSkeleton isSection />}>
+        <Projects />
+      </Suspense>
+      <Suspense fallback={<ServicesSkeleton isSection />}>
+        <Services />
+      </Suspense>
+      <Suspense fallback={<BlogsSkeleton isSection />}>
+        <Blogs />
+      </Suspense>
+      <Suspense fallback={<VideosSkeleton isSection />}>
+        <Videos />
+      </Suspense>
+      <Suspense fallback={<TestimonialsSkeleton isSection />}>
+        <Testimonials />
+      </Suspense>
+      <Suspense fallback={<SponsorsSkeleton isSection />}>
+        <SponsorsSection />
+      </Suspense>
+      <Suspense fallback={<ContactSkeleton />}>
+        <Contact />
+      </Suspense>
     </main>
   );
 }

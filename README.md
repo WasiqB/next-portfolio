@@ -1,14 +1,39 @@
 # Next Portfolio
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Payload CMS powered Next.js portfolio website.
 
 ## Tech stack
 
-- [Next.js](https://nextjs.org)
+- [Google Antigravity](https://antigravity.dev/)
+- [Node JS v22 LTS](https://nodejs.org/)
+- [Pnpm](https://pnpm.io/)
+- [Biome](https://biomejs.dev/)
+- [Lint-staged](https://github.com/lint-staged/lint-staged)
+- [Husky](https://typicode.github.io/husky/)
+- [Next.js v16 App router with Cache component](https://nextjs.org)
 - [TypeScript](https://www.typescriptlang.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
 - [Framer Motion](https://www.framer.com/motion/)
 - [Shadcn/ui](https://ui.shadcn.com/)
-- [DevCycle](https://www.devcycle.com/)
 - [Payload CMS](https://payloadcms.com/)
 - [Neon DB](https://neon.tech/)
+
+## Getting Started
+
+### Install dependencies
+
+```shell
+pnpm install
+```
+
+### Run the development server
+
+```shell
+pnpm dev
+```
+
+### Build the project
+
+```shell
+pnpm build
+```

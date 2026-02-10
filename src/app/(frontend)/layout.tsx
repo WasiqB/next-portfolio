@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 
 function LayoutContent({ children }: { children: ReactNode }) {
   return (
-    <ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+    <ThemeProvider attribute='class' defaultTheme='light' enableSystem disableTransitionOnChange>
       <div className='flex min-h-screen flex-col'>
         <Suspense fallback={<NavbarSkeleton />}>
           <Navbar />

@@ -9,6 +9,7 @@ import BlogsSkeleton from '@/components/skeletons/blogs-skeleton';
 import ContactSkeleton from '@/components/skeletons/contact-skeleton';
 import HeroSkeleton from '@/components/skeletons/hero-skeleton';
 import ProjectsSkeleton from '@/components/skeletons/projects-skeleton';
+import ServicesSkeleton from '@/components/skeletons/services-skeleton';
 import SponsorsSkeleton from '@/components/skeletons/sponsors-skeleton';
 import TestimonialsSkeleton from '@/components/skeletons/testimonials-skeleton';
 import VideosSkeleton from '@/components/skeletons/videos-skeleton';
@@ -109,17 +110,15 @@ export default async function Home() {
       <Suspense fallback={<ProjectsSkeleton isSection />}>
         <Projects />
       </Suspense>
-      <Suspense fallback={<HeroSkeleton />}>
+      <Suspense fallback={<ServicesSkeleton isSection />}>
         <Services />
       </Suspense>
-
       <Suspense fallback={<BlogsSkeleton isSection />}>
         <Blogs />
       </Suspense>
       <Suspense fallback={<VideosSkeleton isSection />}>
         <Videos />
       </Suspense>
-
       <Suspense fallback={<TestimonialsSkeleton isSection />}>
         <Testimonials />
       </Suspense>

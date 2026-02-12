@@ -1,5 +1,3 @@
-'use server';
-
 import { CACHE_DURATION } from '@/lib/constants';
 import type { Project } from '@/types/portfolio-types';
 

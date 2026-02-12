@@ -34,6 +34,8 @@ export default async function Hero() {
           media={data.heroSection.profileImage[0].src as Media}
           imageClassName='object-cover'
           fill
+          priority
+          sizes='(max-width: 768px) 192px, (max-width: 1024px) 256px, 320px'
           alt={data.heroSection.profileImage[0].alt}
         />
       }

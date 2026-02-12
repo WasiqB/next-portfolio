@@ -59,7 +59,15 @@ export default async function Blogs() {
 
   const blogsWithImages = blogData.map((blog) => ({
     ...blog,
-    imageNode: <ImageBox imageUrl={blog.image} imageClassName='object-cover' fill alt={blog.title} />,
+    imageNode: (
+      <ImageBox
+        imageUrl={blog.image}
+        imageClassName='object-cover'
+        fill
+        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+        alt={blog.title}
+      />
+    ),
   }));
   return <BlogsClient blogSection={blogSection} blogData={blogsWithImages} />;
 }

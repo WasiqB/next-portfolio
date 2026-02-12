@@ -1,5 +1,3 @@
-'use server';
-
 import { getMediumPost, scrapeWebsite } from '@/lib/blogs-utils';
 import type { Blog } from '@/types/portfolio-types';
 

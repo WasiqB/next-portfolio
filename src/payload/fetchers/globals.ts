@@ -2,9 +2,10 @@
 
 import { cacheLife, cacheTag } from 'next/cache';
 import type { GlobalSlug } from 'payload';
+import { cache } from 'react';
 import { getPayloadClient } from '@/lib/payload-client';
 
-export const getGlobalConfig = async <T>(slug: GlobalSlug): Promise<T | null> => {
+export const getGlobalConfig = cache(async <T>(slug: GlobalSlug): Promise<T | null> => {
   'use cache';
   cacheTag(slug);
   cacheLife('days');
@@ -13,4 +14,4 @@ export const getGlobalConfig = async <T>(slug: GlobalSlug): Promise<T | null> =>
     slug,
   });
   return config as T;
-};
+});

@@ -18,7 +18,7 @@ const getBlogSource = (url: string): string => {
 };
 
 const scrapeWebsite = async (url: string): Promise<Blog> => {
-  const response = await fetch(url);
+  const response = await fetch(url, { signal: AbortSignal.timeout(8000) });
   const html = await response.text();
   const $ = cheerio.load(html);
 

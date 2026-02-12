@@ -26,20 +26,37 @@ export default async function Videos() {
     );
   }
 
-  const videos = await fetchVideos(videoSection.channelId);
+  try {
+    const videos = await fetchVideos(videoSection.channelId);
 
-  if (!videos) {
+    if (!videos || videos.length === 0) {
+      return (
+        <section id='videos' className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'>
+          <SectionError title='Video section Unavailable' message='No videos found for the specified channel' />
+        </section>
+      );
+    }
+
+    const videosWithImages = videos.map((video) => ({
+      ...video,
+      imageNode: (
+        <ImageBox
+          imageUrl={video.thumbnail}
+          imageClassName='object-cover'
+          fill
+          sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw'
+          alt={video.title}
+        />
+      ),
+    }));
+
+    return <VideosClient videoSection={videoSection} videos={videosWithImages} />;
+  } catch (error) {
+    console.error('Error in Videos component:', error);
     return (
       <section id='videos' className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'>
         <SectionError title='Video section Unavailable' message='Failed to load video data' />
       </section>
     );
   }
-
-  const videosWithImages = videos.map((video) => ({
-    ...video,
-    imageNode: <ImageBox imageUrl={video.thumbnail} imageClassName='object-cover' fill alt={video.title} />,
-  }));
-
-  return <VideosClient videoSection={videoSection} videos={videosWithImages} />;
 }

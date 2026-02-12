@@ -1,9 +1,9 @@
 import { GoogleAnalytics } from '@next/third-parties/google';
+import type { Metadata } from 'next';
+import { Fira_Code, Poppins, Roboto } from 'next/font/google';
 import type { ReactNode } from 'react';
 import { Suspense } from 'react';
 import '@/app/(frontend)/globals.css';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { Toaster } from 'sonner';
 import ScrollToTop from '@/components/client/scroll-to-top';
 import Footer from '@/components/footer';
@@ -17,7 +17,22 @@ import { domain, isProd } from '@/lib/constants';
 import { getGlobalConfig } from '@/payload/fetchers/globals';
 import type { Analytics as AnalyticsType } from '@/payload/types';
 
-const inter = Inter({ subsets: ['latin'] });
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-sans',
+});
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-serif',
+});
+
+const firaCode = Fira_Code({
+  subsets: ['latin'],
+  variable: '--font-mono',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(domain),
@@ -68,7 +83,7 @@ async function AnalyticsWrapper() {
 export default async function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`${poppins.variable} ${roboto.variable} ${firaCode.variable} font-sans antialiased`}>
         <LayoutContent>{children}</LayoutContent>
         <Suspense>
           <AnalyticsWrapper />

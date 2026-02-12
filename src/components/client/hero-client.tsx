@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import Link from 'next/link';
 import { getSocialIcon } from '@/components/social-icons';
 import { Button } from '@/components/ui/button';
@@ -86,9 +86,9 @@ export default function HeroClient({ heroSection, socials, profileImage }: HeroC
 
         <motion.div
           className='flex justify-center order-1 md:order-2 mb-8 md:mb-0'
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
         >
           <div className='relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary mx-auto'>
             {profileImage}

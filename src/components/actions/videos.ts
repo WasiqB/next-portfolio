@@ -1,5 +1,3 @@
-'use server';
-
 import { cacheLife, cacheTag } from 'next/cache';
 import { CACHE_TAGS } from '@/lib/constants';
 import { fetchYouTubeVideos } from '@/lib/videos-utils';

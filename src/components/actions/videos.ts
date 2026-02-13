@@ -1,5 +1,5 @@
 import { cacheLife, cacheTag } from 'next/cache';
-import { CACHE_TAGS } from '@/lib/constants';
+import { CACHE_DURATION, CACHE_TAGS } from '@/lib/constants';
 import { fetchYouTubeVideos } from '@/lib/videos-utils';
 import type { Video } from '@/types/portfolio-types';
 
@@ -31,6 +31,12 @@ export async function fetchVideosAction(channelId: string): Promise<FetchVideosR
   try {
     const channelResponse = await fetch(
       `https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`,
+      {
+        signal: AbortSignal.timeout(5000),
+        next: {
+          revalidate: CACHE_DURATION,
+        },
+      },
     );
     const channelData = await channelResponse.json();
 

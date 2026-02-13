@@ -22,6 +22,7 @@ export async function fetchGitHubRepoAction(owner: string, repo: string): Promis
         'User-Agent': 'NextJS-Portfolio-App',
         ...(process.env.GITHUB_TOKEN ? { Authorization: `token ${process.env.GITHUB_TOKEN}` } : {}),
       },
+      signal: AbortSignal.timeout(5000),
       next: {
         revalidate: CACHE_DURATION,
       },

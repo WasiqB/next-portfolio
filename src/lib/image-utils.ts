@@ -1,16 +1,15 @@
-import { cacheLife } from 'next/cache';
+import { cacheLife, cacheTag } from 'next/cache';
 import { getPlaiceholder } from 'plaiceholder';
 import { domain } from './constants';
 import { fetchWithBypass } from './fetch-utils';
 
 export async function getImage(src: string) {
   'use cache';
-  cacheLife('days');
   const url = src.startsWith('/') ? `${domain}${src}` : src;
+  cacheTag(url);
+  cacheLife('days');
   try {
-    const buffer = await fetchWithBypass(url, { cache: 'no-store' }).then(async (res) =>
-      Buffer.from(await res.arrayBuffer()),
-    );
+    const buffer = await fetchWithBypass(url).then(async (res) => Buffer.from(await res.arrayBuffer()));
     const {
       metadata: { height, width },
       ...plaiceholder

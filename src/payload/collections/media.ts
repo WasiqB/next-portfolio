@@ -1,5 +1,9 @@
+import { revalidateTag } from 'next/cache';
 import type { CollectionConfig } from 'payload';
+import { domain } from '@/lib/constants';
 import { generateBlurHash } from '../hooks/image-hook';
+
+const getResourceUrl = (src: string) => (src.startsWith('/') ? `${domain}${src}` : src);
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -27,5 +31,15 @@ export const Media: CollectionConfig = {
   },
   hooks: {
     beforeValidate: [generateBlurHash],
+    afterChange: [
+      ({ doc }) => {
+        revalidateTag(getResourceUrl(doc.url), 'max');
+      },
+    ],
+    afterDelete: [
+      ({ doc }) => {
+        revalidateTag(getResourceUrl(doc.url), 'max');
+      },
+    ],
   },
 };

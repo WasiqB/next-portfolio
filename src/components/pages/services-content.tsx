@@ -254,7 +254,7 @@ export default function ServiceContent({
           </p>
           <div className='flex flex-col sm:flex-row gap-4 justify-center'>
             <Button size='lg' asChild className='group'>
-              <Link href={bookCallButton[0].url} target='_blank'>
+              <Link href={bookCallButton[0].url} target={bookCallButton[0].target || '_blank'}>
                 <span>{bookCallButton[0].label}</span>
                 <motion.div
                   className='ml-2'

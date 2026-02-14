@@ -144,7 +144,10 @@ export default function VideosClient({ videoSection, videos }: VideosClientProps
 
       <div className='flex justify-center mt-8'>
         <Button asChild>
-          <Link href={videoSection.viewAllButton?.[0]?.url || '/videos'}>
+          <Link
+            href={videoSection.viewAllButton?.[0]?.url || '/videos'}
+            target={videoSection.viewAllButton?.[0]?.target || '_self'}
+          >
             {videoSection.viewAllButton?.[0]?.label || 'See All Videos'}
           </Link>
         </Button>

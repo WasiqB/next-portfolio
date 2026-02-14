@@ -66,7 +66,12 @@ export default function ServicesClient({ serviceSection, services }: ServicesCli
       {serviceSection.allServicesButton?.[0] && (
         <div className='flex justify-center mt-8'>
           <Button asChild>
-            <Link href={serviceSection.allServicesButton[0].url}>{serviceSection.allServicesButton[0].label}</Link>
+            <Link
+              target={serviceSection.allServicesButton[0].target || '_self'}
+              href={serviceSection.allServicesButton[0].url}
+            >
+              {serviceSection.allServicesButton[0].label}
+            </Link>
           </Button>
         </div>
       )}

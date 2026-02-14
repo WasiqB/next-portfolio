@@ -70,7 +70,7 @@ export default function SponsorsClient({ sponsorSection, sponsors, tiers }: Spon
       {sponsorSection.viewAllButton?.[0] && (
         <div className='flex justify-center'>
           <Button asChild>
-            <Link href={sponsorSection.viewAllButton[0].url}>
+            <Link href={sponsorSection.viewAllButton[0].url} target={sponsorSection.viewAllButton[0].target || '_self'}>
               <Heart className='h-4 w-4 mr-2' />
               {sponsorSection.viewAllButton[0].label}
             </Link>

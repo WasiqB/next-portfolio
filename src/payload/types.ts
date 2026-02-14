@@ -711,6 +711,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          target?: ('_self' | '_blank') | null;
           visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
@@ -722,6 +723,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          target?: ('_self' | '_blank') | null;
           visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
@@ -748,6 +750,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          target?: ('_self' | '_blank') | null;
           visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
@@ -763,6 +766,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          target?: ('_self' | '_blank') | null;
           visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
@@ -774,6 +778,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          target?: ('_self' | '_blank') | null;
           visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
@@ -789,6 +794,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          target?: ('_self' | '_blank') | null;
           visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
@@ -806,6 +812,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          target?: ('_self' | '_blank') | null;
           visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
@@ -821,6 +828,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          target?: ('_self' | '_blank') | null;
           visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
@@ -836,6 +844,7 @@ export interface HomePage {
           icon?: string | null;
           label: string;
           url: string;
+          target?: ('_self' | '_blank') | null;
           visible?: boolean | null;
           id?: string | null;
           blockName?: string | null;
@@ -1013,11 +1022,12 @@ export interface Navbar {
         id?: string | null;
       }[]
     | null;
-  buyButton?:
+  ctaButton?:
     | {
         icon?: string | null;
         label: string;
         url: string;
+        target?: ('_self' | '_blank') | null;
         visible?: boolean | null;
         id?: string | null;
         blockName?: string | null;
@@ -1104,6 +1114,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    target?: T;
                     visible?: T;
                     id?: T;
                     blockName?: T;
@@ -1118,6 +1129,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    target?: T;
                     visible?: T;
                     id?: T;
                     blockName?: T;
@@ -1156,6 +1168,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    target?: T;
                     visible?: T;
                     id?: T;
                     blockName?: T;
@@ -1176,6 +1189,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    target?: T;
                     visible?: T;
                     id?: T;
                     blockName?: T;
@@ -1190,6 +1204,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    target?: T;
                     visible?: T;
                     id?: T;
                     blockName?: T;
@@ -1210,6 +1225,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    target?: T;
                     visible?: T;
                     id?: T;
                     blockName?: T;
@@ -1232,6 +1248,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    target?: T;
                     visible?: T;
                     id?: T;
                     blockName?: T;
@@ -1252,6 +1269,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    target?: T;
                     visible?: T;
                     id?: T;
                     blockName?: T;
@@ -1272,6 +1290,7 @@ export interface HomePageSelect<T extends boolean = true> {
                     icon?: T;
                     label?: T;
                     url?: T;
+                    target?: T;
                     visible?: T;
                     id?: T;
                     blockName?: T;
@@ -1475,7 +1494,7 @@ export interface NavbarSelect<T extends boolean = true> {
             };
         id?: T;
       };
-  buyButton?:
+  ctaButton?:
     | T
     | {
         button?:
@@ -1484,6 +1503,7 @@ export interface NavbarSelect<T extends boolean = true> {
               icon?: T;
               label?: T;
               url?: T;
+              target?: T;
               visible?: T;
               id?: T;
               blockName?: T;

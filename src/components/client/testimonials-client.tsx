@@ -135,7 +135,12 @@ export default function TestimonialsClient({ testimonialSection, testimonials }:
       {testimonialSection.viewAllButton?.[0] && (
         <div className='flex justify-center mt-8'>
           <Button asChild>
-            <Link href={testimonialSection.viewAllButton[0].url}>{testimonialSection.viewAllButton[0].label}</Link>
+            <Link
+              href={testimonialSection.viewAllButton[0].url}
+              target={testimonialSection.viewAllButton[0].target || '_self'}
+            >
+              {testimonialSection.viewAllButton[0].label}
+            </Link>
           </Button>
         </div>
       )}

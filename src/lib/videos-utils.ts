@@ -25,6 +25,7 @@ export async function fetchYouTubeVideos({
   const channelRes = await fetch(
     `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${apiKey}`,
     {
+      signal: AbortSignal.timeout(5000),
       next: {
         revalidate: CACHE_DURATION,
       },
@@ -44,6 +45,7 @@ export async function fetchYouTubeVideos({
         nextPageToken ? `&pageToken=${nextPageToken}` : ''
       }`,
       {
+        signal: AbortSignal.timeout(5000),
         next: {
           revalidate: CACHE_DURATION,
         },
@@ -58,6 +60,7 @@ export async function fetchYouTubeVideos({
     const videosRes = await fetch(
       `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=${videoIds}&key=${apiKey}`,
       {
+        signal: AbortSignal.timeout(5000),
         next: {
           revalidate: CACHE_DURATION,
         },

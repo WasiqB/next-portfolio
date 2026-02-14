@@ -1,6 +1,7 @@
 import * as cheerio from 'cheerio';
 import { stripHtml } from 'string-strip-html';
 import type { Blog, MediumBlog } from '@/types/portfolio-types';
+import { CACHE_DURATION } from './constants';
 import { fetchWithBypass } from './fetch-utils';
 
 const getBlogSource = (url: string): string => {
@@ -18,7 +19,7 @@ const getBlogSource = (url: string): string => {
 };
 
 const scrapeWebsite = async (url: string): Promise<Blog> => {
-  const response = await fetch(url, { signal: AbortSignal.timeout(8000) });
+  const response = await fetch(url, { signal: AbortSignal.timeout(5000), next: { revalidate: CACHE_DURATION } });
   const html = await response.text();
   const $ = cheerio.load(html);
 

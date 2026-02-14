@@ -53,12 +53,20 @@ export default function HeroClient({ heroSection, socials, profileImage }: HeroC
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <Button asChild>
-              <Link href={heroSection?.primary?.[0]?.url || ''} onClick={smoothScrollTo}>
+              <Link
+                href={heroSection?.primary?.[0]?.url || ''}
+                target={heroSection?.primary?.[0]?.target || '_self'}
+                onClick={smoothScrollTo}
+              >
                 {heroSection?.primary?.[0]?.label}
               </Link>
             </Button>
             <Button variant='outline' asChild>
-              <Link href={heroSection?.secondary?.[0]?.url || ''} onClick={smoothScrollTo}>
+              <Link
+                href={heroSection?.secondary?.[0]?.url || ''}
+                target={heroSection?.secondary?.[0]?.target || '_self'}
+                onClick={smoothScrollTo}
+              >
                 {heroSection?.secondary?.[0]?.label}
               </Link>
             </Button>

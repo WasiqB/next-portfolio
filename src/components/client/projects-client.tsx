@@ -72,7 +72,10 @@ export default function ProjectsClient({ projectSection, projectData }: Projects
 
       <div className='flex justify-center mt-8'>
         <Button asChild>
-          <Link href={projectSection?.allProjectsButton?.[0]?.url || ''}>
+          <Link
+            target={projectSection?.allProjectsButton?.[0]?.target || '_self'}
+            href={projectSection?.allProjectsButton?.[0]?.url || ''}
+          >
             {projectSection?.allProjectsButton?.[0]?.label}
           </Link>
         </Button>

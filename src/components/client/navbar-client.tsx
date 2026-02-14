@@ -170,11 +170,11 @@ export default function NavbarClient({ navbar }: NavbarClientProps) {
                 </NavigationMenuList>
               </NavigationMenu>
 
-              {navbar.buyButton?.[0]?.visible && (
+              {navbar.ctaButton?.[0]?.visible && (
                 <Button variant='default' size='sm' className='gap-1' asChild>
-                  <Link href={navbar.buyButton[0].url}>
-                    <DynamicLucideIcon name={navbar.buyButton[0].icon as IconName} className='h-4 w-4' />
-                    {navbar.buyButton[0].label}
+                  <Link href={navbar.ctaButton[0].url} target={navbar.ctaButton[0].target || '_self'}>
+                    <DynamicLucideIcon name={navbar.ctaButton[0].icon as IconName} className='h-4 w-4' />
+                    {navbar.ctaButton[0].label}
                   </Link>
                 </Button>
               )}
@@ -267,14 +267,15 @@ export default function NavbarClient({ navbar }: NavbarClientProps) {
                       </div>
                     ))}
 
-                  {navbar.buyButton?.[0]?.visible && (
+                  {navbar.ctaButton?.[0]?.visible && (
                     <Link
-                      href={navbar.buyButton[0].url}
+                      href={navbar.ctaButton[0].url}
                       className='flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent mt-4 border border-border'
                       onClick={handleClick}
+                      target={navbar.ctaButton[0].target || '_self'}
                     >
-                      <DynamicLucideIcon name={navbar.buyButton[0].icon as IconName} className='h-4 w-4' />
-                      {navbar.buyButton[0].label}
+                      <DynamicLucideIcon name={navbar.ctaButton[0].icon as IconName} className='h-4 w-4' />
+                      {navbar.ctaButton[0].label}
                     </Link>
                   )}
 

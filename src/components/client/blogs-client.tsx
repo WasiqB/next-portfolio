@@ -134,7 +134,10 @@ export default function BlogsClient({ blogSection, blogData }: BlogsClientProps)
 
       <div className='flex justify-center mt-8'>
         <Button asChild>
-          <Link href={blogSection?.viewAllButton?.[0]?.url || '/blogs'}>
+          <Link
+            href={blogSection?.viewAllButton?.[0]?.url || '/blogs'}
+            target={blogSection?.viewAllButton?.[0]?.target || '_self'}
+          >
             {blogSection?.viewAllButton?.[0]?.label || 'See All Blogs'}
           </Link>
         </Button>

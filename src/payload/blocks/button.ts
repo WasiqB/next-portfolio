@@ -18,6 +18,21 @@ export const Button: Block = {
       required: true,
     },
     {
+      name: 'target',
+      type: 'select',
+      options: [
+        {
+          label: 'Self',
+          value: '_self',
+        },
+        {
+          label: 'Blank',
+          value: '_blank',
+        },
+      ],
+      defaultValue: '_self',
+    },
+    {
       name: 'visible',
       type: 'checkbox',
       defaultValue: true,

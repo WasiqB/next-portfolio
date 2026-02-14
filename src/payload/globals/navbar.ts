@@ -94,7 +94,7 @@ export const Navbar: GlobalConfig = {
       ],
     },
     {
-      name: 'buyButton',
+      name: 'ctaButton',
       type: 'blocks',
       blocks: [Button],
       maxRows: 1,

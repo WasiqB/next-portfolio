@@ -74,6 +74,7 @@ async function SponsorData() {
         media={sponsor.avatar as Media}
         imageClassName='object-cover transition-transform group-hover:scale-105'
         fill
+        priority
         alt={sponsor.name}
       />
     ),

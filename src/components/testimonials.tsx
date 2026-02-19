@@ -21,7 +21,7 @@ export default async function Testimonials() {
   const testimonialsWithImages = testimonials.map((testimonial) => ({
     ...testimonial,
     imageNode: (
-      <ImageBox media={testimonial.image as Media} imageClassName='object-cover' fill alt={testimonial.name} />
+      <ImageBox media={testimonial.image as Media} imageClassName='object-cover' fill priority alt={testimonial.name} />
     ),
   }));
 

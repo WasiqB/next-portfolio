@@ -71,7 +71,7 @@ async function TestimonialData() {
   const testimonialsWithImages = testimonials.map((testimonial) => ({
     ...testimonial,
     imageNode: (
-      <ImageBox media={testimonial.image as Media} imageClassName='object-cover' fill alt={testimonial.name} />
+      <ImageBox media={testimonial.image as Media} imageClassName='object-cover' priority fill alt={testimonial.name} />
     ),
   }));
 

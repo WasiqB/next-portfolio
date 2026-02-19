@@ -1,20 +1,21 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { getSocialIcon } from '@/components/social-icons';
 import { smoothScrollTo } from '@/lib/utils';
-import type { Footer, Media, Social } from '@/payload/types';
+import type { Footer, Social } from '@/payload/types';
 
 interface FooterClientProps {
   footer: Footer;
   socials: Social[];
   userName: string;
+  lightImage: React.ReactNode;
+  darkImage: React.ReactNode;
 }
 
-export default function FooterClient({ footer, socials, userName }: FooterClientProps) {
+export default function FooterClient({ footer, socials, userName, lightImage, darkImage }: FooterClientProps) {
   const { theme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
 
@@ -26,36 +27,13 @@ export default function FooterClient({ footer, socials, userName }: FooterClient
     return null;
   }
 
-  const lightLogo = footer.logo.lightLogo as Media;
-  const darkLogo = footer.logo.darkLogo as Media;
-
   return (
     <footer className='border-t bg-background'>
       <div className='container max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-8 md:py-12'>
         <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
           {/* Logo and socials */}
           <div className='space-y-4 flex flex-col items-center lg:items-start'>
-            <div className='flex items-center gap-2'>
-              {theme === 'dark' ? (
-                <Image
-                  src={darkLogo.url || ''}
-                  alt={darkLogo.alt || 'Logo'}
-                  width={40}
-                  height={40}
-                  priority
-                  className='h-10 w-10 object-contain'
-                />
-              ) : (
-                <Image
-                  src={lightLogo.url || ''}
-                  alt={lightLogo.alt || 'Logo'}
-                  width={40}
-                  height={40}
-                  priority
-                  className='h-10 w-10 object-contain'
-                />
-              )}
-            </div>
+            <div className='flex items-center gap-2'>{theme === 'dark' ? darkImage : lightImage}</div>
             <p className='text-muted-foreground text-center lg:text-left'>{footer.socialSection.title}</p>
             <div className='flex items-center gap-4 justify-center lg:justify-start'>
               {socials.map((social) => (

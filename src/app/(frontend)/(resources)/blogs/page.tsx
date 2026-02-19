@@ -60,7 +60,7 @@ async function BlogsData() {
 
   const blogsWithImages = blogs.map((blog) => ({
     ...blog,
-    imageNode: <ImageBox imageUrl={blog.image} imageClassName='object-cover' fill alt={blog.title} />,
+    imageNode: <ImageBox imageUrl={blog.image} imageClassName='object-cover' fill priority alt={blog.title} />,
   }));
 
   const jsonLd = {

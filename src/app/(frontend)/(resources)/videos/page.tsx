@@ -68,7 +68,7 @@ async function VideoData() {
 
   const videosWithImages = videos.map((video) => ({
     ...video,
-    imageNode: <ImageBox imageUrl={video.thumbnail} imageClassName='object-cover' fill alt={video.title} />,
+    imageNode: <ImageBox imageUrl={video.thumbnail} imageClassName='object-cover' fill priority alt={video.title} />,
   }));
 
   const videosPage = await getGlobalConfig<VideosPageType>('videosPage');

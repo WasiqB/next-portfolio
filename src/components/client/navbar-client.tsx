@@ -1,7 +1,6 @@
 'use client';
 
 import { Menu, Moon, Sun } from 'lucide-react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import React, { useEffect, useState } from 'react';
@@ -9,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn, smoothScrollTo } from '@/lib/utils';
-import type { Media, Navbar } from '@/payload/types';
+import type { Navbar } from '@/payload/types';
 import DynamicLucideIcon, { type IconName } from '../dynamic-icon';
 import {
   NavigationMenu,
@@ -54,9 +53,11 @@ ListItem.displayName = 'ListItem';
 
 interface NavbarClientProps {
   navbar: Navbar;
+  lightImage: React.ReactNode;
+  darkImage: React.ReactNode;
 }
 
-export default function NavbarClient({ navbar }: NavbarClientProps) {
+export default function NavbarClient({ navbar, lightImage, darkImage }: NavbarClientProps) {
   const { theme, setTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
   const [openCollapsible, setOpenCollapsible] = useState<string | null>(null);
@@ -79,9 +80,6 @@ export default function NavbarClient({ navbar }: NavbarClientProps) {
     setIsSheetOpen(false);
   };
 
-  const lightLogo = navbar.logo.lightLogo as Media;
-  const darkLogo = navbar.logo.darkLogo as Media;
-
   return (
     <header className='sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 h-16'>
       <div className='max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 flex h-16 items-center justify-between'>
@@ -90,23 +88,9 @@ export default function NavbarClient({ navbar }: NavbarClientProps) {
             {!isMounted ? (
               <div className='h-10 w-10 animate-pulse rounded-full bg-muted' />
             ) : theme === 'dark' ? (
-              <Image
-                src={darkLogo.url || ''}
-                alt={darkLogo.alt || 'Logo'}
-                width={40}
-                height={40}
-                priority
-                className='h-10 w-10 object-contain'
-              />
+              darkImage
             ) : (
-              <Image
-                src={lightLogo.url || ''}
-                alt={lightLogo.alt || 'Logo'}
-                width={40}
-                height={40}
-                priority
-                className='h-10 w-10 object-contain'
-              />
+              lightImage
             )}
           </Link>
         </div>

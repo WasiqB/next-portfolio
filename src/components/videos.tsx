@@ -44,6 +44,7 @@ export default async function Videos() {
           imageUrl={video.thumbnail}
           imageClassName='object-cover'
           fill
+          priority
           sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw'
           alt={video.title}
         />

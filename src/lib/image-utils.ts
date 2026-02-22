@@ -1,15 +1,13 @@
 import { cacheLife, cacheTag } from 'next/cache';
 import { getPlaiceholder } from 'plaiceholder';
-import { domain } from './constants';
 import { fetchWithBypass } from './fetch-utils';
 
 export async function getImage(src: string) {
   'use cache';
-  const url = src.startsWith('/') ? `${domain}${src}` : src;
-  cacheTag(url);
+  cacheTag(src);
   cacheLife('days');
   try {
-    const buffer = await fetchWithBypass(url).then(async (res) => Buffer.from(await res.arrayBuffer()));
+    const buffer = await fetchWithBypass(src).then(async (res) => Buffer.from(await res.arrayBuffer()));
     const {
       metadata: { height, width },
       ...plaiceholder
@@ -17,10 +15,10 @@ export async function getImage(src: string) {
 
     return {
       ...plaiceholder,
-      img: { url, height, width },
+      img: { url: src, height, width },
     };
   } catch (error) {
-    console.error(`Error generating plaiceholder for ${url}:`, error);
+    console.error(`Error generating plaiceholder for ${src}:`, error);
     return {
       base64: '',
       img: { url: 'https://placehold.net/600x600.png', height: 600, width: 600 },

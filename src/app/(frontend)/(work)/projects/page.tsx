@@ -4,25 +4,19 @@ import { Suspense } from 'react';
 import { fetchGitHubRepoAction } from '@/components/actions/github';
 import ProjectPageContent from '@/components/pages/projects-content';
 import ProjectsSkeleton from '@/components/skeletons/projects-skeleton';
+import socialLinks from '@/data/collections/socials.json';
+import { heroSection, projectSection } from '@/data/page-data/home-page.json';
+import projectPage from '@/data/page-data/project-page.json';
+import siteSettings from '@/data/page-data/site-setting.json';
 import { CACHE_TAGS, domain } from '@/lib/constants';
 import { parseGitHubUrl } from '@/lib/github-utils';
-import { getCollectionData } from '@/payload/fetchers/collections';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { HomePage, ProjectsPage as ProjectsPageType, SiteSetting, Social } from '@/payload/types';
 import type { Project } from '@/types/portfolio-types';
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const [projectsPage, socialLinks, siteSettings] = await Promise.all([
-    getGlobalConfig<ProjectsPageType>('projectsPage'),
-    getCollectionData<Social[]>('socials'),
-    getGlobalConfig<SiteSetting>('siteSettings'),
-  ]);
+  if (!projectPage) return {};
 
-  if (!projectsPage) return {};
-
-  const { title, description, seo } = projectsPage;
-  const homePage = await getGlobalConfig<HomePage>('homePage');
-  const name = homePage?.heroSection.name;
+  const { title, description, seo } = projectPage;
+  const name = heroSection.name;
   const twitterHandle = socialLinks
     ?.find((link) => link.platform === 'x')
     ?.url.split('/')
@@ -39,7 +33,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       title: `${title} | ${name}`,
       description,
       url: `${domain}/projects`,
-      siteName: siteSettings?.siteName || name,
+      siteName: siteSettings?.name || name,
       locale: siteSettings?.defaultLanguage || 'en_US',
       type: 'website',
     },
@@ -86,23 +80,17 @@ async function fetchProjects(projectUrls: string[]): Promise<Project[]> {
 }
 
 async function ProjectsData() {
-  const [data, socials] = await Promise.all([
-    getGlobalConfig<HomePage>('homePage'),
-    getCollectionData<Social[]>('socials'),
-  ]);
-
-  const projects = data?.projectSection;
-  const projectUrls = projects?.projectUrls.map((p) => p.url) || [];
+  const projectUrls = projectSection?.projectUrls || [];
   const projectData = await fetchProjects(projectUrls);
 
-  const githubSocial = socials.find((s) => s.platform === 'github');
+  const githubSocial = socialLinks.find((s) => s.platform === 'github');
   const githubUsername = githubSocial?.url.split('/').pop() || '';
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: data?.projectSection.title || 'Projects',
-    description: data?.projectSection.description,
+    name: projectSection.title || 'Projects',
+    description: projectSection.description,
     url: `${domain}/projects`,
     mainEntity: {
       '@type': 'ItemList',

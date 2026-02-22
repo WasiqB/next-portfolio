@@ -4,7 +4,7 @@ import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from 'react-icons/fa6';
-import type { AboutPage, Certificate, Education, Experience, Social } from '@/payload/types';
+import type { AboutPage, Certificate, Education, Experience, Social } from '@/types/portfolio-types';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
@@ -79,8 +79,8 @@ export default function AboutContent({
               <CardDescription>{about.title}</CardDescription>
             </CardHeader>
             <CardContent className='space-y-4'>
-              {about.description.map((item, i) => (
-                <p key={i}>{item.desc}</p>
+              {about.description.map((desc, i) => (
+                <p key={i}>{desc}</p>
               ))}
               <div className='pt-4'>
                 <h3 className='text-lg font-semibold mb-2'>My Core Values</h3>
@@ -278,8 +278,8 @@ export default function AboutContent({
                   </div>
 
                   <ul className='list-disc pl-6 space-y-1 mb-4 text-muted-foreground'>
-                    {experience.responsibilities.map((item, i) => (
-                      <li key={i}>{item.responsibility}</li>
+                    {experience.responsibilities.map((responsibility, i) => (
+                      <li key={i}>{responsibility}</li>
                     ))}
                   </ul>
 

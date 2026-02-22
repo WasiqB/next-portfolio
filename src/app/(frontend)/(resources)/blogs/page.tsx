@@ -4,23 +4,19 @@ import { fetchBlogs } from '@/components/blogs';
 import { ImageBox } from '@/components/image-box';
 import BlogsContent from '@/components/pages/blogs-content';
 import BlogsSkeleton from '@/components/skeletons/blogs-skeleton';
+import blogSources from '@/data/collections/blogs.json';
+import socialLinks from '@/data/collections/socials.json';
+import blogsPage from '@/data/page-data/blogs-page.json';
+import { heroSection } from '@/data/page-data/home-page.json';
+import siteSettings from '@/data/page-data/site-setting.json';
 import { domain } from '@/lib/constants';
-import { getCollectionData } from '@/payload/fetchers/collections';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { BlogSource, BlogsPage as BlogsPageType, HomePage, SiteSetting, Social } from '@/payload/types';
+import type { BlogSource } from '@/types/portfolio-types';
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const [blogsPage, socialLinks, siteSettings] = await Promise.all([
-    getGlobalConfig<BlogsPageType>('blogsPage'),
-    getCollectionData<Social[]>('socials'),
-    getGlobalConfig<SiteSetting>('siteSettings'),
-  ]);
-
   if (!blogsPage) return {};
 
   const { title, description, seo } = blogsPage;
-  const homePage = await getGlobalConfig<HomePage>('homePage');
-  const name = homePage?.heroSection.name;
+  const name = heroSection.name;
   const twitterHandle = socialLinks
     ?.find((link) => link.platform === 'x')
     ?.url.split('/')
@@ -37,7 +33,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       title: `${title} | ${name}`,
       description,
       url: `${domain}/blogs`,
-      siteName: siteSettings?.siteName || name,
+      siteName: siteSettings?.name || name,
       locale: siteSettings?.defaultLanguage || 'en_US',
       type: 'website',
     },
@@ -54,9 +50,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 async function BlogsData() {
-  const blogsPage = await getGlobalConfig<BlogsPageType>('blogsPage');
-  const blogSources = await getCollectionData<BlogSource[]>('blog-sources');
-  const blogs = await fetchBlogs(blogSources);
+  const blogs = await fetchBlogs(blogSources as BlogSource[]);
 
   const blogsWithImages = blogs.map((blog) => ({
     ...blog,

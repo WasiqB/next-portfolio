@@ -6,7 +6,7 @@ import { getSocialIcon } from '@/components/social-icons';
 import { Button } from '@/components/ui/button';
 import { TypingAnimation } from '@/components/ui/typing-animation';
 import { smoothScrollTo } from '@/lib/utils';
-import type { HomePage, Social } from '@/payload/types';
+import type { HomePage, Social } from '@/types/portfolio-types';
 
 interface HeroClientProps {
   heroSection: HomePage['heroSection'];
@@ -53,21 +53,13 @@ export default function HeroClient({ heroSection, socials, profileImage }: HeroC
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <Button asChild>
-              <Link
-                href={heroSection?.primary?.[0]?.url || ''}
-                target={heroSection?.primary?.[0]?.target || '_self'}
-                onClick={smoothScrollTo}
-              >
-                {heroSection?.primary?.[0]?.label}
+              <Link href={heroSection?.primaryButton?.url || ''} target={'_self'} onClick={smoothScrollTo}>
+                {heroSection?.primaryButton?.label}
               </Link>
             </Button>
             <Button variant='outline' asChild>
-              <Link
-                href={heroSection?.secondary?.[0]?.url || ''}
-                target={heroSection?.secondary?.[0]?.target || '_self'}
-                onClick={smoothScrollTo}
-              >
-                {heroSection?.secondary?.[0]?.label}
+              <Link href={heroSection?.secondaryButton?.url || ''} target={'_self'} onClick={smoothScrollTo}>
+                {heroSection?.secondaryButton?.label}
               </Link>
             </Button>
           </motion.div>
@@ -79,13 +71,7 @@ export default function HeroClient({ heroSection, socials, profileImage }: HeroC
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             {socials.map((social, index) => (
-              <Link
-                key={index}
-                href={social.url}
-                target='_blank'
-                rel='noopener noreferrer'
-                aria-label={social.ariaLabel}
-              >
+              <Link key={index} href={social.url} target='_blank' rel='noopener noreferrer' aria-label={social.label}>
                 {getSocialIcon(social.platform)}
               </Link>
             ))}

@@ -1,15 +1,11 @@
-import { getCollectionData } from '@/payload/fetchers/collections';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { HomePage, Media, Testimonial } from '@/payload/types';
+import testimonials from '@/data/collections/testimonials.json';
+import { testimonialSection } from '@/data/page-data/home-page.json';
+import type { Testimonial } from '@/types/portfolio-types';
 import { SectionError } from './client/section-error';
 import TestimonialsClient from './client/testimonials-client';
 import { ImageBox } from './image-box';
 
-export default async function Testimonials() {
-  const data = await getGlobalConfig<HomePage>('homePage');
-  const testimonialSection = data?.testimonialSection;
-  const testimonials = await getCollectionData<Testimonial[]>('testimonials');
-
+export default function Testimonials() {
   if (!testimonialSection || !testimonials) {
     return (
       <section id='testimonials' className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'>
@@ -21,9 +17,14 @@ export default async function Testimonials() {
   const testimonialsWithImages = testimonials.map((testimonial) => ({
     ...testimonial,
     imageNode: (
-      <ImageBox media={testimonial.image as Media} imageClassName='object-cover' fill priority alt={testimonial.name} />
+      <ImageBox imageUrl={testimonial.avatar} imageClassName='object-cover' fill priority alt={testimonial.name} />
     ),
   }));
 
-  return <TestimonialsClient testimonialSection={testimonialSection} testimonials={testimonialsWithImages} />;
+  return (
+    <TestimonialsClient
+      testimonialSection={testimonialSection}
+      testimonials={testimonialsWithImages as Testimonial[]}
+    />
+  );
 }

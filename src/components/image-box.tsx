@@ -1,9 +1,7 @@
 import Image from 'next/image';
 import { getImage } from '@/lib/image-utils';
-import type { Media } from '@/payload/types';
 
 interface ImageBoxProps {
-  media?: Media | null;
   imageUrl?: string | null;
   alt?: string;
   fill?: boolean;
@@ -13,7 +11,7 @@ interface ImageBoxProps {
 }
 
 export const ImageBox = async (props: ImageBoxProps) => {
-  const { media, imageUrl, fill, imageClassName, sizes, alt: altProp, priority } = props;
+  const { imageUrl, fill, imageClassName, sizes, alt: altProp, priority } = props;
 
   let width: number | undefined;
   let height: number | undefined;
@@ -21,21 +19,9 @@ export const ImageBox = async (props: ImageBoxProps) => {
   let blurhash: string | undefined;
   let placeholder: 'blur' | 'empty' = 'empty';
   let url: string | undefined;
-  let alt: string = altProp || 'Image';
+  const alt: string = altProp || 'Image';
 
-  if (media) {
-    const { width: imageWidth, height: imageHeight } = media;
-
-    width = imageWidth ?? undefined;
-    height = imageHeight ?? undefined;
-
-    objectPosition = media.focalX != null && media.focalY != null ? `${media.focalX}% ${media.focalY}%` : 'center';
-
-    blurhash = media.blurhash ?? undefined;
-    placeholder = media.blurhash ? 'blur' : 'empty';
-    url = media.url ?? undefined;
-    alt = altProp || media.alt || 'Image';
-  } else if (imageUrl) {
+  if (imageUrl) {
     try {
       const { base64, img } = await getImage(imageUrl);
       url = img.url;

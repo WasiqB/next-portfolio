@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import type { HomePage, Testimonial } from '@/payload/types';
+import type { HomePage, Testimonial } from '@/types/portfolio-types';
 
 interface TestimonialsClientProps {
   testimonialSection: HomePage['testimonialSection'];
@@ -132,15 +132,10 @@ export default function TestimonialsClient({ testimonialSection, testimonials }:
         </div>
       </div>
 
-      {testimonialSection.viewAllButton?.[0] && (
+      {testimonialSection.viewAllButton && (
         <div className='flex justify-center mt-8'>
           <Button asChild>
-            <Link
-              href={testimonialSection.viewAllButton[0].url}
-              target={testimonialSection.viewAllButton[0].target || '_self'}
-            >
-              {testimonialSection.viewAllButton[0].label}
-            </Link>
+            <Link href={testimonialSection.viewAllButton.url}>{testimonialSection.viewAllButton.label}</Link>
           </Button>
         </div>
       )}

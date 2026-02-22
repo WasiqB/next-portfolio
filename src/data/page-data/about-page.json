@@ -1,0 +1,52 @@
+{
+  "name": "Wasiq Amjad Bhamla",
+  "title": "Test Automation Specialist",
+  "description": [
+    "I'm a passionate Quality Assurance Engineer with expertise in manual and automated testing of Web, Desktop, API, Android and iOS applications.",
+    "I thrive at the intersection of technology and process, always seeking to optimize, automate, and share knowledge with others.",
+    "When I'm not testing or coding, I enjoy sharing insights through blogs, videos, and mentoring aspiring testers."
+  ],
+  "image": "https://w8wm6ag6dp.ufs.sh/f/u6Px0nITGQsNpamf5tZwER8knNgZTrVQq3bMBFjf1LOa9XPS",
+  "coreValues": [
+    {
+      "label": "Continuous Learning",
+      "value": "Technology evolves rapidly, and I'm committed to staying at the forefront by constantly learning and experimenting with new tools and techniques."
+    },
+    {
+      "label": "Code Quality",
+      "value": "Whenever I am writing any code for Test Automation, I'm passionate about writing clean, maintainable, and well-documented code that stands the test of time."
+    },
+    {
+      "label": "Collaboration",
+      "value": "The best results come from diverse perspectives and effective teamwork."
+    },
+    {
+      "label": "Knowledge Sharing",
+      "value": "I'm dedicated to giving back to the community through mentorship, open-source contributions, and educational content."
+    }
+  ],
+  "skills": [
+    "Selenium WebDriver",
+    "Appium",
+    "WebDriverIO",
+    "Rest-Assured",
+    "TestNG",
+    "Mocha",
+    "Java",
+    "C#",
+    "JavaScript",
+    "TypeScript",
+    "Groovy",
+    "Ruby",
+    "Postman",
+    "Soap UI",
+    "GitHub",
+    "GitLab",
+    "Jira",
+    "Maven",
+    "CI / CD"
+  ],
+  "seo": {
+    "keywords": ["Wasiq Bhamla", "About"]
+  }
+}

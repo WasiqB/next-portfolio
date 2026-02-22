@@ -1,35 +1,26 @@
-import { getCollectionData } from '@/payload/fetchers/collections';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { Footer as FooterType, HomePage, Media, Social } from '@/payload/types';
+import footer from '@/data/collections/footer.json';
+import socials from '@/data/collections/socials.json';
+import { heroSection } from '@/data/page-data/home-page.json';
+import type { Social } from '@/types/portfolio-types';
 import FooterClient from './client/footer-client';
 import { ImageBox } from './image-box';
 
-export default async function Footer() {
-  const [footer, homePage, socials] = await Promise.all([
-    getGlobalConfig<FooterType>('footer'),
-    getGlobalConfig<HomePage>('homePage'),
-    getCollectionData<Social[]>('socials'),
-  ]);
-
+export default function Footer() {
   if (!footer) {
     return null;
   }
 
-  const userName = homePage?.heroSection?.name || 'Wasiq Bhamla';
-  const lightLogo = footer.logo.lightLogo as Media;
-  const darkLogo = footer.logo.darkLogo as Media;
+  const userName = heroSection?.name || 'Wasiq Bhamla';
+  const lightLogo = footer.logo.lightLogo;
+  const darkLogo = footer.logo.darkLogo;
 
   return (
     <FooterClient
       footer={footer}
-      socials={socials || []}
+      socials={socials as Social[]}
       userName={userName}
-      darkImage={
-        <ImageBox media={darkLogo} alt={darkLogo.alt || 'Logo'} priority imageClassName='h-10 w-10 object-contain' />
-      }
-      lightImage={
-        <ImageBox media={lightLogo} alt={lightLogo.alt || 'Logo'} priority imageClassName='h-10 w-10 object-contain' />
-      }
+      darkImage={<ImageBox imageUrl={darkLogo} alt={'Logo'} priority imageClassName='h-10 w-10 object-contain' />}
+      lightImage={<ImageBox imageUrl={lightLogo} alt={'Logo'} priority imageClassName='h-10 w-10 object-contain' />}
     />
   );
 }

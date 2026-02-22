@@ -3,31 +3,19 @@ import { Suspense } from 'react';
 import { ImageBox } from '@/components/image-box';
 import SponsorContent from '@/components/pages/sponsor-content';
 import SponsorsSkeleton from '@/components/skeletons/sponsors-skeleton';
+import socialLinks from '@/data/collections/socials.json';
+import sponsorTiers from '@/data/collections/sponsor-tiers.json';
+import sponsors from '@/data/collections/sponsors.json';
+import { heroSection } from '@/data/page-data/home-page.json';
+import siteSettings from '@/data/page-data/site-setting.json';
+import sponsorsPage from '@/data/page-data/sponsor-page.json';
 import { domain } from '@/lib/constants';
-import { getCollectionData } from '@/payload/fetchers/collections';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type {
-  HomePage,
-  Media,
-  SiteSetting,
-  Social,
-  Sponsor,
-  SponsorsPage as SponsorsPageType,
-  SponsorTier,
-} from '@/payload/types';
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const [sponsorsPage, socialLinks, siteSettings] = await Promise.all([
-    getGlobalConfig<SponsorsPageType>('sponsorsPage'),
-    getCollectionData<Social[]>('socials'),
-    getGlobalConfig<SiteSetting>('siteSettings'),
-  ]);
-
   if (!sponsorsPage) return {};
 
   const { title, description, seo } = sponsorsPage;
-  const homePage = await getGlobalConfig<HomePage>('homePage');
-  const name = homePage?.heroSection.name;
+  const name = heroSection.name;
   const twitterHandle = socialLinks
     ?.find((link) => link.platform === 'x')
     ?.url.split('/')
@@ -44,7 +32,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       title: `${title} | ${name}`,
       description,
       url: `${domain}/sponsors`,
-      siteName: siteSettings?.siteName || name,
+      siteName: siteSettings?.name || name,
       locale: siteSettings?.defaultLanguage || 'en_US',
       type: 'website',
     },
@@ -61,17 +49,11 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 async function SponsorData() {
-  const [sponsors, tiers, sponsorsPage] = await Promise.all([
-    getCollectionData<Sponsor[]>('sponsors'),
-    getCollectionData<SponsorTier[]>('sponsor-tiers'),
-    getGlobalConfig<SponsorsPageType>('sponsorsPage'),
-  ]);
-
   const sponsorsWithImages = sponsors.map((sponsor) => ({
     ...sponsor,
     imageNode: (
       <ImageBox
-        media={sponsor.avatar as Media}
+        imageUrl={sponsor.avatar}
         imageClassName='object-cover transition-transform group-hover:scale-105'
         fill
         priority
@@ -92,7 +74,7 @@ async function SponsorData() {
       item: {
         '@type': 'Person',
         name: sponsor.name,
-        image: (sponsor.avatar as Media)?.url,
+        image: sponsor.avatar,
         url: sponsor.url,
       },
     })),
@@ -106,7 +88,7 @@ async function SponsorData() {
           __html: JSON.stringify(jsonLd),
         }}
       />
-      <SponsorContent sponsors={sponsorsWithImages} tiers={tiers} />
+      <SponsorContent sponsors={sponsorsWithImages} tiers={sponsorTiers} />
     </>
   );
 }

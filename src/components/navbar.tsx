@@ -1,27 +1,21 @@
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { Media, Navbar as NavbarType } from '@/payload/types';
+import header from '@/data/collections/header.json';
+import type { Header } from '@/types/portfolio-types';
 import NavbarClient from './client/navbar-client';
 import { ImageBox } from './image-box';
 
-export default async function Navbar() {
-  const navbar = await getGlobalConfig<NavbarType>('navbar');
-
-  if (!navbar) {
+export default function Navbar() {
+  if (!header) {
     return null;
   }
 
-  const lightLogo = navbar.logo.lightLogo as Media;
-  const darkLogo = navbar.logo.darkLogo as Media;
+  const lightLogo = header.logo.lightLogo;
+  const darkLogo = header.logo.darkLogo;
 
   return (
     <NavbarClient
-      navbar={navbar}
-      lightImage={
-        <ImageBox media={lightLogo} alt={lightLogo.alt || 'Logo'} priority imageClassName='h-10 w-10 object-contain' />
-      }
-      darkImage={
-        <ImageBox media={darkLogo} alt={darkLogo.alt || 'Logo'} priority imageClassName='h-10 w-10 object-contain' />
-      }
+      navbar={header as Header}
+      lightImage={<ImageBox imageUrl={lightLogo} alt={'Logo'} priority imageClassName='h-10 w-10 object-contain' />}
+      darkImage={<ImageBox imageUrl={darkLogo} alt={'Logo'} priority imageClassName='h-10 w-10 object-contain' />}
     />
   );
 }

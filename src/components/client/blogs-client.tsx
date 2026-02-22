@@ -10,8 +10,7 @@ import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getBlogSource } from '@/lib/blogs-utils';
 import { formatDate } from '@/lib/date-utils';
-import type { HomePage } from '@/payload/types';
-import type { Blog } from '@/types/portfolio-types';
+import type { Blog, HomePage } from '@/types/portfolio-types';
 
 interface BlogsClientProps {
   blogSection: HomePage['blogSection'];
@@ -134,11 +133,8 @@ export default function BlogsClient({ blogSection, blogData }: BlogsClientProps)
 
       <div className='flex justify-center mt-8'>
         <Button asChild>
-          <Link
-            href={blogSection?.viewAllButton?.[0]?.url || '/blogs'}
-            target={blogSection?.viewAllButton?.[0]?.target || '_self'}
-          >
-            {blogSection?.viewAllButton?.[0]?.label || 'See All Blogs'}
+          <Link href={blogSection?.allBlogsButton?.url || '/blogs'}>
+            {blogSection?.allBlogsButton?.label || 'See All Blogs'}
           </Link>
         </Button>
       </div>

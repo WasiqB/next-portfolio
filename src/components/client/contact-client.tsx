@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import type { ContactSection } from '@/payload/types';
+import type { ContactPage } from '@/types/portfolio-types';
 import { sendContactEmailAction } from '../actions/contact';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
@@ -26,7 +26,7 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 interface ContactClientProps {
-  contactSection: ContactSection;
+  contactSection: ContactPage;
 }
 
 export default function ContactClient({ contactSection }: ContactClientProps) {

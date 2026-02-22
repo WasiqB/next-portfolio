@@ -16,23 +16,15 @@ import VideosSkeleton from '@/components/skeletons/videos-skeleton';
 import SponsorsSection from '@/components/sponsors-section';
 import Testimonials from '@/components/testimonials';
 import Videos from '@/components/videos';
+import socialLinks from '@/data/collections/socials.json';
+import { heroSection, seo } from '@/data/page-data/home-page.json';
+import siteSettings from '@/data/page-data/site-setting.json';
 import { domain } from '@/lib/constants';
-import { getCollectionData } from '@/payload/fetchers/collections';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { HomePage as HomePageType, Media, SiteSetting, Social } from '@/payload/types';
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const [homePage, socialLinks, siteSettings] = await Promise.all([
-    getGlobalConfig<HomePageType>('homePage'),
-    getCollectionData<Social[]>('socials'),
-    getGlobalConfig<SiteSetting>('siteSettings'),
-  ]);
+  if (!heroSection) return {};
 
-  if (!homePage) return {};
-
-  const { name, bio, profileImage } = homePage.heroSection;
-  const image = profileImage?.[0]?.src as Media;
-  const imageUrl = image?.url;
+  const { name, bio, image } = heroSection;
   const twitterHandle = socialLinks
     ?.find((link) => link.platform === 'x')
     ?.url.split('/')
@@ -44,18 +36,18 @@ export const generateMetadata = async (): Promise<Metadata> => {
       template: siteSettings?.titleTemplate || `%s | ${name}`,
     },
     description: bio,
-    keywords: homePage.seo?.keywords || [],
+    keywords: seo?.keywords || [],
     openGraph: {
       title: name,
       description: bio,
       url: domain,
-      siteName: siteSettings?.siteName || name,
+      siteName: siteSettings?.name || name,
       images: [
         {
-          url: imageUrl || '',
+          url: image || '',
           width: 400,
           height: 400,
-          alt: profileImage?.[0]?.alt || name,
+          alt: name,
           type: 'image/jpeg',
         },
       ],
@@ -67,7 +59,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       title: name,
       description: bio,
       creator: `@${twitterHandle}`,
-      images: [imageUrl || ''],
+      images: [image],
     },
     alternates: {
       canonical: domain,
@@ -76,21 +68,16 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 export default async function Home() {
-  const [homePage, socialLinks] = await Promise.all([
-    getGlobalConfig<HomePageType>('homePage'),
-    getCollectionData<Social[]>('socials'),
-  ]);
-
-  const jsonLd = homePage
+  const jsonLd = heroSection
     ? {
         '@context': 'https://schema.org',
         '@type': 'Person',
-        name: homePage.heroSection.name,
+        name: heroSection.name,
         url: domain,
-        image: (homePage.heroSection.profileImage?.[0]?.src as Media)?.url,
+        image: heroSection.image,
         sameAs: socialLinks?.map((link) => link.url) || [],
-        jobTitle: homePage.heroSection.name,
-        description: homePage.heroSection.bio,
+        jobTitle: heroSection.name,
+        description: heroSection.bio,
       }
     : null;
 

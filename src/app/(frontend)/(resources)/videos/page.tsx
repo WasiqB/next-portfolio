@@ -4,24 +4,18 @@ import { fetchVideosAction } from '@/components/actions/videos';
 import { ImageBox } from '@/components/image-box';
 import VideoContent from '@/components/pages/videos-content';
 import VideosSkeleton from '@/components/skeletons/videos-skeleton';
+import socialLinks from '@/data/collections/socials.json';
+import { heroSection, videoSection } from '@/data/page-data/home-page.json';
+import siteSettings from '@/data/page-data/site-setting.json';
+import videosPage from '@/data/page-data/video-page.json';
 import { domain } from '@/lib/constants';
-import { getCollectionData } from '@/payload/fetchers/collections';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { HomePage, SiteSetting, Social, VideosPage as VideosPageType } from '@/payload/types';
 import type { Video } from '@/types/portfolio-types';
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const [videosPage, socialLinks, siteSettings] = await Promise.all([
-    getGlobalConfig<VideosPageType>('videosPage'),
-    getCollectionData<Social[]>('socials'),
-    getGlobalConfig<SiteSetting>('siteSettings'),
-  ]);
-
   if (!videosPage) return {};
 
   const { title, description, seo } = videosPage;
-  const homePage = await getGlobalConfig<HomePage>('homePage');
-  const name = homePage?.heroSection.name;
+  const name = heroSection.name;
   const twitterHandle = socialLinks
     ?.find((link) => link.platform === 'x')
     ?.url.split('/')
@@ -38,7 +32,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       title: `${title} | ${name}`,
       description,
       url: `${domain}/videos`,
-      siteName: siteSettings?.siteName || name,
+      siteName: siteSettings?.name || name,
       locale: siteSettings?.defaultLanguage || 'en_US',
       type: 'website',
     },
@@ -55,8 +49,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 async function VideoData() {
-  const config = await getGlobalConfig<HomePage>('homePage');
-  const channelId = config?.videoSection?.channelId;
+  const channelId = videoSection?.channelId;
 
   if (!channelId) return null;
 
@@ -70,8 +63,6 @@ async function VideoData() {
     ...video,
     imageNode: <ImageBox imageUrl={video.thumbnail} imageClassName='object-cover' fill priority alt={video.title} />,
   }));
-
-  const videosPage = await getGlobalConfig<VideosPageType>('videosPage');
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -107,7 +98,7 @@ async function VideoData() {
       <VideoContent
         initialVideos={videosWithImages}
         channelStats={channelStats}
-        channelUrl={config?.videoSection?.channelUrl || ''}
+        channelUrl={videoSection?.channelUrl || ''}
       />
     </>
   );

@@ -3,37 +3,25 @@ import { Suspense } from 'react';
 import { ImageBox } from '@/components/image-box';
 import AboutContent from '@/components/pages/about-content';
 import AboutSkeleton from '@/components/skeletons/about-skeleton';
+import certificates from '@/data/collections/certificates.json';
+import educations from '@/data/collections/educations.json';
+import experiences from '@/data/collections/experiences.json';
+import socialLinks from '@/data/collections/socials.json';
+import about from '@/data/page-data/about-page.json';
+import siteSettings from '@/data/page-data/site-setting.json';
 import { domain } from '@/lib/constants';
-import { getCollectionData } from '@/payload/fetchers/collections';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type {
-  AboutPage as AboutPageType,
-  Certificate,
-  Education,
-  Experience,
-  Media,
-  SiteSetting,
-  Social,
-} from '@/payload/types';
+import type { Social } from '@/types/portfolio-types';
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const [about, socialLinks, siteSettings] = await Promise.all([
-    getGlobalConfig<AboutPageType>('aboutPage'),
-    getCollectionData<Social[]>('socials'),
-    getGlobalConfig<SiteSetting>('siteSettings'),
-  ]);
-
   if (!about) return {};
 
-  const { name, aboutImage, description } = about;
-  const image = aboutImage?.[0]?.src as Media;
-  const imageUrl = image?.url;
+  const { name, image, description } = about;
   const twitterHandle = socialLinks
     ?.find((link) => link.platform === 'x')
     ?.url.split('/')
     .pop();
 
-  const desc = description?.[0]?.desc || `Get to know more about ${name}`;
+  const desc = description[0] || `Get to know more about ${name}`;
 
   return {
     title: {
@@ -46,13 +34,13 @@ export const generateMetadata = async (): Promise<Metadata> => {
       title: `${name} | About`,
       description: desc,
       url: `${domain}/about`,
-      siteName: siteSettings?.siteName || name,
+      siteName: siteSettings?.name || name,
       images: [
         {
-          url: imageUrl || '',
+          url: image,
           width: 400,
           height: 400,
-          alt: aboutImage?.[0]?.alt || name,
+          alt: name,
           type: 'image/jpeg',
         },
       ],
@@ -64,7 +52,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       title: `${name} | About`,
       description: desc,
       creator: `@${twitterHandle}`,
-      images: [imageUrl || ''],
+      images: [image],
     },
     alternates: {
       canonical: `${domain}/about`,
@@ -73,18 +61,9 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 async function AboutData() {
-  const [about, experiences, educations, socialLinks, certificates] = await Promise.all([
-    getGlobalConfig<AboutPageType>('aboutPage'),
-    getCollectionData<Experience[]>('experience'),
-    getCollectionData<Education[]>('education'),
-    getCollectionData<Social[]>('socials'),
-    getCollectionData<Certificate[]>('certificates'),
-  ]);
-
   if (!about) return null;
 
-  const aboutImage = about.aboutImage[0];
-  const media = aboutImage?.src as Media;
+  const aboutImage = about.image;
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -94,7 +73,7 @@ async function AboutData() {
       name: about.name,
       jobTitle: about.title,
       url: domain,
-      image: media?.url,
+      image: aboutImage,
       sameAs: socialLinks?.map((link) => link.url) || [],
     },
   };
@@ -111,13 +90,13 @@ async function AboutData() {
         about={about}
         experiences={experiences}
         educations={educations}
-        socialLinks={socialLinks}
+        socialLinks={socialLinks as Social[]}
         certificates={certificates}
         imageNode={
-          media && (
+          aboutImage && (
             <ImageBox
-              media={media}
-              alt={aboutImage.alt || media.alt || 'About'}
+              imageUrl={aboutImage}
+              alt={siteSettings.name || 'About'}
               fill
               imageClassName='object-cover'
               priority

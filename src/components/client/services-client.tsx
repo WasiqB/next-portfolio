@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import type { HomePage, Service } from '@/payload/types';
+import type { HomePage, Service } from '@/types/portfolio-types';
 import DynamicLucideIcon, { type IconName } from '../dynamic-icon';
 
 interface ServicesClientProps {
@@ -43,7 +43,7 @@ export default function ServicesClient({ serviceSection, services }: ServicesCli
             >
               <Card
                 className='h-full cursor-pointer group hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50'
-                onClick={() => handleServiceClick(service.slug)}
+                onClick={() => handleServiceClick(service.id)}
               >
                 <CardHeader>
                   <div className='text-primary mb-4 group-hover:scale-110 transition-transform duration-300'>
@@ -63,15 +63,10 @@ export default function ServicesClient({ serviceSection, services }: ServicesCli
         })}
       </div>
 
-      {serviceSection.allServicesButton?.[0] && (
+      {serviceSection.allServicesButton && (
         <div className='flex justify-center mt-8'>
           <Button asChild>
-            <Link
-              target={serviceSection.allServicesButton[0].target || '_self'}
-              href={serviceSection.allServicesButton[0].url}
-            >
-              {serviceSection.allServicesButton[0].label}
-            </Link>
+            <Link href={serviceSection.allServicesButton.url}>{serviceSection.allServicesButton.label}</Link>
           </Button>
         </div>
       )}

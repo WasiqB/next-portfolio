@@ -1,0 +1,32 @@
+[
+  {
+    "platform": "github",
+    "url": "https://github.com/WasiqB",
+    "label": "GitHub"
+  },
+  {
+    "platform": "linkedin",
+    "url": "https://www.linkedin.com/in/wasiqbhamla",
+    "label": "LinkedIn"
+  },
+  {
+    "platform": "x",
+    "url": "https://x.com/WasiqBhamla",
+    "label": "X"
+  },
+  {
+    "platform": "instagram",
+    "url": "https://www.instagram.com/WasiqBhamla",
+    "label": "Instagram"
+  },
+  {
+    "platform": "youtube",
+    "url": "https://www.youtube.com/@WasiqBhamla",
+    "label": "YouTube"
+  },
+  {
+    "platform": "facebook",
+    "url": "https://www.facebook.com/wasiqb",
+    "label": "Facebook"
+  }
+]

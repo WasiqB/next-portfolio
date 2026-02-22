@@ -1,4 +1,3 @@
-import { withPayload } from '@payloadcms/next/withPayload';
 import withPlaiceholder from '@plaiceholder/next';
 import type { NextConfig } from 'next';
 
@@ -30,8 +29,11 @@ const nextConfig: NextConfig = {
       {
         hostname: 'placehold.net',
       },
+      {
+        hostname: 'w8wm6ag6dp.ufs.sh',
+      },
     ],
   },
 };
 
-export default withPayload(withPlaiceholder(nextConfig));
+export default withPlaiceholder(nextConfig);

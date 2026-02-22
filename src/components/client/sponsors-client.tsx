@@ -4,7 +4,7 @@ import { Heart } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import type { HomePage, Sponsor, SponsorTier } from '@/payload/types';
+import type { HomePage, Sponsor, SponsorTier } from '@/types/portfolio-types';
 
 interface SponsorsClientProps {
   sponsorSection: HomePage['sponsorSection'];
@@ -13,12 +13,12 @@ interface SponsorsClientProps {
 }
 
 export default function SponsorsClient({ sponsorSection, sponsors, tiers }: SponsorsClientProps) {
-  const tierOrder = tiers.sort((a, b) => b.price - a.price).map((tier) => tier.slug);
+  const tierOrder = tiers.sort((a, b) => b.price - a.price).map((tier) => tier.id);
 
   // Sort sponsors by tier priority
   const sortedSponsors = [...sponsors].sort((a, b) => {
-    const aTier = typeof a.tier === 'object' ? a.tier.slug : '';
-    const bTier = typeof b.tier === 'object' ? b.tier.slug : '';
+    const aTier = a.tier;
+    const bTier = b.tier;
 
     const aIdx = tierOrder.indexOf(aTier);
     const bIdx = tierOrder.indexOf(bTier);
@@ -50,7 +50,7 @@ export default function SponsorsClient({ sponsorSection, sponsors, tiers }: Spon
         {topSponsors.map((sponsor, index) => {
           return (
             <motion.div
-              key={sponsor.id}
+              key={sponsor.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -67,12 +67,12 @@ export default function SponsorsClient({ sponsorSection, sponsors, tiers }: Spon
         })}
       </div>
 
-      {sponsorSection.viewAllButton?.[0] && (
+      {sponsorSection.viewAllButton && (
         <div className='flex justify-center'>
           <Button asChild>
-            <Link href={sponsorSection.viewAllButton[0].url} target={sponsorSection.viewAllButton[0].target || '_self'}>
+            <Link href={sponsorSection.viewAllButton.url}>
               <Heart className='h-4 w-4 mr-2' />
-              {sponsorSection.viewAllButton[0].label}
+              {sponsorSection.viewAllButton.label}
             </Link>
           </Button>
         </div>

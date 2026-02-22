@@ -6,8 +6,7 @@ import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import type { HomePage } from '@/payload/types';
-import type { Project } from '@/types/portfolio-types';
+import type { HomePage, Project } from '@/types/portfolio-types';
 
 interface ProjectsClientProps {
   projectSection: HomePage['projectSection'];
@@ -72,12 +71,7 @@ export default function ProjectsClient({ projectSection, projectData }: Projects
 
       <div className='flex justify-center mt-8'>
         <Button asChild>
-          <Link
-            target={projectSection?.allProjectsButton?.[0]?.target || '_self'}
-            href={projectSection?.allProjectsButton?.[0]?.url || ''}
-          >
-            {projectSection?.allProjectsButton?.[0]?.label}
-          </Link>
+          <Link href={projectSection?.allProjectsButton?.url || ''}>{projectSection?.allProjectsButton?.label}</Link>
         </Button>
       </div>
     </section>

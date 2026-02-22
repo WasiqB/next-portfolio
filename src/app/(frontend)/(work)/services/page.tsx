@@ -2,23 +2,18 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import ServiceContent from '@/components/pages/services-content';
 import ServicesSkeleton from '@/components/skeletons/services-skeleton';
+import services from '@/data/collections/services.json';
+import socialLinks from '@/data/collections/socials.json';
+import { heroSection, serviceSection } from '@/data/page-data/home-page.json';
+import servicesPage from '@/data/page-data/service-page.json';
+import siteSettings from '@/data/page-data/site-setting.json';
 import { domain } from '@/lib/constants';
-import { getCollectionData } from '@/payload/fetchers/collections';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { HomePage, Service, ServicesPage as ServicesPageType, SiteSetting, Social } from '@/payload/types';
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const [servicesPage, socialLinks, siteSettings] = await Promise.all([
-    getGlobalConfig<ServicesPageType>('servicesPage'),
-    getCollectionData<Social[]>('socials'),
-    getGlobalConfig<SiteSetting>('siteSettings'),
-  ]);
-
   if (!servicesPage) return {};
 
   const { title, description, seo } = servicesPage;
-  const homePage = await getGlobalConfig<HomePage>('homePage');
-  const name = homePage?.heroSection.name;
+  const name = heroSection.name;
   const twitterHandle = socialLinks
     ?.find((link) => link.platform === 'x')
     ?.url.split('/')
@@ -35,7 +30,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       title: `${title} | ${name}`,
       description,
       url: `${domain}/services`,
-      siteName: siteSettings?.siteName || name,
+      siteName: siteSettings?.name || name,
       locale: siteSettings?.defaultLanguage || 'en_US',
       type: 'website',
     },
@@ -52,10 +47,6 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 async function ServicesData() {
-  const data = await getGlobalConfig<HomePage>('homePage');
-  const serviceSection = data?.serviceSection;
-  const services = await getCollectionData<Service[]>('services');
-
   if (!serviceSection || !services) {
     return null;
   }
@@ -67,7 +58,7 @@ async function ServicesData() {
     description: serviceSection.description,
     provider: {
       '@type': 'Person',
-      name: data?.heroSection.name,
+      name: heroSection.name,
     },
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
@@ -94,7 +85,7 @@ async function ServicesData() {
       <ServiceContent
         sectionTitle={serviceSection.title}
         sectionDescription={serviceSection.description}
-        bookCallButton={serviceSection.bookCallButton}
+        bookCallButton={serviceSection.bookACallButton}
         services={services}
       />
     </>

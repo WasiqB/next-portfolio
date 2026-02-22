@@ -1,0 +1,81 @@
+[
+  {
+    "id": "donation",
+    "name": "Donation",
+    "description": "Support my work with a one-time contribution.",
+    "price": 0,
+    "benefits": ["You get a shout-out on my Socials", "Get your name listed on my personal website"],
+    "tierUrl": "https://github.com/sponsors/WasiqB"
+  },
+  {
+    "id": "starter",
+    "name": "🚶🏻 Starter",
+    "description": "Support my work with monthly contributions.",
+    "price": 5,
+    "benefits": ["You get a shout-out on my Socials", "Get your name listed on my personal website"],
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157962"
+  },
+  {
+    "id": "backer",
+    "name": "🤝 Backer",
+    "description": "Support my work with monthly contributions.",
+    "price": 25,
+    "benefits": ["Including previous tier benefits", "Get your name listed on README of all my repositories"],
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157963"
+  },
+  {
+    "id": "bronze",
+    "name": "🥉 Bronze",
+    "description": "Support my work with monthly contributions.",
+    "price": 50,
+    "benefits": [
+      "Including previous tier benefits",
+      "Get special sponsor role on my Discord server with access to private sponsor channel where you will get priority over other discussions"
+    ],
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157964"
+  },
+  {
+    "id": "silver",
+    "name": "🥈 Silver",
+    "description": "Support my work with monthly contributions.",
+    "price": 100,
+    "benefits": [
+      "Including previous tier benefits",
+      "Get 30 minutes / month of call with me anytime during the month for any consulting or mentorship"
+    ],
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157967"
+  },
+  {
+    "id": "gold",
+    "name": "🥇 Gold",
+    "description": "Enhanced support and visibility for your brand.",
+    "price": 350,
+    "benefits": [
+      "Including previous tier benefits",
+      "Get 1 hour / month of call with me anytime during the month for any consulting or mentorship"
+    ],
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=206957"
+  },
+  {
+    "id": "diamond",
+    "name": "💎 Diamond",
+    "description": "Top-tier support with maximum visibility.",
+    "price": 500,
+    "benefits": [
+      "Including previous tier benefits",
+      "Get 4 hour / month of call with me anytime during the month for any consulting or mentorship"
+    ],
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=235804"
+  },
+  {
+    "id": "platinum",
+    "name": "👑 Platinum",
+    "description": "Premium support and visibility for your brand.",
+    "price": 1000,
+    "benefits": [
+      "Including previous tier benefits",
+      "Get 12 hour / month call with me anytime during the month for any consulting or mentorship"
+    ],
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=206958"
+  }
+]

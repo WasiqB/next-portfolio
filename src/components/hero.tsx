@@ -1,15 +1,12 @@
 import HeroClient from '@/components/client/hero-client';
-import { getCollectionData } from '@/payload/fetchers/collections';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { HomePage, Media, Social } from '@/payload/types';
+import socials from '@/data/collections/socials.json';
+import { heroSection } from '@/data/page-data/home-page.json';
+import type { Social } from '@/types/portfolio-types';
 import { SectionError } from './client/section-error';
 import { ImageBox } from './image-box';
 
-export default async function Hero() {
-  const data = await getGlobalConfig<HomePage>('homePage');
-  const socials = await getCollectionData<Social[]>('socials');
-
-  if (!data || !data.heroSection) {
+export default function Hero() {
+  if (!heroSection) {
     return (
       <section id='heroSection' className='container py-12 md:py-24'>
         <SectionError title='Hero section Unavailable' message='Failed to load hero section data' />
@@ -27,16 +24,16 @@ export default async function Hero() {
 
   return (
     <HeroClient
-      heroSection={data.heroSection}
-      socials={socials}
+      heroSection={heroSection}
+      socials={socials as Social[]}
       profileImage={
         <ImageBox
-          media={data.heroSection.profileImage[0].src as Media}
+          imageUrl={heroSection.image}
           imageClassName='object-cover'
           fill
           priority
           sizes='(max-width: 768px) 192px, (max-width: 1024px) 256px, 320px'
-          alt={data.heroSection.profileImage[0].alt}
+          alt={heroSection.name}
         />
       }
     />

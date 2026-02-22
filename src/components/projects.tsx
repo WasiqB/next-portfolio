@@ -1,10 +1,9 @@
 import { cacheLife, cacheTag } from 'next/cache';
+import { projectSection } from '@/data/page-data/home-page.json';
 import { CACHE_TAGS } from '@/lib/constants';
 import { parseGitHubUrl } from '@/lib/github-utils';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { HomePage } from '@/payload/types';
 import type { Project } from '@/types/portfolio-types';
-import { fetchGitHubRepoAction } from './actions/github';
+import { fetchGitHubReposAction } from './actions/github';
 import ProjectsClient from './client/projects-client';
 import { SectionError } from './client/section-error';
 
@@ -14,26 +13,13 @@ async function fetchProjects(projectUrls: string[]): Promise<Project[] | undefin
   cacheLife('days');
 
   try {
-    const projects = projectUrls.map(async (projectUrl) => {
-      const parsed = parseGitHubUrl(projectUrl);
+    const parsedRepos = projectUrls
+      .map((url) => parseGitHubUrl(url))
+      .filter((parsed): parsed is { owner: string; repo: string } => parsed !== null);
 
-      if (!parsed) {
-        console.error(`Invalid GitHub URL: ${projectUrl}`);
-        return null;
-      }
+    if (parsedRepos.length === 0) return [];
 
-      console.info(`Fetching project data for ${parsed.owner}/${parsed.repo}`);
-      const result = await fetchGitHubRepoAction(parsed.owner, parsed.repo);
-
-      if ('error' in result) {
-        console.error(`Error fetching project data for ${projectUrl}:`, result.error);
-        return null;
-      }
-
-      return result;
-    });
-    const fetchedProjects = (await Promise.all(projects)).filter(Boolean) as Project[];
-    return fetchedProjects;
+    return await fetchGitHubReposAction(parsedRepos);
   } catch (error) {
     console.error('Error fetching projects:', error);
   }
@@ -41,11 +27,9 @@ async function fetchProjects(projectUrls: string[]): Promise<Project[] | undefin
 }
 
 export default async function Projects() {
-  const data = await getGlobalConfig<HomePage>('homePage');
-  const projects = data?.projectSection;
-  const projectData = await fetchProjects(projects?.projectUrls.map((project) => project.url) || []);
+  const projectData = await fetchProjects(projectSection?.projectUrls);
 
-  if (!projects || !projectData) {
+  if (!projectSection || !projectData) {
     return (
       <section id='projectSection' className='max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24'>
         <SectionError title='Project section Unavailable' message='Failed to load project section data' />
@@ -53,5 +37,5 @@ export default async function Projects() {
     );
   }
 
-  return <ProjectsClient projectSection={projects} projectData={projectData} />;
+  return <ProjectsClient projectSection={projectSection} projectData={projectData} />;
 }

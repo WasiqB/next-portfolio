@@ -1,0 +1,23 @@
+{
+  "title": "Get in Touch",
+  "description": "I'd love to hear from you! Whether you have a question, want to collaborate, or just want to say hi, feel free to reach out.",
+  "email": "wasiq.bhamla@gmail.com",
+  "reasons": [
+    {
+      "name": "Project opportunities",
+      "value": "project"
+    },
+    {
+      "name": "Job opportunities",
+      "value": "job"
+    },
+    {
+      "name": "Support required",
+      "value": "support"
+    },
+    {
+      "name": "Other",
+      "value": "other"
+    }
+  ]
+}

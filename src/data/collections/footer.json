@@ -1,0 +1,62 @@
+{
+  "logo": {
+    "lightLogo": "https://w8wm6ag6dp.ufs.sh/f/u6Px0nITGQsNFzTHTjhB1mIJMjazSRN873GUpTseA9iWHDCd",
+    "darkLogo": "https://w8wm6ag6dp.ufs.sh/f/u6Px0nITGQsNg9I4C1uHtFBbrJP1iSsmVjKQ0ndz5cEkCIRX"
+  },
+  "socialSection": {
+    "title": "Follow me on my Socials"
+  },
+  "categories": [
+    {
+      "title": "About",
+      "items": [
+        {
+          "label": "About Me",
+          "url": "/about",
+          "visible": true
+        },
+        {
+          "label": "Testimonials",
+          "url": "/testimonials",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "title": "Work",
+      "items": [
+        {
+          "label": "Projects",
+          "url": "/projects",
+          "visible": true
+        },
+        {
+          "label": "Services",
+          "url": "/services",
+          "visible": true
+        },
+        {
+          "label": "Sponsors",
+          "url": "/sponsors",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "title": "Resources",
+      "items": [
+        {
+          "label": "Blog",
+          "url": "/blogs",
+          "visible": true
+        },
+        {
+          "label": "Videos",
+          "url": "/videos",
+          "visible": true
+        }
+      ]
+    }
+  ],
+  "copyrightText": "Build with ❤️ from 🇮🇳"
+}

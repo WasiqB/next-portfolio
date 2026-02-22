@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn, smoothScrollTo } from '@/lib/utils';
-import type { Navbar } from '@/payload/types';
+import type { Header } from '@/types/portfolio-types';
 import DynamicLucideIcon, { type IconName } from '../dynamic-icon';
 import {
   NavigationMenu,
@@ -52,7 +52,7 @@ const ListItem = React.forwardRef<
 ListItem.displayName = 'ListItem';
 
 interface NavbarClientProps {
-  navbar: Navbar;
+  navbar: Header;
   lightImage: React.ReactNode;
   darkImage: React.ReactNode;
 }
@@ -110,11 +110,11 @@ export default function NavbarClient({ navbar, lightImage, darkImage }: NavbarCl
             <nav className='hidden lg:flex items-center gap-6'>
               <NavigationMenu>
                 <NavigationMenuList>
-                  {navbar.navItems
+                  {navbar.navigation
                     ?.filter((item) => item.visible)
                     .map((item) => (
                       <NavigationMenuItem key={item.label}>
-                        {item.hasSubmenu ? (
+                        {item.hasSubMenu ? (
                           <>
                             <NavigationMenuTrigger className='flex items-center gap-2'>
                               <DynamicLucideIcon name={item.icon as IconName} className='h-4 w-4' />
@@ -122,7 +122,7 @@ export default function NavbarClient({ navbar, lightImage, darkImage }: NavbarCl
                             </NavigationMenuTrigger>
                             <NavigationMenuContent>
                               <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]'>
-                                {item.subNavItems
+                                {item.subMenu
                                   ?.filter((item) => item.visible)
                                   .map((subItem) => (
                                     <ListItem
@@ -154,19 +154,21 @@ export default function NavbarClient({ navbar, lightImage, darkImage }: NavbarCl
                 </NavigationMenuList>
               </NavigationMenu>
 
-              {navbar.ctaButton?.[0]?.visible && (
+              {navbar.ctaButton?.visible && (
                 <Button variant='default' size='sm' className='gap-1' asChild>
-                  <Link href={navbar.ctaButton[0].url} target={navbar.ctaButton[0].target || '_self'}>
-                    <DynamicLucideIcon name={navbar.ctaButton[0].icon as IconName} className='h-4 w-4' />
-                    {navbar.ctaButton[0].label}
+                  <Link href={navbar.ctaButton.url} target={navbar.ctaButton.target || '_self'}>
+                    <DynamicLucideIcon name={navbar.ctaButton.icon as IconName} className='h-4 w-4' />
+                    {navbar.ctaButton.label}
                   </Link>
                 </Button>
               )}
 
-              <Button variant='ghost' size='icon' onClick={handleThemeToggle} aria-label='Toggle theme'>
-                <Sun className='h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
-                <Moon className='absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
-              </Button>
+              {navbar.themeToggle?.visible && (
+                <Button variant='ghost' size='icon' onClick={handleThemeToggle} aria-label='Toggle theme'>
+                  <Sun className='h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
+                  <Moon className='absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
+                </Button>
+              )}
             </nav>
 
             {/* Mobile Navigation */}
@@ -181,11 +183,11 @@ export default function NavbarClient({ navbar, lightImage, darkImage }: NavbarCl
                   <SheetTitle className='text-lg font-semibold'>Menu Options</SheetTitle>
                 </SheetHeader>
                 <nav className='flex flex-col gap-4 mt-8 px-2'>
-                  {navbar.navItems
+                  {navbar.navigation
                     ?.filter((item) => item.visible)
                     .map((item) => (
                       <div key={item.label}>
-                        {item.hasSubmenu ? (
+                        {item.hasSubMenu ? (
                           <Collapsible
                             open={openCollapsible === item.label}
                             onOpenChange={() => toggleCollapsible(item.label)}
@@ -214,7 +216,7 @@ export default function NavbarClient({ navbar, lightImage, darkImage }: NavbarCl
                               </Button>
                             </CollapsibleTrigger>
                             <CollapsibleContent className='pl-6 mt-2 space-y-2 border-l border-border'>
-                              {item.subNavItems
+                              {item.subMenu
                                 ?.filter((item) => item.visible)
                                 .map((subItem) => (
                                   <Link
@@ -240,7 +242,7 @@ export default function NavbarClient({ navbar, lightImage, darkImage }: NavbarCl
                           </Collapsible>
                         ) : (
                           <Link
-                            href={item.url}
+                            href={item.url || '#'}
                             className='flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent'
                             onClick={handleClick}
                           >
@@ -251,31 +253,34 @@ export default function NavbarClient({ navbar, lightImage, darkImage }: NavbarCl
                       </div>
                     ))}
 
-                  {navbar.ctaButton?.[0]?.visible && (
-                    <Link
-                      href={navbar.ctaButton[0].url}
-                      className='flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-accent mt-4 border border-border'
-                      onClick={handleClick}
-                      target={navbar.ctaButton[0].target || '_self'}
-                    >
-                      <DynamicLucideIcon name={navbar.ctaButton[0].icon as IconName} className='h-4 w-4' />
-                      {navbar.ctaButton[0].label}
-                    </Link>
+                  {navbar.ctaButton?.visible && (
+                    <Button variant='default' size='sm' className='gap-1' asChild>
+                      <Link
+                        href={navbar.ctaButton.url}
+                        onClick={handleClick}
+                        target={navbar.ctaButton.target || '_self'}
+                      >
+                        <DynamicLucideIcon name={navbar.ctaButton.icon as IconName} className='h-4 w-4' />
+                        {navbar.ctaButton.label}
+                      </Link>
+                    </Button>
                   )}
 
-                  <Button variant='ghost' size='sm' onClick={handleThemeToggle} className='justify-start px-2 mt-4'>
-                    {theme === 'dark' ? (
-                      <>
-                        <Sun className='h-4 w-4 mr-2' />
-                        Light Mode
-                      </>
-                    ) : (
-                      <>
-                        <Moon className='h-4 w-4 mr-2' />
-                        Dark Mode
-                      </>
-                    )}
-                  </Button>
+                  {navbar.themeToggle?.visible && (
+                    <Button variant='ghost' size='sm' onClick={handleThemeToggle} className='justify-start px-2 mt-4'>
+                      {theme === 'dark' ? (
+                        <>
+                          <Sun className='h-4 w-4 mr-2' />
+                          Light Mode
+                        </>
+                      ) : (
+                        <>
+                          <Moon className='h-4 w-4 mr-2' />
+                          Dark Mode
+                        </>
+                      )}
+                    </Button>
+                  )}
                 </nav>
               </SheetContent>
             </Sheet>

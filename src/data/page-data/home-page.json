@@ -1,0 +1,82 @@
+{
+  "heroSection": {
+    "name": "Wasiq Amjad Bhamla",
+    "typingTexts": ["Quality Assurance Specialist", "Open source contributor", "YouTuber", "Blogger"],
+    "typingDelay": 1000,
+    "bio": "I'm a passionate and experienced Quality Assurance Engineer with expertise in manual and automated testing of Web, Desktop, API, Android and iOS applications.",
+    "image": "https://w8wm6ag6dp.ufs.sh/f/u6Px0nITGQsNpamf5tZwER8knNgZTrVQq3bMBFjf1LOa9XPS",
+    "primaryButton": {
+      "label": "My Projects",
+      "url": "#projects"
+    },
+    "secondaryButton": {
+      "label": "My Services",
+      "url": "#services"
+    }
+  },
+  "projectSection": {
+    "title": "My Projects",
+    "description": "Here are some of my recent projects that showcase my skills and expertise.",
+    "projectUrls": [
+      "https://github.com/BoykaFramework/boyka-framework",
+      "https://github.com/WasiqB/multiple-cucumber-html-reporter",
+      "https://github.com/WasiqB/coteafs-selenium",
+      "https://github.com/WasiqB/coteafs-appium",
+      "https://github.com/BoykaFramework/boyka-cli",
+      "https://github.com/WasiqB/maven-publish-action"
+    ],
+    "allProjectsButton": {
+      "label": "See All Projects",
+      "url": "/projects"
+    }
+  },
+  "serviceSection": {
+    "title": "My Services",
+    "description": "Here are the freelance services I offer to help you achieve the quality of your products. Click on any service to see the detailed process.",
+    "allServicesButton": {
+      "label": "View All Services",
+      "url": "/services"
+    },
+    "bookACallButton": {
+      "label": "Book Free Discovery Call",
+      "url": "https://cal.com/wasiqbhamla/discussion-with-wasiq"
+    }
+  },
+  "blogSection": {
+    "title": "My Blogs",
+    "description": "Check out my latest articles and insights.",
+    "allBlogsButton": {
+      "label": "See All Blogs",
+      "url": "/blogs"
+    }
+  },
+  "videoSection": {
+    "title": "My Videos",
+    "description": "Check out my latest video tutorials and tech talks.",
+    "channelUrl": "https://www.youtube.com/@WasiqBhamla",
+    "channelId": "UC5dVxwIGl4xfY4gjkWuMspA",
+    "allVideosButton": {
+      "label": "See All Videos",
+      "url": "/videos"
+    }
+  },
+  "testimonialSection": {
+    "title": "My Testimonials",
+    "description": "Here's what people have to say about working with me.",
+    "viewAllButton": {
+      "label": "View All Testimonials",
+      "url": "/testimonials"
+    }
+  },
+  "sponsorSection": {
+    "title": "My Sponsors",
+    "description": "These amazing sponsors support my work and help me create more content.",
+    "viewAllButton": {
+      "label": "See All Sponsors",
+      "url": "/sponsors"
+    }
+  },
+  "seo": {
+    "keywords": ["Wasiq Bhamla", "Home"]
+  }
+}

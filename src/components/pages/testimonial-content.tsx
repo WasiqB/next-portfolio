@@ -3,7 +3,7 @@
 import { ArrowLeft, Quote } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
-import type { Testimonial } from '@/payload/types';
+import type { Testimonial } from '@/types/portfolio-types';
 import { Button } from '../ui/button';
 import { Card, CardContent } from '../ui/card';
 
@@ -85,7 +85,7 @@ export default function TestimonialContent({ testimonials }: TestimonialContentP
             <h2 className='text-2xl font-bold mb-6'>Client Testimonials</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {clientTestimonials.map((testimonial) => (
-                <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+                <TestimonialCard key={testimonial.name} testimonial={testimonial} />
               ))}
             </div>
           </motion.div>
@@ -97,7 +97,7 @@ export default function TestimonialContent({ testimonials }: TestimonialContentP
             <h2 className='text-2xl font-bold mb-6'>Colleague Testimonials</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {colleagueTestimonials.map((testimonial) => (
-                <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+                <TestimonialCard key={testimonial.name} testimonial={testimonial} />
               ))}
             </div>
           </motion.div>
@@ -109,7 +109,7 @@ export default function TestimonialContent({ testimonials }: TestimonialContentP
             <h2 className='text-2xl font-bold mb-6'>Other Testimonials</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
               {generalTestimonials.map((testimonial) => (
-                <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+                <TestimonialCard key={testimonial.name} testimonial={testimonial} />
               ))}
             </div>
           </motion.div>

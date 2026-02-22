@@ -5,7 +5,7 @@ import { motion } from 'motion/react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import type { HomePage, Service } from '@/payload/types';
+import type { HomePage, Service } from '@/types/portfolio-types';
 import DynamicLucideIcon, { type IconName } from '../dynamic-icon';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
@@ -13,7 +13,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui
 interface ServicesPageProps {
   sectionTitle: string;
   sectionDescription: string;
-  bookCallButton: HomePage['serviceSection']['bookCallButton'];
+  bookCallButton: HomePage['serviceSection']['bookACallButton'];
   services: Service[];
 }
 
@@ -29,7 +29,7 @@ export default function ServiceContent({
   useEffect(() => {
     const serviceSlug = searchParams.get('service');
     if (serviceSlug) {
-      const service = services?.find((s) => s.slug === serviceSlug);
+      const service = services?.find((s) => s.id === serviceSlug);
       if (service) {
         setSelectedService(service);
 
@@ -50,7 +50,7 @@ export default function ServiceContent({
     setSelectedService(service);
 
     const url = new URL(window.location.href);
-    url.searchParams.set('service', service.slug);
+    url.searchParams.set('service', service.id);
     window.history.pushState({}, '', url.toString());
 
     setTimeout(() => {
@@ -127,7 +127,7 @@ export default function ServiceContent({
                 </CardHeader>
                 <CardContent className='grow'>
                   <ul className='space-y-2'>
-                    {service.features?.map((f, featureIndex) => (
+                    {service.features?.map((feature, featureIndex) => (
                       <motion.li
                         key={featureIndex}
                         className='flex items-start gap-2 text-sm'
@@ -137,7 +137,7 @@ export default function ServiceContent({
                       >
                         <div className='w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0 group-hover:bg-primary/80 transition-colors duration-300'></div>
                         <span className='text-muted-foreground group-hover:text-foreground transition-colors duration-300'>
-                          {f.feature}
+                          {feature}
                         </span>
                       </motion.li>
                     ))}
@@ -203,10 +203,10 @@ export default function ServiceContent({
                         </CardHeader>
                         <CardContent>
                           <ul className='space-y-2 mb-4'>
-                            {item.details.map((d, detailIndex) => (
+                            {item.details.map((detail, detailIndex) => (
                               <li key={detailIndex} className='flex items-start gap-2 text-sm text-left'>
                                 <div className='w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0'></div>
-                                <span className='text-muted-foreground'>{d.detail}</span>
+                                <span className='text-muted-foreground'>{detail}</span>
                               </li>
                             ))}
                           </ul>
@@ -237,7 +237,7 @@ export default function ServiceContent({
       )}
 
       {/* Call to action */}
-      {bookCallButton?.[0] && (
+      {bookCallButton && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -254,8 +254,8 @@ export default function ServiceContent({
           </p>
           <div className='flex flex-col sm:flex-row gap-4 justify-center'>
             <Button size='lg' asChild className='group'>
-              <Link href={bookCallButton[0].url} target={bookCallButton[0].target || '_blank'}>
-                <span>{bookCallButton[0].label}</span>
+              <Link href={bookCallButton.url} target='_blank'>
+                <span>{bookCallButton.label}</span>
                 <motion.div
                   className='ml-2'
                   animate={{ x: [0, 4, 0] }}

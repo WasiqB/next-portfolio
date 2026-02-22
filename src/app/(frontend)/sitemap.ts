@@ -1,9 +1,9 @@
 import type { MetadataRoute } from 'next';
 import { domain } from '@/lib/constants';
 
-const staticRoutes = ['/', '/about', '/testimonials', '/projects', '/services', '/sponsors', '/blogs', '/videos'];
-
 export default function sitemap(): MetadataRoute.Sitemap {
+  const staticRoutes = ['/', '/about', '/testimonials', '/projects', '/services', '/sponsors', '/blogs', '/videos'];
+
   return staticRoutes.map((route) => ({
     url: `${domain}${route}`,
     lastModified: new Date(),

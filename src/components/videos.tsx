@@ -1,5 +1,4 @@
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { HomePage } from '@/payload/types';
+import { videoSection } from '@/data/page-data/home-page.json';
 import type { Video } from '@/types/portfolio-types';
 import { fetchVideosAction } from './actions/videos';
 import { SectionError } from './client/section-error';
@@ -15,9 +14,6 @@ async function fetchVideos(channelId: string): Promise<Video[]> {
 }
 
 export default async function Videos() {
-  const data = await getGlobalConfig<HomePage>('homePage');
-  const videoSection = data?.videoSection;
-
   if (!videoSection) {
     return (
       <section id='videos' className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'>
@@ -37,14 +33,14 @@ export default async function Videos() {
       );
     }
 
-    const videosWithImages = videos.map((video) => ({
+    const videosWithImages = videos.map((video, index) => ({
       ...video,
       imageNode: (
         <ImageBox
           imageUrl={video.thumbnail}
           imageClassName='object-cover'
           fill
-          priority
+          priority={index < 4}
           sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw'
           alt={video.title}
         />

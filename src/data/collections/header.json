@@ -1,0 +1,96 @@
+{
+  "logo": {
+    "lightLogo": "https://w8wm6ag6dp.ufs.sh/f/u6Px0nITGQsNFzTHTjhB1mIJMjazSRN873GUpTseA9iWHDCd",
+    "darkLogo": "https://w8wm6ag6dp.ufs.sh/f/u6Px0nITGQsNg9I4C1uHtFBbrJP1iSsmVjKQ0ndz5cEkCIRX"
+  },
+  "navigation": [
+    {
+      "label": "About",
+      "icon": "user",
+      "hasSubMenu": true,
+      "visible": true,
+      "subMenu": [
+        {
+          "label": "About Me",
+          "url": "/about",
+          "icon": "user",
+          "description": "Learn about my background, experience, and journey",
+          "visible": true
+        },
+        {
+          "label": "Testimonials",
+          "url": "/#testimonials",
+          "icon": "message-square",
+          "description": "What clients and colleagues say about my work",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "label": "Work",
+      "icon": "briefcase",
+      "hasSubMenu": true,
+      "visible": true,
+      "subMenu": [
+        {
+          "label": "Projects",
+          "url": "/#projects",
+          "icon": "code",
+          "description": "Explore my latest development projects",
+          "visible": true
+        },
+        {
+          "label": "Services",
+          "url": "/#services",
+          "icon": "wrench",
+          "description": "Professional services I offer to clients",
+          "visible": true
+        },
+        {
+          "label": "Sponsors",
+          "url": "/#sponsors",
+          "icon": "heart",
+          "description": "Support my work and open source projects",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "label": "Resources",
+      "icon": "book-open",
+      "hasSubMenu": true,
+      "visible": true,
+      "subMenu": [
+        {
+          "label": "Blog",
+          "url": "/#blogs",
+          "icon": "file-text",
+          "description": "Articles and insights on web development",
+          "visible": true
+        },
+        {
+          "label": "Videos",
+          "url": "/#videos",
+          "icon": "video",
+          "description": "Tutorials and tech talks on YouTube",
+          "visible": true
+        }
+      ]
+    },
+    {
+      "label": "Contact",
+      "url": "/#contact",
+      "icon": "mail",
+      "visible": true
+    }
+  ],
+  "ctaButton": {
+    "label": "My Topmate",
+    "url": "https://topmate.io/wasiqbhamla",
+    "target": "_blank",
+    "visible": true
+  },
+  "themeToggle": {
+    "visible": true
+  }
+}

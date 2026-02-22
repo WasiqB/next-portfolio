@@ -1,9 +1,8 @@
 import { cacheLife, cacheTag } from 'next/cache';
+import blogSources from '@/data/collections/blogs.json';
+import { blogSection } from '@/data/page-data/home-page.json';
 import { CACHE_TAGS } from '@/lib/constants';
-import { getCollectionData } from '@/payload/fetchers/collections';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { BlogSource, HomePage } from '@/payload/types';
-import type { Blog } from '@/types/portfolio-types';
+import type { Blog, BlogSource } from '@/types/portfolio-types';
 import { fetchBlogsAction } from './actions/blogs';
 import BlogsClient from './client/blogs-client';
 import { SectionError } from './client/section-error';
@@ -43,11 +42,7 @@ export async function fetchBlogs(sources: BlogSource[]): Promise<Blog[]> {
 }
 
 export default async function Blogs() {
-  const data = await getGlobalConfig<HomePage>('homePage');
-  const blogSection = data?.blogSection;
-  const blogSources = await getCollectionData<BlogSource[]>('blog-sources');
-
-  const blogData = await fetchBlogs(blogSources);
+  const blogData = await fetchBlogs(blogSources as BlogSource[]);
 
   if (!blogSection || !blogData || blogData.length === 0) {
     return (
@@ -57,14 +52,14 @@ export default async function Blogs() {
     );
   }
 
-  const blogsWithImages = blogData.map((blog) => ({
+  const blogsWithImages = blogData.map((blog, index) => ({
     ...blog,
     imageNode: (
       <ImageBox
         imageUrl={blog.image}
         imageClassName='object-cover'
         fill
-        priority
+        priority={index < 4}
         sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
         alt={blog.title}
       />

@@ -1,0 +1,214 @@
+[
+  {
+    "id": "test-automation-maintenance",
+    "title": "Automation Maintenance Program",
+    "description": "Proactive upkeep for sustained automation health and efficiency.",
+    "icon": "shield-check",
+    "features": [
+      "Regular test suite optimization",
+      "Flakiness monitoring and resolution",
+      "Dependency updates and security patches",
+      "Coverage gap analysis",
+      "Quarterly performance reports"
+    ],
+    "deliverables": [
+      {
+        "step": 1,
+        "title": "Maintenance Audit",
+        "description": "Baseline assessment of automation health.",
+        "icon": "📊",
+        "details": ["Technical debt evaluation", "Critical fixes identification", "KPI benchmarking"],
+        "duration": "3 days",
+        "cost": "One-time"
+      },
+      {
+        "step": 2,
+        "title": "Care Plan Activation",
+        "description": "Tailored maintenance schedule.",
+        "icon": "📅",
+        "details": ["Priority task backlog", "Service level agreement", "Dedicated support channel"],
+        "duration": "Ongoing",
+        "cost": "Monthly retainer"
+      },
+      {
+        "step": 3,
+        "title": "Proactive Optimization",
+        "description": "Continuous improvement cycles.",
+        "icon": "♻️",
+        "details": ["Test refactoring", "Version updates", "Stability monitoring"],
+        "duration": "Bi-weekly",
+        "cost": "Included"
+      },
+      {
+        "step": 4,
+        "title": "Health Reporting",
+        "description": "Transparent performance tracking.",
+        "icon": "📈",
+        "details": ["Flakiness trend analysis", "ROI metrics dashboard", "Strategic recommendations"],
+        "duration": "Quarterly",
+        "cost": "Included"
+      }
+    ]
+  },
+  {
+    "id": "technical-support",
+    "title": "Automation Rescue & Support",
+    "description": "Rapid troubleshooting for flaky tests and pipeline failures.",
+    "icon": "Headphones",
+    "features": [
+      "Emergency debugging for failing test suites",
+      "CI/CD pipeline optimization",
+      "Test environment stabilization",
+      "Framework upgrade assistance",
+      "Root-cause analysis reports"
+    ],
+    "deliverables": [
+      {
+        "step": 1,
+        "title": "Rapid Response Briefing",
+        "description": "Immediate triage call to assess urgency.",
+        "icon": "🚑",
+        "details": ["Issue categorization", "Access setup", "SLA agreement"],
+        "duration": "30 mins",
+        "cost": "Free"
+      },
+      {
+        "step": 2,
+        "title": "Diagnosis & Solution Design",
+        "description": "Deep dive into technical issues.",
+        "icon": "🩺",
+        "details": ["Logs and metrics analysis", "Solution proposal", "Quick-win implementation"],
+        "duration": "24-48 hours",
+        "cost": "Hourly/retainer"
+      },
+      {
+        "step": 3,
+        "title": "Hotfix Deployment",
+        "description": "Immediate resolution delivery.",
+        "icon": "🔧",
+        "details": ["Emergency patch implementation", "Test suite stabilization", "CI/CD restoration"],
+        "duration": "1-3 days",
+        "cost": "Project-based"
+      },
+      {
+        "step": 4,
+        "title": "Prevention Blueprint",
+        "description": "Long-term stability recommendations.",
+        "icon": "🛡️",
+        "details": ["Post-mortem report", "Monitoring guidelines", "Architecture improvements"],
+        "duration": "4 hours",
+        "cost": "Included"
+      }
+    ]
+  },
+  {
+    "id": "test-automation-implementation",
+    "title": "End-to-End Automation Implementation",
+    "description": "Scalable test frameworks for Web, Mobile, API & Desktop applications.",
+    "icon": "code-2",
+    "features": [
+      "Custom framework development with best practices",
+      "Cross-browser/device testing integration",
+      "CI/CD pipeline implementation",
+      "Living documentation generation",
+      "Performance testing integration"
+    ],
+    "deliverables": [
+      {
+        "step": 1,
+        "title": "Requirements Workshop",
+        "description": "Define scope, tools, and success metrics.",
+        "icon": "📋",
+        "details": ["User journey mapping", "Tech stack finalization", "Milestone planning"],
+        "duration": "2 hours",
+        "cost": "Free"
+      },
+      {
+        "step": 2,
+        "title": "Framework Development",
+        "description": "Agile implementation with continuous demos.",
+        "icon": "⚙️",
+        "details": ["Bi-weekly progress reviews", "Early smoke test deployment", "Version-controlled code"],
+        "duration": "2-4 weeks",
+        "cost": "50% deposit"
+      },
+      {
+        "step": 3,
+        "title": "Stabilization & Training",
+        "description": "Hands-on knowledge transfer to your team.",
+        "icon": "🎓",
+        "details": ["Defect resolution", "Framework documentation", "Team training session"],
+        "duration": "3-5 days",
+        "cost": "25% milestone"
+      },
+      {
+        "step": 4,
+        "title": "Production Launch",
+        "description": "CI/CD integration with ongoing support.",
+        "icon": "🚢",
+        "details": ["Pipeline configuration", "Monitoring setup", "30-day bug-free guarantee"],
+        "duration": "1 day",
+        "cost": "Final payment"
+      }
+    ]
+  },
+  {
+    "id": "test-automation-assessment",
+    "title": "Test Automation Health Check",
+    "description": "Comprehensive audit of your automation strategy to boost efficiency and ROI.",
+    "icon": "settings-2",
+    "features": [
+      "Full audit of test suites, frameworks, and CI/CD pipelines",
+      "Performance benchmarking against industry standards",
+      "Actionable roadmap with prioritised improvements",
+      "ROI analysis for automation investments"
+    ],
+    "deliverables": [
+      {
+        "step": 1,
+        "title": "Automation Discovery Session",
+        "description": "Free 45-min consultation to understand your automation challenges.",
+        "icon": "💬",
+        "details": [
+          "Process review & pain point identification",
+          "Goal alignment and success metrics",
+          "Preliminary scope definition"
+        ],
+        "duration": "45 minutes",
+        "cost": "Free"
+      },
+      {
+        "step": 2,
+        "title": "Deep-Dive Assessment",
+        "description": "Technical analysis of your automation ecosystem.",
+        "icon": "🔍",
+        "details": [
+          "Framework architecture review",
+          "Test coverage analysis",
+          "CI/CD pipeline evaluation",
+          "Flakiness and performance audit"
+        ],
+        "duration": "3-5 days",
+        "cost": "Project-based"
+      },
+      {
+        "step": 3,
+        "title": "Strategic Roadmap",
+        "description": "Prioritised action plan for maximum impact.",
+        "icon": "🗺️",
+        "details": ["Gap analysis report", "Tooling recommendations", "ROI projection", "Implementation timeline"],
+        "duration": "2 days",
+        "cost": "Included"
+      },
+      {
+        "step": 4,
+        "title": "Optimisation Workshop",
+        "description": "Handover session with your engineering team.",
+        "icon": "🚀",
+        "details": ["Findings walkthrough", "Q&A and implementation guidance", "30-day support commitment"],
+        "duration": "2 hours",
+        "cost": "Included"
+      }
+    ]
+  }
+]

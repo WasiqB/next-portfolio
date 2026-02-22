@@ -3,30 +3,19 @@ import { Suspense } from 'react';
 import { ImageBox } from '@/components/image-box';
 import TestimonialContent from '@/components/pages/testimonial-content';
 import TestimonialsSkeleton from '@/components/skeletons/testimonials-skeleton';
+import socialLinks from '@/data/collections/socials.json';
+import testimonials from '@/data/collections/testimonials.json';
+import { heroSection } from '@/data/page-data/home-page.json';
+import siteSettings from '@/data/page-data/site-setting.json';
+import testimonialsPage from '@/data/page-data/testimonial-page.json';
 import { domain } from '@/lib/constants';
-import { getCollectionData } from '@/payload/fetchers/collections';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type {
-  HomePage,
-  Media,
-  SiteSetting,
-  Social,
-  Testimonial,
-  TestimonialsPage as TestimonialsPageType,
-} from '@/payload/types';
+import type { Testimonial } from '@/types/portfolio-types';
 
 export const generateMetadata = async (): Promise<Metadata> => {
-  const [testimonialsPage, socialLinks, siteSettings] = await Promise.all([
-    getGlobalConfig<TestimonialsPageType>('testimonialsPage'),
-    getCollectionData<Social[]>('socials'),
-    getGlobalConfig<SiteSetting>('siteSettings'),
-  ]);
-
   if (!testimonialsPage) return {};
 
   const { title, description, seo } = testimonialsPage;
-  const homePage = await getGlobalConfig<HomePage>('homePage');
-  const name = homePage?.heroSection.name;
+  const name = heroSection.name;
   const twitterHandle = socialLinks
     ?.find((link) => link.platform === 'x')
     ?.url.split('/')
@@ -43,7 +32,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
       title: `${title} | ${name}`,
       description,
       url: `${domain}/testimonials`,
-      siteName: siteSettings?.siteName || name,
+      siteName: siteSettings?.name || name,
       locale: siteSettings?.defaultLanguage || 'en_US',
       type: 'website',
     },
@@ -60,18 +49,18 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 async function TestimonialData() {
-  const [testimonials, testimonialsPage, homePage] = await Promise.all([
-    getCollectionData<Testimonial[]>('testimonials'),
-    getGlobalConfig<TestimonialsPageType>('testimonialsPage'),
-    getGlobalConfig<HomePage>('homePage'),
-  ]);
+  const name = heroSection.name || 'Wasiq Bhamla';
 
-  const name = homePage?.heroSection.name || 'Wasiq Bhamla';
-
-  const testimonialsWithImages = testimonials.map((testimonial) => ({
+  const testimonialsWithImages = testimonials.map((testimonial, index) => ({
     ...testimonial,
     imageNode: (
-      <ImageBox media={testimonial.image as Media} imageClassName='object-cover' priority fill alt={testimonial.name} />
+      <ImageBox
+        imageUrl={testimonial.avatar}
+        imageClassName='object-cover'
+        priority={index < 4}
+        fill
+        alt={testimonial.name}
+      />
     ),
   }));
 
@@ -110,7 +99,7 @@ async function TestimonialData() {
           __html: JSON.stringify(jsonLd),
         }}
       />
-      <TestimonialContent testimonials={testimonialsWithImages} />
+      <TestimonialContent testimonials={testimonialsWithImages as (Testimonial & { imageNode?: React.ReactNode })[]} />
     </>
   );
 }

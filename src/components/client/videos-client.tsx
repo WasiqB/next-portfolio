@@ -10,8 +10,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { formatDate } from '@/lib/date-utils';
 import { shortenNumber } from '@/lib/number-utils';
-import type { HomePage } from '@/payload/types';
-import type { Video } from '@/types/portfolio-types';
+import type { HomePage, Video } from '@/types/portfolio-types';
 
 interface VideosClientProps {
   videoSection: HomePage['videoSection'];
@@ -144,11 +143,8 @@ export default function VideosClient({ videoSection, videos }: VideosClientProps
 
       <div className='flex justify-center mt-8'>
         <Button asChild>
-          <Link
-            href={videoSection.viewAllButton?.[0]?.url || '/videos'}
-            target={videoSection.viewAllButton?.[0]?.target || '_self'}
-          >
-            {videoSection.viewAllButton?.[0]?.label || 'See All Videos'}
+          <Link href={videoSection.allVideosButton?.url || '/videos'}>
+            {videoSection.allVideosButton?.label || 'See All Videos'}
           </Link>
         </Button>
       </div>

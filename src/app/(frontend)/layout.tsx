@@ -13,9 +13,8 @@ import FooterSkeleton from '@/components/skeletons/footer-skeleton';
 import NavbarSkeleton from '@/components/skeletons/navbar-skeleton';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ScrollProgress } from '@/components/ui/scroll-progress';
+import analytics from '@/data/page-data/analytics.json';
 import { domain, isProd } from '@/lib/constants';
-import { getGlobalConfig } from '@/payload/fetchers/globals';
-import type { Analytics as AnalyticsType } from '@/payload/types';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -74,8 +73,7 @@ function LayoutContent({ children }: { children: ReactNode }) {
 
 async function AnalyticsWrapper() {
   if (!isProd) return null;
-  const analytics = await getGlobalConfig<AnalyticsType>('analytics');
-  const analyticsId = analytics?.googleAnalyticsId;
+  const analyticsId = analytics?.gaId;
   if (!analyticsId) return null;
   return <GoogleAnalytics gaId={analyticsId} />;
 }

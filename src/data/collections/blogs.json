@@ -1,0 +1,30 @@
+[
+  {
+    "source": "medium",
+    "username": "WasiqB"
+  },
+  {
+    "source": "custom",
+    "url": "https://www.testmu.ai/blog/appium-architecture/"
+  },
+  {
+    "source": "custom",
+    "url": "https://www.testmu.ai/blog/how-to-automate-android-apps-using-appium/"
+  },
+  {
+    "source": "custom",
+    "url": "https://www.testmu.ai/blog/appium-capabilities/"
+  },
+  {
+    "source": "custom",
+    "url": "https://www.testmu.ai/blog/appium-2-migration-guide/"
+  },
+  {
+    "source": "custom",
+    "url": "https://www.testmu.ai/blog/locators-in-appium/"
+  },
+  {
+    "source": "custom",
+    "url": "https://www.testmu.ai/blog/appium-with-testng-tutorial/"
+  }
+]

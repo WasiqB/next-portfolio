@@ -3,7 +3,7 @@
 import { ArrowLeft, Heart } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
-import type { Sponsor, SponsorTier } from '@/payload/types';
+import type { Sponsor, SponsorTier } from '@/types/portfolio-types';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
@@ -31,7 +31,7 @@ interface SponsorCardProps {
 }
 
 function SponsorCard({ sponsor }: SponsorCardProps) {
-  const tierName = typeof sponsor.tier === 'object' ? sponsor.tier.name : '';
+  const tierName = sponsor.tier;
 
   return (
     <motion.div variants={itemVariants} whileHover={{ y: -5 }}>
@@ -69,12 +69,10 @@ interface SponsorContentProps {
 }
 
 export default function SponsorContent({ sponsors, tiers }: SponsorContentProps) {
-  const getSponsorsByTier = (tierSlug: string) =>
-    sponsors.filter((s) => (typeof s.tier === 'object' ? s.tier.slug === tierSlug : String(s.tier) === tierSlug));
+  const getSponsorsByTier = (tierSlug: string) => sponsors.filter((s) => s.tier === tierSlug);
 
   const otherSponsors = sponsors.filter((s) => {
-    const tierSlug = typeof s.tier === 'object' ? s.tier.slug : String(s.tier);
-    return tierSlug === 'one_time' || tierSlug === 'donation';
+    return s.tier === 'one_time' || s.tier === 'donation';
   });
 
   return (
@@ -152,17 +150,17 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
         {tiers
           .sort((a, b) => b.price - a.price)
           .map((tier) => {
-            const tierSponsors = getSponsorsByTier(tier.slug);
+            const tierSponsors = getSponsorsByTier(tier.id);
             if (!tierSponsors.length) return null;
             return (
-              <motion.div variants={itemVariants} className='mb-12' key={tier.slug}>
+              <motion.div variants={itemVariants} className='mb-12' key={tier.id}>
                 <h3 className='text-xl font-semibold mb-4 inline-flex items-center'>
-                  <span className={`${getTierClass(tier.slug)} w-6 h-6 rounded-full mr-2`}></span>
+                  <span className={`${getTierClass(tier.id)} w-6 h-6 rounded-full mr-2`}></span>
                   {tier.name} Sponsors
                 </h3>
                 <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6'>
                   {tierSponsors.map((sponsor) => (
-                    <SponsorCard key={sponsor.id} sponsor={sponsor} />
+                    <SponsorCard key={sponsor.name} sponsor={sponsor} />
                   ))}
                 </div>
               </motion.div>
@@ -177,7 +175,7 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
             </h3>
             <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6'>
               {otherSponsors.map((sponsor) => (
-                <SponsorCard key={sponsor.id} sponsor={sponsor} />
+                <SponsorCard key={sponsor.name} sponsor={sponsor} />
               ))}
             </div>
           </div>
@@ -190,11 +188,11 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
         </motion.h2>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8'>
           {tiers.map((tier) => (
-            <motion.div key={tier.slug} variants={itemVariants}>
+            <motion.div key={tier.id} variants={itemVariants}>
               <Card className='flex flex-col h-full border-border hover:shadow-lg transition-shadow'>
                 <CardHeader>
                   <CardTitle className='flex items-center gap-2'>
-                    <span className={`${getTierClass(tier.slug)} w-4 h-4 rounded-full`}></span>
+                    <span className={`${getTierClass(tier.id)} w-4 h-4 rounded-full`}></span>
                     {tier.name}
                   </CardTitle>
                   <CardDescription>{tier.description}</CardDescription>
@@ -204,10 +202,10 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
                 </CardHeader>
                 <CardContent className='grow'>
                   <ul className='space-y-2'>
-                    {tier.benefits?.map((benefit) => (
-                      <li key={benefit.id} className='flex items-start'>
+                    {tier.benefits?.map((benefit, index) => (
+                      <li key={index} className='flex items-start'>
                         <span className='h-2 w-2 rounded-full bg-primary mt-2 mr-2' />
-                        <span>{benefit.benefit}</span>
+                        <span>{benefit}</span>
                       </li>
                     ))}
                   </ul>

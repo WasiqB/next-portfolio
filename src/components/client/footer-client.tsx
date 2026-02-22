@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { getSocialIcon } from '@/components/social-icons';
 import { smoothScrollTo } from '@/lib/utils';
-import type { Footer, Social } from '@/payload/types';
+import type { Footer, Social } from '@/types/portfolio-types';
 
 interface FooterClientProps {
   footer: Footer;
@@ -38,11 +38,11 @@ export default function FooterClient({ footer, socials, userName, lightImage, da
             <div className='flex items-center gap-4 justify-center lg:justify-start'>
               {socials.map((social) => (
                 <Link
-                  key={social.id}
+                  key={social.platform}
                   href={social.url}
                   target='_blank'
                   rel='noopener noreferrer'
-                  aria-label={social.ariaLabel}
+                  aria-label={social.label}
                 >
                   {getSocialIcon(social.platform)}
                 </Link>

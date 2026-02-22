@@ -63,7 +63,7 @@
       "subMenu": [
         {
           "label": "Blog",
-          "url": "/#blog",
+          "url": "/#blogs",
           "icon": "file-text",
           "description": "Articles and insights on web development",
           "visible": true

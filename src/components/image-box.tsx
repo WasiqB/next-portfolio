@@ -23,7 +23,7 @@ export const ImageBox = async (props: ImageBoxProps) => {
 
   if (imageUrl) {
     try {
-      const { base64, img } = await getImage(imageUrl);
+      const { base64, img } = await getImage(imageUrl, !priority);
       url = img.url;
       blurhash = base64;
       width = img.width;

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { cacheLife, cacheTag } from 'next/cache';
 import { Suspense } from 'react';
-import { fetchGitHubRepoAction } from '@/components/actions/github';
+import { fetchGitHubReposAction } from '@/components/actions/github';
 import ProjectPageContent from '@/components/pages/projects-content';
 import ProjectsSkeleton from '@/components/skeletons/projects-skeleton';
 import socialLinks from '@/data/collections/socials.json';
@@ -55,24 +55,13 @@ async function fetchProjects(projectUrls: string[]): Promise<Project[]> {
   cacheLife('days');
 
   try {
-    const projects = projectUrls.map(async (projectUrl) => {
-      const parsed = parseGitHubUrl(projectUrl);
+    const parsedRepos = projectUrls
+      .map((url) => parseGitHubUrl(url))
+      .filter((parsed): parsed is { owner: string; repo: string } => parsed !== null);
 
-      if (!parsed) {
-        console.error(`Invalid GitHub URL: ${projectUrl}`);
-        return null;
-      }
+    if (parsedRepos.length === 0) return [];
 
-      const result = await fetchGitHubRepoAction(parsed.owner, parsed.repo);
-
-      if ('error' in result) {
-        console.error(`Error fetching project data for ${projectUrl}:`, result.error);
-        return null;
-      }
-
-      return result;
-    });
-    return (await Promise.all(projects)).filter(Boolean) as Project[];
+    return await fetchGitHubReposAction(parsedRepos);
   } catch (error) {
     console.error('Error fetching projects:', error);
     return [];

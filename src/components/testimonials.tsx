@@ -14,10 +14,16 @@ export default function Testimonials() {
     );
   }
 
-  const testimonialsWithImages = testimonials.map((testimonial) => ({
+  const testimonialsWithImages = testimonials.map((testimonial, index) => ({
     ...testimonial,
     imageNode: (
-      <ImageBox imageUrl={testimonial.avatar} imageClassName='object-cover' fill priority alt={testimonial.name} />
+      <ImageBox
+        imageUrl={testimonial.avatar}
+        imageClassName='object-cover'
+        priority={index < 4}
+        fill
+        alt={testimonial.name}
+      />
     ),
   }));
 

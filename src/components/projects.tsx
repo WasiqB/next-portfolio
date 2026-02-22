@@ -3,7 +3,7 @@ import { projectSection } from '@/data/page-data/home-page.json';
 import { CACHE_TAGS } from '@/lib/constants';
 import { parseGitHubUrl } from '@/lib/github-utils';
 import type { Project } from '@/types/portfolio-types';
-import { fetchGitHubRepoAction } from './actions/github';
+import { fetchGitHubReposAction } from './actions/github';
 import ProjectsClient from './client/projects-client';
 import { SectionError } from './client/section-error';
 
@@ -13,26 +13,13 @@ async function fetchProjects(projectUrls: string[]): Promise<Project[] | undefin
   cacheLife('days');
 
   try {
-    const projects = projectUrls.map(async (projectUrl) => {
-      const parsed = parseGitHubUrl(projectUrl);
+    const parsedRepos = projectUrls
+      .map((url) => parseGitHubUrl(url))
+      .filter((parsed): parsed is { owner: string; repo: string } => parsed !== null);
 
-      if (!parsed) {
-        console.error(`Invalid GitHub URL: ${projectUrl}`);
-        return null;
-      }
+    if (parsedRepos.length === 0) return [];
 
-      console.info(`Fetching project data for ${parsed.owner}/${parsed.repo}`);
-      const result = await fetchGitHubRepoAction(parsed.owner, parsed.repo);
-
-      if ('error' in result) {
-        console.error(`Error fetching project data for ${projectUrl}:`, result.error);
-        return null;
-      }
-
-      return result;
-    });
-    const fetchedProjects = (await Promise.all(projects)).filter(Boolean) as Project[];
-    return fetchedProjects;
+    return await fetchGitHubReposAction(parsedRepos);
   } catch (error) {
     console.error('Error fetching projects:', error);
   }

@@ -52,14 +52,14 @@ export default async function Blogs() {
     );
   }
 
-  const blogsWithImages = blogData.map((blog) => ({
+  const blogsWithImages = blogData.map((blog, index) => ({
     ...blog,
     imageNode: (
       <ImageBox
         imageUrl={blog.image}
         imageClassName='object-cover'
         fill
-        priority
+        priority={index < 4}
         sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
         alt={blog.title}
       />

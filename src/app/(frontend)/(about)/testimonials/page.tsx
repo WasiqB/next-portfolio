@@ -51,10 +51,16 @@ export const generateMetadata = async (): Promise<Metadata> => {
 async function TestimonialData() {
   const name = heroSection.name || 'Wasiq Bhamla';
 
-  const testimonialsWithImages = testimonials.map((testimonial) => ({
+  const testimonialsWithImages = testimonials.map((testimonial, index) => ({
     ...testimonial,
     imageNode: (
-      <ImageBox imageUrl={testimonial.avatar} imageClassName='object-cover' priority fill alt={testimonial.name} />
+      <ImageBox
+        imageUrl={testimonial.avatar}
+        imageClassName='object-cover'
+        priority={index < 4}
+        fill
+        alt={testimonial.name}
+      />
     ),
   }));
 

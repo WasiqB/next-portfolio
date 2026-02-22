@@ -14,14 +14,14 @@ export default function SponsorsSection() {
     );
   }
 
-  const sponsorsWithImages = sponsors.map((sponsor) => ({
+  const sponsorsWithImages = sponsors.map((sponsor, index) => ({
     ...sponsor,
     imageNode: (
       <ImageBox
         imageUrl={sponsor.avatar}
         imageClassName='object-cover transition-transform group-hover:scale-105'
         fill
-        priority
+        priority={index < 4}
         alt={sponsor.name}
       />
     ),

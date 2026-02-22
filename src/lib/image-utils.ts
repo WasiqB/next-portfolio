@@ -2,12 +2,12 @@ import { cacheLife, cacheTag } from 'next/cache';
 import { getPlaiceholder } from 'plaiceholder';
 import { fetchWithBypass } from './fetch-utils';
 
-export async function getImage(src: string, skipBlur = false) {
+export async function getImage(src: string) {
   'use cache';
   cacheTag(src);
   cacheLife('days');
 
-  if (!src || src.includes('placehold.net') || skipBlur) {
+  if (!src) {
     return {
       base64: '',
       img: { url: src || 'https://placehold.net/600x600.png', height: 600, width: 600 },

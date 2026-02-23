@@ -5,7 +5,7 @@ import { fetchWithBypass } from './fetch-utils';
 export async function getImage(src: string) {
   'use cache';
   cacheTag(src);
-  cacheLife('days');
+  cacheLife('max');
 
   if (!src) {
     return {

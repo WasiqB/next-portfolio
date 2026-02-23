@@ -17,7 +17,7 @@ export interface FetchVideosResult {
 export async function fetchVideosAction(channelId: string): Promise<FetchVideosResult | { error: string }> {
   'use cache';
   cacheTag(CACHE_TAGS.VIDEOS);
-  cacheLife('days');
+  cacheLife('weeks');
 
   const apiKey = process.env.YOUTUBE_API_KEY;
 

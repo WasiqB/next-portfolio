@@ -4,6 +4,7 @@ import { Fira_Code, Poppins, Roboto } from 'next/font/google';
 import type { ReactNode } from 'react';
 import { Suspense } from 'react';
 import '@/app/(frontend)/globals.css';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Toaster } from 'sonner';
 import ScrollToTop from '@/components/client/scroll-to-top';
 import Footer from '@/components/footer';
@@ -67,6 +68,7 @@ function LayoutContent({ children }: { children: ReactNode }) {
       </div>
       <Toaster richColors expand position='top-center' />
       {isProd && <CrispChat />}
+      <SpeedInsights />
     </ThemeProvider>
   );
 }

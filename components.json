@@ -1,15 +1,18 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "new-york",
+  "style": "radix-vega",
   "rsc": true,
   "tsx": true,
   "tailwind": {
     "config": "",
     "css": "src/app/(frontend)/globals.css",
-    "baseColor": "neutral",
+    "baseColor": "zinc",
     "cssVariables": true,
     "prefix": ""
   },
+  "menuAccent": "subtle",
+  "menuColor": "default",
+  "rtl": false,
   "iconLibrary": "lucide",
   "aliases": {
     "components": "@/components",

@@ -85,7 +85,7 @@ export default function BlogsClient({ blogSection, blogData }: BlogsClientProps)
 
       <Tabs defaultValue='all' className='mb-8' onValueChange={setActiveTab}>
         <div className='flex justify-center'>
-          <TabsList>
+          <TabsList variant='line'>
             <TabsTrigger value='all'>All Blogs</TabsTrigger>
             {sources.map((source) => (
               <TabsTrigger key={source} value={source}>

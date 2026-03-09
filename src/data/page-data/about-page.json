@@ -3,7 +3,7 @@
   "title": "Test Automation Specialist",
   "description": [
     "I'm a passionate Quality Assurance Engineer with expertise in manual and automated testing of Web, Desktop, API, Android and iOS applications.",
-    "I thrive at the intersection of technology and process, always seeking to optimize, automate, and share knowledge with others.",
+    "I thrive at the intersection of technology and process, always seeking to optimize, automate, and share knowledge with the community.",
     "When I'm not testing or coding, I enjoy sharing insights through blogs, videos, and mentoring aspiring testers."
   ],
   "image": "https://w8wm6ag6dp.ufs.sh/f/u6Px0nITGQsNpamf5tZwER8knNgZTrVQq3bMBFjf1LOa9XPS",
@@ -29,24 +29,53 @@
     "Selenium WebDriver",
     "Appium",
     "WebDriverIO",
+    "Playwright",
+    "Cypress",
     "Rest-Assured",
     "TestNG",
+    "PyTest",
     "Mocha",
+    "Cucumber",
     "Java",
-    "C#",
     "JavaScript",
     "TypeScript",
+    "Python",
+    "C#",
     "Groovy",
     "Ruby",
     "Postman",
     "Soap UI",
+    "Burp Suite",
     "GitHub",
     "GitLab",
     "Jira",
+    "TestRail",
     "Maven",
-    "CI / CD"
+    "Docker",
+    "GitHub Actions",
+    "GoCD",
+    "Katalon Studio",
+    "MS SQL Server",
+    "PostgreSQL",
+    "AI Prompt Modals",
+    "IntelliJ IDEA",
+    "VS Code",
+    "Google Antigravity"
   ],
   "seo": {
-    "keywords": ["Wasiq Bhamla", "About"]
+    "keywords": [
+      "Wasiq Bhamla",
+      "About",
+      "Test Automation",
+      "QA",
+      "Software Testing",
+      "Manual Testing",
+      "Automated Testing",
+      "Web Testing",
+      "Desktop Testing",
+      "API Testing",
+      "Android Testing",
+      "iOS Testing"
+    ]
   }
 }

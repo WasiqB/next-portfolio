@@ -33,7 +33,9 @@ export default function FooterClient({ footer, socials, userName, lightImage, da
         <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
           {/* Logo and socials */}
           <div className='space-y-4 flex flex-col items-center lg:items-start'>
-            <div className='flex items-center gap-2'>{theme === 'dark' ? darkImage : lightImage}</div>
+            <Link href='/'>
+              <div className='flex items-center gap-2'>{theme === 'dark' ? darkImage : lightImage}</div>
+            </Link>
             <p className='text-muted-foreground text-center lg:text-left'>{footer.socialSection.title}</p>
             <div className='flex items-center gap-4 justify-center lg:justify-start'>
               {socials.map((social) => (

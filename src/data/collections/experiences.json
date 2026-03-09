@@ -16,6 +16,8 @@
       "Katalon Studio",
       "Boyka Framework",
       "Java",
+      "Maven",
+      "Git",
       "GitLab",
       "Jira",
       "TestRail"
@@ -32,7 +34,7 @@
       "Led peer code review for the team for their test automation scripts ensuring proper coding standards, best practices and proper POM design is followed.",
       "Mentored 4 junior automation engineers by providing them training for different Test automation tools and coding best practices thus improving the overall team proficiency."
     ],
-    "skills": ["Selenium WebDriver", "Java", "Rest-Assured", "Postman", "Git", "Jenkins"]
+    "skills": ["Selenium WebDriver", "Java", "Maven", "Rest-Assured", "Postman", "Git", "Jenkins"]
   },
   {
     "title": "Independent Consultant",
@@ -47,7 +49,17 @@
       "Wrote Test automation related Blogs for LambdaTest.",
       "Created tutorial videos for Test Automation on YouTube."
     ],
-    "skills": ["Selenium WebDriver", "Appium", "Java", "Rest-Assured", "Postman", "Git", "GitLab"]
+    "skills": [
+      "Selenium WebDriver",
+      "Appium",
+      "Java",
+      "Rest-Assured",
+      "Boyka Framework",
+      "Postman",
+      "Git",
+      "GitLab",
+      "GitHub"
+    ]
   },
   {
     "title": "Senior QA Consultant",
@@ -56,7 +68,7 @@
     "location": "Mumbai, India",
     "responsibilities": [
       "Built ground-up API testing solution for Axis Banks Home Loan Web application by using Rest-Assured, Java and Façade / Builder patterns that increased overall test coverage, by performing end to end user journey testing using the API flow, thus reducing the overall time for their regression test execution.",
-      "Optimised the Test automation architecture for IDFC banks NetBanking Mobile application by implementing BrowserStack cloud Test execution and performing automated Visual regression testing using WebDriverIO and Javascript, that cut cross-browser testing time and reduced UI defects by more than 80%.",
+      "Optimized the Test automation architecture for IDFC banks NetBanking Mobile application by implementing BrowserStack cloud Test execution and performing automated Visual regression testing using WebDriverIO and Javascript, that cut cross-browser testing time and reduced UI defects by more than 80%.",
       "Executed exploratory test cases and maintained automated test scripts using WebDriverIO with Typescript for Standard Chartered Singapore Banks Web, Android and iOS applications, ensuring release stability across major versions for the applications.",
       "Led code reviews for automated test scripts created by the team members, enforcing Page Object Model, SOLID principles and other coding best practices, thus improving code maintainability and reducing flaky tests.",
       "Mentored junior engineers in Test Automation best practices, interviewed 30+ candidates and made successful hires that improved the overall team velocity and quality."
@@ -64,14 +76,15 @@
     "skills": [
       "Selenium WebDriver",
       "Appium",
-      "Java",
       "Rest-Assured",
+      "WebDriverIO",
+      "Java",
+      "JavaScript",
+      "Typescript",
       "Postman",
       "Git",
       "Azure DevOps",
       "BrowserStack",
-      "WebDriverIO",
-      "Typescript",
       "GoCD",
       "Jira"
     ]
@@ -84,7 +97,7 @@
     "responsibilities": [
       "Automated end-to-end testing scenarios for PatientPay, a US based client, thus reducing the total regression testing time through efficient automation scripting and test execution.",
       "Engineered scalable test automation framework using Java, Selenium WebDriver & Rest-Assured, cutting automated script maintenance costs via reusable component design framework.",
-      "Led 4 QA automation engineers in an agile environment, optimizing the task allocation to achieve the sprint automation goals",
+      "Led 4 QA automation engineers in an agile environment, optimizing the task allocation to achieve the sprint automation goals.",
       "Interviewed candidates and made key hires for automation roles through technical interviews and coding assessments thus ensuring the high quality of the candidates are hired.",
       "Mentored and Trained QA and Dev engineers in Selenium WebDriver and Appium, enabling the QA and Dev teams to perform Test automation and reducing onboarding time."
     ],
@@ -96,7 +109,7 @@
     "period": "Jan 2015 - Mar 2018",
     "location": "Mumbai, India",
     "responsibilities": [
-      "Engineered API Test automation for REST and SOAP APIs for Mastercard and Sri Lanka based Dialog payment provider using Rest- Assured, Soap UI, Java, DBUnit & TestNG, reducing manual effort while managing tasks for 3 QA Engineers.",
+      "Engineered API Test automation for REST and SOAP APIs for Mastercard and Sri Lanka based Dialog payment provider using Rest-Assured, Soap UI, Java, DBUnit & TestNG, reducing manual effort while managing tasks for 3 QA Engineers.",
       "Architected and implemented Mobile automation framework (Android / iOS) using Appium with Java to perform end-to-end Bluetooth enabled payment testing for a university merchant application and using Burp suite to debug API calls from the Mobile application.",
       "Designed Web automation framework with Selenium WebDriver, C# & Cucumber SpecFlow for a Supply Chain Management Web application, implementing 200+ manual test scenarios that helped reduce manual testing efforts.",
       "Managed 3 QA automation engineers, boosting team productivity through mentoring.",
@@ -109,13 +122,14 @@
       "C#",
       "Rest-Assured",
       "Appium",
+      "Cucumber SpecFlow",
+      "TestNG",
+      "DBUnit",
       "Postman",
+      "Soap UI",
       "Git",
       "BitBucket",
       "Jira",
-      "Cucumber SpecFlow",
-      "DBUnit",
-      "TestNG",
       "Burp Suite"
     ]
   },
@@ -130,6 +144,6 @@
       "Mentored a team of 4+ QA Engineers and trained them for the Testing tools used, best coding practices.",
       "Communicated with different team leads and different stakeholders like VP of Engineering, Managers to communicate different production issues RCA, Test plans and efforts and demonstration of the Test automation solutions."
     ],
-    "skills": ["IBM Rational Functional Tester", "IBM Rational Robot", "SQA VB script", "Java", "TestNG", "Git", "Jira"]
+    "skills": ["IBM Rational Functional Tester", "IBM Rational Robot", "SQA VB script", "Java", "TestNG", "StarTeam"]
   }
 ]

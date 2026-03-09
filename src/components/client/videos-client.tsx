@@ -85,7 +85,7 @@ export default function VideosClient({ videoSection, videos }: VideosClientProps
 
       <Tabs defaultValue='all' className='mb-8' onValueChange={setActiveTab}>
         <div className='flex justify-center'>
-          <TabsList>
+          <TabsList variant='line'>
             <TabsTrigger value='all'>All Videos</TabsTrigger>
             <TabsTrigger value='video'>Videos</TabsTrigger>
             <TabsTrigger value='short'>Shorts</TabsTrigger>

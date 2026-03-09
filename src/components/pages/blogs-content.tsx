@@ -94,7 +94,7 @@ export default function BlogsContent({ blogs }: BlogsContentProps) {
           transition={{ delay: 0.5 }}
           className='flex justify-center'
         >
-          <TabsList>
+          <TabsList variant='line'>
             <TabsTrigger value='all'>All Blogs</TabsTrigger>
             {sources.map((source) => (
               <TabsTrigger key={source} value={source}>

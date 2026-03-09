@@ -18,12 +18,13 @@
     "title": "My Projects",
     "description": "Here are some of my recent projects that showcase my skills and expertise.",
     "projectUrls": [
-      "https://github.com/BoykaFramework/boyka-framework",
       "https://github.com/WasiqB/multiple-cucumber-html-reporter",
-      "https://github.com/WasiqB/coteafs-selenium",
-      "https://github.com/WasiqB/coteafs-appium",
+      "https://github.com/BoykaFramework/boyka-framework",
+      "https://github.com/WasiqB/next-portfolio",
       "https://github.com/BoykaFramework/boyka-cli",
-      "https://github.com/WasiqB/maven-publish-action"
+      "https://github.com/WasiqB/maven-publish-action",
+      "https://github.com/WasiqB/coteafs-selenium",
+      "https://github.com/WasiqB/coteafs-appium"
     ],
     "allProjectsButton": {
       "label": "See All Projects",
@@ -77,6 +78,19 @@
     }
   },
   "seo": {
-    "keywords": ["Wasiq Bhamla", "Home"]
+    "keywords": [
+      "Wasiq Bhamla",
+      "Home",
+      "Test Automation",
+      "QA",
+      "Software Testing",
+      "Manual Testing",
+      "Automated Testing",
+      "Web Testing",
+      "Desktop Testing",
+      "API Testing",
+      "Android Testing",
+      "iOS Testing"
+    ]
   }
 }

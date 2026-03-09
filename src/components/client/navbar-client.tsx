@@ -3,11 +3,12 @@
 import { Menu, Moon, Sun } from 'lucide-react';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
-import React, { useEffect, useState } from 'react';
+import type React from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { cn, smoothScrollTo } from '@/lib/utils';
+import { smoothScrollTo } from '@/lib/utils';
 import type { Header } from '@/types/portfolio-types';
 import DynamicLucideIcon, { type IconName } from '../dynamic-icon';
 import {
@@ -17,39 +18,32 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from '../ui/navigation-menu';
 
-const ListItem = React.forwardRef<
-  HTMLAnchorElement,
-  React.ComponentPropsWithoutRef<'a'> & {
-    icon?: string;
-    title: string;
-    description?: string;
-  }
->(({ className, title, children, icon, description, ...props }, ref) => {
+function ListItem({
+  title,
+  icon,
+  children,
+  href,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof Link> & { href: string; icon: string }) {
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
-          ref={ref}
-          className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
-            className,
-          )}
-          {...props}
-        >
-          <div className='flex items-center gap-2 text-sm font-medium leading-none'>
-            {icon && <DynamicLucideIcon name={icon as IconName} className='h-4 w-4' />}
-            {title}
+        <Link href={href} {...props}>
+          <div className='flex flex-col gap-1 text-sm'>
+            <div className='flex items-center gap-2'>
+              <DynamicLucideIcon name={icon as IconName} className='h-4 w-4' />
+              <div className='leading-none font-medium'>{title}</div>
+            </div>
+            <div className='line-clamp-2 text-muted-foreground'>{children}</div>
           </div>
-          {description && <p className='line-clamp-2 text-sm leading-snug text-muted-foreground'>{description}</p>}
-          {children}
-        </a>
+        </Link>
       </NavigationMenuLink>
     </li>
   );
-});
-ListItem.displayName = 'ListItem';
+}
 
 interface NavbarClientProps {
   navbar: Header;
@@ -116,37 +110,34 @@ export default function NavbarClient({ navbar, lightImage, darkImage }: NavbarCl
                       <NavigationMenuItem key={item.label}>
                         {item.hasSubMenu ? (
                           <>
-                            <NavigationMenuTrigger className='flex items-center gap-2'>
-                              <DynamicLucideIcon name={item.icon as IconName} className='h-4 w-4' />
+                            <NavigationMenuTrigger>
+                              <DynamicLucideIcon name={item.icon as IconName} className='h-4 w-4 m-2' />
                               {item.label}
                             </NavigationMenuTrigger>
                             <NavigationMenuContent>
-                              <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]'>
+                              <ul className='w-96'>
                                 {item.subMenu
                                   ?.filter((item) => item.visible)
                                   .map((subItem) => (
                                     <ListItem
                                       key={subItem.label}
-                                      title={subItem.label}
                                       href={subItem.url}
+                                      title={subItem.label}
                                       icon={subItem.icon}
-                                      description={subItem.description || ''}
                                       onClick={handleClick}
-                                    />
+                                    >
+                                      {subItem.description}
+                                    </ListItem>
                                   ))}
                               </ul>
                             </NavigationMenuContent>
                           </>
                         ) : (
-                          <NavigationMenuLink
-                            href={item.url}
-                            className='group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-active:bg-accent/50 data-[state=open]:bg-accent/50'
-                            onClick={handleClick}
-                          >
-                            <span className='flex items-center gap-2'>
+                          <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                            <Link href={item.url || '#'} onClick={handleClick}>
                               <DynamicLucideIcon name={item.icon as IconName} className='h-4 w-4' />
                               {item.label}
-                            </span>
+                            </Link>
                           </NavigationMenuLink>
                         )}
                       </NavigationMenuItem>

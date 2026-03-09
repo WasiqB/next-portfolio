@@ -122,7 +122,7 @@ export default function VideoContent({ initialVideos, channelStats, channelUrl }
 
       <Tabs defaultValue='all' className='mb-8' onValueChange={setActiveTab}>
         <motion.div variants={itemVariants} className='flex justify-center'>
-          <TabsList>
+          <TabsList variant='line'>
             <TabsTrigger value='all'>All Videos</TabsTrigger>
             <TabsTrigger value='video'>Videos</TabsTrigger>
             <TabsTrigger value='short'>Shorts</TabsTrigger>

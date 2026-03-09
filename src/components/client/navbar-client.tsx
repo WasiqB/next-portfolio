@@ -111,7 +111,7 @@ export default function NavbarClient({ navbar, lightImage, darkImage }: NavbarCl
                         {item.hasSubMenu ? (
                           <>
                             <NavigationMenuTrigger>
-                              <DynamicLucideIcon name={item.icon as IconName} className='h-4 w-4' />
+                              <DynamicLucideIcon name={item.icon as IconName} className='h-4 w-4 m-2' />
                               {item.label}
                             </NavigationMenuTrigger>
                             <NavigationMenuContent>

@@ -73,6 +73,7 @@ const textEllipsis = (str: string, length = 100, ending = '...') => {
 };
 
 const formatMediumPost = (post: MediumBlog): Blog => {
+  console.debug(`fetched medium post: ${post.title}`);
   return {
     title: post.title.trim(),
     description: textEllipsis(

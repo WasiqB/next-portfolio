@@ -10,7 +10,7 @@ import { SectionError } from './client/section-error';
 async function fetchProjects(projectUrls: string[]): Promise<Project[] | undefined> {
   'use cache';
   cacheTag(CACHE_TAGS.PROJECTS);
-  cacheLife('weeks');
+  cacheLife('days');
 
   try {
     const projects = projectUrls.map(async (projectUrl) => {

@@ -52,7 +52,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 async function fetchProjects(projectUrls: string[]): Promise<Project[]> {
   'use cache';
   cacheTag(CACHE_TAGS.PROJECTS);
-  cacheLife('weeks');
+  cacheLife('days');
 
   try {
     const projects = projectUrls.map(async (projectUrl) => {

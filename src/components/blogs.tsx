@@ -11,7 +11,7 @@ import { ImageBox } from './image-box';
 export async function fetchBlogs(sources: BlogSource[]): Promise<Blog[]> {
   'use cache';
   cacheTag(CACHE_TAGS.BLOGS);
-  cacheLife('weeks');
+  cacheLife('days');
 
   try {
     const blogs = sources.map(async ({ source, username, url }) => {

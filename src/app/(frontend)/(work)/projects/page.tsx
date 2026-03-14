@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import { cacheLife, cacheTag } from 'next/cache';
-import { Suspense } from 'react';
 import { fetchGitHubRepoAction } from '@/components/actions/github';
 import ProjectPageContent from '@/components/pages/projects-content';
-import ProjectsSkeleton from '@/components/skeletons/projects-skeleton';
 import socialLinks from '@/data/collections/socials.json';
 import { heroSection, projectSection } from '@/data/page-data/home-page.json';
 import projectPage from '@/data/page-data/project-page.json';
@@ -118,9 +116,5 @@ async function ProjectsData() {
 }
 
 export default function ProjectsPage() {
-  return (
-    <Suspense fallback={<ProjectsSkeleton />}>
-      <ProjectsData />
-    </Suspense>
-  );
+  return <ProjectsData />;
 }

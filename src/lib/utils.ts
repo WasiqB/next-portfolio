@@ -6,22 +6,34 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const smoothScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, callback?: () => void) => {
-  callback?.();
   const href = e.currentTarget.getAttribute('href');
-  if (href?.includes('#')) {
-    const targetId = href.split('#')[1];
-    const targetElement = document.getElementById(targetId);
+  if (!href) return;
 
-    if (targetElement) {
-      e.preventDefault();
-      const headerOffset = 0;
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+  if (href.includes('#')) {
+    const [path, hash] = href.split('#');
+    const isHomePage = path === '/' || path === '';
+    const isCurrentlyOnHomePage = window.location.pathname === '/';
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth',
-      });
+    const isCurrentPage = (isHomePage && isCurrentlyOnHomePage) || path === window.location.pathname;
+
+    if (isCurrentPage && hash) {
+      const targetElement = document.getElementById(hash);
+      if (targetElement) {
+        e.preventDefault();
+        callback?.();
+
+        const headerOffset = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+        return;
+      }
     }
   }
+
+  callback?.();
 };

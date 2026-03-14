@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import { fetchVideosAction } from '@/components/actions/videos';
 import { ImageBox } from '@/components/image-box';
 import VideoContent from '@/components/pages/videos-content';
-import VideosSkeleton from '@/components/skeletons/videos-skeleton';
 import socialLinks from '@/data/collections/socials.json';
 import { heroSection, videoSection } from '@/data/page-data/home-page.json';
 import siteSettings from '@/data/page-data/site-setting.json';
@@ -105,9 +103,5 @@ async function VideoData() {
 }
 
 export default function VideosPage() {
-  return (
-    <Suspense fallback={<VideosSkeleton />}>
-      <VideoData />
-    </Suspense>
-  );
+  return <VideoData />;
 }

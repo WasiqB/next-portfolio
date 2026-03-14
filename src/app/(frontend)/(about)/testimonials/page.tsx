@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import { ImageBox } from '@/components/image-box';
 import TestimonialContent from '@/components/pages/testimonial-content';
-import TestimonialsSkeleton from '@/components/skeletons/testimonials-skeleton';
 import socialLinks from '@/data/collections/socials.json';
 import testimonials from '@/data/collections/testimonials.json';
 import { heroSection } from '@/data/page-data/home-page.json';
@@ -105,9 +103,5 @@ async function TestimonialData() {
 }
 
 export default function TestimonialsPage() {
-  return (
-    <Suspense fallback={<TestimonialsSkeleton />}>
-      <TestimonialData />
-    </Suspense>
-  );
+  return <TestimonialData />;
 }

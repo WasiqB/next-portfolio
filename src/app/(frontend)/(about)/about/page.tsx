@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import { ImageBox } from '@/components/image-box';
 import AboutContent from '@/components/pages/about-content';
-import AboutSkeleton from '@/components/skeletons/about-skeleton';
 import certificates from '@/data/collections/certificates.json';
 import educations from '@/data/collections/educations.json';
 import experiences from '@/data/collections/experiences.json';
@@ -109,9 +107,5 @@ async function AboutData() {
 }
 
 export default function AboutPage() {
-  return (
-    <Suspense fallback={<AboutSkeleton />}>
-      <AboutData />
-    </Suspense>
-  );
+  return <AboutData />;
 }

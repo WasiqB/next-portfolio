@@ -26,5 +26,13 @@
   {
     "source": "custom",
     "url": "https://www.testmuai.com/blog/appium-with-testng-tutorial/"
+  },
+  {
+    "source": "custom",
+    "url": "https://www.testmuai.com/learning-hub/appium-gestures/"
+  },
+  {
+    "source": "custom",
+    "url": "https://www.testmuai.com/blog/run-ios-apps-on-macos/"
   }
 ]

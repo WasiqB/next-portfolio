@@ -10,12 +10,10 @@ import ScrollToTop from '@/components/client/scroll-to-top';
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import CrispChat from '@/components/pages/crisp-chat';
-import FooterSkeleton from '@/components/skeletons/footer-skeleton';
-import NavbarSkeleton from '@/components/skeletons/navbar-skeleton';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ScrollProgress } from '@/components/ui/scroll-progress';
 import analytics from '@/data/page-data/analytics.json';
-import { domain, isProd } from '@/lib/constants';
+import { domain, isDev, isProd } from '@/lib/constants';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -56,19 +54,15 @@ function LayoutContent({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider attribute='class' defaultTheme='light' enableSystem disableTransitionOnChange>
       <div className='flex min-h-screen flex-col'>
-        <Suspense fallback={<NavbarSkeleton />}>
-          <Navbar />
-          <ScrollProgress />
-        </Suspense>
+        <Navbar />
+        <ScrollProgress />
         <div className='flex-1'>{children}</div>
         <ScrollToTop />
-        <Suspense fallback={<FooterSkeleton />}>
-          <Footer />
-        </Suspense>
+        <Footer />
       </div>
       <Toaster richColors expand position='top-center' />
       {isProd && <CrispChat />}
-      <SpeedInsights />
+      {!isDev && <SpeedInsights />}
     </ThemeProvider>
   );
 }

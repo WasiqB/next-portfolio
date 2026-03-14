@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import { ImageBox } from '@/components/image-box';
 import SponsorContent from '@/components/pages/sponsor-content';
-import SponsorsSkeleton from '@/components/skeletons/sponsors-skeleton';
 import socialLinks from '@/data/collections/socials.json';
 import sponsorTiers from '@/data/collections/sponsor-tiers.json';
 import sponsors from '@/data/collections/sponsors.json';
@@ -94,9 +92,5 @@ async function SponsorData() {
 }
 
 export default function SponsorsPage() {
-  return (
-    <Suspense fallback={<SponsorsSkeleton />}>
-      <SponsorData />
-    </Suspense>
-  );
+  return <SponsorData />;
 }

@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import { fetchBlogs } from '@/components/blogs';
 import { ImageBox } from '@/components/image-box';
 import BlogsContent from '@/components/pages/blogs-content';
-import BlogsSkeleton from '@/components/skeletons/blogs-skeleton';
 import blogSources from '@/data/collections/blogs.json';
 import socialLinks from '@/data/collections/socials.json';
 import blogsPage from '@/data/page-data/blogs-page.json';
@@ -94,9 +92,5 @@ async function BlogsData() {
 }
 
 export default function BlogsPage() {
-  return (
-    <Suspense fallback={<BlogsSkeleton />}>
-      <BlogsData />
-    </Suspense>
-  );
+  return <BlogsData />;
 }

@@ -92,13 +92,7 @@ async function AboutData() {
         certificates={certificates}
         imageNode={
           aboutImage && (
-            <ImageBox
-              imageUrl={aboutImage}
-              alt={siteSettings.name || 'About'}
-              fill
-              imageClassName='object-cover'
-              priority
-            />
+            <ImageBox imageUrl={aboutImage} alt={siteSettings.name || 'About'} imageClassName='object-cover' priority />
           )
         }
       />

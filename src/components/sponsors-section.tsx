@@ -20,7 +20,6 @@ export default function SponsorsSection() {
       <ImageBox
         imageUrl={sponsor.avatar}
         imageClassName='object-cover transition-transform group-hover:scale-105'
-        fill
         priority={index < 4}
         alt={sponsor.name}
       />

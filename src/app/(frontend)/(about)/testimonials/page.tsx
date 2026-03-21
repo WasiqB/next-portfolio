@@ -56,7 +56,6 @@ async function TestimonialData() {
         imageUrl={testimonial.avatar}
         imageClassName='object-cover'
         priority={index < 4}
-        fill
         alt={testimonial.name}
       />
     ),

@@ -8,7 +8,7 @@ import socialLinks from '@/data/collections/socials.json';
 import about from '@/data/page-data/about-page.json';
 import siteSettings from '@/data/page-data/site-setting.json';
 import { domain } from '@/lib/constants';
-import type { Social } from '@/types/portfolio-types';
+import type { Certificate, Education, Experience, Social } from '@/types/portfolio-types';
 
 export const generateMetadata = async (): Promise<Metadata> => {
   if (!about) return {};
@@ -86,10 +86,10 @@ async function AboutData() {
       />
       <AboutContent
         about={about}
-        experiences={experiences}
-        educations={educations}
+        experiences={experiences as Experience[]}
+        educations={educations as Education[]}
         socialLinks={socialLinks as Social[]}
-        certificates={certificates}
+        certificates={certificates as Certificate[]}
         imageNode={
           aboutImage && (
             <ImageBox imageUrl={aboutImage} alt={siteSettings.name || 'About'} imageClassName='object-cover' priority />

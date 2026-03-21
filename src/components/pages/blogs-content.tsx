@@ -103,7 +103,7 @@ export default function BlogsContent({ blogs }: BlogsContentProps) {
             ))}
           </TabsList>
         </motion.div>
-        <AnimatePresence mode='wait'>
+        <AnimatePresence mode='popLayout'>
           <TabsContent value='all' className='mt-6' key='all'>
             <motion.div
               layout

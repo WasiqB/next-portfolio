@@ -21,7 +21,6 @@ export default function Testimonials() {
         imageUrl={testimonial.avatar}
         imageClassName='object-cover'
         priority={index < 4}
-        fill
         alt={testimonial.name}
       />
     ),

@@ -1,10 +1,13 @@
 'use client';
 
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Award, Briefcase, ExternalLink, GraduationCap } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from 'react-icons/fa6';
 import type { AboutPage, Certificate, Education, Experience, Social } from '@/types/portfolio-types';
+import CertificationShowcase from '../client/certification-section';
+import EducationTimeline from '../client/education-section';
+import ExperienceTimeline from '../client/experience-section';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
@@ -249,51 +252,11 @@ export default function AboutContent({
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className='text-2xl font-bold mb-6'>Professional Experience</h2>
-          <div className='relative border-l border-muted pl-6 ml-3'>
-            {experiences.map((experience, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className='mb-10 relative'
-              >
-                {/* Timeline dot */}
-                <div className='absolute w-4 h-4 bg-primary rounded-full -left-[30px] top-1.5 border-4 border-background'></div>
-
-                {/* Content */}
-                <div className='bg-card border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow'>
-                  <div className='flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3'>
-                    <div>
-                      <h3 className='text-xl font-semibold'>{experience.title}</h3>
-                      <p className='text-muted-foreground'>
-                        {experience.company} • {experience.location}
-                      </p>
-                    </div>
-                    <div className='text-sm bg-primary/10 text-primary px-3 py-1 rounded-full font-medium'>
-                      {experience.period}
-                    </div>
-                  </div>
-
-                  <ul className='list-disc pl-6 space-y-1 mb-4 text-muted-foreground'>
-                    {experience.responsibilities.map((responsibility, i) => (
-                      <li key={i}>{responsibility}</li>
-                    ))}
-                  </ul>
-
-                  <div className='flex flex-wrap gap-2'>
-                    {experience.skills.map((skill) => (
-                      <Badge key={skill} variant='secondary'>
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <h2 className='text-3xl font-bold mb-8 flex items-center gap-2'>
+            <Briefcase className='h-8 w-8' />
+            Professional Experience
+          </h2>
+          <ExperienceTimeline experiences={experiences} />
         </motion.div>
 
         <motion.div
@@ -302,39 +265,11 @@ export default function AboutContent({
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className='text-2xl font-bold mb-6'>Education</h2>
-          <div className='relative border-l border-muted pl-6 ml-3'>
-            {educations.map((edu, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className='mb-10 relative'
-              >
-                {/* Timeline dot */}
-                <div className='absolute w-4 h-4 bg-primary rounded-full -left-[30px] top-1.5 border-4 border-background'></div>
-
-                {/* Content */}
-                <div className='bg-card border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow'>
-                  <div className='flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2'>
-                    <div>
-                      <h3 className='text-xl font-semibold'>{edu.title}</h3>
-                      <p className='text-muted-foreground'>
-                        {edu.university} • {edu.location}
-                      </p>
-                    </div>
-                    <div className='text-sm bg-primary/10 text-primary px-3 py-1 rounded-full font-medium'>
-                      {edu.period}
-                    </div>
-                  </div>
-
-                  {edu.description && <p className='text-muted-foreground'>{edu.description}</p>}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+          <h2 className='text-3xl font-bold mb-8 flex items-center gap-2'>
+            <GraduationCap className='h-8 w-8' />
+            Education
+          </h2>
+          <EducationTimeline education={educations} />
         </motion.div>
 
         {certificates && certificates.length > 0 && (
@@ -344,38 +279,11 @@ export default function AboutContent({
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className='text-2xl font-bold mb-6'>Certifications</h2>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-              {certificates.map((cert, idx) => (
-                <motion.div
-                  key={cert.title + idx}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                >
-                  <Card className='h-full'>
-                    <CardHeader>
-                      <CardTitle>{cert.title}</CardTitle>
-                      <CardDescription>{cert.issuer}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className='flex justify-between items-center'>
-                        <span className='text-sm text-muted-foreground'>Issued: {cert.issued}</span>
-                        {cert.verifyUrl && (
-                          <Button variant='outline' size='sm' asChild>
-                            <Link href={cert.verifyUrl} target='_blank' rel='noopener noreferrer'>
-                              <ExternalLink className='h-4 w-4 mr-2' />
-                              Verify
-                            </Link>
-                          </Button>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+            <h2 className='text-3xl font-bold mb-8 flex items-center gap-2'>
+              <Award className='h-8 w-8' />
+              Certifications & Achievements
+            </h2>
+            <CertificationShowcase certifications={certificates} />
           </motion.div>
         )}
 

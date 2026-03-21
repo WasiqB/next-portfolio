@@ -221,7 +221,7 @@ export interface BlogSource {
 export interface Certificate {
   title: string;
   issuer: string;
-  issued: string;
+  issueDate: string;
   verifyUrl: string;
 }
 
@@ -236,10 +236,14 @@ export interface Education {
 export interface Experience {
   title: string;
   company: string;
+  companyUrl?: string;
   period: string;
   location: string;
+  jobType: 'on-site' | 'remote' | 'hybrid';
+  jobMode: 'full-time' | 'contract' | 'freelancing';
   responsibilities: string[];
   skills: string[];
+  industry: string;
 }
 
 export interface Service {

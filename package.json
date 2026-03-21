@@ -36,7 +36,7 @@
     "crisp-sdk-web": "^1.0.27",
     "lucide-react": "^0.577.0",
     "motion": "^12.37.0",
-    "next": "16.1.6",
+    "next": "16.1.7",
     "next-themes": "^0.4.6",
     "plaiceholder": "^3.0.0",
     "radix-ui": "^1.4.3",

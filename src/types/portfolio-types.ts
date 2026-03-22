@@ -243,7 +243,7 @@ export interface Experience {
   jobMode: 'full-time' | 'contract' | 'freelancing';
   responsibilities: string[];
   skills: string[];
-  industry: string;
+  industries: string[];
 }
 
 export interface Service {

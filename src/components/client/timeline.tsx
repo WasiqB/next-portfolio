@@ -22,9 +22,6 @@ const Timeline = ({ items }: TimelineProps) => {
           {/* Sticky header - Desktop only */}
           <div className='sticky top-19 flex w-36 flex-col items-end gap-2 self-start pb-4 max-md:hidden'>
             <Badge className='flex size-6 w-auto justify-end rounded-sm text-sm font-medium'>{item.period}</Badge>
-            {item.subtitle && (
-              <div className='text-muted-foreground text-right text-sm font-medium'>{item.subtitle}</div>
-            )}
           </div>
 
           {/* Timeline center with dot and line */}

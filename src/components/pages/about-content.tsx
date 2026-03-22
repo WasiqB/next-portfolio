@@ -75,7 +75,7 @@ export default function AboutContent({
       </motion.div>
 
       <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-16'>
-        <motion.div variants={itemVariants} className='md:col-span-2'>
+        <motion.div variants={itemVariants} className='md:col-span-2 space-y-8'>
           <Card>
             <CardHeader>
               <CardTitle>Hello, I'm {about.name}</CardTitle>
@@ -97,6 +97,20 @@ export default function AboutContent({
               </div>
             </CardContent>
           </Card>
+          <motion.div variants={itemVariants}>
+            <Card>
+              <CardHeader>
+                <CardTitle>Skills</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className='flex flex-wrap gap-2'>
+                  {about.skills.map((skill) => (
+                    <Badge key={skill}>{skill}</Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </motion.div>
 
         <div className='space-y-8 hidden md:block'>
@@ -158,21 +172,6 @@ export default function AboutContent({
               </CardContent>
             </Card>
           </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <Card>
-              <CardHeader>
-                <CardTitle>Skills</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className='flex flex-wrap gap-2'>
-                  {about.skills.map((skill) => (
-                    <Badge key={skill}>{skill}</Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
         </div>
 
         {/* Mobile social links and skills - visible only on mobile */}
@@ -227,21 +226,6 @@ export default function AboutContent({
               </CardContent>
             </Card>
           </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <Card>
-              <CardHeader>
-                <CardTitle>Skills</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className='flex flex-wrap gap-2'>
-                  {about.skills.map((skill) => (
-                    <Badge key={skill}>{skill}</Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
         </div>
       </div>
 
@@ -253,7 +237,7 @@ export default function AboutContent({
           transition={{ duration: 0.5 }}
         >
           <h2 className='text-3xl font-bold mb-8 flex items-center gap-2'>
-            <Briefcase className='h-8 w-8' />
+            <Briefcase className='h-8 w-8 mr-2' />
             Professional Experience
           </h2>
           <ExperienceTimeline experiences={experiences} />
@@ -266,7 +250,7 @@ export default function AboutContent({
           transition={{ duration: 0.5 }}
         >
           <h2 className='text-3xl font-bold mb-8 flex items-center gap-2'>
-            <GraduationCap className='h-8 w-8' />
+            <GraduationCap className='h-8 w-8 mr-2' />
             Education
           </h2>
           <EducationTimeline education={educations} />
@@ -280,7 +264,7 @@ export default function AboutContent({
             transition={{ duration: 0.5 }}
           >
             <h2 className='text-3xl font-bold mb-8 flex items-center gap-2'>
-              <Award className='h-8 w-8' />
+              <Award className='h-8 w-8 mr-2' />
               Certifications & Achievements
             </h2>
             <CertificationShowcase certifications={certificates} />

@@ -7,7 +7,7 @@
     "location": "Riyadh, Saudi Arabia",
     "jobMode": "contract",
     "jobType": "hybrid",
-    "industry": "Law Enforcement, Infrastructure Project development",
+    "industries": ["Law Enforcement", "Infrastructure Project development"],
     "responsibilities": [
       "Automated 100+ Manual Test cases in a month for their Law Enforcement and RIPC Web application using the open source Boyka Framework with Java to automate their Web and Android based application, thus reducing regression testing time for the Manual team.",
       "Led the Test Automation adoption by migrating their Web and Android Test automation scripts to Katalon Studio, enabling manual QA teams to contribute to the automation and to accelerate their release cycles.",
@@ -35,7 +35,7 @@
     "location": "Mumbai, India",
     "jobMode": "full-time",
     "jobType": "remote",
-    "industry": "Telecommunications",
+    "industries": ["Telecommunications"],
     "responsibilities": [
       "Led a 4-person QA team for STC, a leading Saudi based telecom company, in performing automated testing of their Web application for prepaid and postpaid users.",
       "Performed complete Test automation health check for projects Test automation solution using Selenium WebDriver with Java and provided a detailed analysis and technical gaps where the automation could be improved by implementing POM design, best coding practices thus boosting framework stability.",
@@ -51,7 +51,7 @@
     "location": "Mumbai, India",
     "jobMode": "freelancing",
     "jobType": "remote",
-    "industry": "Payment, Mentoring",
+    "industries": ["Payment", "Mentoring"],
     "responsibilities": [
       "Tested and implemented the Test automation for an API application for the payments middleware application for a US-based Startup.",
       "Provided the personal SDET training and helped the QA professional to grow in their careers.",
@@ -80,7 +80,7 @@
     "location": "Mumbai, India",
     "jobMode": "full-time",
     "jobType": "hybrid",
-    "industry": "Banking, Lending",
+    "industries": ["Banking", "Lending"],
     "responsibilities": [
       "Built ground-up API testing solution for Axis Banks Home Loan Web application by using Rest-Assured, Java and Façade / Builder patterns that increased overall test coverage, by performing end to end user journey testing using the API flow, thus reducing the overall time for their regression test execution.",
       "Optimized the Test automation architecture for IDFC banks NetBanking Mobile application by implementing BrowserStack cloud Test execution and performing automated Visual regression testing using WebDriverIO and Javascript, that cut cross-browser testing time and reduced UI defects by more than 80%.",
@@ -112,7 +112,7 @@
     "location": "Mumbai, India",
     "jobMode": "full-time",
     "jobType": "on-site",
-    "industry": "Healthcare",
+    "industries": ["Healthcare"],
     "responsibilities": [
       "Automated end-to-end testing scenarios for PatientPay, a US based client, thus reducing the total regression testing time through efficient automation scripting and test execution.",
       "Engineered scalable test automation framework using Java, Selenium WebDriver & Rest-Assured, cutting automated script maintenance costs via reusable component design framework.",
@@ -129,8 +129,8 @@
     "period": "Jan 2015 - Mar 2018",
     "location": "Mumbai, India",
     "jobMode": "full-time",
-    "jobType": "on-site",
-    "industry": "Payments, Supply Chain Management",
+    "jobType": "hybrid",
+    "industries": ["Payments", "Supply Chain Management"],
     "responsibilities": [
       "Engineered API Test automation for REST and SOAP APIs for Mastercard and Sri Lanka based Dialog payment provider using Rest-Assured, Soap UI, Java, DBUnit & TestNG, reducing manual effort while managing tasks for 3 QA Engineers.",
       "Architected and implemented Mobile automation framework (Android / iOS) using Appium with Java to perform end-to-end Bluetooth enabled payment testing for a university merchant application and using Burp suite to debug API calls from the Mobile application.",
@@ -164,7 +164,7 @@
     "location": "Mumbai, India",
     "jobMode": "full-time",
     "jobType": "on-site",
-    "industry": "Capital Market, FinTech",
+    "industries": ["Capital Market", "FinTech"],
     "responsibilities": [
       "Implemented Test automation for Protector.Net (Desktop based) and Match-Web (Web based) applications by using IBM Rational Functional Tester with Java and Page object pattern and TestNG, thus enabling parallel test execution that reduced test cycles duration.",
       "Led the migration of 1,200+ automation test scripts from IBM Rational Robot with SQA VB script to IBM Rational Functional Tester with Java, completing transition 3 months early then the planned one and a half year along with training QA engineers for the new Testing tools.",

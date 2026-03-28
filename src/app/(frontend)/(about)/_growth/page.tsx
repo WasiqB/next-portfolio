@@ -1,7 +1,8 @@
-import { ArrowLeft, ArrowUpRight, Github, Linkedin, Twitter, Youtube } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 import type React from 'react';
 import { FaHashtag, FaJava, FaMedium, FaNpm } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa6';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -21,7 +22,7 @@ interface Platform {
 const platforms: Platform[] = [
   {
     name: 'YouTube',
-    icon: <Youtube className='h-6 w-6' />,
+    icon: <FaYoutube className='h-6 w-6' />,
     url: 'https://youtube.com/@johndoe',
     stats: [
       { label: 'Subscribers', value: '25.4K' },
@@ -32,7 +33,7 @@ const platforms: Platform[] = [
   },
   {
     name: 'GitHub',
-    icon: <Github className='h-6 w-6' />,
+    icon: <FaGithub className='h-6 w-6' />,
     url: 'https://github.com/johndoe',
     stats: [
       { label: 'Followers', value: '3.2K' },
@@ -43,7 +44,7 @@ const platforms: Platform[] = [
   },
   {
     name: 'LinkedIn',
-    icon: <Linkedin className='h-6 w-6' />,
+    icon: <FaLinkedin className='h-6 w-6' />,
     url: 'https://linkedin.com/in/johndoe',
     stats: [
       { label: 'Connections', value: '5.8K' },
@@ -54,7 +55,7 @@ const platforms: Platform[] = [
   },
   {
     name: 'Twitter',
-    icon: <Twitter className='h-6 w-6' />,
+    icon: <FaTwitter className='h-6 w-6' />,
     url: 'https://twitter.com/johndoe',
     stats: [
       { label: 'Followers', value: '18.7K' },

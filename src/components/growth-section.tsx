@@ -1,9 +1,10 @@
 'use client';
 
-import { Github, Linkedin, TrendingUp, Twitter, Youtube } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import type React from 'react';
+import { FaGithub, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa6';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -20,28 +21,28 @@ interface PlatformStat {
 const platformStats: PlatformStat[] = [
   {
     name: 'YouTube',
-    icon: <Youtube className='h-5 w-5' />,
+    icon: <FaYoutube className='h-5 w-5' />,
     value: '25.4K',
     label: 'Subscribers',
     color: 'bg-red-500',
   },
   {
     name: 'GitHub',
-    icon: <Github className='h-5 w-5' />,
+    icon: <FaGithub className='h-5 w-5' />,
     value: '12.5K',
     label: 'Stars',
     color: 'bg-gray-800',
   },
   {
     name: 'Twitter',
-    icon: <Twitter className='h-5 w-5' />,
+    icon: <FaTwitter className='h-5 w-5' />,
     value: '18.7K',
     label: 'Followers',
     color: 'bg-sky-500',
   },
   {
     name: 'LinkedIn',
-    icon: <Linkedin className='h-5 w-5' />,
+    icon: <FaLinkedin className='h-5 w-5' />,
     value: '7.2K',
     label: 'Followers',
     color: 'bg-blue-600',

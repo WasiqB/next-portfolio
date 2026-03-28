@@ -15,8 +15,6 @@ Payload CMS powered Next.js portfolio website.
 - [Tailwind CSS v4](https://tailwindcss.com/)
 - [Framer Motion](https://www.framer.com/motion/)
 - [Shadcn/ui](https://ui.shadcn.com/)
-- [Payload CMS](https://payloadcms.com/)
-- [Neon DB](https://neon.tech/)
 
 ## Getting Started
 

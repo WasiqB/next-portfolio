@@ -96,8 +96,8 @@ importers:
         specifier: ^5.6.0
         version: 5.6.0(react@19.2.4)
       resend:
-        specifier: ^6.9.4
-        version: 6.9.4(@react-email/render@2.0.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
+        specifier: ^6.10.0
+        version: 6.10.0(@react-email/render@2.0.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4))
       shadcn:
         specifier: ^4.1.1
         version: 4.1.1(@types/node@25.5.0)(babel-plugin-macros@3.1.0)(typescript@6.0.2)
@@ -121,8 +121,8 @@ importers:
         version: 4.3.6
     devDependencies:
       '@biomejs/biome':
-        specifier: 2.4.9
-        version: 2.4.9
+        specifier: 2.4.10
+        version: 2.4.10
       '@tailwindcss/postcss':
         specifier: ^4.2.2
         version: 4.2.2
@@ -287,59 +287,59 @@ packages:
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
     engines: {node: '>=6.9.0'}
 
-  '@biomejs/biome@2.4.9':
-    resolution: {integrity: sha512-wvZW92FrwitTcacvCBT8xdAbfbxWfDLwjYMmU3djjqQTh7Ni4ZdiWIT/x5VcZ+RQuxiKzIOzi5D+dcyJDFZMsA==}
+  '@biomejs/biome@2.4.10':
+    resolution: {integrity: sha512-xxA3AphFQ1geij4JTHXv4EeSTda1IFn22ye9LdyVPoJU19fNVl0uzfEuhsfQ4Yue/0FaLs2/ccVi4UDiE7R30w==}
     engines: {node: '>=14.21.3'}
     hasBin: true
 
-  '@biomejs/cli-darwin-arm64@2.4.9':
-    resolution: {integrity: sha512-d5G8Gf2RpH5pYwiHLPA+UpG3G9TLQu4WM+VK6sfL7K68AmhcEQ9r+nkj/DvR/GYhYox6twsHUtmWWWIKfcfQQA==}
+  '@biomejs/cli-darwin-arm64@2.4.10':
+    resolution: {integrity: sha512-vuzzI1cWqDVzOMIkYyHbKqp+AkQq4K7k+UCXWpkYcY/HDn1UxdsbsfgtVpa40shem8Kax4TLDLlx8kMAecgqiw==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [darwin]
 
-  '@biomejs/cli-darwin-x64@2.4.9':
-    resolution: {integrity: sha512-LNCLNgqDMG7BLdc3a8aY/dwKPK7+R8/JXJoXjCvZh2gx8KseqBdFDKbhrr7HCWF8SzNhbTaALhTBoh/I6rf9lA==}
+  '@biomejs/cli-darwin-x64@2.4.10':
+    resolution: {integrity: sha512-14fzASRo+BPotwp7nWULy2W5xeUyFnTaq1V13Etrrxkrih+ez/2QfgFm5Ehtf5vSjtgx/IJycMMpn5kPd5ZNaA==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [darwin]
 
-  '@biomejs/cli-linux-arm64-musl@2.4.9':
-    resolution: {integrity: sha512-8RCww5xnPn2wpK4L/QDGDOW0dq80uVWfppPxHIUg6mOs9B6gRmqPp32h1Ls3T8GnW8Wo5A8u7vpTwz4fExN+sw==}
+  '@biomejs/cli-linux-arm64-musl@2.4.10':
+    resolution: {integrity: sha512-WrJY6UuiSD/Dh+nwK2qOTu8kdMDlLV3dLMmychIghHPAysWFq1/DGC1pVZx8POE3ZkzKR3PUUnVrtZfMfaJjyQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@biomejs/cli-linux-arm64@2.4.9':
-    resolution: {integrity: sha512-4adnkAUi6K4C/emPRgYznMOcLlUqZdXWM6aIui4VP4LraE764g6Q4YguygnAUoxKjKIXIWPteKMgRbN0wsgwcg==}
+  '@biomejs/cli-linux-arm64@2.4.10':
+    resolution: {integrity: sha512-7MH1CMW5uuxQ/s7FLST63qF8B3Hgu2HRdZ7tA1X1+mk+St4JOuIrqdhIBnnyqeyWJNI+Bww7Es5QZ0wIc1Cmkw==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@biomejs/cli-linux-x64-musl@2.4.9':
-    resolution: {integrity: sha512-5TD+WS9v5vzXKzjetF0hgoaNFHMcpQeBUwKKVi3JbG1e9UCrFuUK3Gt185fyTzvRdwYkJJEMqglRPjmesmVv4A==}
+  '@biomejs/cli-linux-x64-musl@2.4.10':
+    resolution: {integrity: sha512-kDTi3pI6PBN6CiczsWYOyP2zk0IJI08EWEQyDMQWW221rPaaEz6FvjLhnU07KMzLv8q3qSuoB93ua6inSQ55Tw==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@biomejs/cli-linux-x64@2.4.9':
-    resolution: {integrity: sha512-L10na7POF0Ks/cgLFNF1ZvIe+X4onLkTi5oP9hY+Rh60Q+7fWzKDDCeGyiHUFf1nGIa9dQOOUPGe2MyYg8nMSQ==}
+  '@biomejs/cli-linux-x64@2.4.10':
+    resolution: {integrity: sha512-tZLvEEi2u9Xu1zAqRjTcpIDGVtldigVvzug2fTuPG0ME/g8/mXpRPcNgLB22bGn6FvLJpHHnqLnwliOu8xjYrg==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@biomejs/cli-win32-arm64@2.4.9':
-    resolution: {integrity: sha512-aDZr0RBC3sMGJOU10BvG7eZIlWLK/i51HRIfScE2lVhfts2dQTreowLiJJd+UYg/tHKxS470IbzpuKmd0MiD6g==}
+  '@biomejs/cli-win32-arm64@2.4.10':
+    resolution: {integrity: sha512-umwQU6qPzH+ISTf/eHyJ/QoQnJs3V9Vpjz2OjZXe9MVBZ7prgGafMy7yYeRGnlmDAn87AKTF3Q6weLoMGpeqdQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [win32]
 
-  '@biomejs/cli-win32-x64@2.4.9':
-    resolution: {integrity: sha512-NS4g/2G9SoQ4ktKtz31pvyc/rmgzlcIDCGU/zWbmHJAqx6gcRj2gj5Q/guXhoWTzCUaQZDIqiCQXHS7BcGYc0w==}
+  '@biomejs/cli-win32-x64@2.4.10':
+    resolution: {integrity: sha512-aW/JU5GuyH4uxMrNYpoC2kjaHlyJGLgIa3XkhPEZI0uKhZhJZU8BuEyJmvgzSPQNGozBwWjC972RaNdcJ9KyJg==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
@@ -2924,8 +2924,8 @@ packages:
     peerDependencies:
       sharp: '>= 0.30.6'
 
-  postal-mime@2.7.3:
-    resolution: {integrity: sha512-MjhXadAJaWgYzevi46+3kLak8y6gbg0ku14O1gO/LNOuay8dO+1PtcSGvAdgDR0DoIsSaiIA8y/Ddw6MnrO0Tw==}
+  postal-mime@2.7.4:
+    resolution: {integrity: sha512-0WdnFQYUrPGGTFu1uOqD2s7omwua8xaeYGdO6rb88oD5yJ/4pPHDA4sdWqfD8wQVfCny563n/HQS7zTFft+f/g==}
 
   postcss-selector-parser@7.1.1:
     resolution: {integrity: sha512-orRsuYpJVw8LdAwqqLykBj9ecS5/cRHlI5+nvTo8LcCKmzDmqVORXtOIYEEQuL9D4BxtA1lm5isAqzQZCoQ6Eg==}
@@ -3074,8 +3074,8 @@ packages:
     resolution: {integrity: sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==}
     engines: {node: '>=0.10.0'}
 
-  resend@6.9.4:
-    resolution: {integrity: sha512-/M3dsJzu5OgozqVsA4Psd/1L7EdePgOIIxClas453GOQYFG3VHc2ZyCHZFlvqsc9aZCCd2BJRRqZgWC8D9c7/g==}
+  resend@6.10.0:
+    resolution: {integrity: sha512-i7CwZpYj4Oho1RxsTpLcCUkO08+HiL4NXrm6jLJ2WzJ89UGI8eROSieLONJA3hnUrf1OYnCyfq5F6POnHUMv1Q==}
     engines: {node: '>=20'}
     peerDependencies:
       '@react-email/render': '*'
@@ -3302,8 +3302,8 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  svix@1.86.0:
-    resolution: {integrity: sha512-/HTvXwjLJe1l/MsLXAO1ddCYxElJk4eNR4DzOjDOEmGrPN/3BtBE8perGwMAaJ2sT5T172VkBYzmHcjUfM1JRQ==}
+  svix@1.88.0:
+    resolution: {integrity: sha512-vm/JrrUd3bVyBE+3L33TIyVSs8gS5fYx7lrISvKlDJXTYX1ACH4REX8P1tHxsSKoZi/rvifM1t0XRc5Vc45THw==}
 
   tagged-tag@1.0.0:
     resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
@@ -3723,39 +3723,39 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
-  '@biomejs/biome@2.4.9':
+  '@biomejs/biome@2.4.10':
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64': 2.4.9
-      '@biomejs/cli-darwin-x64': 2.4.9
-      '@biomejs/cli-linux-arm64': 2.4.9
-      '@biomejs/cli-linux-arm64-musl': 2.4.9
-      '@biomejs/cli-linux-x64': 2.4.9
-      '@biomejs/cli-linux-x64-musl': 2.4.9
-      '@biomejs/cli-win32-arm64': 2.4.9
-      '@biomejs/cli-win32-x64': 2.4.9
+      '@biomejs/cli-darwin-arm64': 2.4.10
+      '@biomejs/cli-darwin-x64': 2.4.10
+      '@biomejs/cli-linux-arm64': 2.4.10
+      '@biomejs/cli-linux-arm64-musl': 2.4.10
+      '@biomejs/cli-linux-x64': 2.4.10
+      '@biomejs/cli-linux-x64-musl': 2.4.10
+      '@biomejs/cli-win32-arm64': 2.4.10
+      '@biomejs/cli-win32-x64': 2.4.10
 
-  '@biomejs/cli-darwin-arm64@2.4.9':
+  '@biomejs/cli-darwin-arm64@2.4.10':
     optional: true
 
-  '@biomejs/cli-darwin-x64@2.4.9':
+  '@biomejs/cli-darwin-x64@2.4.10':
     optional: true
 
-  '@biomejs/cli-linux-arm64-musl@2.4.9':
+  '@biomejs/cli-linux-arm64-musl@2.4.10':
     optional: true
 
-  '@biomejs/cli-linux-arm64@2.4.9':
+  '@biomejs/cli-linux-arm64@2.4.10':
     optional: true
 
-  '@biomejs/cli-linux-x64-musl@2.4.9':
+  '@biomejs/cli-linux-x64-musl@2.4.10':
     optional: true
 
-  '@biomejs/cli-linux-x64@2.4.9':
+  '@biomejs/cli-linux-x64@2.4.10':
     optional: true
 
-  '@biomejs/cli-win32-arm64@2.4.9':
+  '@biomejs/cli-win32-arm64@2.4.10':
     optional: true
 
-  '@biomejs/cli-win32-x64@2.4.9':
+  '@biomejs/cli-win32-x64@2.4.10':
     optional: true
 
   '@dotenvx/dotenvx@1.58.0':
@@ -6150,7 +6150,7 @@ snapshots:
     dependencies:
       sharp: 0.34.5
 
-  postal-mime@2.7.3: {}
+  postal-mime@2.7.4: {}
 
   postcss-selector-parser@7.1.1:
     dependencies:
@@ -6345,10 +6345,10 @@ snapshots:
 
   require-from-string@2.0.2: {}
 
-  resend@6.9.4(@react-email/render@2.0.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)):
+  resend@6.10.0(@react-email/render@2.0.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)):
     dependencies:
-      postal-mime: 2.7.3
-      svix: 1.86.0
+      postal-mime: 2.7.4
+      svix: 1.88.0
     optionalDependencies:
       '@react-email/render': 2.0.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
 
@@ -6647,7 +6647,7 @@ snapshots:
   supports-preserve-symlinks-flag@1.0.0:
     optional: true
 
-  svix@1.86.0:
+  svix@1.88.0:
     dependencies:
       standardwebhooks: 1.0.0
       uuid: 10.0.0

@@ -47,7 +47,11 @@ export default async function Blogs() {
   if (!blogSection || !blogData || blogData.length === 0) {
     return (
       <section id='blogs' className='container max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24'>
-        <SectionError title='Blog section Unavailable' message='Failed to load blog section data' />
+        <SectionError
+          title='Blog section Unavailable'
+          message='Failed to load blog section data'
+          tag={CACHE_TAGS.BLOGS}
+        />
       </section>
     );
   }

@@ -1,5 +1,19 @@
 [
   {
+    "title": "Software Development Engineer in Test 1",
+    "company": "TechVallunar",
+    "companyUrl": "https://www.techvallunar.com/",
+    "jobMode": "freelancing",
+    "jobType": "remote",
+    "period": "Feb 2026 - Present",
+    "location": "Mumbai, India",
+    "responsibilities": [
+      "Perform test automation for security platform to check if different security vulnerabilities are detected properly from the Email, Cloud storage platforms and proper corresponding security tickets are generated properly in the platform."
+    ],
+    "industries": ["Network Security"],
+    "skills": ["Python", "PyTest", "GitLab", "Jira", "Testmo", "Allure Reports", "API Testing"]
+  },
+  {
     "title": "Senior Testing Specialist",
     "company": "Kafaat Business Solutions",
     "companyUrl": "https://tahakom.com/",

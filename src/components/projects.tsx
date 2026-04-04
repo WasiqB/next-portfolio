@@ -45,7 +45,11 @@ export default async function Projects() {
   if (!projectSection || !projectData) {
     return (
       <section id='projectSection' className='max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 py-12 md:py-24'>
-        <SectionError title='Project section Unavailable' message='Failed to load project section data' />
+        <SectionError
+          title='Project section Unavailable'
+          message='Failed to load project section data'
+          tag={CACHE_TAGS.PROJECTS}
+        />
       </section>
     );
   }

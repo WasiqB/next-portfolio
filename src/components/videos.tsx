@@ -1,4 +1,5 @@
 import { videoSection } from '@/data/page-data/home-page.json';
+import { CACHE_TAGS } from '@/lib/constants';
 import type { Video } from '@/types/portfolio-types';
 import { fetchVideosAction } from './actions/videos';
 import { SectionError } from './client/section-error';
@@ -28,7 +29,11 @@ export default async function Videos() {
     if (!videos || videos.length === 0) {
       return (
         <section id='videos' className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'>
-          <SectionError title='Video section Unavailable' message='No videos found for the specified channel' />
+          <SectionError
+            title='Video section Unavailable'
+            message='No videos found for the specified channel'
+            tag={CACHE_TAGS.VIDEOS}
+          />
         </section>
       );
     }
@@ -52,7 +57,7 @@ export default async function Videos() {
     console.error('Error in Videos component:', error);
     return (
       <section id='videos' className='container py-12 max-w-360 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 md:py-24'>
-        <SectionError title='Video section Unavailable' message='Failed to load video data' />
+        <SectionError title='Video section Unavailable' message='Failed to load video data' tag={CACHE_TAGS.VIDEOS} />
       </section>
     );
   }

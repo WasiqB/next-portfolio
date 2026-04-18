@@ -251,6 +251,7 @@ export interface Service {
   title: string;
   description: string;
   icon: string;
+  isTemporarilyStopped?: boolean;
   features: string[];
   deliverables: {
     step: number;

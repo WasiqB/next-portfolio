@@ -4,6 +4,7 @@
     "title": "Automation Maintenance Program",
     "description": "Proactive upkeep for sustained automation health and efficiency.",
     "icon": "shield-check",
+    "isTemporarilyStopped": true,
     "features": [
       "Regular test suite optimization",
       "Flakiness monitoring and resolution",
@@ -106,12 +107,13 @@
     "title": "End-to-End Automation Implementation",
     "description": "Scalable test frameworks for Web, Mobile, API & Desktop applications.",
     "icon": "code-2",
+    "isTemporarilyStopped": true,
     "features": [
       "Custom framework development with best practices",
       "Cross-browser/device testing integration",
       "CI/CD pipeline implementation",
       "Living documentation generation",
-      "Performance testing integration"
+      "Web, API, Android and iOS application automation"
     ],
     "deliverables": [
       {
@@ -120,7 +122,7 @@
         "description": "Define scope, tools, and success metrics.",
         "icon": "📋",
         "details": ["User journey mapping", "Tech stack finalization", "Milestone planning"],
-        "duration": "2 hours",
+        "duration": "4 hours",
         "cost": "Free"
       },
       {
@@ -159,7 +161,6 @@
     "icon": "settings-2",
     "features": [
       "Full audit of test suites, frameworks, and CI/CD pipelines",
-      "Performance benchmarking against industry standards",
       "Actionable roadmap with prioritised improvements",
       "ROI analysis for automation investments"
     ],
@@ -196,7 +197,7 @@
         "title": "Strategic Roadmap",
         "description": "Prioritised action plan for maximum impact.",
         "icon": "🗺️",
-        "details": ["Gap analysis report", "Tooling recommendations", "ROI projection", "Implementation timeline"],
+        "details": ["Gap analysis report", "Tooling recommendations", "Implementation timeline"],
         "duration": "2 days",
         "cost": "Included"
       },

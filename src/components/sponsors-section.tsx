@@ -1,6 +1,7 @@
 import sponsorTiers from '@/data/collections/sponsor-tiers.json';
 import sponsors from '@/data/collections/sponsors.json';
 import { sponsorSection } from '@/data/page-data/home-page.json';
+import type { Sponsor } from '@/types/portfolio-types';
 import { SectionError } from './client/section-error';
 import SponsorsClient from './client/sponsors-client';
 import { ImageBox } from './image-box';
@@ -14,7 +15,7 @@ export default function SponsorsSection() {
     );
   }
 
-  const sponsorsWithImages = sponsors.map((sponsor, index) => ({
+  const sponsorsWithImages = sponsors.map((sponsor: Sponsor, index) => ({
     ...sponsor,
     imageNode: (
       <ImageBox

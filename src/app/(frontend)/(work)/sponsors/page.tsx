@@ -8,6 +8,7 @@ import { heroSection } from '@/data/page-data/home-page.json';
 import siteSettings from '@/data/page-data/site-setting.json';
 import sponsorsPage from '@/data/page-data/sponsor-page.json';
 import { domain } from '@/lib/constants';
+import type { Sponsor } from '@/types/portfolio-types';
 
 export const generateMetadata = async (): Promise<Metadata> => {
   if (!sponsorsPage) return {};
@@ -47,7 +48,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 async function SponsorData() {
-  const sponsorsWithImages = sponsors.map((sponsor, index) => ({
+  const sponsorsWithImages = sponsors.map((sponsor: Sponsor, index) => ({
     ...sponsor,
     imageNode: (
       <ImageBox
@@ -65,7 +66,7 @@ async function SponsorData() {
     name: sponsorsPage?.title || 'Our Sponsors',
     description: sponsorsPage?.description,
     numberOfItems: sponsors.length,
-    itemListElement: sponsors.map((sponsor, index) => ({
+    itemListElement: sponsors.map((sponsor: Sponsor, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {

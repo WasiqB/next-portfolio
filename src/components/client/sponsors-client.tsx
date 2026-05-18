@@ -46,26 +46,44 @@ export default function SponsorsClient({ sponsorSection, sponsors, tiers }: Spon
         )}
       </motion.div>
 
-      <div className='grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-3xl mx-auto mb-12'>
-        {topSponsors.map((sponsor, index) => {
-          return (
-            <motion.div
-              key={sponsor.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className='flex justify-center'
-            >
-              <Link href={sponsor.url} target='_blank' rel='noopener noreferrer' className='group'>
-                <div className='relative w-24 h-24 md:w-32 md:h-32 overflow-hidden rounded-full border-2 border-muted transition-all hover:border-primary'>
-                  {sponsor.imageNode}
-                </div>
-              </Link>
-            </motion.div>
-          );
-        })}
-      </div>
+      {topSponsors.length > 0 ? (
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-3xl mx-auto mb-12'>
+          {topSponsors.map((sponsor, index) => {
+            return (
+              <motion.div
+                key={sponsor.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className='flex justify-center'
+              >
+                <Link href={sponsor.url} target='_blank' rel='noopener noreferrer' className='group'>
+                  <div className='relative w-24 h-24 md:w-32 md:h-32 overflow-hidden rounded-full border-2 border-muted transition-all hover:border-primary'>
+                    {sponsor.imageNode}
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
+        </div>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className='flex flex-col items-center justify-center space-y-4 mb-12 text-center'
+        >
+          <div className='p-6 border border-dashed rounded-lg bg-muted/50 max-w-lg w-full'>
+            <Heart className='h-8 w-8 mx-auto mb-3 text-muted-foreground' />
+            <h3 className='text-lg font-medium mb-2'>No sponsors yet</h3>
+            <p className='text-muted-foreground mb-4'>
+              Be the first to support my open source work and get featured here!
+            </p>
+          </div>
+        </motion.div>
+      )}
 
       {sponsorSection.viewAllButton && (
         <div className='flex justify-center'>

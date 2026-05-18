@@ -144,42 +144,66 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
       </div>
 
       <div className='space-y-16'>
-        <motion.h2 variants={itemVariants} className='text-2xl font-bold mb-8'>
-          Current Sponsors
-        </motion.h2>
-        {tiers
-          .sort((a, b) => b.price - a.price)
-          .map((tier) => {
-            const tierSponsors = getSponsorsByTier(tier.id);
-            if (!tierSponsors.length) return null;
-            return (
-              <motion.div variants={itemVariants} className='mb-12' key={tier.id}>
-                <h3 className='text-xl font-semibold mb-4 inline-flex items-center'>
-                  <span className={`${getTierClass(tier.id)} w-6 h-6 rounded-full mr-2`}></span>
-                  {tier.name} Sponsors
-                </h3>
-                <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6'>
-                  {tierSponsors.map((sponsor) => (
-                    <SponsorCard key={sponsor.name} sponsor={sponsor} />
-                  ))}
+        <div className='mb-16'>
+          <motion.h2 variants={itemVariants} className='text-2xl font-bold mb-8'>
+            Current Sponsors
+          </motion.h2>
+
+          {sponsors.length === 0 ? (
+            <motion.div
+              variants={itemVariants}
+              className='flex flex-col items-center justify-center p-8 border border-dashed rounded-lg bg-muted/30 text-center max-w-2xl mx-auto'
+            >
+              <Heart className='h-10 w-10 mb-4 text-muted-foreground/50' />
+              <h3 className='text-xl font-semibold mb-2'>No Sponsors Yet</h3>
+              <p className='text-muted-foreground mb-6'>
+                Be the first to support my open source work and get featured here!
+              </p>
+              <Button asChild>
+                <Link href='https://github.com/sponsors/WasiqB' target='_blank' rel='noopener noreferrer'>
+                  <Heart className='h-4 w-4 mr-2' />
+                  Sponsor me
+                </Link>
+              </Button>
+            </motion.div>
+          ) : (
+            <>
+              {tiers
+                .sort((a, b) => b.price - a.price)
+                .map((tier) => {
+                  const tierSponsors = getSponsorsByTier(tier.id);
+                  if (!tierSponsors.length) return null;
+                  return (
+                    <motion.div variants={itemVariants} className='mb-12' key={tier.id}>
+                      <h3 className='text-xl font-semibold mb-4 inline-flex items-center'>
+                        <span className={`${getTierClass(tier.id)} w-6 h-6 rounded-full mr-2`}></span>
+                        {tier.name} Sponsors
+                      </h3>
+                      <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6'>
+                        {tierSponsors.map((sponsor) => (
+                          <SponsorCard key={sponsor.name} sponsor={sponsor} />
+                        ))}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              {/* Other Sponsors */}
+              {otherSponsors.length > 0 && (
+                <div className='mb-12'>
+                  <h3 className='text-xl font-semibold mb-4 inline-flex items-center'>
+                    <span className='bg-muted w-6 h-6 rounded-full mr-2'></span>
+                    Other Sponsors
+                  </h3>
+                  <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6'>
+                    {otherSponsors.map((sponsor) => (
+                      <SponsorCard key={sponsor.name} sponsor={sponsor} />
+                    ))}
+                  </div>
                 </div>
-              </motion.div>
-            );
-          })}
-        {/* Other Sponsors */}
-        {otherSponsors.length > 0 && (
-          <div className='mb-12'>
-            <h3 className='text-xl font-semibold mb-4 inline-flex items-center'>
-              <span className='bg-muted w-6 h-6 rounded-full mr-2'></span>
-              Other Sponsors
-            </h3>
-            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6'>
-              {otherSponsors.map((sponsor) => (
-                <SponsorCard key={sponsor.name} sponsor={sponsor} />
-              ))}
-            </div>
-          </div>
-        )}
+              )}
+            </>
+          )}
+        </div>
       </div>
 
       <div className='mb-16'>

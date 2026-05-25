@@ -298,9 +298,6 @@ export default function ServiceContent({
                 </motion.div>
               </Link>
             </Button>
-            <Button size='lg' variant='outline' asChild>
-              <Link href='/#contact'>Send Quick Message</Link>
-            </Button>
           </div>
           <p className='text-xs text-muted-foreground mt-4'>
             ⚡ Most clients see results within the first week of starting

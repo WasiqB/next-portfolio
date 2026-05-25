@@ -39,8 +39,8 @@
       "url": "/services"
     },
     "bookACallButton": {
-      "label": "Book Free Discovery Call",
-      "url": "https://cal.com/wasiqbhamla/discussion-with-wasiq"
+      "label": "Book a Free Discovery Call",
+      "url": "/#contact"
     }
   },
   "blogSection": {

@@ -4,35 +4,37 @@
     "name": "Donation",
     "description": "Support my work with a one-time contribution.",
     "price": 0,
-    "benefits": ["You get a shout-out on my Socials", "Get your name listed on my personal website"],
-    "tierUrl": "https://github.com/sponsors/WasiqB"
+    "benefits": ["You get a shout-out on my Socials.", "Get your name listed on my personal website."],
+    "tierUrl": "https://github.com/sponsors/WasiqB",
+    "patreonUrl": "https://www.patreon.com/wasiqbhamla/gift"
   },
   {
     "id": "starter",
     "name": "🚶🏻 Starter",
     "description": "Support my work with monthly contributions.",
     "price": 5,
-    "benefits": ["You get a shout-out on my Socials", "Get your name listed on my personal website"],
-    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157962"
+    "benefits": ["You get a shout-out on my Socials.", "Get your name listed on my personal website."],
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157962",
+    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=3752882&vanity=1430146"
   },
   {
     "id": "backer",
     "name": "🤝 Backer",
     "description": "Support my work with monthly contributions.",
     "price": 25,
-    "benefits": ["Including previous tier benefits", "Get your name listed on README of all my repositories"],
-    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157963"
+    "benefits": ["Including previous tier benefits.", "Chat with me live to get quick response to your queries."],
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157963",
+    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=3752920&vanity=1430146"
   },
   {
     "id": "bronze",
     "name": "🥉 Bronze",
     "description": "Support my work with monthly contributions.",
     "price": 50,
-    "benefits": [
-      "Including previous tier benefits",
-      "Get special sponsor role on my Discord server with access to private sponsor channel where you will get priority over other discussions"
-    ],
-    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157964"
+    "benefits": ["Including previous tier benefits.", "Access to my personal Discord server."],
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157964",
+    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=7006500&vanity=1430146",
+    "highlight": true
   },
   {
     "id": "silver",
@@ -40,10 +42,11 @@
     "description": "Support my work with monthly contributions.",
     "price": 100,
     "benefits": [
-      "Including previous tier benefits",
-      "Get 30 minutes / month of call with me anytime during the month for any consulting or mentorship"
+      "Including previous tier benefits.",
+      "Early access to my learning contents on my YouTube channel and Blogs."
     ],
-    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157967"
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157967",
+    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=28685184&vanity=1430146"
   },
   {
     "id": "gold",
@@ -51,10 +54,11 @@
     "description": "Enhanced support and visibility for your brand.",
     "price": 350,
     "benefits": [
-      "Including previous tier benefits",
-      "Get 1 hour / month of call with me anytime during the month for any consulting or mentorship"
+      "Including previous tier benefits.",
+      "Advance Tutorial videos which would be a part of a Course content."
     ],
-    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=206957"
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=206957",
+    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=28685212&vanity=1430146"
   },
   {
     "id": "diamond",
@@ -62,10 +66,11 @@
     "description": "Top-tier support with maximum visibility.",
     "price": 500,
     "benefits": [
-      "Including previous tier benefits",
-      "Get 4 hour / month of call with me anytime during the month for any consulting or mentorship"
+      "Including previous tier benefits.",
+      "Twice a month, half an hour, 1-on-1 call with me to discuss any queries you have."
     ],
-    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=235804"
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=235804",
+    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=28685858&vanity=1430146"
   },
   {
     "id": "platinum",
@@ -73,9 +78,10 @@
     "description": "Premium support and visibility for your brand.",
     "price": 1000,
     "benefits": [
-      "Including previous tier benefits",
-      "Get 12 hour / month call with me anytime during the month for any consulting or mentorship"
+      "Including previous tier benefits.",
+      "Twice a month, 1 hour duration, 1-on-1 call with me to discuss any queries you have."
     ],
-    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=206958"
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=206958",
+    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=28686177&vanity=1430146"
   }
 ]

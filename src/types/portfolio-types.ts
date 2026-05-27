@@ -277,6 +277,8 @@ export interface SponsorTier {
   price: number;
   benefits: string[];
   tierUrl: string;
+  patreonUrl?: string;
+  highlight?: boolean;
 }
 
 export interface Sponsor {
@@ -284,6 +286,7 @@ export interface Sponsor {
   avatar: string;
   url: string;
   tier: string;
+  platform?: 'github' | 'patreon';
 }
 
 export interface Testimonial {

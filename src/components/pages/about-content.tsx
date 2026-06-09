@@ -4,13 +4,13 @@ import { ArrowLeft, Award, Briefcase, ExternalLink, GraduationCap } from 'lucide
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { FaFacebook, FaGithub, FaInstagram, FaLinkedin, FaXTwitter, FaYoutube } from 'react-icons/fa6';
+import CertificationShowcase from '@/components/client/certification-section';
+import EducationTimeline from '@/components/client/education-section';
+import ExperienceTimeline from '@/components/client/experience-section';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import type { AboutPage, Certificate, Education, Experience, Social } from '@/types/portfolio-types';
-import CertificationShowcase from '../client/certification-section';
-import EducationTimeline from '../client/education-section';
-import ExperienceTimeline from '../client/experience-section';
-import { Badge } from '../ui/badge';
-import { Button } from '../ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
 const containerVariants = {
   hidden: { opacity: 0 },

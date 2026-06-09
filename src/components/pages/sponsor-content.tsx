@@ -4,9 +4,9 @@ import { ArrowLeft, Heart, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { FaGithub, FaPatreon } from 'react-icons/fa6';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import type { Sponsor, SponsorTier } from '@/types/portfolio-types';
-import { Button } from '../ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
 const containerVariants = {
   hidden: { opacity: 0 },

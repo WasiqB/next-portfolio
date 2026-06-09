@@ -2,11 +2,11 @@
 
 import { motion } from 'motion/react';
 import Link from 'next/link';
+import DynamicLucideIcon, { type IconName } from '@/components/dynamic-icon';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import type { HomePage, Service } from '@/types/portfolio-types';
-import DynamicLucideIcon, { type IconName } from '../dynamic-icon';
-import { Badge } from '../ui/badge';
 
 interface ServicesClientProps {
   serviceSection: HomePage['serviceSection'];

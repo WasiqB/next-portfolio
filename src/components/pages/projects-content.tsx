@@ -4,10 +4,10 @@ import { ArrowLeft, GitFork, Star } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
 import { FaGithub } from 'react-icons/fa6';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import type { Project } from '@/types/portfolio-types';
-import { Badge } from '../ui/badge';
-import { Button } from '../ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card';
 
 const containerVariants = {
   hidden: { opacity: 0 },

@@ -5,12 +5,9 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import type React from 'react';
 import { useEffect, useState } from 'react';
+import DynamicLucideIcon, { type IconName } from '@/components/dynamic-icon';
 import { Button } from '@/components/ui/button';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { smoothScrollTo } from '@/lib/utils';
-import type { Header } from '@/types/portfolio-types';
-import DynamicLucideIcon, { type IconName } from '../dynamic-icon';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -19,7 +16,10 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from '../ui/navigation-menu';
+} from '@/components/ui/navigation-menu';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { smoothScrollTo } from '@/lib/utils';
+import type { Header } from '@/types/portfolio-types';
 
 function ListItem({
   title,

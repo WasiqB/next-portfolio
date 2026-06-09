@@ -4,13 +4,13 @@ import { ArrowLeft, CalendarIcon } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import Link from 'next/link';
 import { useState } from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getBlogSource } from '@/lib/blogs-utils';
 import { formatDate } from '@/lib/date-utils';
 import type { Blog } from '@/types/portfolio-types';
-import { Badge } from '../ui/badge';
-import { Button } from '../ui/button';
-import { Card, CardContent, CardHeader } from '../ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 function BlogCard({ blog }: { blog: Blog & { imageNode?: React.ReactNode } }) {
   return (

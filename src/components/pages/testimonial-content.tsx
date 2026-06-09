@@ -3,9 +3,9 @@
 import { ArrowLeft, Quote } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
 import type { Testimonial } from '@/types/portfolio-types';
-import { Button } from '../ui/button';
-import { Card, CardContent } from '../ui/card';
 
 const containerVariants = {
   hidden: { opacity: 0 },

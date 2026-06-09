@@ -6,12 +6,12 @@ import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
 import { FaYoutube } from 'react-icons/fa6';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardFooter } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { formatDate } from '@/lib/date-utils';
 import { shortenNumber } from '@/lib/number-utils';
 import type { Video } from '@/types/portfolio-types';
-import { Button } from '../ui/button';
-import { Card, CardContent, CardFooter } from '../ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 
 const containerVariants = {
   hidden: { opacity: 0 },

@@ -20,6 +20,7 @@ import {
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { smoothScrollTo } from '@/lib/utils';
 import type { Header } from '@/types/portfolio-types';
+import { RainbowButton } from '@/components/ui/rainbow-button';
 
 function ListItem({
   title,
@@ -146,12 +147,12 @@ export default function NavbarClient({ navbar, lightImage, darkImage }: NavbarCl
               </NavigationMenu>
 
               {navbar.ctaButton?.visible && (
-                <Button variant='default' size='sm' className='gap-1' asChild>
+                <RainbowButton variant='default' size='sm' className='gap-1' asChild>
                   <Link href={navbar.ctaButton.url} target={navbar.ctaButton.target || '_self'}>
                     <DynamicLucideIcon name={navbar.ctaButton.icon as IconName} className='h-4 w-4' />
                     {navbar.ctaButton.label}
                   </Link>
-                </Button>
+                </RainbowButton>
               )}
 
               {navbar.themeToggle?.visible && (

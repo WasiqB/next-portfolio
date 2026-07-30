@@ -4,6 +4,9 @@ import type { NextConfig } from 'next';
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   cacheComponents: true,
+  experimental: {
+    useTypeScriptCli: true,
+  },
   turbopack: {},
   images: {
     remotePatterns: [

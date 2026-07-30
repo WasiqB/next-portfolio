@@ -6,7 +6,7 @@
     "avatar": "https://w8wm6ag6dp.ufs.sh/f/u6Px0nITGQsNCJFmmy2Mc1yuAHXLrmYp0Th3U2d765Vz9Pwb",
     "testimonial": "Wasiq brings an exceptional blend of expertise, precision and professionalism to everything he does. His in-depth understanding of his craft is clearly reflected in the quality of work he delivers always well thought out, meticulously executed and delivered on time. What truly sets him apart is his partner-like approach he doesn’t just execute tasks, he actively contributes with valuable insights, constructive feedback and strategic suggestions on what should be done and how it can be improved. Despite the high standards he maintains, his pricing remains remarkably fair and flexible, making his services both premium and accessible. Working with Wasiq feels less like working with a vendor and more like collaborating with a trusted partner who genuinely cares about outcomes, quality and long-term success. Highly recommended for anyone seeking reliability, clarity and excellence.",
     "category": "client",
-    "featured": true
+    "featured": false
   },
   {
     "name": "Nick Vidal",
@@ -97,5 +97,23 @@
     "testimonial": "Wasiq has worked on 3-4 blogs on Automation with Appium and Selenium. He is a proven expert in the area since he is a seasoned engineer and open-sourcer. He is proactive in communication, resolving comments. Definitely recommend him for blog writing!",
     "category": "client",
     "featured": true
+  },
+  {
+    "name": "Deep Barot",
+    "title": "Chief Executive Officer",
+    "company": "ContextQA",
+    "featured": true,
+    "category": "client",
+    "avatar": "https://w8wm6ag6dp.ufs.sh/f/u6Px0nITGQsNuOSd1WOITGQsNt9vpSil61eRmU2ohXHOYdwn",
+    "testimonial": "Wasiq is a builder with an innovation mindset."
+  },
+  {
+    "name": "Nilesh Bamne",
+    "title": "Tech Lead – AI & SaaS MVP Delivery (Independent)",
+    "company": "Independent Consultant",
+    "category": "client",
+    "featured": true,
+    "avatar": "https://w8wm6ag6dp.ufs.sh/f/u6Px0nITGQsNiZLf756pJ9UdSoHf40ZLg1VaYOsqXDuI2Pbx",
+    "testimonial": "Worked with Wasiq on a project and what stood out was how he actually took time to understand what we needed before jumping in. No wasted effort, no miscommunication. He'd ask the right questions upfront and then just execute fast. Made the whole thing move quicker. Would definitely work with him again."
   }
 ]

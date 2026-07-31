@@ -1,8 +1,7 @@
 'use server';
 
-import { Resend } from 'resend';
 import { z } from 'zod';
-import { ContactEmail } from '@/emails/ContactEmail';
+import { domain } from '@/lib/constants';
 
 const contactSchema = z.object({
   toEmail: z.email(),
@@ -12,33 +11,37 @@ const contactSchema = z.object({
   message: z.string().min(10).max(2000),
 });
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 export async function sendContactEmailAction(values: z.infer<typeof contactSchema>) {
+  const parsed = contactSchema.safeParse(values);
+
+  if (!parsed.success) {
+    return { error: 'Invalid form data', fieldErrors: z.treeifyError(parsed.error) };
+  }
+
+  const { name, email, reason, message, toEmail } = parsed.data;
+
   try {
-    const parsed = contactSchema.safeParse(values);
-
-    if (!parsed.success) {
-      return { error: 'Invalid form data', fieldErrors: parsed.error.flatten().fieldErrors };
-    }
-
-    const { name, email, reason, message, toEmail } = parsed.data;
-
-    await resend.emails.send({
-      from: 'User Inquiry <noreply@wasiqbhamla.com>',
-      to: toEmail,
-      subject: `User Inquiry: ${reason || 'General Inquiry'}`,
-      react: ContactEmail({
-        name,
-        email: email.toLowerCase(),
-        reason,
+    const response = await fetch(`${domain}/api/send`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        to: toEmail,
+        subject: `User Inquiry: ${reason || 'General Inquiry'}`,
         message,
+        name,
+        email,
       }),
     });
 
+    const data = await response.json();
+
+    if (!response.ok) {
+      return { error: data.error || 'Failed to send email' };
+    }
+
     return { success: true };
-  } catch (error) {
-    console.error('Error sending contact email:', error);
-    return { error: 'Failed to send message. Please try again later.' };
+  } catch (err) {
+    console.log(err);
+    return { error: 'Network error. Please try again.' };
   }
 }

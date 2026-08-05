@@ -33,3 +33,5 @@ jobs:
 
       - name: Build the project
         run: pnpm build
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}

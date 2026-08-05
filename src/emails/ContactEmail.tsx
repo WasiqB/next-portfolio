@@ -28,7 +28,7 @@ export function ContactEmail({ name, email, reason, message }: ContactEmailProps
         <Head />
         <Preview>New contact form submission from {name}</Preview>
         <Body className='bg-gray-100 font-sans py-10'>
-          <Container className='bg-primary rounded-xl shadow-lg max-w-[600px] mx-auto'>
+          <Container className='bg-primary rounded-xl shadow-lg max-w-150 mx-auto'>
             {/* Header with Logo and Site Title */}
             <Section className='bg-secondary rounded-t-xl px-10 py-8 text-center'>
               <Img

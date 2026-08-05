@@ -1,7 +1,8 @@
 'use server';
 
+import { Resend } from 'resend';
 import { z } from 'zod';
-import { domain } from '@/lib/constants';
+import { ContactEmail } from '@/emails/ContactEmail';
 
 const contactSchema = z.object({
   toEmail: z.email(),
@@ -11,37 +12,49 @@ const contactSchema = z.object({
   message: z.string().min(10).max(2000),
 });
 
-export async function sendContactEmailAction(values: z.infer<typeof contactSchema>) {
-  const parsed = contactSchema.safeParse(values);
+function getResendClient() {
+  const apiKey = process.env.RESEND_API_KEY;
 
-  if (!parsed.success) {
-    return { error: 'Invalid form data', fieldErrors: z.treeifyError(parsed.error) };
+  if (!apiKey) {
+    throw new Error('Missing RESEND_API_KEY environment variable');
   }
 
-  const { name, email, reason, message, toEmail } = parsed.data;
+  return new Resend(apiKey);
+}
 
+function getFromAddress() {
+  return process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
+}
+
+export async function sendContactEmailAction(values: z.infer<typeof contactSchema>) {
   try {
-    const response = await fetch(`${domain}/api/send`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        to: toEmail,
-        subject: `User Inquiry: ${reason || 'General Inquiry'}`,
-        message,
+    const parsed = contactSchema.safeParse(values);
+
+    if (!parsed.success) {
+      return { error: 'Invalid form data', fieldErrors: z.treeifyError(parsed.error) };
+    }
+
+    const { name, email, reason, message, toEmail } = parsed.data;
+    const resend = getResendClient();
+    const response = await resend.emails.send({
+      from: `User Inquiry <${getFromAddress()}>`,
+      to: [toEmail],
+      subject: `User Inquiry: ${reason || 'General Inquiry'}`,
+      react: ContactEmail({
         name,
-        email,
+        email: email.toLowerCase(),
+        reason,
+        message,
       }),
     });
 
-    const data = await response.json();
-
-    if (!response.ok) {
-      return { error: data.error || 'Failed to send email' };
+    if (response.error) {
+      throw new Error(response.error.message || 'Resend rejected the email request');
     }
 
     return { success: true };
-  } catch (err) {
-    console.log(err);
-    return { error: 'Network error. Please try again.' };
+  } catch (error) {
+    console.error('Error sending contact email:', error);
+    return { error: 'Failed to send message. Please try again later.' };
   }
 }

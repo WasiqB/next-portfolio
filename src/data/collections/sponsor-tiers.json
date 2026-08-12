@@ -5,8 +5,7 @@
     "description": "Support my work with a one-time contribution.",
     "price": 0,
     "benefits": ["You get a shout-out on my Socials.", "Get your name listed on my personal website."],
-    "tierUrl": "https://github.com/sponsors/WasiqB",
-    "patreonUrl": "https://www.patreon.com/wasiqbhamla/gift"
+    "tierUrl": "https://github.com/sponsors/WasiqB"
   },
   {
     "id": "starter",
@@ -14,8 +13,7 @@
     "description": "Support my work with monthly contributions.",
     "price": 5,
     "benefits": ["You get a shout-out on my Socials.", "Get your name listed on my personal website."],
-    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157962",
-    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=3752882&vanity=1430146"
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157962"
   },
   {
     "id": "backer",
@@ -23,8 +21,7 @@
     "description": "Support my work with monthly contributions.",
     "price": 25,
     "benefits": ["Including previous tier benefits.", "Chat with me live to get quick response to your queries."],
-    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157963",
-    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=3752920&vanity=1430146"
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157963"
   },
   {
     "id": "bronze",
@@ -33,7 +30,6 @@
     "price": 50,
     "benefits": ["Including previous tier benefits.", "Access to my personal Discord server."],
     "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157964",
-    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=7006500&vanity=1430146",
     "highlight": true
   },
   {
@@ -45,8 +41,7 @@
       "Including previous tier benefits.",
       "Early access to my learning contents on my YouTube channel and Blogs."
     ],
-    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157967",
-    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=28685184&vanity=1430146"
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=157967"
   },
   {
     "id": "gold",
@@ -57,8 +52,7 @@
       "Including previous tier benefits.",
       "Advance Tutorial videos which would be a part of a Course content."
     ],
-    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=206957",
-    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=28685212&vanity=1430146"
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=206957"
   },
   {
     "id": "diamond",
@@ -69,8 +63,7 @@
       "Including previous tier benefits.",
       "Twice a month, half an hour, 1-on-1 call with me to discuss any queries you have."
     ],
-    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=235804",
-    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=28685858&vanity=1430146"
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=235804"
   },
   {
     "id": "platinum",
@@ -81,7 +74,6 @@
       "Including previous tier benefits.",
       "Twice a month, 1 hour duration, 1-on-1 call with me to discuss any queries you have."
     ],
-    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=206958",
-    "patreonUrl": "https://www.patreon.com/checkout/wasiqbhamla?rid=28686177&vanity=1430146"
+    "tierUrl": "https://github.com/sponsors/WasiqB/sponsorships?tier_id=206958"
   }
 ]

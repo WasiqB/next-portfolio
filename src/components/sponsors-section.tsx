@@ -15,7 +15,8 @@ export default function SponsorsSection() {
     );
   }
 
-  const sponsorsWithImages = sponsors.map((sponsor: Sponsor, index) => ({
+  const typedSponsors = sponsors as Sponsor[];
+  const sponsorsWithImages = typedSponsors.map((sponsor, index) => ({
     ...sponsor,
     imageNode: (
       <ImageBox

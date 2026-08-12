@@ -3,7 +3,7 @@
 import { Heart } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
-import { FaGithub, FaPatreon } from 'react-icons/fa6';
+import { FaGithub } from 'react-icons/fa6';
 import { Button } from '@/components/ui/button';
 import type { HomePage, Sponsor, SponsorTier } from '@/types/portfolio-types';
 
@@ -64,19 +64,9 @@ export default function SponsorsClient({ sponsorSection, sponsors, tiers }: Spon
                     <div className='relative w-full h-full overflow-hidden rounded-full border-2 border-muted transition-all group-hover:border-primary'>
                       {sponsor.imageNode}
                     </div>
-                    {sponsor.platform && (
-                      <div
-                        className={`absolute bottom-0 right-0 p-1.5 rounded-full border shadow-md z-10 transition-transform group-hover:scale-110 ${
-                          sponsor.platform === 'github'
-                            ? 'bg-card text-foreground border-border'
-                            : 'bg-[#FF424D] text-white border-none'
-                        }`}
-                      >
-                        {sponsor.platform === 'github' ? (
-                          <FaGithub className='h-3.5 w-3.5' />
-                        ) : (
-                          <FaPatreon className='h-3.5 w-3.5' />
-                        )}
+                    {sponsor.platform === 'github' && (
+                      <div className='absolute bottom-0 right-0 p-1.5 rounded-full border shadow-md z-10 transition-transform group-hover:scale-110 bg-card text-foreground border-border'>
+                        <FaGithub className='h-3.5 w-3.5' />
                       </div>
                     )}
                   </div>

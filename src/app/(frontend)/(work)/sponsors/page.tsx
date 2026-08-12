@@ -48,7 +48,8 @@ export const generateMetadata = async (): Promise<Metadata> => {
 };
 
 async function SponsorData() {
-  const sponsorsWithImages = sponsors.map((sponsor: Sponsor, index) => ({
+  const typedSponsors = sponsors as Sponsor[];
+  const sponsorsWithImages = typedSponsors.map((sponsor, index) => ({
     ...sponsor,
     imageNode: (
       <ImageBox
@@ -65,8 +66,8 @@ async function SponsorData() {
     '@type': 'ItemList',
     name: sponsorsPage?.title || 'Our Sponsors',
     description: sponsorsPage?.description,
-    numberOfItems: sponsors.length,
-    itemListElement: sponsors.map((sponsor: Sponsor, index) => ({
+    numberOfItems: typedSponsors.length,
+    itemListElement: typedSponsors.map((sponsor, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {

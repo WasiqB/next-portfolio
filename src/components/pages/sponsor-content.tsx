@@ -3,7 +3,7 @@
 import { ArrowLeft, Heart, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
-import { FaGithub, FaPatreon } from 'react-icons/fa6';
+import { FaGithub } from 'react-icons/fa6';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import type { Sponsor, SponsorTier } from '@/types/portfolio-types';
@@ -43,13 +43,9 @@ function SponsorCard({ sponsor }: SponsorCardProps) {
             {sponsor.imageNode}
           </div>
 
-          {platform && (
-            <div
-              className={`absolute bottom-0 right-0 p-1.5 rounded-full border shadow-md z-10 transition-transform group-hover:scale-110 ${
-                platform === 'github' ? 'bg-card text-foreground border-border' : 'bg-[#FF424D] text-white border-none'
-              }`}
-            >
-              {platform === 'github' ? <FaGithub className='h-3.5 w-3.5' /> : <FaPatreon className='h-3.5 w-3.5' />}
+          {platform === 'github' && (
+            <div className='absolute bottom-0 right-0 p-1.5 rounded-full border shadow-md z-10 transition-transform group-hover:scale-110 bg-card text-foreground border-border'>
+              <FaGithub className='h-3.5 w-3.5' />
             </div>
           )}
         </div>
@@ -106,80 +102,57 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
         <h1 className='text-3xl font-bold'>My Sponsors</h1>
       </motion.div>
 
-      <div className='space-y-8 mb-16'>
-        <motion.div variants={itemVariants}>
-          <Card>
-            <CardHeader>
-              <CardTitle>Why Sponsor Me?</CardTitle>
-              <CardDescription>Support my open source work and help me create more content</CardDescription>
-            </CardHeader>
-            <CardContent className='space-y-4'>
-              <p>
-                By becoming a sponsor, you're not just supporting my work, you're investing in the future of open source
-                software and educational content that benefits the entire QA community.
-              </p>
-              <p className='font-medium'>Your sponsorship helps me dedicate more time to:</p>
-              <ul className='grid grid-cols-1 md:grid-cols-2 gap-3 list-disc pl-6 py-2'>
-                <li>Creating high-quality tutorials and educational content</li>
-                <li>Maintaining and improving open source projects</li>
-                <li>Developing new tools and libraries for the community</li>
-                <li>Mentoring new QA and contributing to the ecosystem</li>
-              </ul>
-              <p>
-                In return, sponsors receive benefits like priority support, shout out on my Socials, personalized
-                consulting, and recognition on my website and GitHub repositories.
-              </p>
-            </CardContent>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-16'>
+        <motion.div variants={itemVariants} className='h-full'>
+          <Card className='h-full flex flex-col justify-between'>
+            <div>
+              <CardHeader>
+                <CardTitle>Why Sponsor Me?</CardTitle>
+                <CardDescription>Support my open source work and help me create more content</CardDescription>
+              </CardHeader>
+              <CardContent className='space-y-4 text-sm'>
+                <p>
+                  By becoming a sponsor, you're not just supporting my work, you're investing in the future of open
+                  source software and educational content that benefits the entire QA community.
+                </p>
+                <p className='font-medium'>Your sponsorship helps me dedicate more time to:</p>
+                <ul className='grid grid-cols-1 gap-2 list-disc pl-5 py-1 text-muted-foreground'>
+                  <li>Creating high-quality tutorials and educational content</li>
+                  <li>Maintaining and improving open source projects</li>
+                  <li>Developing new tools and libraries for the community</li>
+                  <li>Mentoring new QA and contributing to the ecosystem</li>
+                </ul>
+                <p className='text-xs text-muted-foreground'>
+                  In return, sponsors receive benefits like priority support, shout out on my Socials, personalized
+                  consulting, and recognition on my website and GitHub repositories.
+                </p>
+              </CardContent>
+            </div>
           </Card>
         </motion.div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-8'>
-          <motion.div variants={itemVariants}>
-            <Card className='h-full flex flex-col justify-between border-primary/20 hover:border-primary/50 transition-colors'>
-              <CardHeader className='pb-2'>
-                <CardTitle className='flex items-center text-lg md:text-xl'>
-                  <FaGithub className='h-5 w-5 mr-2 text-foreground' />
-                  GitHub Sponsors
-                </CardTitle>
-                <CardDescription>Support me through GitHub Sponsors</CardDescription>
-              </CardHeader>
-              <CardContent className='grow text-sm text-muted-foreground pb-4'>
-                GitHub Sponsors allows you to support my work with monthly recurring payments or one-time contributions.
-              </CardContent>
-              <div className='p-6 pt-0'>
-                <Button className='w-full' asChild>
-                  <Link href='https://github.com/sponsors/WasiqB' target='_blank' rel='noopener noreferrer'>
-                    <Heart className='h-4 w-4 mr-2 text-red-500 fill-red-500' />
-                    Sponsor on GitHub
-                  </Link>
-                </Button>
-              </div>
-            </Card>
-          </motion.div>
-
-          <motion.div variants={itemVariants}>
-            <Card className='h-full flex flex-col justify-between border-orange-500/20 hover:border-orange-500/50 transition-colors'>
-              <CardHeader className='pb-2'>
-                <CardTitle className='flex items-center text-lg md:text-xl'>
-                  <FaPatreon className='h-5 w-5 mr-2 text-[#FF424D]' />
-                  Patreon Sponsors
-                </CardTitle>
-                <CardDescription>Support me through Patreon</CardDescription>
-              </CardHeader>
-              <CardContent className='grow text-sm text-muted-foreground pb-4'>
-                Support me on Patreon to unlock exclusive benefits, early access, and private community channels.
-              </CardContent>
-              <div className='p-6 pt-0'>
-                <Button className='w-full bg-[#FF424D] hover:bg-[#FF424D]/90 text-white border-[#FF424D]' asChild>
-                  <Link href='https://www.patreon.com/wasiqbhamla' target='_blank' rel='noopener noreferrer'>
-                    <FaPatreon className='h-4 w-4 mr-2' />
-                    Sponsor on Patreon
-                  </Link>
-                </Button>
-              </div>
-            </Card>
-          </motion.div>
-        </div>
+        <motion.div variants={itemVariants} className='h-full'>
+          <Card className='h-full flex flex-col justify-between border-primary/20 hover:border-primary/50 transition-colors'>
+            <CardHeader className='pb-2'>
+              <CardTitle className='flex items-center text-lg md:text-xl'>
+                <FaGithub className='h-5 w-5 mr-2 text-foreground' />
+                GitHub Sponsors
+              </CardTitle>
+              <CardDescription>Support me through GitHub Sponsors</CardDescription>
+            </CardHeader>
+            <CardContent className='grow text-sm text-muted-foreground pb-4'>
+              GitHub Sponsors allows you to support my work with monthly recurring payments or one-time contributions.
+            </CardContent>
+            <div className='p-6 pt-0'>
+              <Button className='w-full' asChild>
+                <Link href='https://github.com/sponsors/WasiqB' target='_blank' rel='noopener noreferrer'>
+                  <Heart className='h-4 w-4 mr-2 text-red-500 fill-red-500' />
+                  Sponsor on GitHub
+                </Link>
+              </Button>
+            </div>
+          </Card>
+        </motion.div>
       </div>
 
       <div className='space-y-16'>
@@ -291,7 +264,7 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
                       ))}
                     </ul>
                   </CardContent>
-                  <div className='p-4 pt-0 grid grid-cols-2 gap-2 mt-4'>
+                  <div className='p-4 pt-0 mt-4'>
                     <Button asChild variant={isHighlighted ? 'default' : 'outline'} size='sm' className='w-full'>
                       <Link
                         href={tier.tierUrl}
@@ -300,27 +273,7 @@ export default function SponsorContent({ sponsors, tiers }: SponsorContentProps)
                         className='flex items-center justify-center gap-1'
                       >
                         <FaGithub className='h-3.5 w-3.5' />
-                        GitHub
-                      </Link>
-                    </Button>
-                    <Button
-                      asChild
-                      variant={isHighlighted ? 'default' : 'outline'}
-                      size='sm'
-                      className={`w-full ${
-                        isHighlighted
-                          ? 'bg-[#FF424D] hover:bg-[#FF424D]/90 text-white border-[#FF424D]'
-                          : 'hover:bg-orange-500/10 hover:text-orange-500 hover:border-orange-500/30'
-                      }`}
-                    >
-                      <Link
-                        href={tier.patreonUrl || 'https://patreon.com/WasiqB'}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='flex items-center justify-center gap-1'
-                      >
-                        <FaPatreon className='h-3.5 w-3.5' />
-                        Patreon
+                        Sponsor on GitHub
                       </Link>
                     </Button>
                   </div>

@@ -1,6 +1,6 @@
 [
   {
-    "title": "Software Development Engineer in Test 1",
+    "title": "Software Development Engineer in Test",
     "company": "TechVallunar",
     "companyUrl": "https://www.techvallunar.com/",
     "jobMode": "freelancing",
@@ -8,10 +8,54 @@
     "period": "Feb 2026 - Present",
     "location": "Mumbai, India",
     "responsibilities": [
-      "Perform test automation for security platform to check if different security vulnerabilities are detected properly from the Email, Cloud storage platforms and proper corresponding security tickets are generated properly in the platform."
+      "Perform test automation for security platform to check if different security vulnerabilities are detected properly from the Email, Cloud storage platforms and proper corresponding security tickets are generated properly in the platform.",
+      "Automating 300+ manual test cases for an AI-driven marketing platform for a global eCommerce client using Playwright with Typescript."
     ],
-    "industries": ["Network Security"],
-    "skills": ["Python", "PyTest", "GitLab", "Jira", "Testmo", "Allure Reports", "API Testing"]
+    "industries": ["Network Security", "AI Marketing Platform"],
+    "skills": [
+      "Playwright",
+      "Typescript",
+      "Python",
+      "PyTest",
+      "GitLab",
+      "GitHub",
+      "Jira",
+      "Testmo",
+      "Allure Reports",
+      "API Testing",
+      "TestRail"
+    ]
+  },
+  {
+    "title": "Software Engineer in Test",
+    "company": "Freelance QA Consultant",
+    "period": "Jan 2023 - Present",
+    "location": "Mumbai, India",
+    "jobMode": "freelancing",
+    "jobType": "remote",
+    "industries": ["Payment", "Mentoring", "Flight Booking"],
+    "responsibilities": [
+      "Designed Web UI automation using Playwright with TypeScript for a flight booking application, reducing manual regression effort covering critical user journeys.",
+      "Tested and implemented the Test automation for an API application for the payments middleware application for a US-based Startup.",
+      "Provided the personal SDET training and helped the QA professional to grow in their careers.",
+      "Provided Test automation support to a couple of No-Code Test automation organizations.",
+      "Mentored few QA professional guiding them in their career.",
+      "Wrote Test automation related Blogs for LambdaTest.",
+      "Created tutorial videos for Test Automation on YouTube."
+    ],
+    "skills": [
+      "Playwright",
+      "Selenium WebDriver",
+      "Appium",
+      "Java",
+      "Typescript",
+      "Rest-Assured",
+      "Boyka Framework",
+      "Postman",
+      "Git",
+      "GitLab",
+      "GitHub"
+    ]
   },
   {
     "title": "Senior Testing Specialist",
@@ -57,34 +101,6 @@
       "Mentored 4 junior automation engineers by providing them training for different Test automation tools and coding best practices thus improving the overall team proficiency."
     ],
     "skills": ["Selenium WebDriver", "Java", "Maven", "Rest-Assured", "Postman", "Git", "Jenkins"]
-  },
-  {
-    "title": "Independent Consultant",
-    "company": "Freelance QA",
-    "period": "Jan 2023 - Aug 2023",
-    "location": "Mumbai, India",
-    "jobMode": "freelancing",
-    "jobType": "remote",
-    "industries": ["Payment", "Mentoring"],
-    "responsibilities": [
-      "Tested and implemented the Test automation for an API application for the payments middleware application for a US-based Startup.",
-      "Provided the personal SDET training and helped the QA professional to grow in their careers.",
-      "Provided Test automation support to a couple of No-Code Test automation organizations.",
-      "Mentored few QA professional guiding them in their career.",
-      "Wrote Test automation related Blogs for LambdaTest.",
-      "Created tutorial videos for Test Automation on YouTube."
-    ],
-    "skills": [
-      "Selenium WebDriver",
-      "Appium",
-      "Java",
-      "Rest-Assured",
-      "Boyka Framework",
-      "Postman",
-      "Git",
-      "GitLab",
-      "GitHub"
-    ]
   },
   {
     "title": "Senior QA Consultant",
